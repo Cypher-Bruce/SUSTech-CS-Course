@@ -1,0 +1,2 @@
+/usr/bin/ar qc libStaticFunctions.a CMakeFiles/StaticFunctions.dir/div.cpp.o CMakeFiles/StaticFunctions.dir/mul.cpp.o
+/usr/bin/ranlib libStaticFunctions.a

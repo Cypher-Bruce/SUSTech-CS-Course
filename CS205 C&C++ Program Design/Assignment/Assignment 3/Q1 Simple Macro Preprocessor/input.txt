@@ -1,0 +1,2 @@
+#define mul( a , b ) a b
+mul( hi , he )

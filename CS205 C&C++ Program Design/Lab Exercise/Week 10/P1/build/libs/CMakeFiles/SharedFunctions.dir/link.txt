@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -shared -Wl,-soname,libSharedFunctions.so -o libSharedFunctions.so CMakeFiles/SharedFunctions.dir/add.cpp.o CMakeFiles/SharedFunctions.dir/sub.cpp.o 

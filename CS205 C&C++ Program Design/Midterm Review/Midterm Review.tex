@@ -1,0 +1,179 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+%\usepackage{setspace}
+%\setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize C/C++ Programming: Midterm Review}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf C/C++ Programming} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Midterm Review}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section{Compile and Run}
+
+In C:
+\begin{itemize}
+	\item Compile: gcc -c hello.c
+	\item Link: gcc hello.o -o hello
+	\item Run: ./hello
+\end{itemize}
+
+In C++:
+\begin{itemize}
+	\item Compile: g++ -c hello.cpp
+	\item Link: g++ -o hello hello.o
+	\item Run: ./hello
+\end{itemize}
+
+\section*{``sizeof()'' Function}
+
+When you use ``sizeof()'' function on an array, it will return the size of the whole array in bytes. 
+For example, if we have int A[2][3], then sizeof(A) will return 24, sizeof(A[0]) will return 12, and sizeof(A[0][0]) will return 4.
+
+When you use ``sizeof()'' function on a string type variable, it will always return 32.
+
+When you use ``sizeof()'' function on a pointer, it will return the size of the pointer itself, which is 8 bytes on a 64-bit machine.
+
+\section*{Input a String}
+
+When input a string in C, we don't write ``\&'' before the string variable. 
+For example, we write ``scanf("\%s", str);'' instead of ``scanf("\%s", \&str);''.
+
+In C, to input a whole line, we use ``gets(str);'' instead of ``scanf("\%s", str);''.
+And we can use ``puts(str);'' to output a char array.
+Note: it is a must to add a null character ``\textbackslash 0'' at the end of the char array or will cause unexpected behavior.
+
+In C++, there are two ways to input a whole line as a char array.
+We can use ``cin.get()'' to input a whole line, and use ``cout'' to output a string.
+``cin.get()'' takes two parameters, the first one is the char array, and the second one is the maximum length of the char array.
+However, if the input exceeds the maximum length, it will only read (maximum length - 1) characters and leave the last one as ``\textbackslash 0''.
+We often use a no parameter version of ``cin.get()'' to read a linebreak character, so that the next input will not be skipped.
+
+We can also use ``cin.getline()'' to input a whole line, and use ``cout'' to output a string.
+``cin.getline()'' takes two parameters, the first one is the char array, and the second one is the maximum length of the char array.
+It behaves the same as ``cin.get()'' when the input exceeds the maximum length.
+But it behaves differently from ``cin.get()'' when countering a linebreak character.
+``cin.getline()'' will read the linebreak character and discard it, so that the next input will not be skipped.
+
+In C++, if we want to input a whole line as a string, we can use ``getline(cin, str);''.
+It will read the whole line and discard the linebreak character, so that the next input will not be skipped.
+
+\section*{Pointers}
+
+In C, we use ``\%p'' to print the address of a variable.
+In C++, if you want to print the address of a string or a char, you need to cast it to ``void *'' first.
+
+If you want to define a pointer to a two-dimensional array, you need to use ``int (*p)[3];'' instead of ``int *p[3];''.
+And you traverse the array by using ``p[i][j]'' instead of ``p[i * 3 + j]''.
+
+A pointer that points to a function is called a function pointer.
+For example, we can define a function pointer ``int (*p)(int, int);''.
+And we assign a function to it by ``p = add;''.
+Then we can use ``p(1, 2);'' to call the function.
+\section*{Memory Allocation}
+
+In C, we have 4 functions to allocate memory: 
+\begin{itemize}
+	\item void *malloc(int num) - allocates an array of num bytes and returns a pointer to the first element of the array.
+	\item void *calloc(int num, int size) - allocates an array of num elements each of which size in bytes will be size, all bytes in the array will be initialized to 0.
+	\item void *realloc(void *ptr, int new\_size) - re-allocates memory extending it upto new\_size.
+	\item void free(void *ptr) - deallocates the memory previously allocated by a call to calloc, malloc, or realloc.
+\end{itemize}
+
+For example, if you want to allocate memory for an array of 10 integers, you can use ``int *p = (int *)malloc(10 * sizeof(int));''.
+And use ``free(p);'' to deallocate the memory.
+
+In C++, we have 2 functions to allocate memory:
+\begin{itemize}
+	\item new - allocates memory at runtime.
+	\item delete - deallocates memory at runtime.
+\end{itemize}
+
+For example, if you want to allocate memory for an array of 10 integers, you can use ``int *p = new int[10];''.
+And use ``delete [] p;'' to deallocate the memory.
+
+\section*{Templates}
+
+In C++, we can use templates to create generic functions and classes.
+For example, we can use ``template $<$typename T$>$ void swap(T \&a, T \&b)''.
+You instantiate a template by providing a type explicitly or implicitly, like ``template void swap$<$int$>$(int \&a, int \&b)''.
+If you want to specify the function for a specific type, you can use ``template $<>$''.
+
+\section*{Enum Type}
+
+In C++, we can use ``enum'' to define a new type.
+For example, we can use ``enum color \{red, green, blue\};'' to define a new type ``color''.
+And we can use ``color c = red;'' to define a variable of type ``color''.
+Also, ``color c = (color)1;'' and ``color c = color(1);'' are both valid.
+
+\section*{File I/O}
+
+We use ``\#include$<$fstream$>$'' to include the file I/O library.
+
+We use ``ofstream'' to create a file output stream, ``ifstream'' to create a file input stream, and ``fstream'' to create a file input/output stream.
+
+Then we associate the stream with a file by using ``open()''.
+Especially for ``fstream'', we need to specify the mode of the file, like ``ios::in'' for input, ``ios::out'' for output.
+
+Then we check if the file is opened successfully by using ``is\_open()''.
+
+After that, we can use ``$<<$'' to write to the file, and ``$>>$'' to read from the file.
+We can check if we have reached the end of the file by using ``eof()''.
+
+Finally, we use ``close()'' to close the file.
+
+\end{document}

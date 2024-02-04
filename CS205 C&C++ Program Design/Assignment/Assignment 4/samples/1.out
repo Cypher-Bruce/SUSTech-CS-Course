@@ -1,0 +1,299 @@
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [5R]
+Current: Player 1
+Direction: Right
+Player 1: [5B, 4B, RB, 9R, 4B, 2B, SB]
+Player 2: [9B, 8R, 9B, 1R, 3B, RB, 9R]
+Player 3: [7R, 3R, DR, 1B, 6B, RR, 0R]
+Player 4: [3R, 7R, 8B, 2B, 3B, RR, 5B]
+
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [5B, 5R]
+Current: Player 2
+Direction: Right
+Player 1: [4B, RB, 9R, 4B, 2B, SB]
+Player 2: [9B, 8R, 9B, 1R, 3B, RB, 9R]
+Player 3: [7R, 3R, DR, 1B, 6B, RR, 0R]
+Player 4: [3R, 7R, 8B, 2B, 3B, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [9B, 5B, 5R]
+Current: Player 3
+Direction: Right
+Player 1: [4B, RB, 9R, 4B, 2B, SB]
+Player 2: [8R, 9B, 1R, 3B, RB, 9R]
+Player 3: [7R, 3R, DR, 1B, 6B, RR, 0R]
+Player 4: [3R, 7R, 8B, 2B, 3B, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [1B, 9B, 5B, 5R]
+Current: Player 4
+Direction: Right
+Player 1: [4B, RB, 9R, 4B, 2B, SB]
+Player 2: [8R, 9B, 1R, 3B, RB, 9R]
+Player 3: [7R, 3R, DR, 6B, RR, 0R]
+Player 4: [3R, 7R, 8B, 2B, 3B, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [8B, 1B, 9B, 5B, 5R]
+Current: Player 1
+Direction: Right
+Player 1: [4B, RB, 9R, 4B, 2B, SB]
+Player 2: [8R, 9B, 1R, 3B, RB, 9R]
+Player 3: [7R, 3R, DR, 6B, RR, 0R]
+Player 4: [3R, 7R, 2B, 3B, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 4
+Direction: Left
+Player 1: [4B, 9R, 4B, 2B, SB]
+Player 2: [8R, 9B, 1R, 3B, RB, 9R]
+Player 3: [7R, 3R, DR, 6B, RR, 0R]
+Player 4: [3R, 7R, 2B, 3B, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 3
+Direction: Left
+Player 1: [4B, 9R, 4B, 2B, SB]
+Player 2: [8R, 9B, 1R, 3B, RB, 9R]
+Player 3: [7R, 3R, DR, 6B, RR, 0R]
+Player 4: [3R, 7R, 3B, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 2
+Direction: Left
+Player 1: [4B, 9R, 4B, 2B, SB]
+Player 2: [8R, 9B, 1R, 3B, RB, 9R]
+Player 3: [7R, 3R, DR, RR, 0R]
+Player 4: [3R, 7R, 3B, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 1
+Direction: Left
+Player 1: [4B, 9R, 4B, 2B, SB]
+Player 2: [8R, 1R, 3B, RB, 9R]
+Player 3: [7R, 3R, DR, RR, 0R]
+Player 4: [3R, 7R, 3B, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 4
+Direction: Left
+Player 1: [4B, 9R, 4B, SB]
+Player 2: [8R, 1R, 3B, RB, 9R]
+Player 3: [7R, 3R, DR, RR, 0R]
+Player 4: [3R, 7R, 3B, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 3
+Direction: Left
+Player 1: [4B, 9R, 4B, SB]
+Player 2: [8R, 1R, 3B, RB, 9R]
+Player 3: [7R, 3R, DR, RR, 0R]
+Player 4: [3R, 7R, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 2
+Direction: Left
+Player 1: [4B, 9R, 4B, SB]
+Player 2: [8R, 1R, 3B, RB, 9R]
+Player 3: [7R, DR, RR, 0R]
+Player 4: [3R, 7R, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 1
+Direction: Left
+Player 1: [4B, 9R, 4B, SB]
+Player 2: [8R, 3B, RB, 9R]
+Player 3: [7R, DR, RR, 0R]
+Player 4: [3R, 7R, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 4
+Direction: Left
+Player 1: [4B, 4B, SB]
+Player 2: [8R, 3B, RB, 9R]
+Player 3: [7R, DR, RR, 0R]
+Player 4: [3R, 7R, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 3
+Direction: Left
+Player 1: [4B, 4B, SB]
+Player 2: [8R, 3B, RB, 9R]
+Player 3: [7R, DR, RR, 0R]
+Player 4: [7R, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 2
+Direction: Left
+Player 1: [4B, 4B, SB]
+Player 2: [8R, 3B, RB, 9R]
+Player 3: [DR, RR, 0R]
+Player 4: [7R, RR, 5B]
+
+Draw: [6R, 1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 1
+Direction: Left
+Player 1: [4B, 4B, SB]
+Player 2: [3B, RB, 9R]
+Player 3: [DR, RR, 0R]
+Player 4: [7R, RR, 5B]
+
+Draw: [1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 4
+Direction: Left
+Player 1: [4B, 4B, SB, 6R]
+Player 2: [3B, RB, 9R]
+Player 3: [DR, RR, 0R]
+Player 4: [7R, RR, 5B]
+
+Draw: [1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 1
+Direction: Right
+Player 1: [4B, 4B, SB, 6R]
+Player 2: [3B, RB, 9R]
+Player 3: [DR, RR, 0R]
+Player 4: [7R, 5B]
+
+Draw: [1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 2
+Direction: Right
+Player 1: [4B, 4B, SB]
+Player 2: [3B, RB, 9R]
+Player 3: [DR, RR, 0R]
+Player 4: [7R, 5B]
+
+Draw: [1R, SB, 6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 3
+Direction: Right
+Player 1: [4B, 4B, SB]
+Player 2: [3B, RB]
+Player 3: [DR, RR, 0R]
+Player 4: [7R, 5B]
+
+Draw: [6R, 4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [DR, 9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 1
+Direction: Right
+Player 1: [4B, 4B, SB]
+Player 2: [3B, RB]
+Player 3: [RR, 0R]
+Player 4: [7R, 5B, 1R, SB]
+
+Draw: [4R, 8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [DR, 9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 2
+Direction: Right
+Player 1: [4B, 4B, SB, 6R]
+Player 2: [3B, RB]
+Player 3: [RR, 0R]
+Player 4: [7R, 5B, 1R, SB]
+
+Draw: [8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [DR, 9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 3
+Direction: Right
+Player 1: [4B, 4B, SB, 6R]
+Player 2: [3B, RB, 4R]
+Player 3: [RR, 0R]
+Player 4: [7R, 5B, 1R, SB]
+
+Draw: [8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [RR, DR, 9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 2
+Direction: Left
+Player 1: [4B, 4B, SB, 6R]
+Player 2: [3B, RB, 4R]
+Player 3: [0R]
+Player 4: [7R, 5B, 1R, SB]
+
+Draw: [8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [4R, RR, DR, 9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 1
+Direction: Left
+Player 1: [4B, 4B, SB, 6R]
+Player 2: [3B, RB]
+Player 3: [0R]
+Player 4: [7R, 5B, 1R, SB]
+
+Draw: [8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [4B, 4R, RR, DR, 9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 4
+Direction: Left
+Player 1: [4B, SB, 6R]
+Player 2: [3B, RB]
+Player 3: [0R]
+Player 4: [7R, 5B, 1R, SB]
+
+Draw: [8R, 7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [5B, 4B, 4R, RR, DR, 9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 3
+Direction: Left
+Player 1: [4B, SB, 6R]
+Player 2: [3B, RB]
+Player 3: [0R]
+Player 4: [7R, 1R, SB]
+
+Draw: [7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [5B, 4B, 4R, RR, DR, 9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 2
+Direction: Left
+Player 1: [4B, SB, 6R]
+Player 2: [3B, RB]
+Player 3: [0R, 8R]
+Player 4: [7R, 1R, SB]
+
+Draw: [7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [3B, 5B, 4B, 4R, RR, DR, 9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 1
+Direction: Left
+Player 1: [4B, SB, 6R]
+Player 2: [RB]
+Player 3: [0R, 8R]
+Player 4: [7R, 1R, SB]
+
+Draw: [7B, 8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [SB, 3B, 5B, 4B, 4R, RR, DR, 9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 3
+Direction: Left
+Player 1: [4B, 6R]
+Player 2: [RB]
+Player 3: [0R, 8R]
+Player 4: [7R, 1R, SB]
+
+Draw: [8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [SB, 3B, 5B, 4B, 4R, RR, DR, 9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 2
+Direction: Left
+Player 1: [4B, 6R]
+Player 2: [RB]
+Player 3: [0R, 8R, 7B]
+Player 4: [7R, 1R, SB]
+
+Draw: [8B, SR, 6B, SR, DB, 2R, 5R, 2R, 0B, DR, 1B, 4R, 7B, DB]
+Discard: [RB, SB, 3B, 5B, 4B, 4R, RR, DR, 9R, 6R, RR, 8R, 7R, 3R, 9R, 1R, 3R, 3B, 2B, 9B, 6B, 2B, RB, 8B, 1B, 9B, 5B, 5R]
+Current: Player 3
+Direction: Right
+Player 1: [4B, 6R]
+Player 2: []
+Player 3: [0R, 8R, 7B]
+Player 4: [7R, 1R, SB]
+
+Player 2 (53)

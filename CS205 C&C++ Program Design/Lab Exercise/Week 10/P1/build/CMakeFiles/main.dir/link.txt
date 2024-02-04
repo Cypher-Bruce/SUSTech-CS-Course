@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/main.dir/main.cpp.o -o main  -Wl,-rpath,"/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Lab Exercise/Week 10/P1/build/liba" liba/libliba.so libs/liblibs.a 

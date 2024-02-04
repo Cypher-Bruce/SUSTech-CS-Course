@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblibs.a CMakeFiles/libs.dir/div.cpp.o CMakeFiles/libs.dir/mul.cpp.o
+/usr/bin/ranlib liblibs.a

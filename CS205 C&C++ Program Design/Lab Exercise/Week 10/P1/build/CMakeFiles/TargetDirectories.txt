@@ -1,0 +1,9 @@
+/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Lab Exercise/Week 10/P1/build/CMakeFiles/main.dir
+/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Lab Exercise/Week 10/P1/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Lab Exercise/Week 10/P1/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Lab Exercise/Week 10/P1/build/liba/CMakeFiles/liba.dir
+/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Lab Exercise/Week 10/P1/build/liba/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Lab Exercise/Week 10/P1/build/liba/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Lab Exercise/Week 10/P1/build/libs/CMakeFiles/libs.dir
+/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Lab Exercise/Week 10/P1/build/libs/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Lab Exercise/Week 10/P1/build/libs/CMakeFiles/rebuild_cache.dir

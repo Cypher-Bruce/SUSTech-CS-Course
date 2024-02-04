@@ -1,0 +1,3 @@
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Assignment/Assignment 3/Q1 Simple Macro Preprocessor/debug/cmake-build-debug/CMakeFiles/debug.dir
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Assignment/Assignment 3/Q1 Simple Macro Preprocessor/debug/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/C++ Program Design/Assignment/Assignment 3/Q1 Simple Macro Preprocessor/debug/cmake-build-debug/CMakeFiles/rebuild_cache.dir

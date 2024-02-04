@@ -1,0 +1,1249 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+%\usepackage{setspace}
+%\setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize C/C++ Programming: Final Review}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf C/C++ Programming} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Final Review}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section{Data Types}
+
+In C++, we have two build-in data types: fundamental data types and compound data types. 
+Fundamental data types include: \textbf{int, float, double, char, bool, void}. 
+Compound data types include: \textbf{array, pointer, reference, string, structure, union, enumeration, class, function, etc.}
+To be noticed that \textbf{void} is a special data type.
+
+\subsection{Naming Limit}
+
+\begin{itemize}
+	\item A variable name can be of any length.
+	\item A variable name must begin with a letter or an underscore character.
+	\item A variable name can only contain letters, numbers, and the underscore character.
+	\item Variable names are case-sensitive.
+	\item A name that begins with two underscores or an underscore followed by an uppercase letter is reserved for the compiler.
+	\item Reserved words (such as C++ keywords, like int) may not be used as variable names.
+\end{itemize}
+
+\subsection{Sizeof Operator}
+
+The \texttt{sizeof} operator returns the size of a variable or data type.
+We can use the type name or variable name to get the size of a type or variable.
+For example:
+\begin{verbatim}
+int a;
+sizeof(int); // returns 4
+sizeof(a); // returns 4
+\end{verbatim}
+
+\subsection{Data Initialization}
+
+There are several ways to initialize a variable in C++.
+
+\begin{itemize}
+	\item \texttt{int a = 0;}
+	\item \texttt{int a(0);}
+	\item \texttt{int a\{0\};}
+	\item \texttt{int a = \{\};}
+	\item \texttt{int a = \{0\};}
+\end{itemize}
+
+To be noticed that if we initialize a variable without a value in main function, it will be initialized to a random value.
+But if we initialize a static variable without a value, it will be initialized to 0 (or default value).
+
+\subsection{Integer Types}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Type & Size & Range \\
+		\hline
+		\textbf{char} & 1 byte & $-2^7$ to $2^7-1$ or 0 to $2^8-1$ \\
+		\hline
+		\textbf{short} & 2 bytes & $-2^{15}$ to $2^{15}-1$ or 0 to $2^{16}-1$ \\
+		\hline
+		\textbf{int} & 4 bytes & $-2^{31}$ to $2^{31}-1$ or 0 to $2^{32}-1$ \\
+		\hline
+		\textbf{long} & 4 bytes & $-2^{31}$ to $2^{31}-1$ or 0 to $2^{32}-1$ \\
+		\hline
+		\textbf{long long} & 8 bytes & $-2^{63}$ to $2^{63}-1$ or 0 to $2^{64}-1$ \\
+		\hline
+	\end{tabular}
+	\caption{Integer Types}
+\end{table}
+
+However, data width largely depends on the compiler and the computer architecture.
+The true standard is that: \textbf{int} is at least 16 bits, \textbf{long} is at least 32 bits, and \textbf{long long} is at least 64 bits.
+
+The compiler will provide the \textbf{limits.h} header file, which defines macros that allow you to use these values and other details about the binary representation of integer values in your programs.
+For example \textbf{INT\_MIN} and \textbf{INT\_MAX}.
+
+\subsubsection{Prefix for Different Bases}
+
+We might want to use different bases to represent an integer.
+This can be specified by adding a prefix to the integer literal.
+If we want to use octal, we can add a \textbf{0} prefix (numbers like 09 will trigger an error).
+If we want to use hexadecimal, we can add a \textbf{0x} or \textbf{0X} prefix.
+If we want to use binary, we can add a \textbf{0b} or \textbf{0B} prefix.
+
+\subsubsection{Suffix for Different Types}
+
+We can also use suffix to specify the type of an integer literal.
+If we want to use \textbf{unsigned}, we can add a \textbf{u} or \textbf{U} suffix.
+If we want to use \textbf{long}, we can add a \textbf{l} or \textbf{L} suffix.
+If we want to use \textbf{long long}, we can add a \textbf{ll} or \textbf{LL} suffix.
+
+\subsection{Boolean Type}
+
+The \textbf{bool} type is used to represent boolean values.
+Any non-zero value is considered true, even negative numbers.
+
+\subsection{Floating-Point Types}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Type & Size & Range \\
+		\hline
+		\textbf{float} & 4 bytes & about 6 digits \\
+		\hline
+		\textbf{double} & 8 bytes & about 15 digits \\
+		\hline
+		\textbf{long double} & 8 bytes & about 15 digits \\
+		\hline
+	\end{tabular}
+	\caption{Floating-Point Types}
+\end{table}
+
+The compiler will provide the \textbf{float.h} header file, which defines macros that allow you to use these values and other details about the binary representation of floating-point values in your programs.
+
+We can use \textbf{E notation} to represent a floating-point number.
+For example, \textbf{1.23e-6} represents $1.23 \times 10^{-6}$. 
+
+To be noticed, \texttt{double a = .2} is a valid statement, and it will initialize \texttt{a} to 0.2.
+
+\subsection{Const Qualifier}
+
+The \textbf{const} qualifier can be used to make a variable immutable.
+You can only use \textbf{const} qualifier when you declare a variable.
+For example:
+\begin{verbatim}
+const int a = 0; // correct
+
+const int b;     // will trigger an error
+b = 0;
+\end{verbatim}
+
+\subsection{Arithmetic Operators}
+
+In C++, the arithmetic operators have left-to-right associativity, which means \texttt{12 / 3 * 4} is equivalent to \texttt{(12 / 3) * 4}, instead of \texttt{12 / (3 * 4)}.
+
+When division is performed, if there exists one operand that is floating-point type, the result will be a floating-point type.
+
+\subsection{Type Conversion}
+
+The compiler will perform type conversion by the following rules:
+\begin{enumerate}
+	\item If either operand is a floating type, the two operands will be converted to the higher precision type.
+	\item Otherwise, if both are signed or both are unsigned, the operand with the smaller type will be converted to the larger type.
+	\item Otherwise, if the unsigned type is larger than the signed type, the signed type will be converted to the unsigned type (if it is a negative number, this will cause an overflow).
+	\item Otherwise, if the signed type can represent all values of the unsigned type, the unsigned type will be converted to the signed type.
+	\item Otherwise, the signed type will be converted to the unsigned type.
+\end{enumerate}
+
+We can force a type cast by using the following syntax:
+\begin{verbatim}
+int a = 0;
+double b = (double) a;
+double c = double (a);
+auto d = double (a);
+\end{verbatim}
+
+To be noticed, when using an expression to initialize a variable, the order is to first go through the expression and then perform type conversion.
+For example:
+\begin{verbatim}
+int a = 3.5 + 1.5; // a = 5
+double b = 3 / 2;   // b = 1.0
+\end{verbatim}
+
+\section{Compound Data Types}
+
+\subsection{Array}
+
+\subsubsection{Array Size}
+
+The size of an array must be a constant expression (could be 0).
+If you use \texttt{sizeof} operator on the array name, it will return the size of the array in bytes.
+For example, an \texttt{int} array with 10 elements will return 40.
+
+\subsubsection{Array Initialization}
+
+We use curly braces to initialize an array.
+This will initialize the array from the first element to the last element.
+If some elements are not given a value, they will be initialized to 0.
+However, this is only valid when declaration, not assignment.
+For example:
+\begin{verbatim}
+int a[10] = {1, 2, 3}; // a = {1, 2, 3, 0, 0, 0, 0, 0, 0, 0}
+int b[3];
+b = {1, 2, 3};         // will trigger an error
+\end{verbatim}
+
+You can drop the \textbf{=} or omit the array size, if you initialize the array this way.
+For example:
+\begin{verbatim}
+int a[] = {1, 2, 3};  // a = {1, 2, 3}
+int b[3]  {1, 2, 3};  // b = {1, 2, 3}
+int c[]   {1, 2, 3};  // c = {1, 2, 3}
+\end{verbatim}
+
+You cannot use an array to initialize another array.
+For example:
+\begin{verbatim}
+int a[10] = {1, 2, 3};
+int b[10] = a; // will trigger an error
+int c[10];
+c = a;         // will trigger an error
+\end{verbatim}
+
+You cannot use auto-conversion, if you initialize an array this way.
+For example:
+\begin{verbatim}
+char a[1] = {353}; // will trigger an error
+char b = 353;      // correct, b = 'a'
+char c = {353};    // will trigger an error
+char d(353);       // correct, d = 'a'
+\end{verbatim}
+
+\subsection{String}
+
+A C-style string is a char array that is terminated by a null character (\texttt{'\textbackslash 0'}, whose ascii code is 0).
+You can use a string to initialize a char array, and the compiler will automatically add a null character at the end (the null character takes up one element and will be counted by \texttt{sizeof} operator).
+When array is not big enough to hold the string, the compiler will trigger an error.
+
+You cannot initialize a single char with a string, even if the string only contains one character or no character.
+For example:
+\begin{verbatim}
+char a = "a"; // will trigger an error
+char b = "";  // will trigger an error
+char c = 'a'; // correct
+\end{verbatim}
+
+C++ provides a \textbf{string} class to handle strings.
+Its value can be accessed like an array, and can use \texttt{+} or \texttt{+=} operator to concatenate strings.
+If you want to find the length of a string, you can use \texttt{.size()} method (this excludes the null character).
+
+\subsection{Structure}
+
+A structure is a compound data type that groups related data together.
+You can use curly braces to initialize a structure (partial initialization is allowed).
+You can even use nested curly braces to initialize an array of structures.
+For example:
+\begin{verbatim}
+struct Node {
+    int data;
+    int name;
+};
+Node nodes[2] = {{1, 2}, {3, 4}};
+\end{verbatim}
+
+A structure can have member functions.
+For example:
+\begin{verbatim}
+struct Node {
+    int data;
+    int name;
+    void print() {
+        cout << data << " " << name << endl;
+    }
+};
+\end{verbatim}
+
+\subsection{Union}
+
+A union is a compound data type that allows you to store different data types in the same memory location.
+But only one member can contain a value at any given time.
+
+\subsection{Enumeration}
+
+The \texttt{enum} type in C++ is used to define a set of named constants.
+If not specified, the first constant will be assigned a value of 0, and the value of each successive constant will be increased by 1.
+If any constant is assigned a value, the value of each successive constant will be increased by 1 from the previous constant.
+To be noticed, these constants can have the same value.
+For example:
+\begin{verbatim}
+enum Color {
+    RED = 1,
+    GREEN,
+    BLUE = 5,
+    YELLOW = 5
+};
+\end{verbatim}
+
+This will lead to the following values: \texttt{RED = 1, GREEN = 2, BLUE = 5, YELLOW = 5}.
+
+Due to this potential discontinuity, you cannot perform arithmetic operations on \texttt{enum} type.
+But you can cast it to an integer type, and then perform arithmetic operations.
+
+Enum type variable are actually stored as integers.
+When you compare two \texttt{enum} type variables, you are actually comparing their values.
+And you can initialize an \texttt{enum} type variable with an integer value, even if there is no corresponding constant.
+For example:
+\begin{verbatim}
+enum Color {
+    ... // same as above
+};
+Color a = 1;          // wrong
+Color b = (Color) 1;  // correct
+Color c = Color(1);   // correct
+Color d = Color(200); // correct even if there is no corresponding constant
+\end{verbatim}
+
+\section{Pointer}
+
+To get the address of a variable, we can use the \texttt{\&} operator.
+Conversely, to get the value of a variable from its address, we can use the \texttt{*} operator.
+
+\subsection{Declaration and Initialization}
+
+For example, to declare a pointer-to-int variable \texttt{p} and initialize it to point to variable \texttt{a}, we can use the following syntax:
+\begin{verbatim}
+int a = 0;
+int * p = &a;
+\end{verbatim}
+
+Two spaces are optional in the above syntax:
+The space between \texttt{int} and \texttt{*} and the space between \texttt{*} and \texttt{p}.
+
+The content of a pointer variable is the address of another variable.
+To assign a value to a pointer variable is dangerous, because it means you let it points to a memory location that you do not know what it is.
+For example, the following code is correct, but it is dangerous:
+\begin{verbatim}
+int *p = (int *) 0xB8000000;
+\end{verbatim}
+
+\subsection{Initialization with \texttt{new}}
+
+We can use \texttt{new} operator to dynamically allocate memory, and use \texttt{delete} operator to free the memory.
+\begin{verbatim}
+int *p = new int;
+int *q = new int[10];
+delete p;
+delete[] q;
+\end{verbatim}
+
+There are several things to be noticed:
+\begin{itemize}
+	\item You cannot delete a memory location that is not allocated by \texttt{new}.
+	\item You cannot delete a memory location that is already deleted.
+	\item It is safe to delete a \texttt{nullptr}.
+	\item If you try to delete a dynamically allocated array, make sure the pointer points to the first element of the array.
+\end{itemize}
+
+\subsection{Dynamic Array}
+
+We can use \texttt{new} operator to dynamically allocate an array.
+
+To iterate through a dynamic array, we simply increment the pointer.
+For example:
+\begin{verbatim}
+int *p = new int[10];
+for (int i = 0; i < 10; i++) {
+    cout << p[i] << endl; // correct
+}
+for (int i = 0; i < 10; i++) {
+    cout << *p << endl;   // also correct
+    p++;                  
+}
+p -= 10; // reset p
+delete [] p;
+\end{verbatim}
+
+Also, this works on normal arrays.
+For example:
+\begin{verbatim}
+int a[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+int *p = a;                                   // or int *p = &a[0];
+for (int i = 0; i < 10; i++) {
+    cout << *p << endl; // correct
+    p++;
+}
+\end{verbatim}
+
+Especially, a dynamic array is useful for multiple strings.
+You can declare a dynamic array of \texttt{char *} to store multiple strings.
+For example:
+\begin{verbatim}
+const char * names[] = {"Alice", "Bob", "Cindy"};
+\end{verbatim}
+
+The array initialized in this way will not be forced to be aligned at the end.
+
+\subsection{Dynamic Structure}
+
+We can use \texttt{new} operator to dynamically allocate a structure.
+If we want to access the members of the structure, we can use the \texttt{->} operator.
+
+\subsection{Pointer and Const}
+
+\subsubsection{Const Pointer}
+
+A const pointer is a pointer whose value (the address it holds) cannot be changed after initialization.
+But you can change the value of the variable it points to.
+For example:
+\begin{verbatim}
+int a = 0;
+int b = 1;
+int * const p = &a;
+p* = 1; // correct
+p = &b; // will trigger an error
+\end{verbatim}
+
+\subsubsection{Pointer to Const}
+
+A pointer to const is a pointer that points to a const variable.
+You cannot change the value of the variable it points to, but you can change the address it holds.
+For example:
+\begin{verbatim}
+int a = 0;
+int b = 1;
+const int * p = &a; // or int const * p = &a;
+p* = 1; // will trigger an error
+p = &b; // correct
+\end{verbatim}
+
+To be noticed, a pointer that points to a const variable must be a pointer to const.
+For example:
+\begin{verbatim}
+const int a = 0;
+int * p1 = &a; // will trigger an error
+const int * p2 = &a; // correct
+\end{verbatim}
+
+This is part of const-correctness, which means that even if the pointer may not try to change the value of the variable it points to, it should still be a pointer to const.
+\section{Storage}
+
+\subsection{Automatic Storage}
+
+Ordinary variables are stored in stack.
+They will be destroyed when the function terminates.
+
+\subsection{Static Storage}
+
+You can create a static variable by using the \texttt{static} keyword or defining it outside any function.
+They will exist throughout the lifetime of the program.
+
+\subsection{Dynamic Storage}
+
+The variables created by \texttt{new} operator are stored in heap.
+They are not tied to any function, and will exist until you delete them.
+
+\section{Increment and Decrement}
+
+\section{Function}
+
+\subsection{Function Prototype}
+
+A function prototype is a declaration of a function that specifies the function's name and type signature (arity, data types of parameters, and return type), but omits the function body.
+It is necessary to declare a function prototype before you use it, but you don't have to define it.
+
+When declaring a function prototype, you can omit the parameter names.
+For example:
+\begin{verbatim}
+int add(int, int);
+\end{verbatim}
+
+\subsection{Passing Array to Function}
+
+When passing an array to a function, you can use the following syntax:
+\begin{verbatim}
+void print(int a[]) {
+	...
+}
+void print(int *a) {
+	...
+}
+\end{verbatim}
+
+To be noticed that \texttt{a[]} here works the same as \texttt{*a}, which means you can perform pointer arithmetic on it.
+However, this is not possible for a normal array variable.
+For the very same reason, if you apply \texttt{sizeof} operator on \texttt{a[]} in the function, it will return the size of a pointer, not the size of the array.
+
+\subsubsection{Two Dimensional Array}
+
+When passing a two dimensional array to a function, you can use the following syntax:
+\begin{verbatim}
+void print(int a[][10]) {
+	...
+}
+void print(int (*a)[10]) {
+	...
+}
+\end{verbatim}
+
+The second size of the array must be specified.
+
+If you apply \texttt{sizeof} operator on \texttt{a} in the function, it will return the size of a pointer, not the size of the array.
+But if you apply \texttt{sizeof} operator on \texttt{a[0]} in the function, it will return the size of the first row of the array.
+
+\subsection{Pointer to Function}
+
+A pointer to function is a pointer that points to a function.
+To declare a pointer to function, you can use the following syntax:
+\begin{verbatim}
+int add (int, int);
+int (*p) (int, int) = add;
+
+p(1, 2);
+(*p)(1, 2); // both are correct
+\end{verbatim}
+
+Notice that the parameter type and number and the return type of the function must match the type of the pointer to function.
+And this is where the void type is useful (when the return type of the function is void).
+
+\subsection{Inline Function}
+
+An inline function is a function that is expanded in line when it is called.
+When the inline function is called, the compiler will replace the function call with the function code.
+
+This will reduce the overhead of a function call, because the program does not have to jump to another location to execute the function code.
+But it will increase the memory usage, because the function code will be copied to every place where the function is called.
+
+\subsection{Passing by Reference}
+
+When passing a variable to a function, the default behavior is to pass by value.
+This means that the function will create a copy of the variable, and any changes to the variable inside the function will not affect the original variable.
+
+However, to actually modify the original variable, we can pass by pointer or pass by reference.
+
+A reference must be initialized by a variable, and cannot be changed to refer to another variable.
+If you use \& operator on a reference, you will get the address of the variable it refers to.
+
+For example, a swap function can be implemented as follows:
+\begin{verbatim}
+void swap(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+\end{verbatim}
+
+However, if you write the function like above, you lose the ability to auto-convert.
+But you can explicitly convert the variable to a reference.
+For example:
+\begin{verbatim}
+long a = 0;
+long b = 1;
+swap(a, b);                 // will trigger an error
+swap((int &) a, (int &) b); // correct
+\end{verbatim}
+
+If the argument is not a lvalue, you cannot pass by reference.
+For example:
+\begin{verbatim}
+void modifyReference(int &x) {
+    x = 10;
+}
+
+int main() {
+    modifyReference(5); // 5 is an rvalue, will trigger an error
+}
+\end{verbatim}
+
+But if you declare the parameter as a const reference, you can pass by rvalue.
+For example:
+\begin{verbatim}
+void print (const int &x) {
+    cout << x << endl;
+}
+
+int main() {
+    print(5); // correct
+}
+\end{verbatim}
+
+Or you can return a reference from a function.
+This saves the overhead of copying the return value.
+But you should not return a reference to a local variable, because the local variable will be destroyed when the function terminates.
+The more common use case is to return a reference to a parameter.
+For example:
+\begin{verbatim}
+// very wrong, c will be a dangling reference
+int & add(int &a, int &b) {
+    int c = a + b;
+    return c;
+}
+\end{verbatim}
+
+\subsubsection{Const Reference}
+
+You can use const reference to pass by value.
+This will prevent the function from modifying the original variable.
+
+String type is special, because they are often treated as const char * when passed to a function.
+However, you can also use const string \& to pass by value (this accepts both string and const char *).
+But do be careful if you pass a pointer to a single char to such function, because the function will treat it as a string.
+As the single char is not null-terminated, this will cause an error.
+
+If the return type of a function is a reference, it is a valid lvalue.
+In the case that you don't want to modify the original variable, you can return a const reference.
+
+\subsection{Default Argument}
+
+You can specify default arguments for a function.
+If you do not pass a value to the argument, the default value will be used.
+A function can have multiple default arguments, but all the default arguments must be added from right to left (the actual argument assignment is from left to right).
+
+If you separate the function declaration and definition, you can only specify default arguments in the declaration.
+If you did not specify default arguments in the declaration, the compiler will consider the function as no default arguments.
+If you provide default arguments both in the declaration and definition, you will get an error.
+
+\subsection{Function Overloading}
+
+Function overloading is a feature that allows us to have more than one function with the same name, as long as they have different parameters.
+The compiler will perform type conversion to determine which function to call.
+
+To be noticed, most of the time, reference type and normal type are considered the same.
+But if a conversion is performed before passing the argument, the compiler will invoke the normal type function.
+This also works when you directly provide a value in the function call.
+For example:
+\begin{verbatim}
+void print(int &x) {
+    cout << "int &" << endl;
+}
+void print(int x) {
+    cout << "int" << endl;
+}
+
+int main() {
+    long a = 0;
+    print(a); // will print "int"
+    print(1); // will print "int"
+}
+\end{verbatim}
+
+Also, function with pointer and const pointer are considered overloaded.
+If you do so, any pointer points to a const variable will go to the const pointer function, and the rest will go to the pointer function.
+For example:
+\begin{verbatim}
+void print(int *x) {
+    cout << "int *" << endl;
+}
+void print(const int *x) {
+    cout << "const int *" << endl;
+}
+
+int main() {
+    int a = 0;
+    const int b = 0;
+    print(&a); // will print "int *"
+    print(&b); // will print "const int *"
+}
+\end{verbatim}
+
+\subsection{Function Template}
+
+A function template is a function that can operate with generic types.
+This allows us to create a function template whose functionality can be adapted to more than one type or class without repeating the entire code for each type.
+For example, a function template for swapping two variables can be implemented as follows:
+\begin{verbatim}
+template <typename T>
+void swap(T &a, T &b) {
+    T temp = a;
+    a = b;
+    b = temp;
+}
+\end{verbatim}
+
+You can specialize a function template for a specific type.
+For example:
+\begin{verbatim}
+template <>
+void swap<int>(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+\end{verbatim}
+
+A specialized template will override the original template.
+And a normal function will override both the template and the specialized template.
+
+\section{Duration, Scope, and Linkage}
+
+A typical structure for a C++ program consists of three parts: A header file, a source file, and a main file.
+
+Common header files include:
+\begin{itemize}
+	\item Function prototypes
+	\item Constant definitions
+	\item Structure declarations
+	\item Class declarations
+	\item Template declarations
+	\item Inline function definitions
+\end{itemize}
+
+Remember to include header file in just one source file.
+If not sure, you can always use guards to prevent multiple inclusion.
+
+Common source files include all other functions and class definitions.
+And the main file is where the main function is defined.
+
+\subsection{Storage}
+
+\subsubsection{Automatic Storage}
+
+Automatic storage is the default storage class for all local variables.
+They are stored in stack, and will be destroyed when the function terminates.
+
+All automatic variables have automatic storage, local scope, and no linkage.
+
+\subsubsection{Static Storage}
+
+Static storage is used to store variables that exist throughout the lifetime of the program.
+
+A no linkage static storage variable is only visible within the block or function.
+The only way to declare a no linkage static storage variable is to declare a static variable inside a function.
+This will make the variable visible throughout the function, but not outside the function.
+
+An external linkage static storage variable is visible throughout all files.
+When you declare a static variable outside any function, the variable will be visible throughout the file.
+However, in other files, you must declare the variable as \texttt{extern} to use it.
+Although the variable has static storage, it doesn't have to be declared as static (actually if you do so, it will become an internal linkage static storage variable).
+
+An internal linkage static storage variable is visible throughout the file.
+You can declare the variable as \texttt{static} to make it an internal linkage static storage variable.
+
+\subsubsection{Dynamic Storage}
+
+Dynamic storage is used to store variables that are created by \texttt{new} operator.
+They are stored in heap, and will exist until you delete them.
+
+\subsection{Scope and Linkage}
+
+\subsubsection{Scope}
+
+The scope of a variable is the part of the program where the variable can be directly accessed.
+\begin{enumerate}
+	\item Local Scope: Only visible within the block.
+	\item Global Scope: Visible once declared until the end of the file.
+	\item Function Prototype Scope: Visible within the parentheses of the function prototype.
+	\item Class Scope
+	\item Namespace Scope
+\end{enumerate}
+
+\subsubsection{Linkage}
+
+The linkage of a variable is the part of the program where the variable can be indirectly accessed.
+\begin{enumerate}
+	\item No Linkage: Only visible within the block or function.
+	\item Internal Linkage: Only in the same file.
+	\item External Linkage: Shared across multiple files.
+\end{enumerate}
+
+\subsection{About Function}
+
+All functions automatically have external linkage.
+If you want to make a function private to a file, you can declare it as \texttt{static}.
+
+\section{Namespace}
+
+A namespace is a declarative region that provides a scope to the identifiers (the names of types, functions, variables, etc) inside it.
+Multiple namespace blocks with the same name are allowed.
+
+A namesapce cannot be declared inside a block.
+All name declarations have external linkage by default.
+
+A global variable (a variable that is not declared inside any function) is in the global namespace.
+
+\section{Class}
+
+\subsection{Access Control}
+
+A class has three access specifiers: \texttt{public}, \texttt{private}, and \texttt{protected}.
+The default access specifier is \texttt{private}.
+
+\subsection{Inline Member Function}
+
+A member function defined inside a class declaration is implicitly an inline function.
+However, you can make a member function explicitly inline by using the \texttt{inline} keyword.
+
+\subsection{Constructor}
+
+A constructor is a special member function that is called when an object is created.
+It is used to initialize the object's data members.
+
+A constructor has the same name as the class, and it does not have a return type.
+A default constructor is provided by the compiler if you do not define any constructor, which has no parameters and does nothing.
+To be noticed, to invoke the default constructor, you must not use parentheses (this will be considered as a function declaration).
+
+Once you define a constructor, the compiler will not provide a default constructor.
+\subsection{Destructor}
+
+A destructor is a special member function that is called when an object is destroyed.
+It is used to free the object's resources.
+It takes no parameters and has no return type.
+Its name is the class name preceded by a tilde (\texttt{\~{}}).
+
+A destructor should free memory especially when you dynamically allocate memory in the constructor.
+Moreover, if you dynamically allocate memory in the constructor, you should also define a copy constructor and an assignment operator.
+If class inherits from another class, you should also define a virtual destructor.
+
+\subsection{Const Member Function}
+
+A const member function is a member function that promises not to modify the object.
+
+\subsection{This Pointer}
+
+The \texttt{this} pointer is a pointer that points to the object itself.
+Its most common use is to resolve name conflicts between class members and function parameters.
+Another use is to return a reference or a pointer to the object itself.
+
+\subsection{Enum Class}
+
+An enum class is a scoped enumeration that is strongly typed.
+The member names of an enum class cannot be implicitly converted to integers.
+To declare an enum class, you can use the following syntax:
+\begin{verbatim}
+enum class Color {
+    RED,
+    GREEN,
+    BLUE
+};
+\end{verbatim}
+
+\subsection{Const Member}
+
+You can declare a member variable as \texttt{const}.
+But this cannot be used to initialize other member variables.
+For example:
+\begin{verbatim}
+class A {
+    const int size = 10; 
+    int a[size]; // will trigger an error
+};
+\end{verbatim}
+
+To assign value to a const member variable in function body is not allowed, just like any other const variable.
+If you want to initialize a const member variable, you can use the following syntax:
+\begin{verbatim}
+class A {
+    const int size;
+public:
+    A(int size) : size(size) {}
+};
+\end{verbatim}
+
+You can use enum type or static const member variable to initialize other member variables.
+For example:
+\begin{verbatim}
+class A {
+    enum {size = 10};
+    int a[size];
+};
+class B {
+    static const int size = 10;
+    int a[size];
+};
+\end{verbatim}
+
+\subsection{Static Member}
+
+A static member variable is a variable that is shared by all objects of the class.
+It must be initialized outside the class.
+
+\subsection{Const Member Function}
+
+A const member function is a member function that promises not to modify the object.
+It can only call other const member functions.
+
+A const variable can only call const member functions.
+
+\subsection{Static Member Function}
+
+A static member function is a member function that is shared by all objects of the class.
+It can be called without an object, by using the class name and the scope resolution operator.
+But accessing it like a normal function is also allowed.
+For example:
+\begin{verbatim}
+class A {
+    static int a;
+public:
+    static void print() {
+        cout << a << endl;
+    }
+};
+int A::a = 0;
+int main() {
+    A::print();
+    A a;
+    a.print();
+}
+\end{verbatim}
+
+\subsection{Copy Constructor}
+
+A copy constructor is a constructor that creates an object by copying another object.
+It is used to initialize an object with another object of the same type.
+For example:
+\begin{verbatim}
+class A {
+    int a;
+public:
+    A(int a) : a(a) {}
+    A(const A &a) : a(a.a) {}
+};
+\end{verbatim}
+
+The copy constructor is provided by the compiler if you do not define any constructor.
+However, it just does a shallow copy, this will cause error if you dynamically allocate memory in the constructor.
+Because two pointers will point to the same memory location, and when one of them is destroyed, the other one will become a dangling pointer.
+Also, if you have a counter in the class, you should also define a copy constructor.
+
+\section{Operator Overloading}
+
+A class can overload most operators.
+However, some operators cannot be overloaded:
+\begin{itemize}
+	\item \texttt{::} (scope resolution operator)
+	\item \texttt{.} (member access operator)
+	\item \texttt{.*} (member access through pointer to member operator)
+	\item \texttt{?:} (ternary operator)
+	\item \texttt{sizeof} (object size operator)
+	\item \texttt{typeid} (object type operator)
+\end{itemize}
+
+Also, all castings cannot be overloaded:
+\begin{itemize}
+	\item \texttt{static\_cast}
+	\item \texttt{dynamic\_cast}
+	\item \texttt{const\_cast}
+	\item \texttt{reinterpret\_cast}
+\end{itemize}
+
+The overloaded operators can be called explicitly or implicitly.
+For example, the \texttt{operator+()} function can be called explicitly as \texttt{a.operator+(b)} or implicitly as \texttt{a + b}.
+
+\subsection{Overloading Binary Operators}
+
+Since the function call is always on the left, the left operand of a binary operator must be an object of the class.
+However, if you want to overload a binary operator with a built-in type on the left, you must declare the function as a friend function.
+
+A friend function, although declared inside the class, is not a member function.
+This means any instance of the class cannot directly invoke the friend function, instead, the function is automatically called when the binary operator is used.
+
+To be noticed that the order of the operands matters.
+If the order is reversed, the compiler will not be able to find the function.
+
+\subsection{Conversion}
+
+If you don't use the \texttt{explicit} keyword, constructor of the class can be used for implicit conversion.
+This is troublesome as you often don't know when the compiler will use the constructor.
+
+To convert a class into another type, you can overload the cast operator.
+For example:
+\begin{verbatim}
+class A {
+    int a;
+public:
+    A(int a) : a(a) {}
+    operator int() {
+        return a;
+    }
+};
+\end{verbatim}
+
+Notice that there is no return type for the cast operator.
+You can also use the \texttt{explicit} keyword to prevent implicit conversion.
+
+\subsection{Assignment Operator}
+
+You need to overload the assignment operator if you dynamically allocate memory in the constructor.
+Different from a copy constructor, the assignment operator is called when the object already exists, hence there is no need to update the counter.
+Also, you need to delete the content of the object before assigning a new value to it.
+Remember to check if the object is the same as the one on the right side of the assignment operator.
+
+\section{Inheritance}
+
+When using inheritance, you can use relaxed access control.
+For pointers and references, a base class pointer or reference can point to a derived class object, but not vice versa.
+This is because the derived class object has more members than the base class object.
+
+A pointer or reference used in this way has two behaviors: static type and dynamic type.
+If the function is not virtual, the pointer or reference will call the function of its type.
+If the function is virtual, the pointer or reference will call the function of the object's type.
+
+\subsection{Public Inheritance}
+
+Public inheritance shapes is-a relationship.
+In public inheritance, the public members of the base class become public members of the derived class.
+The protected members of the base class become protected members of the derived class.
+The private members of the base class are not accessible by the derived class.
+
+\subsection{Private Inheritance}
+
+Private inheritance shapes has-a relationship.
+All members of the base class become private members of the derived class.
+
+If you use private inheritance, you must access the member through type name.
+For example:
+\begin{verbatim}
+class A : private std::string {
+    A (const std::string &s) : std::string(s) {}
+    void print() {
+        std::cout << std::string::size() << std::endl;
+    }
+};
+\end{verbatim}
+
+If you want to use the member itself, you need to cast the object to the base class.
+For example:
+\begin{verbatim}
+class A : private std::string {
+    A (const std::string &s) : std::string(s) {}
+    void print_content() {
+        std::cout << (std::string) *this << std::endl; // or cast to a reference
+    }
+};
+\end{verbatim}
+
+\section{Class Template}
+
+A class template is a class that can operate with generic types.
+This allows us to create a class template whose functionality can be adapted to more than one type or class without repeating the entire code for each type.
+
+\section{Friend Class}
+
+A friend class is a class that can access the private and protected members of another class.
+To declare a friend class, you can use the following syntax:
+\begin{verbatim}
+class A {
+    friend class B;
+};
+\end{verbatim}
+
+In this way, all members of class B can access the private and protected members of class A.
+But class A cannot access the private and protected members of class B.
+
+Friend class is not symmetric, not transitive, and not inherited.
+
+\section{Exception}
+
+When an exception is thrown, the program will jump to the nearest catch block.
+If not, this is call the function \texttt{abort()} and terminate the program.
+
+In C++, a catch clause can catch more than just exception, it can also catch any type.
+
+In a catch chain, the matching will be executed from top to bottom.
+Hence, considering inheritance of exception, you should put the catch clause of the derived class before the catch clause of the base class.
+
+\section{RTTI}
+
+In C++, up-casting is safe and can be done implicitly.
+But down-casting is not safe.
+We have to use \texttt{dynamic\_cast} to perform down-casting.
+
+If you try to down-cast a pointer to a base class to a pointer to a derived class, and the pointer does not point to a derived class, the result will be a \texttt{nullptr}.
+If you try to down-cast a reference to a base class to a reference to a derived class, and the reference does not refer to a derived class, the result will be a \texttt{bad\_cast} exception.
+
+To find the true type of an object, you can use \texttt{typeid} operator.
+Remember if you want to apply this to a pointer, you need to dereference it first.
+Otherwise you will get the type of the pointer itself.
+\newpage
+\section{Lab Review}
+
+\subsection{Scanf and Printf with Format Specifiers}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		Type & Format Specifier \\
+		\hline
+		\textbf{short} & \%hd \\
+		\hline
+		\textbf{int} & \%d \\
+		\hline
+		\textbf{long} & \%ld \\
+		\hline
+		\textbf{long long} & \%lld \\
+		\hline
+		\textbf{float} & \%f \\
+		\hline
+		\textbf{double} & \%lf \\
+		\hline
+		\textbf{long double} & \%Lf \\
+		\hline
+		\textbf{char} & \%c \\
+		\hline
+		\textbf{string} & \%s \\
+		\hline
+		\textbf{pointer} & \%p \\
+		\hline
+	\end{tabular}
+	\caption{Scanf and Printf with Format Specifiers}
+\end{table}
+
+If you want the unsigned version of the integer types, simply replace \texttt{d} with \texttt{u}.
+
+To be noticed, the \texttt{sizeof} operator returns in long type.
+
+\subsection{IOS Manipulators}
+
+\texttt{setw} is used to set the width of the next output.
+You can use it with \texttt{setfill} to set the fill character.
+
+\texttt{percision} is used to set the percision of the next output.
+This will round the number instead of truncating it.
+
+Some other useful manipulators are:
+\begin{itemize}
+	\item \texttt{hex}, \texttt{oct}, \texttt{dec}: change the base of the next output.
+	\item \texttt{fixed}: output the number in fixed-point notation.
+	\item \texttt{boolalpha}: output the boolean value as \texttt{true} or \texttt{false}.
+	\item \texttt{showpoint}: always show the decimal point.
+	\item \texttt{left}, \texttt{right}: align the output to the left or right.
+\end{itemize}
+
+\subsection{String}
+
+When you use C-style string, there are two ways to get the length of the string:
+\begin{enumerate}
+	\item Use \texttt{strlen} function (might not work if the string is not null-terminated).
+	\item Use \texttt{sizeof} operator (this will include the null character).
+\end{enumerate}
+
+When you use \texttt{string} class, you can use \texttt{.size()} or \texttt{.length()} method to get the length of the string.
+However, using \texttt{sizeof} operator on a \texttt{string} object will return the size of the object (which is 32), not the length of the string.
+
+\vspace{1cm}
+
+It is particularly troublesome to input a string with spaces.
+
+In C, we use \texttt{gets} and \texttt{puts} function.
+This works with a char array, and it does not include the newline character.
+To be noticed that it may input a string without a null character, if the input is the same length as the array.
+
+In C++, we use \texttt{get} and \texttt{getline} function.
+When using \texttt{get} function, it requires two parameters: the first is a char array, and the second is the size of the array.
+This will always include a null character even if the input is longer than the array.
+You can use a \texttt{get} with no parameter to remove the newline character from the input stream (since \texttt{get} will stop at the newline character).
+When using \texttt{getline} function, the parameters are the same as \texttt{get} function, but it will remove the newline character from the input stream automatically.
+\begin{verbatim}
+char a[10];
+cin.get(a, 10);
+cin.get();          // remove the newline character
+cin.getline(a, 10); // no need to remove the newline character
+\end{verbatim}
+
+When dealing with string class object, we use \texttt{getline} a little differently.
+\begin{verbatim}
+string a;
+getline(cin, a);
+\end{verbatim}
+
+\subsection{Union and Endianness}
+
+A union is a compound data type that allows you to store different data types in the same memory location.
+All members are aligned to the same memory location.
+But only one member can contain a value at any given time.
+The other members will be overwritten, and if you try to access them, their value will depend on the endianness of the computer.
+
+Big-endian means that the most significant byte is stored at the lowest memory address.
+Little-endian means that the least significant byte is stored at the lowest memory address.
+
+\subsection{Pointer}
+
+If you apply \texttt{sizeof} operator on a pointer, it will return the size of a pointer (4 or 8), not the size of the array.
+
+Notice that a char variable's address cannot be directly printed with \& operator, you need to cast it to a \texttt{void*} first.
+
+In C, there are four functions to dynamically allocate memory: 
+\begin{itemize}
+	\item \texttt{void* calloc(size\_t num, size\_t size)}: allocate memory for an array of \texttt{num} elements, each of them \texttt{size} bytes long, and initializes all bits to zero.
+	\item \texttt{void* malloc(size\_t size)}: allocate memory block of \texttt{size} bytes.
+	\item \texttt{void* realloc(void* ptr, size\_t size)}: reallocates memory extending it up to \texttt{size} bytes.
+	\item \texttt{void free(void* ptr)}: deallocate the memory previously allocated by a call to \texttt{calloc}, \texttt{malloc}, or \texttt{realloc}.
+\end{itemize}
+
+In C++, it is recommended to use \texttt{new} and \texttt{delete} operator instead.
+
+The name of an array is actually a pointer of one rank lower.
+For example, the name of a one dimensional array is a pointer, the name of a two dimensional array is a pointer to a one dimensional array, and so on.
+Here are some useful pointer arithmetic with array.
+For one dimensional array:
+\begin{itemize}
+	\item \texttt{p + 1}: points to the second element of the array.
+	\item \texttt{\&p + 1}: points to the address after the array.
+	\item \texttt{*p + 1}: equivalent to \texttt{p[0] + 1}.
+\end{itemize}
+
+For two dimensional array:
+\begin{itemize}
+	\item \texttt{p + 1}: points to the second row of the array (remember \texttt{p} is a pointer to array and points to the first row).
+	\item \texttt{*(p + 1)}: if you try to dereference \texttt{p + 1}, you will get the second row of the array.
+		However, this decays to a pointer to int, which points to the first element of the second row.
+\end{itemize}
+
+When you mix pointer arithmetic with increment and decrement, you should be noticed that the dereference operator has a lower precedence than the increment and decrement operator.
+For example \texttt{*p++} is equivalent to \texttt{*(p++)}.
+
+\end{document}
