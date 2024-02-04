@@ -1,0 +1,838 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+%\usepackage{setspace}
+%\setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,amsfonts,caption}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Discrete Mathematics(H): Midterm Review}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Discrete Mathematics(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Midterm Review}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section{Logic}
+
+\subsection{Propositional Logic}
+
+\subsubsection{Propositions}
+A proposition is a \textbf{declarative} sentence that is \textbf{either true or false}, but not both.
+For example, ``\textit{SUSTech is in Shenzhen}'' is a proposition, while ``\textit{No parking on campus}'' is not a proposition.
+
+\subsubsection{Logical Connectives}
+
+There are six logical connectives in propositional logic, which are \textbf{negation}($\neg$), \textbf{conjunction}($\wedge$), \textbf{disjunction}($\vee$), \textbf{exclusive or}($\oplus$), \textbf{implication}($\rightarrow$), and \textbf{biconditional}($\leftrightarrow$).
+
+For implication $p \rightarrow q$, we call $p$ the \textbf{hypothesis} and $q$ the \textbf{conclusion}.
+
+The \textbf{converse} of $p \rightarrow q$ is $q \rightarrow p$.
+The \textbf{inverse} of $p \rightarrow q$ is $\neg p \rightarrow \neg q$.
+The \textbf{contrapositive} of $p \rightarrow q$ is $\neg q \rightarrow \neg p$.
+
+\subsubsection{Tautologies and Contradictions}
+
+A \textbf{tautology} is a proposition that is always true, regardless of the truth values of its individual components.
+A \textbf{contradiction} is a proposition that is always false.
+A \textbf{contingency} is a proposition that is neither a tautology nor a contradiction.
+
+\subsubsection{Logical Equivalences}
+
+Two propositions are \textbf{logically equivalent} if they have the same truth values for all possible combinations of truth values of their component propositions.
+
+The propositions $p$ and $q$ are logically equivalent if and only if $p \leftrightarrow q$ is a tautology, denoted by $p \equiv q$ or $p \Leftrightarrow q$.
+
+\subsubsection{Important Logical Equivalences}
+
+\begin{itemize}
+	\item \textbf{Identity laws} 
+		\begin{align*}
+			p \wedge T &\equiv p \\
+			p \vee F &\equiv p
+		\end{align*}
+	\item \textbf{Domination laws}
+		\begin{align*}
+			p \vee T &\equiv T \\
+			p \wedge F &\equiv F
+		\end{align*}
+	\item \textbf{Idempotent laws}
+		\begin{align*}
+			p \vee p &\equiv p \\
+			p \wedge p &\equiv p
+		\end{align*}
+	\item \textbf{Double negation laws}
+		\begin{align*}
+			\neg(\neg p) &\equiv p
+		\end{align*}
+	\item \textbf{Commutative laws}
+		\begin{align*}
+			p \vee q &\equiv q \vee p \\
+			p \wedge q &\equiv q \wedge p
+		\end{align*}
+	\item \textbf{Associative laws}
+		\begin{align*}
+			(p \vee q) \vee r &\equiv p \vee (q \vee r) \\
+			(p \wedge q) \wedge r &\equiv p \wedge (q \wedge r)
+		\end{align*}
+	\item \textbf{Distributive laws}
+		\begin{align*}
+			p \vee (q \wedge r) &\equiv (p \vee q) \wedge (p \vee r) \\
+			p \wedge (q \vee r) &\equiv (p \wedge q) \vee (p \wedge r)
+		\end{align*}
+	\item \textbf{De Morgan's laws}
+		\begin{align*}
+			\neg (p \wedge q) &\equiv \neg p \vee \neg q \\
+			\neg (p \vee q) &\equiv \neg p \wedge \neg q
+		\end{align*}
+	\item \textbf{Absorption laws}
+		\begin{align*}
+			p \vee (p \wedge q) &\equiv p \\
+			p \wedge (p \vee q) &\equiv p
+		\end{align*}
+	\item \textbf{Negation laws}
+		\begin{align*}
+			p \vee \neg p &\equiv T\\
+			p \wedge \neg p &\equiv F
+		\end{align*}
+	\item \textbf{Useful law}
+		\begin{align*}
+			p \rightarrow q \equiv \neg p \vee q
+		\end{align*}
+\end{itemize}
+
+\subsection{Predicate Logic}
+
+\subsubsection{Predicates and Quantifiers}
+
+A \textbf{constant} models a specific object.
+A \textbf{variable} represents objects of specific type.
+A \textbf{predicate} represents properties or relations among objects.
+
+However, a predicate is not a proposition, because it is not a declarative sentence.
+It becomes a proposition when the variable is assigned a value.
+Additionally, the universal quantification and existential quantification of a predicate is a proposition.
+For example, $\text{Prime}(x)$ \textbf{is not} a proposition, while $\text{Prime}(3)$ and $\exists x \text{Prime}(x)$ \textbf{are} propositions.
+
+The \textbf{universe(domain)} $D$ of a predicate is the set of all objects that can be substituted for the variables in a predicate.
+The \textbf{truth set} of a predicate $P(x)$ is the set of objects in the universe that can be substituted for $x$ in $P(x)$ to make the resulting proposition true.
+
+The truth values of $\forall x P(x)$ and $\exists x P(x)$ depend on both the \textbf{universe} and the \textbf{predicate} $P(x)$.
+
+\subsubsection{Precedence of Quantifiers}
+
+The quantifiers $\forall$ and $\exists$ have higher precedence than all the logical operators.
+For example, $\forall x P(x) \wedge Q(x)$ means $(\forall x P(x)) \wedge Q(x)$, not $\forall x (P(x) \wedge Q(x))$.
+
+\subsubsection{Translation with Quantifiers}
+
+\textbf{Universal quantification}
+
+\qquad Sentence: All SUSTech students are smart.
+
+\qquad Universe: all students
+
+\qquad Translation: $\forall x (\text{At}(x, \text{SUSTech}) \rightarrow \text{Smart}(x))$
+
+\qquad Typical error: $\forall x (\text{At}(x, \text{SUSTech}) \wedge \text{Smart}(x))$, which means all students are at SUSTech and smart.
+
+\textbf{Existential quantification}
+
+\qquad Sentence: Some SUSTech students are smart.
+
+\qquad Universe: all students
+
+\qquad Translation: $\exists x (\text{At}(x, \text{SUSTech}) \wedge \text{Smart}(x))$
+
+\qquad Typical error: $\exists x (\text{At}(x, \text{SUSTech}) \rightarrow \text{Smart}(x))$, this is true if there is anyone who is not at SUSTech.
+
+\subsubsection{Nested Quantifiers}
+
+The order of nested quantifiers is important.
+For example, let $L(x,y)$ denotes ``$x$ loves $y$'', then $\forall x \exists y L(x,y)$ means ``Everyone loves someone'', while $\exists y \forall x L(x,y)$ means ``There is someone whom everyone loves''.
+
+However, the order of nested quantifiers does not matter if quantifiers are of the same type.
+
+\subsubsection{Negating Quantifiers}
+
+\begin{itemize}
+	\item $\neg \forall x P(x) \equiv \exists x \neg P(x)$
+	\item $\neg \exists x P(x) \equiv \forall x \neg P(x)$
+	\item $\neg \forall x \exists y P(x,y) \equiv \exists x \forall y \neg P(x,y)$
+\end{itemize}
+
+\section{Mathematical Proofs}
+
+\subsection{Theorems and Proofs}
+
+\subsubsection{Definitions}
+
+An \textbf{axiom} or \textbf{postulate} is a statement or proposition that is regarded as being established, accepted, or self-evidently true.
+A \textbf{theorem} is a statement or proposition that can be proved to be true.
+A \textbf{lemma} is a statement that can be proved to be true, and is used in proving a theorem.
+
+In \textbf{formal proofs}, steps follow logically from the set of premises, axioms, lemmas, and other previously proved theorems.
+
+\subsubsection{Rules of inference}
+
+\begin{itemize}
+	\item \textbf{Modus Ponens}: $((p \rightarrow q) \wedge p) \rightarrow q$
+	\item \textbf{Modus Tollens}: $((p \rightarrow q) \wedge \neg q) \rightarrow \neg p$
+	\item \textbf{Hypothetical Syllogism}: $((p \rightarrow q) \wedge (q \rightarrow r)) \rightarrow (p \rightarrow r)$
+	\item \textbf{Disjunctive Syllogism}: $((p \vee q) \wedge \neg p) \rightarrow q$
+	\item \textbf{Addition}: $p \rightarrow (p \vee q)$
+	\item \textbf{Simplification}: $(p \wedge q) \rightarrow p$
+	\item \textbf{Conjunction}: $((p) \wedge (q)) \rightarrow (p \wedge q)$
+	\item \textbf{Resolution}: $((p \vee q) \wedge (\neg p \vee r)) \rightarrow (q \vee r)$
+	\item \textbf{Universal instantiation}: $\forall x P(x) \rightarrow P(c)$
+	\item \textbf{Universal generalization}: $P(c) \text{ for an arbitrary } c\rightarrow \forall x P(x)$
+	\item \textbf{Existential instantiation}: $\exists x P(x) \rightarrow P(c) \text{ for some element } c$
+	\item \textbf{Existential generalization}: $P(c) \rightarrow \exists x P(x)$
+\end{itemize}
+
+\subsubsection{Methods of Proof}
+
+To proof $p \rightarrow q$:
+\begin{itemize}
+	\item \textbf{Direct proof:} Show that if $p$ is true then $q$ follows.
+	\item \textbf{Proof by contrapositive:} Show that $\neg q \rightarrow \neg p$.
+	\item \textbf{Proof by contradiction:} Show that $p \wedge \neg q$ contradicts the assumptions.
+	\item \textbf{Proof by cases:} Give proofs for all possible cases.
+	\item \textbf{Proof of equivalence} $p \leftrightarrow q$: Prove $p \rightarrow q$ and $q \rightarrow p$.
+\end{itemize}
+
+\section{Sets and Functions}
+
+\subsection{Sets}
+
+\subsubsection{Definitions}
+
+A \textbf{set} is an unordered collection of objects, called \textbf{elements} or \textbf{members} of the set.
+We can represent a set by listing its elements between braces, or defining a property that its elements satisfy.
+
+\subsubsection{Important Sets}
+
+\begin{itemize}
+	\item $\mathbb{N}$ is the set of natural numbers.
+	\item $\mathbb{Z}$ is the set of integers. $\mathbb{Z^+}$ is the set of positive integers.
+	\item $\mathbb{Q}$ is the set of rational numbers.
+	\item $\mathbb{R}$ is the set of real numbers.
+	\item $\mathbb{C}$ is the set of complex numbers.
+	\item $\mathbb{U}$ is the set of all objects under consideration.
+	\item $\emptyset$ is the empty set. \textit{Note: $\emptyset \neq \{\emptyset\}$}
+	\item $P(S)$ is the power set of $S$, which is the set of all subsets of $S$.
+	\item Disjoint sets $A$ and $B$ are sets that have no elements in common, i.e., $A \cap B = \emptyset$.
+\end{itemize}
+
+\subsubsection{Set Operations}
+
+\begin{itemize}
+	\item \textbf{Union:} $A \cup B = \{x | x \in A \text{ or } x \in B\}$
+	\item \textbf{Intersection:} $A \cap B = \{x | x \in A \text{ and } x \in B\}$
+	\item \textbf{Difference:} $A - B = \{x | x \in A \text{ and } x \notin B\}$
+	\item \textbf{Complement:} $\overline{A} = \{x | x \in U \text{ and } x \notin A\}$
+	\item \textbf{Cartesian product:} $A \times B = \{(a,b) | a \in A \text{ and } b \in B\}$
+\end{itemize}
+
+\subsubsection{Cardinality}
+
+The \textbf{cardinality} of a set $S$, denoted by $|S|$, is the number of distinct elements in the set.
+The sets $A$ and $B$ have the same cardinality if there is a one-to-one correspondence between them.
+If there is a one-to-one function from $A$ to $B$, the cardinality of $A$ is less than or equal to the cardinality of $B$, denoted by $|A| \leq |B|$.
+
+A set that is either finite or has the same cardinality as the set of positive integers $\mathbb{Z^+}$ is called \textbf{countable}.
+A set that is not countable is called \textbf{uncountable}.
+
+Here are some examples of countable and uncountable sets:
+
+\begin{itemize}
+	\item \textbf{Countable Sets:} $\mathbb{N}, \mathbb{Z}, \mathbb{Q}, \mathbb{Z^+}$, the set of finite strings $S$ over a finite alphabet $A$
+	\item \textbf{Uncountable Sets:} $\mathbb{R}$, $P(\mathbb{N})$
+\end{itemize}
+
+The subset of a countable set is still countable.
+
+To prove a set is \textbf{countable}, we can use Schröder-Bernstein theorem.
+If there are one-to-one functions $f: A \rightarrow B$ and $g: B \rightarrow A$, then there is a one-to-one correspondence between $A$ and $B$, and $|A| = |B|$.
+
+To prove a set is \textbf{uncountable}, we can use Cantor's diagonalization method.
+Assume that $S$ is countable, then we can list all elements of $S$ in a table.
+Then we can construct a new element that is not in the table, which contradicts the assumption that $S$ is countable.
+
+For power set, we have the following formula:
+\begin{equation*}
+	|P(S)| = 2^{|S|}
+\end{equation*}
+
+For union and intersection, we have the following formulas:
+\begin{equation*}
+	|A \cup B| = |A| + |B| - |A \cap B|
+\end{equation*}
+
+For Cartesian product, we have the following formula:
+\begin{equation*}
+	|A \times B| = |A| \times |B|
+\end{equation*}
+
+\textit{Note: $|\emptyset| = 0$ and $|\{\emptyset\}| = 1$}
+
+\subsubsection{Computable vs. Uncomputable}
+
+We say a function is \textbf{computable} if there is an algorithm that can compute the function's value for any input in a finite amount of time.
+
+There are functions that are not computable.
+This is true because the set of computer programs is countable, while the set of functions from $\mathbb{N}$ to the set $\{0,1,2,...,9\}$ is uncountable. (Cantor's diagonalization method)
+
+\subsubsection{Cantor's Theorem}
+
+For any set $S$, $|S| < |P(S)|$.
+
+This is obviously true for finite sets, because $|P(S)| = 2^{|S|}$. 
+(Note that $|\emptyset| = 0, |P(\emptyset)| = 1$)
+
+For infinite sets, we can prove this by contradiction.
+Assume that $|S| = |P(S)|$, then there is a one-to-one correspondence between $S$ and $P(S)$.
+Let $f$ be a function from $S$ to $P(S)$, then we can construct a set $T = \{s \in S | x \notin f(s)\}$.
+Since $f$ is a one-to-one correspondence, there must be an element $s_0 \in S$ such that $f(s_0) = T$.
+However, $s_0 \in T$ implies $s_0 \notin T$, which is a contradiction.
+
+To build a one-to-one function from $P(S)$ to $S$ is trivial, because we can just map each subset of $S$ to its smallest element.
+
+Hence, we know that $|S| \neq |P(S)|$ and $|S| \leq |P(S)|$.
+Therefore, $|S| < |P(S)|$.
+
+\subsubsection{Set Identities}
+
+\begin{itemize}
+	\item \textbf{Identity laws}
+		\begin{align*}
+			A \cup \emptyset &= A \\
+			A \cap U &= A
+		\end{align*}
+	\item \textbf{Domination laws}
+		\begin{align*}
+			A \cup U &= U \\
+			A \cap \emptyset &= \emptyset
+		\end{align*}
+	\item \textbf{Idempotent laws}
+		\begin{align*}
+			A \cup A &= A \\
+			A \cap A &= A
+		\end{align*}
+	\item \textbf{Complementation laws}
+		\begin{align*}
+			\overline{\overline{A}} &= A \\
+		\end{align*}
+	\item \textbf{Commutative laws}
+		\begin{align*}
+			A \cup B &= B \cup A \\
+			A \cap B &= B \cap A
+		\end{align*}
+	\item \textbf{Associative laws}
+		\begin{align*}
+			(A \cup B) \cup C &= A \cup (B \cup C) \\
+			(A \cap B) \cap C &= A \cap (B \cap C)
+		\end{align*}
+	\item \textbf{Distributive laws}
+		\begin{align*}
+			A \cup (B \cap C) &= (A \cup B) \cap (A \cup C) \\
+			A \cap (B \cup C) &= (A \cap B) \cup (A \cap C)
+		\end{align*}
+	\item \textbf{De Morgan's laws}
+		\begin{align*}
+			\overline{A \cup B} &= \overline{A} \cap \overline{B} \\
+			\overline{A \cap B} &= \overline{A} \cup \overline{B}
+		\end{align*}
+	\item \textbf{Absorption laws}
+		\begin{align*}
+			A \cup (A \cap B) &= A \\
+			A \cap (A \cup B) &= A
+		\end{align*}
+	\item \textbf{Complement laws}
+		\begin{align*}
+			A \cup \overline{A} &= U \\
+			A \cap \overline{A} &= \emptyset
+		\end{align*}
+\end{itemize}
+
+\subsection{Tuples}
+
+An \textbf{ordered $n$-tuple} is a sequence of $n$ elements, where $n$ is a positive integer.
+
+\subsection{Functions}
+
+\subsubsection{Definitions}
+
+Let $A$ and $B$ be sets. 
+A \textbf{function} $f$ from $A$ to $B$, denoted by $f: A \rightarrow B$, is an assignment of exactly one element of $B$ to each element of $A$.
+
+We represent a function by a formula or explicitly state the assignments between elements of $A$ and $B$.
+For example, let $A = \{1,2,3\}$ and $B = \{a,b,c,d\}$, then $f: A \rightarrow B$ can be represented by $1 \mapsto a, 2 \mapsto b, 3 \mapsto c$.
+
+Let $f: A \rightarrow B$ be a function. We say that $A$ is the \textbf{domain} of $f$ and $B$ is the \textbf{codomain} of $f$.
+If $f(a) = b$, $b$ is the \textbf{image} of $a$ under $f$, and $a$ is a \textbf{preimage} of $b$.
+The \textbf{range of $f$} is the set of all images of elements of $A$, denoted by $f(A)$.
+
+\subsubsection{Injective, Surjective, and Bijective Functions}
+
+A function $f: A \rightarrow B$ is \textbf{injective (one-to-one)} if and only if $f(a_1) = f(a_2)$ implies $a_1 = a_2$ for all $a_1, a_2 \in A$.
+A function $f: A \rightarrow B$ is \textbf{surjective (onto)} if and only if $f(A) = B$.
+A function $f: A \rightarrow B$ is \textbf{bijective (one-to-one correspond)} if and only if $f$ is both injective and surjective.
+
+The inverse of a function, denoted by $f^{-1}(x)$, is only defined for bijective functions.
+
+\subsubsection{Sequences}
+
+A \textbf{sequence} is a function from a subset of integers (typically $\{0,1,2,...\}$ or $\{1,2,3,...\}$) to a set $S$.
+We use the notation $a_n$ to denote the image of $n$ under the function, and we call $a_n$ the $n$th term of the sequence.
+
+\section{Complexity of Algorithms}
+
+\subsection{Big-$O$ Notation}
+
+We say that $f(n) = O(g(n))$ (reads as ``$f(n)$ is big-$O$ of $g(n)$'') if there are positive constants $c$ and $n_0$ such that $|f(n)| \leq |c \cdot g(n)|$ for all $n \geq n_0$.
+
+Important big-$O$ estimation:
+\begin{itemize}
+	\item $n! = O(n^n)$
+	\item $\log n! = O(n \log n)$ (Actually we can prove $\log n! < n \log n < 2 \log n!$)
+	\item $\log_a n = O(n)$ for any $a \geq 2$
+	\item $n^k = O(a^n)$ for any $k$ and $a > 1$
+\end{itemize}
+
+Similarly, we can define big-$\Omega$ and big-$\Theta$.
+
+\subsection{Algorithms}
+
+An \textbf{algorithm} is a finite set of precise instructions for performing a computation or for solving a problem.
+A \textbf{computational problem} is a specification of the desired input-output relationship.
+An \textbf{instance} of a computational problem is a specific input.
+A \textbf{correct algorithm} halts with the correct output for every instance of the problem, and we can say that the algorithm \textbf{solves} the problem.
+
+\subsubsection{Time and Space Complexity}
+
+The \textbf{time complexity} of an algorithm is the number of machine operations it performs on an instance.
+The \textbf{space complexity} of an algorithm is the number of cells of memory it uses on an instance.
+
+\subsubsection{Input Size}
+The input size is the number of bits needed to represent the input.
+For an integer $n$, the input size actually is $\lceil \log_2 (n+1) \rceil$ (or just $\log_2 n$).
+Therefore, an algorithm that runs in $\Theta(n)$ seems to be linear and efficient, but it is actually exponential ($\Theta(n) = \Theta(2^{size(n)})$).
+
+We say two positive functions $f(n)$ and $g(n)$ are of the same type if and only If
+\begin{equation*}
+	c_1 g(n^{a_1})^{b_1} \leq f(n) \leq c_2 g(n^{a_2})^{b_2}
+\end{equation*}
+for all large $n$ and some positive constants $c_1, c_2, a_1, a_2, b_1, b_2$.
+
+Therefore, all polynomial functions are of the same type, and all exponential functions are of the same type.
+But polynomial functions are not of the same type as exponential functions.
+
+\subsubsection{Decision Problems and Optimization Problems}
+
+A \textbf{decision problem} is a question that has two possible answers: yes or no.
+An \textbf{optimization problem} is a question that requires an answer that is an optimal configuration.
+
+If $L$ is a decision problem and $x$ is the input, we often write $x \in L$ to mean that the answer to the decision problem is yes, and $x \notin L$ to mean that the answer is no.
+
+An optimization problem usually has a corresponding decision problem.
+
+\subsubsection{Complexity Classes}
+
+We divide the set of all decision problems into three complexity classes.
+
+A problem is \textbf{solvable (tractable)} in \textbf{polynomial time} if there is an algorithm that solves the problem and the number of steps required by the algorithm on any instance of size $n$ is $O(n^k)$ for some constant $k$.
+
+The class $P$ is the set of all decision problems that are solvable in polynomial time.
+The class $NP$ is the set of all decision problems for which there exists a certificate for each yes-input that can be verified in polynomial time.
+
+\subsubsection{NP Completeness}
+
+Reduction is a relationship between two problems.
+We say $Q$ can be reduced to $Q'$ if every instance of $Q$ can be transformed into an instance of $Q'$ such that the answer to the transformed instance is yes if and only if the answer to the original instance is yes.
+
+A polynomial-time reduction from $Q$ to $Q'$ is a reduction that can be performed in polynomial time, denoted by $Q \leq_p Q'$.
+Intuitively, this means $Q$ is no harder than $Q'$.
+
+A problem $Q$ is \textbf{NP-complete} if and only if
+\begin{itemize}
+	\item $Q \in NP$
+	\item Every problem $L \in NP$, $L \leq_p Q$
+\end{itemize}
+
+Therefore, if we can find a polynomial-time algorithm for an NP-complete problem, then we can solve all NP problems in polynomial time.
+
+\section{Number Theory}
+
+\subsection{Divisibility and Modular Arithmetic}
+
+\subsubsection{Divisibility}
+
+Let $a,b,c$ be integers. 
+Then the following holds:
+\begin{itemize}
+	\item If $a|b$ and $a|c$, then $a|(b+c)$ and $a|(b-c)$.
+	\item If $a|b$, then $a|bc$.
+	\item If $a|b$ and $b|c$, then $a|c$.
+	\item Corollary: If $a,b,c$ are integers, where $a \neq 0$, such that $a|b$ and $a|c$, then $a|(m b + n c)$ for any integers $m$ and $n$.
+\end{itemize}
+
+\subsubsection{Modular Arithmetic}
+
+Let $a,b,n$ be integers, where $n > 0$.
+We say that $a$ is \textbf{congruent to $b$ modulo $n$}, denoted by $a \equiv b \pmod{n}$, if and only if $n|(a-b)$.
+This is called \textbf{congruence} and $n$ is called the \textbf{modulus}.
+
+The following properties hold:
+\begin{itemize}
+	\item If $a \equiv b \pmod{n}$ and $c \equiv d \pmod{n}$, then $a+c \equiv b+d \pmod{n}$.
+	\item If $a \equiv b \pmod{n}$ and $c \equiv d \pmod{n}$, then $ac \equiv bd \pmod{n}$.
+	\item Corollary: $(a+b) \bmod m = ((a \bmod m) + (b \bmod m)) \bmod m$, and $(a \cdot b) \bmod m = ((a \bmod m) \cdot (b \bmod m)) \bmod m$.
+\end{itemize}
+
+\subsection{Prime}
+
+An integer $p > 1$ is \textbf{prime} if and only if its only positive divisors are 1 and $p$.
+An integer $n > 1$ is \textbf{composite} if and only if it is not prime.
+
+The \textbf{fundamental theorem of arithmetic} states that every integer greater than 1 is either prime or can be written as a unique product of prime numbers.
+
+\textbf{GCD} of two integers $a$ and $b$, denoted by $\gcd(a,b)$, is the largest integer that divides both $a$ and $b$.
+If we factorize $a$ and $b$ into prime numbers, then $\gcd(a,b) = p_1^{\text{min}(e_1, f_1)} \cdot p_2^{\text{min}(e_2, f_2)} \cdot ... \cdot p_k^{\text{min}(e_k, f_k)}$, where $e_i$ and $f_i$ are the exponents of $p_i$ in the factorization of $a$ and $b$.
+Two integers are \textbf{relatively prime} if and only if their GCD is 1.
+
+Similarly, we can define \textbf{LCM} of two integers $a$ and $b$, denoted by $\text{lcm}(a,b)$, is the smallest positive integer that is divisible by both $a$ and $b$.
+
+\subsection{Eculidean Algorithm}
+
+The \textbf{Eculidean algorithm} is an efficient method for computing the GCD of two integers.
+It can solve the problem in $O(\log n)$ time, where $n$ is the smaller of the two integers.
+
+The central idea is that if $a = bq + r$, then $\gcd(a,b) = \gcd(b,r)$.
+Here is the proof:
+If $d$ is a common divisor of $a$ and $b$, we can write $d \mid a$ and $d \mid b$.
+By the corollary, we know that $d \mid (a - bq)$, which implies $d \mid r$.
+Therefore, $d$ is a common divisor of $b$ and $r$.
+
+For example, to compute $\gcd(287,91)$:
+\begin{align*}
+	287 \bmod 91 &= 14 \\
+	91 \bmod 14 &= 7 \\
+	14 \bmod 7 &= 0
+\end{align*}
+
+Therefore, $\gcd(287,91) = 7$.
+
+\subsection{Bezout's Theorem}
+
+Let $a$ and $b$ be integers, not both zero.
+Then there exist integers $x$ and $y$ such that $\gcd(a,b) = ax + by$.
+
+We can use the extended Eculidean algorithm to find $x$ and $y$.
+
+For example, since $\gcd(503,286) = 1$, we can find $x$ and $y$ such that $503x + 286y = 1$.
+\begin{figure}[H]
+	\begin{minipage}{0.5\textwidth}
+		\begin{align*}
+			503 &= 1 \cdot 286 + 217 \\
+			286 &= 1 \cdot 217 + 69 \\
+			217 &= 3 \cdot 69 + 10 \\
+			69 &= 6 \cdot 10 + 9 \\
+			10 &= 1 \cdot 9 + 1 \\
+			9 &= 9 \cdot 1 + 0
+		\end{align*}
+		\caption*{Eculidean algorithm}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\begin{align*}
+			1 &= 10 - 1 \cdot 9 \\
+			&= 10 - 1 \cdot (69 - 6 \cdot 10) = 7 \cdot 10 - 1 \cdot 69 \\
+			&= 7 \cdot (217 - 3 \cdot 69) - 1 \cdot 69 = 7 \cdot 217 - 22 \cdot 69 \\
+			&= 7 \cdot 217 - 22 \cdot (286 - 1 \cdot 217) = 29 \cdot 217 - 22 \cdot 286 \\
+			&= 29 \cdot (503 - 1 \cdot 286) - 22 \cdot 286 = 29 \cdot 503 - 51 \cdot 286
+		\end{align*}
+		\caption*{Extended Eculidean algorithm}
+	\end{minipage}
+\end{figure}
+
+Therefore, $x = 29$ and $y = -51$.
+
+The corollaries of Bezout's theorem are:
+\begin{itemize}
+	\item If $1 = \gcd(a,b)$ and $a|bc$, then $a|c$.
+	\item If $p$ is a prime and $p|a_1 a_2 ... a_n$, then $p|a_i$ for some $i$.
+	\item If $ac \equiv bc \pmod{n}$ and $\gcd(c,n) = 1$, then $a \equiv b \pmod{n}$.
+\end{itemize}
+
+The proof of the first corollary is as follows:
+Since $\gcd(a,b) = 1$, we can find $x$ and $y$ such that $ax + by = 1$.
+Then $c = cax + cby$.
+Since $a|bc$, we know that $a|cby$.
+Therefore, $a|(cax + cby) = c$.
+
+\subsection{Linear Congruence}
+
+A \textbf{linear congruence} is an equation of the form $ax \equiv b \pmod{n}$, where $a,b,n$ are integers and $n > 0$.
+
+\subsubsection{Modular Inverse}
+
+Let $a$ and $n$ be integers, where $n > 0$.
+If there exists an integer $\overline{a}$ such that $a \cdot \overline{a} \equiv 1 \pmod{n}$, then $\overline{a}$ is called the \textbf{modular inverse} of $a$ modulo $n$.
+
+If $a$ and $n$ are relatively prime, then $a$ has a modular inverse modulo $n$.
+Furthermore, the modular inverse of $a$ modulo $n$ is unique modulo $n$.
+
+We can use the extended Eculidean algorithm to find the modular inverse of $a$ modulo $n$.
+
+\subsubsection{Chinese Remainder Theorem}
+
+Let $n_1, n_2, ..., n_k$ be positive integers that are pairwise relatively prime, and let $a_1, a_2, ..., a_k$ be any integers.
+Then the system of linear congruences:
+\begin{align*}
+	x &\equiv a_1 \pmod{n_1} \\
+	x &\equiv a_2 \pmod{n_2} \\
+	&\vdots \\
+	x &\equiv a_k \pmod{n_k}
+\end{align*}
+
+has a solution, and any two solutions are congruent modulo $n_1 n_2 ... n_k$.
+
+Let $n = n_1 n_2 ... n_k$.
+Then the solution is $x = a_1 y_1 \frac{n}{n_1} + a_2 y_2 \frac{n}{n_2} + ... + a_k y_k \frac{n}{n_k}$, where $y_i$ is the modular inverse of $\frac{n}{n_i}$ modulo $n_i$.
+
+For example, to solve the system of linear congruences:
+\begin{align*}
+	x &\equiv 2 \pmod{3} \\
+	x &\equiv 3 \pmod{5} \\
+	x &\equiv 2 \pmod{7}
+\end{align*}
+
+We can find $y_1 = 2$, $y_2 = 1$, and $y_3 = 1$.
+Therefore, $x = 2 \cdot 35 \cdot 2 + 3 \cdot 21 \cdot 1 + 2 \cdot 15 \cdot 1 = 233$ is a solution.
+
+\subsection{Fermat's Little Theorem}
+
+Let $p$ be a prime and $a$ be an integer such that $a \not\equiv 0 \pmod{p}$.
+Then $a^{p-1} \equiv 1 \pmod{p}$.
+
+\subsection{Euler's Theorem}
+
+Euler's function $\phi(n)$ is the number of positive integers less than or equal to $n$ that are relatively prime to $n$.
+The function has the following properties:
+\begin{itemize}
+	\item If $p$ is prime, then $\phi(p) = p-1$.
+	\item If $p$ is prime and $k \geq 1$, then $\phi(p^k) = p^k - p^{k-1}$.
+	\item If $m$ and $n$ are relatively prime, then $\phi(mn) = \phi(m) \phi(n)$.
+\end{itemize}
+
+Euler's theorem states that if $n$ is a positive integer and $a$ is an integer such that $a$ and $n$ are relatively prime, then $a^{\phi(n)} \equiv 1 \pmod{n}$.
+
+It is worth noting that $\phi(n)$ might not be the smallest positive integer $k$ such that $a^k \equiv 1 \pmod{n}$.
+
+\subsection{Primitive Roots}
+
+A \textbf{primitive root} modulo a prime $p$ is an integer $g$ such that every nonzero integer modulo $p$ is congruent to a power of $g$ modulo $p$.
+
+\section{Groups, Rings, and Fields}
+
+\subsection{Groups}
+
+A \textbf{group} is a set $G$ together with a binary operation $*$ on $G$ such that the following axioms hold:
+\begin{itemize}
+	\item \textbf{Closure:} For all $a,b \in G$, $a*b \in G$.
+	\item \textbf{Associativity:} For all $a,b,c \in G$, $(a*b)*c = a*(b*c)$.
+	\item \textbf{Identity:} There exists a \textbf{unique} element $1_e \in G$ such that for all $a \in G$, $a*1_e = a$.
+	\item \textbf{Inverse:} For each $a \in G$, there exists an element $a^{-1} \in G$ such that $a*a^{-1} = 1_e$.
+\end{itemize}
+
+\subsubsection{Permutation Groups}
+
+A permutation group is a group whose elements are permutations of a given set $S$ and whose operation is composition of permutations in $S$.
+Let $s_n = <1,2,...,n>$ denotes a sequence of $n$ elements, and $P_n$ denotes the set of all permutations of $s_n$.
+Then for any two elements $\pi$ and $\rho$, $\pi \circ \rho$ is also a permutation of $s_n$.
+
+For example, $s_3 = <1,2,3>$, and $P_3 = \{<1,2,3>, <1,3,2>, <2,1,3>, <2,3,1>, <3,1,2>, <3,2,1>\}$.
+If $\pi = <3,2,1>$ and $\rho = <1,3,2>$, then $\pi \circ \rho = <2,1,3>$.
+The operation is $\pi \circ \rho [i] = \rho[\pi[i]]$.
+
+Therefore, $(P_n, \circ)$ is a group.
+
+\subsubsection{Abeilian Groups}
+
+A group $G$ is \textbf{abeilian} if and only if for all $a,b \in G$, $a*b = b*a$.
+
+\subsection{Rings}
+
+If $(R,+)$ is an abeilian group, we define a second binary operation $*$ on $R$ such that the following axioms hold:
+\begin{itemize}
+	\item \textbf{Closure:} For all $a,b \in R$, $a*b \in R$.
+	\item \textbf{Associativity:} For all $a,b,c \in R$, $(a*b)*c = a*(b*c)$.
+	\item \textbf{Distributivity:} For all $a,b,c \in R$, $a*(b+c) = a*b + a*c$ and $(a+b)*c = a*c + b*c$.
+\end{itemize}
+
+\subsubsection{Commutative Ring}
+
+A ring $R$ is \textbf{commutative} if and only if for all $a,b \in R$, $a*b = b*a$.
+
+\subsubsection{Integral Domain}
+
+A commutative ring $R$ is an \textbf{integral domain} if the following axiom holds:
+\begin{itemize}
+	\item \textbf{Identity:} There exists a \textbf{unique} element $1_m \in R$ such that for all $a \in R$, $a*1_m = 1_m*a = a$.
+	\item \textbf{Nonzero product:} For all $a,b \in R$, if $a*b=0$, then $a=0$ or $b=0$.
+\end{itemize}
+
+\subsection{Fields}
+
+A commutative ring $F$ is a \textbf{field} if the following axiom holds:
+\begin{itemize}
+	\item \textbf{Inverse:} For each $a \in F$, there exists an element $a^{-1} \in F$ such that $a*a^{-1} = a^{-1}*a = 1_m$.
+\end{itemize}
+
+\subsection{Other Facts}
+
+\begin{itemize}
+	\item $Z_m$, the set of integers modulo $m$, is a commutative ring.
+	\item $(GL(n), \cdot)$ is a group but not an abeilian group. (The set of all invertible $n \times n$ matrices)
+	\item $(\mathbb{M}_{n \times n}, +, \cdot)$ is a ring but not a commutative ring.
+	\item $(Z_m, +_m, \cdot_m)$ is a commutative ring but not an integral domain.
+	\item $(\mathbb{Z}, +, \cdot)$ is an integral domain but not a field.
+\end{itemize}
+
+\section{Cryptography}
+
+\subsection{Public Key Cryptography}
+
+\subsubsection{RSA Cryptosystem}
+
+The RSA public key cryptosystem works as follows:
+\begin{enumerate}
+	\item Choose two large primes $p$ and $q$.
+	\item Compute $n = pq$ and $\phi(n) = (p-1)(q-1)$.
+	\item Choose $e$ such that $1 < e < \phi(n)$ and $\gcd(e, \phi(n)) = 1$.
+	\item Compute $d$ such that $ed \equiv 1 \pmod{\phi(n)}$.
+	\item Publish the public key $(n,e)$ and keep the private key $d$ secret.
+\end{enumerate}
+
+To encrypt a message $m$, compute $c \equiv m^e \pmod{n}$.
+To decrypt a ciphertext $c$, compute $m \equiv c^d \pmod{n}$.
+
+The correctness of the algorithm is as follows:
+\begin{alignat*}{3}
+	c^d &\equiv (m^e)^d &\pmod{n} \\
+	&\equiv m^{ed} &\pmod{n} \\
+	&\equiv m^{k \phi(n) + 1} &\pmod{n} \\
+	&\equiv m \cdot (m^{\phi(n)})^k &\pmod{n} \\
+	&\equiv m \cdot 1^k &\pmod{n} \\
+	&\equiv m &\pmod{n}
+\end{alignat*}
+
+To leave a RSA signature, compute $s \equiv m^d \pmod{n}$.
+To verify a RSA signature, compute $m \equiv s^e \pmod{n}$.($d$ and $e$ are interchangeable)
+
+\subsubsection{El Gamal Cryptosystem}
+
+The El Gamal public key cryptosystem works as follows:
+\begin{enumerate}
+	\item Choose a large prime $p$ and a primitive root $g$ modulo $p$.
+	\item Choose $x$ such that $1 < x < p-2$.
+	\item Compute $y \equiv g^x \pmod{p}$.
+	\item Publish the public key $(p,g,y)$ and keep the private key $x$ secret.
+\end{enumerate}
+
+To encrypt a message $m$, choose $k$ such that $1 < k < p-1$ and $\gcd(k,p-1) = 1$, then compute $c_1 \equiv g^k \pmod{p}$ and $c_2 \equiv m \cdot y^k \pmod{p}$.
+To decrypt a ciphertext $(c_1, c_2)$, compute $m \equiv c_2 \cdot (c_1^x)^{-1} \pmod{p}$.
+
+The correctness of the algorithm is as follows:
+\begin{alignat*}{3}
+	c_2 \cdot (c_1^x)^{-1} &\equiv m \cdot y^k \cdot (g^{kx})^{-1} &\pmod{p} \\
+	&\equiv m \cdot g^{kx} \cdot g^{-kx} &\pmod{p} \\
+	&\equiv m &\pmod{p}
+\end{alignat*}
+
+\subsection{Diffie-Hellman Key Exchange}
+
+The Diffie-Hellman key exchange works as follows:
+\begin{enumerate}
+	\item Choose a large prime $p$ and a primitive root $g$ modulo $p$.
+	\item Alice chooses $x$ such that $1 < x < p-2$ and sends $y \equiv g^x \pmod{p}$ to Bob.
+	\item Bob chooses $z$ such that $1 < z < p-2$ and sends $w \equiv g^z \pmod{p}$ to Alice.
+	\item Alice computes $w^x \equiv (g^z)^x \equiv g^{zx} \pmod{p}$.
+	\item Bob computes $y^z \equiv (g^x)^z \equiv g^{xz} \pmod{p}$.
+	\item Now Alice and Bob share the secret key $g^{xz} \pmod{p}$.
+\end{enumerate}
+
+\section{Mathematical Induction}
+
+\subsection{Proof by Smallest Counterexample}
+
+To prove a statement $P(n)$ for all $n \geq n_0$, we can use proof by smallest counterexample.
+We assume that $P(n)$ is false for some $n > 0$.
+Then there must be a smallest integer $m$ such that $P(m)$ is false.
+Since $P(n_0)$ is true, $m > n_0$.
+Then we use the fact that $P(m')$ the for all $0 \leq m' < m$ is true to show that $P(m)$ is true, which is a contradiction.
+
+\subsection{Direct Proof}
+
+\subsubsection{Weak Principle of Mathematical Induction}
+
+If the statement $P(b)$ is true, and the statement $P(n-1) \rightarrow P(n)$ is true for all integers $n > b$, then the statement $P(n)$ is true for all integers $n \geq b$.
+
+We call $P(b)$ the \textbf{basis step (inductive hypothesis)} and $P(n-1) \rightarrow P(n)$ the \textbf{inductive step (inductive conclusion)}.
+
+\subsubsection{Strong Principle of Mathematical Induction}
+
+If the statement $P(b)$ is true, and the statement $P(b) \wedge P(b+1) \wedge \cdots \wedge P(n-1) \rightarrow P(n)$ is true for all integers $n > b$, then the statement $P(n)$ is true for all integers $n \geq b$.
+
+We can see that the weak form is a special case of the strong form, and the strong form can be derived from the weak form.
+\end{document}

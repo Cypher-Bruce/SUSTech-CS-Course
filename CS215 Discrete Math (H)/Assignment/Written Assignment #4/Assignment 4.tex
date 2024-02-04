@@ -1,0 +1,767 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+%\usepackage{setspace}
+%\setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,amsfonts}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Discrete Mathematics(H): Homework 4}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Discrete Mathematics(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 4}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Q.1}
+
+\begin{proof}
+$ $
+
+\textbf{Base Case:}
+
+For $n = 2$, we have $1 - \frac{1}{2^2} = \frac{3}{4} = \frac{2+1}{2\times2}$.
+
+\textbf{Inductive Step:}
+
+For all $n > 2$, assume that $\prod_{i = 2}^{n - 1} \left(1 - \frac{1}{i^2}\right) = \frac{(n - 1) + 1}{2(n - 1)}$ is true.
+Then we have
+\begin{align*}
+	\prod_{i = 2}^{n} \left(1 - \frac{1}{i^2}\right) =& \prod_{i = 2}^{n - 1} \left(1 - \frac{1}{i^2}\right) \cdot \left(1 - \frac{1}{n^2}\right) \\
+	=& \frac{(n - 1) + 1}{2(n - 1)} \cdot \left(1 - \frac{1}{n^2}\right) \\
+	=& \frac{n}{2(n - 1)} \cdot \frac{(n - 1)(n + 1)}{n^2} \\
+	=& \frac{n + 1}{2n}
+\end{align*}
+
+Therefore, $\prod_{i = 2}^{n} \left(1 - \frac{1}{i^2}\right) = \frac{n + 1}{2n}$ holds for all $n \geq 2$.
+\end{proof}
+
+\section*{Q.2}
+
+\begin{proof}
+$ $
+
+Since $A - B = A \cap \overline{B}$, we have
+\begin{align*}
+	(A_1 - B) \cap (A_2 - B) \cap \cdots \cap (A_n - B) =& (A_1 \cap \overline{B}) \cap (A_2 \cap \overline{B}) \cap \cdots \cap (A_n \cap \overline{B}) \\
+	=& A_1 \cap A_2 \cap \cdots \cap A_n \bigcap^{n} \overline{B} \\
+	=& (A_1 \cap A_2 \cap \cdots \cap A_n) \cap \overline{B} \\
+	=& (A_1 \cap A_2 \cap \cdots \cap A_n) - B
+\end{align*}
+
+Therefore, $(A_1 - B) \cap (A_2 - B) \cap \cdots \cap (A_n - B) = (A_1 \cap A_2 \cap \cdots \cap A_n) - B$.
+\end{proof}
+
+\section*{Q.3}
+
+\begin{proof}
+$ $
+
+\textbf{Base Case:}
+
+For $n = 0$, $1 \leq 1$ is true.
+
+\textbf{Inductive Step:}
+
+For all $n > 0$, assume that $1 + (n - 1)h \leq (1 + h)^{n - 1}$ is true.
+Then we have
+\begin{align*}
+	(1 + h)^n =& (1 + h)^{n - 1} \cdot (1 + h) \\
+	\geq& [1 + (n - 1)h] \cdot (1 + h) \\
+	=& 1 + (n - 1)h + h + (n - 1)h^2 \\
+	=& 1 + nh + (n - 1)h^2 \\
+	\geq& 1 + nh
+\end{align*}
+
+Therefore, $1 + nh \leq (1 + h)^n$ holds for all $n \geq 0$ if $h > -1$.
+\end{proof}
+
+\section*{Q.4}
+
+\subsection*{(a)}
+
+\begin{align*}
+	18 &= 1 \times 4 + 2 \times 7 \\
+	19 &= 3 \times 4 + 1 \times 7 \\
+	20 &= 5 \times 4 + 0 \times 7 \\
+	21 &= 0 \times 4 + 3 \times 7 
+\end{align*}
+
+\subsection*{(b)}
+
+The inductive hypothesis of the proof is that for some $n \geq 21$, every $m$ that satisfies $18 \leq m \leq n$ can be written as $m = 4a + 7b$ for some $a, b \in \mathbb{N}$.
+
+\subsection*{(c)}
+
+The inductive step needs to prove that for $n + 1$, we can find $a', b' \in \mathbb{N}$ such that $n + 1 = 4a' + 7b'$.
+
+\subsection*{(d)}
+
+\begin{proof}
+$ $
+
+Because $n \geq 21$, we are certain that $P(18)$, $P(19)$, $P(20)$ and $P(21)$ are true. 
+It's obvious that $n + 1 \equiv k \pmod{4}$ for some $k \in \{18, 19, 20, 21\}$.
+
+Then we have
+\begin{align*}
+	n + 1 =& k + (n + 1 - k) \\
+	=& 4a + 7b + \frac{n + 1 - k}{4} \cdot 4 \\
+	=& 4 \left(a + \frac{n + 1 - k}{4}\right) + 7b \\
+\end{align*}
+
+We can see that $a' = a + \frac{n + 1 - k}{4}$ and $b' = b$ are both natural numbers.
+Therefore, $n + 1$ can be written as $4a' + 7b'$ for some $a', b' \in \mathbb{N}$.
+\end{proof}
+
+\subsection*{(e)}
+
+We can proof strong induction by the smallest counterexample.
+
+\begin{proof}[Proof by Contradiction]
+$ $
+
+Suppose that for some $n \geq 18$ and $n \in \mathbb{N}$, $n$ cannot be written as $4a + 7b$ for some $a, b \in \mathbb{N}$.
+Let $n_0$ be the smallest counterexample.
+
+If $n_0 \in \{18, 19, 20, 21\}$, then $n_0$ can be written as $4a + 7b$ for some $a, b \in \mathbb{N}$ as we have proved in part (a).
+There is a contradiction.
+
+If $n_0 > 21$, this means that for all $n \in \{18, 19, 20, 21, \cdots, n_0 - 1\}$, $n$ can be written as $4a + 7b$ for some $a, b \in \mathbb{N}$.
+This satisfies the inductive hypothesis of the proof.
+By the inductive step, we know that $n_0$ can also be written as $4a' + 7b'$ for some $a', b' \in \mathbb{N}$.
+There is a contradiction.
+
+Therefore, $n$ can be written as $4a + 7b$ for some $a, b \in \mathbb{N}$ for all $n \geq 18$.
+\end{proof}
+
+\section*{Q.5}
+
+\textbf{The principle of mathematical induction $\rightarrow$ Strong induction}
+
+\begin{proof}
+$ $
+
+By the addition rule of inference, we know the following statement is a tautology:
+\begin{align*}
+	\neg P(n) \vee P(n + 1) &\rightarrow \neg P(0) \vee \neg P(1) \vee \cdots \vee \neg P(n) \vee P(n + 1) \\
+	(P(n) \rightarrow P(n + 1)) &\rightarrow (P(0) \wedge P(1) \wedge \cdots \wedge P(n) \rightarrow P(n + 1))
+\end{align*}
+
+Therefore, the principle of mathematical induction implies strong induction.
+\end{proof}
+
+\textbf{Strong induction $\rightarrow$ The principle of mathematical induction}
+
+\begin{proof}
+$ $
+
+Without loss of generality, we assume that $P(0)$ is true.
+Assume the strong induction is true, then $P(0) \wedge P(1) \wedge \cdots \wedge P(n) \rightarrow P(n + 1)$ is true for all $n \geq 0$.
+
+By the addition rule of inference, we know the following statement is a tautology:
+\begin{align*}
+	\neg P(0) \vee \cdots \vee \neg P(n - 1) \vee P(n + 1) &\rightarrow \neg P(0) \vee \cdots \vee \neg P(n - 1) \vee \neg P(n) \vee P(n + 1)	\\
+	(P(0) \wedge \cdots \wedge P(n - 1) \rightarrow P(n + 1)) &\rightarrow (P(0) \wedge \cdots \wedge P(n - 1) \wedge P(n) \rightarrow P(n + 1))
+\end{align*}
+
+By the hypothetical syllogism, we know the following is a tautology:
+\begin{align*}
+	&(P(0) \wedge \cdots \wedge P(n - 1) \rightarrow P(n)) \wedge (P(n) \rightarrow P(n + 1)) \\
+	\rightarrow& (P(0) \wedge \cdots \wedge P(n - 1) \rightarrow P(n + 1))
+\end{align*}
+
+Applying hypothetical syllogism to the above two statements, we know the following is a tautology:
+\begin{align*}
+	&(P(0) \wedge \cdots \wedge P(n - 1) \rightarrow P(n)) \wedge (P(n) \rightarrow P(n + 1)) \\
+	\rightarrow& (P(0) \wedge \cdots \wedge P(n - 1) \wedge P(n) \rightarrow P(n + 1))
+\end{align*}
+
+Since $P(0) \wedge P(1) \wedge \cdots \wedge P(n) \rightarrow P(n + 1)$ is true for all $n \geq 0$, the tautology above can be simplified to the following:
+\begin{equation*}
+	\top \wedge (P(n) \rightarrow P(n + 1)) \rightarrow \top
+\end{equation*}
+
+Hence, $P(n) \rightarrow P(n + 1)$ must be true for all $n \geq 0$.
+Equivalently, we can say that the strong induction implies the principle of mathematical induction.
+\end{proof}
+
+By the above two proofs, we can conclude that the principle of mathematical induction and strong induction are equivalent.
+
+\section*{Q.6}
+
+\subsection*{(a)}
+
+\begin{align*}
+	f(16) =& 2f(4) + \log 16 \\
+	=& 2[2f(2) + \log 4] + \log 16 \\
+	=& 2 \times (2 + 2) + 4 \\
+	=& 12
+\end{align*}
+
+\subsection*{(b)}
+
+Let $m = \log n$, then we simplify the recurrence relation to the following:
+\begin{equation*}
+	f(2^m) = 
+	\begin{cases}
+		2f(2^{\frac{m}{2}}) + m & m > 1 \\
+		1 & m = 1
+	\end{cases}
+\end{equation*}
+
+We prove the formula of $f$ by induction.
+\begin{proof}[Proof by Induction]
+$ $
+
+\textbf{Base Case:}
+
+For $m = 1$, $f(2^m) = m\log m + m$ is true.
+
+\textbf{Inductive Step:}
+
+Assume that $f(2^m) = m\log m + m$ is true for some $m = 2^k$ where $k \geq 0$.
+
+Then we have
+\begin{align*}
+	f(2^{2m}) =& 2f(2^{m}) + 2m \\
+	=& 2(m\log m + m) + 2m \\
+	=& 2m\log m + 2m + 2m \\
+	=& 2m\log m + 2m\log 2 + 2m \\
+	=& 2m\log 2m + 2m \\
+\end{align*}
+
+Therefore, $f(2^m) = m\log m + m$ holds for all $k \geq 0$.
+\end{proof}
+
+Hence, the function $f$ will be 
+\begin{align*}
+	f(n) =& f(2^m) \\
+	=& m\log m + m \\
+	=& \log n \log \log n + \log n
+\end{align*}
+
+Therefore, $f(n) = O(\log n \log \log n)$.
+
+
+\section*{Q.7}
+
+\subsection*{(a)}
+
+Let $m = \log n$, then we simplify the recurrence relation to the following:
+\begin{equation*}
+	S(2^m) =
+	\begin{cases}
+		b & m = 0 \\
+		9S(2^{m-1}) + 2^{2m} & m > 0
+	\end{cases}
+\end{equation*}
+
+Let $a_m = S(2^m)$, then we have
+\begin{equation*}
+	a_m =
+	\begin{cases}
+		b & m = 0 \\
+		9a_{m-1} + 2^{2m} & m > 0
+	\end{cases}
+\end{equation*}
+
+The characteristic equation of the recurrence relation is $r = 9$.
+Therefore, the general solution of the recurrence relation is
+\begin{equation*}
+	a_m = \alpha 9^m + p(m) 
+\end{equation*}
+
+Let $p(m) = A \times 2^{2m} + B$ where $A$ and $B$ are constants, then we have
+\begin{align*}
+	a_m =& 9a_{m-1} + 2^{2m} \\
+	\alpha 9^m + A \times 2^{2m} + B =& 9(\alpha 9^{m-1} + A \times 2^{2(m-1)} + B) + 2^{2m} \\
+	\alpha 9^m + A \times 2^{2m} + B =& \alpha 9^m + 9A \times 2^{2(m-1)} + 9B + 2^{2m} \\
+	A \times 2^{2m} + B =& \frac{9A + 4}{4} \times 2^{2m} + 9B \\
+\end{align*}
+
+Therefore, $A = -\frac{4}{5}$ and $B = 0$.
+And the general solution of the recurrence relation is
+\begin{equation*}
+	a_m = \alpha 9^m - \frac{4}{5} 2^{2m}
+\end{equation*}
+
+Since $a_0 = b$, we have $\alpha = b + \frac{4}{5}$.
+Therefore, the solution of the recurrence relation is
+\begin{align*}
+	a_m =& \left(b + \frac{4}{5}\right) 9^m - \frac{4}{5} 4^m \\
+	=& \left(b + \frac{4}{5}\right) 9^{\log n} - \frac{4}{5} 4^{\log n} \\
+	=& \left(b + \frac{4}{5}\right) n^{2\log 3} - \frac{4}{5} n^2 \\
+\end{align*}
+
+Therefore, $S(n) = \left(b + \frac{4}{5}\right) n^{2\log 3} - \frac{4}{5} n^2$.
+
+\subsection*{(b)}
+
+Let $m = \log_4 n$, then we simplify the recurrence relation to the following:
+\begin{equation*}
+	T(4^m) = 
+	\begin{cases}
+		c & m = 0 \\
+		aT(4^{m-1}) + 4^{2m} & m > 0
+	\end{cases}
+\end{equation*}
+
+Let $b_m = T(4^m)$, then we have
+\begin{equation*}
+	b_m = 
+	\begin{cases}
+		c & m = 0 \\
+		ab_{m-1} + 4^{2m} & m > 0
+	\end{cases}
+\end{equation*}
+
+The characteristic equation of the recurrence relation is $r = a$.
+Therefore, the general solution of the recurrence relation is
+\begin{equation*}
+	b_m = \alpha a^m + p(m)
+\end{equation*}
+
+Let $p(m) = A \times 4^{2m} + B$ where $A$ and $B$ are constants, then we have
+\begin{align*}
+	b_m =& ab_{m-1} + 4^{2m} \\
+	\alpha a^m + A \times 4^{2m} + B =& a(\alpha a^{m-1} + A \times 4^{2(m-1)} + B) + 4^{2m} \\
+	\alpha a^m + A \times 4^{2m} + B =& \alpha a^m + aA \times 4^{2(m-1)} + aB + 4^{2m} \\
+	A \times 4^{2m} + B =& \frac{aA + 16}{16} \times 4^{2m} + aB \\
+\end{align*}
+
+Therefore, $A = \frac{16}{16 - a}$ and $B = 0$.
+And the general solution of the recurrence relation is
+\begin{equation*}
+	b_m = \alpha a^m + \frac{16}{16 - a} 4^{2m}
+\end{equation*}
+
+Since $b_0 = c$, we have $\alpha = c - \frac{16}{16 - a}$.
+Therefore, the solution of the recurrence relation is
+\begin{align*}
+	b_m =& \left(c - \frac{16}{16 - a}\right) a^m + \frac{16}{16 - a} 4^{2m} \\
+	=& \left(c - \frac{16}{16 - a}\right) a^{\log_4 n} + \frac{16}{16 - a} 4^{\log_4 n} \\
+	=& \left(c - \frac{16}{16 - a}\right) n^{\frac{1}{2} \log a} + \frac{16}{16 - a} n^2 \\
+\end{align*}
+
+Therefore, $T(n) = \left(c + \frac{16}{a - 16}\right) n^{\frac{1}{2} \log a} - \frac{16}{a - 16} n^2$.
+
+\subsection*{(c)}
+
+Since $S(n)$ and $T(n)$ are both polynomial functions, we can conclude that $S(n) = \Theta(n^{2\log 3})$ and $T(n) = \Theta(n^{\frac{1}{2} \log a})$.
+And to make $T(n) = O(S(n))$ is equivalent to make $\frac{1}{2} \log a \leq 2\log 3$, which is $a \leq 81$.
+
+\section*{Q.8}
+
+\subsection*{(1)}
+
+The inclusion-exclusive principle for three sets is
+\begin{equation*}
+	|\overline{A} \cup \overline{B} \cup \overline{C}| = |\overline{A}| + |\overline{B}| + |\overline{C}| - |\overline{A} \cap \overline{B}| - |\overline{A} \cap \overline{C}| - |\overline{B} \cap \overline{C}| + |\overline{A} \cap \overline{B} \cap \overline{C}|
+\end{equation*}
+
+By moving terms around, we can have
+\begin{equation*}
+	|\overline{A} \cap \overline{B} \cap \overline{C}| = - |\overline{A}| - |\overline{B}| - |\overline{C}| + |\overline{A} \cap \overline{B}| + |\overline{A} \cap \overline{C}| + |\overline{B} \cap \overline{C}| + |\overline{A} \cup \overline{B} \cup \overline{C}|
+\end{equation*}
+
+\subsection*{(2)}
+
+Let set $A$ contains all number from 1 to 1000 that is multiple of 10, $B$ contains all number from 1 to 1000 that is multiple of 4, and $C$ contains all number from 1 to 1000 that is multiple of 15.
+
+Then we have the number of integers from 1 to 1000 which are not divisible by 4, 10 or 15 is
+\begin{align*}
+	|\overline{A} \cap \overline{B} \cap \overline{C}| =& - |\overline{A}| - |\overline{B}| - |\overline{C}| + |\overline{A} \cap \overline{B}| + |\overline{A} \cap \overline{C}| + |\overline{B} \cap \overline{C}| + |\overline{A} \cup \overline{B} \cup \overline{C}| \\
+	=& - |\overline{A}| - |\overline{B}| - |\overline{C}| + |\overline{A} \cap \overline{B}| + |\overline{A} \cap \overline{C}| + |\overline{B} \cap \overline{C}| + |\overline{A \cap B \cap C}| \\
+	=& - (1000 - 100) - (1000 - 250) - (1000 - 66) \\
+	 &+ (1000 - 100 + 1000 - 250 - 1000 + 50) \\
+	 &+ (1000 - 100 + 1000 - 66 - 1000 + 33) \\
+	 &+ (1000 - 250 + 1000 - 66 - 1000 + 16) \\
+	 &+ (1000 - 16) \\
+	=& 667
+\end{align*}
+
+\section*{Q.9}
+
+\subsection*{(a)}
+
+Since every element in the domain have 3 choices to map to, there are $3^n$ functions.
+
+\subsection*{(b)}
+
+The number of one-to-one functions is equivalent to the number of ways to choose $n$ elements from 3 elements where the order matters.
+
+Therefore, the number of one-to-one functions is
+\begin{align*}
+	\text{\#one-to-one functions} =
+	\begin{cases}
+		\frac{3!}{(3 - n)!} & 1 \leq n \leq 3 \\
+		0 & n > 3
+	\end{cases}
+\end{align*}
+
+\subsection*{(c)}
+
+Let set $E_i$ be the set of functions that map nothing to the $i$-th element of the codomain.
+
+Then when $n \geq 3$, we have
+\begin{align*}
+	\text{\#onto functions} =& 3^n - \left|\bigcup_{i = 1}^{3} E_i\right| \\
+	=& 3^n - (|E_1| + |E_2| + |E_3| - |E_1 \cap E_2| - |E_1 \cap E_3| - |E_2 \cap E_3| + |E_1 \cap E_2 \cap E_3|) \\ 
+	=& 3^n - (3 \cdot 2^n - 3 \cdot 1^n + 1 \cdot 0^n) \\
+	=& 3^n - 3 \cdot 2^n + 3
+\end{align*}
+
+To conclude, the number of onto functions is
+\begin{align*}
+	\text{\#onto functions} =
+	\begin{cases}
+		0 & 1 \leq n \leq 2 \\
+		3^n - 3 \cdot 2^n + 3 & n \geq 3 
+	\end{cases}
+\end{align*}
+
+\section*{Q.10}
+
+\begin{align*}
+	\binom{240}{120} =& \frac{240!}{120! \cdot 120!} \\
+	=& \frac{121}{120} \times \frac{240!}{121! \cdot 119!} \\
+	=& \frac{121}{120} \times \binom{240}{121} \\
+\end{align*}
+
+Since both binomial coefficients are integers, we can conclude that $\binom{240}{120}$ is divisible by 121.
+
+By the property of binomial coefficients, we know that
+\begin{align*}
+	\sum_{k = 0}^{240} \binom{240}{k} =& \binom{240}{0} + \binom{240}{1} + \cdots + \binom{240}{240} \\
+	=& 2 \cdot \binom{240}{0} + 2 \cdot \binom{240}{1} + \cdots + 2 \cdot \binom{240}{119} + \binom{240}{120} \\
+	=& 2^{240}
+\end{align*}
+
+Since each leading term is divisible by 2 and the sum is also divisible by 2, we can conclude that $\binom{240}{120}$ is even.
+
+Therefore, $\binom{240}{120}$ is divisible by 242.
+
+\section*{Q.11}
+
+Let $A_i(x)$ be the generating function for selecting chocolates from brand $i$.
+Since there is only 1 way to select any number of chocolates from brand $i$, we have $A_i(x) = 1 + x + x^2 + \cdots = \frac{1}{1 - x}$.
+
+Since the brands are independent, the generating function for selecting chocolates from all brands is
+\begin{align*}
+	B(x) =& A_1(x) \cdot A_2(x) \cdots A_{25}(x) \\
+	=& \left(\frac{1}{1 - x}\right)^{25}
+\end{align*}
+
+The number of ways to select 12 chocolates from 25 brands is the coefficient of $x^{12}$ in $B(x)$, which is
+\begin{equation*}
+	\binom{25 + 12 - 1}{12} = \binom{36}{12} = \frac{36!}{12! \cdot 24!} = 1251677700
+\end{equation*}
+
+\section*{Q.12}
+
+\subsection*{(1)}
+
+Let $y_1 = x_1 - 3$, $y_2 = x_2$, $y_3 = x_3 + 2$, $y_4 = x_4$ and $y_5 = x_5$, then we have:
+\begin{equation*}
+	y_1 + y_2 + y_3 + y_4 + y_5 = 9\ (y_1, y_2, y_3, y_4, y_5 \geq 0)
+\end{equation*} 
+
+Then the number of integer solution can be found by generating function:
+\begin{equation*}
+	S(x) = \left(\frac{1}{1-x}\right)^5 
+\end{equation*}
+
+Then the number of integer solution is the coefficient of $x^9$ in $S(x)$, which is
+\begin{equation*}
+	\binom{5 + 9 - 1}{9} = \binom{13}{9} = \frac{13!}{9! \cdot 4!} = 715
+\end{equation*}
+
+\subsection*{(2)}
+
+The number of integer solution can be found by generating function:
+\begin{equation*}
+	S(x) = \left(\frac{1}{1-x}\right)^4 \cdot (1 + x + x^2 + x^3 + x^4 + x^5)
+\end{equation*}
+
+Then the number of integer solution is the coefficient of $x^{10}$ in $S(x)$, which is
+\begin{align*}
+	\sum_{k = 5}^{10} \binom{4 + k - 1}{k} =& \binom{8}{5} + \binom{9}{6} + \binom{10}{7} + \binom{11}{8} + \binom{12}{9} + \binom{13}{10} \\
+	=& 56 + 84 + 120 + 165 + 220 + 286 \\
+	=& 931
+\end{align*}
+\section*{Q.13}
+
+\begin{proof}
+$ $
+
+For a $5 \times 3$ rectangle, we can divide it into 15 unit squares.
+By the pigeonhole principle, when we have 16 points in the rectangle, there must be at least 2 points in one unit square.
+For these 2 points, the distance between them is less than or equal to $\sqrt{2}$.
+\end{proof}
+
+\section*{Q.14}
+
+\subsection*{(a)}
+
+\begin{proof}
+$ $
+
+By the property of binomial coefficients, we can rewrite the equation as
+\begin{align*}
+	LHS =& \sum_{k = 0}^r \binom{n + k}{k} = \sum_{k = 0}^r \binom{n + k}{n} = \sum_{k = 0}^r \binom{n + r - k}{n} \\
+	RHS =& \binom{n + r + 1}{r} = \binom{n + r + 1}{n + 1}
+\end{align*}
+
+The right-hand side is the number of subsets of size $n + 1$ from a set of size $n + r + 1$.
+
+The left-hand side can be seen as different ways to generate a subset of size $n + 1$.
+If we choose the $(k + 1)$-th element from the set to be in the subset and exclude all elements before it, then we need to choose $n$ elements from the remaining $n + r + 1 - (k + 1) = n + r - k$ elements.
+And the number of ways to do this is $\binom{n + r - k}{n}$.
+Since these different ways are disjoint, we can sum them up to get the total number of subsets of size $n + 1$.
+
+Therefore, the equation is true.
+\end{proof}
+
+\subsection*{(b)}
+
+\begin{proof}
+$ $
+
+By Pascas's identity, we have
+\begin{align*}
+	\binom{n + r + 1}{r} =& \binom{n + r}{r} + \binom{n + r}{r - 1} \\
+	=& \binom{n + r}{r} + \binom{n + r - 1}{r - 1} + \binom{n + r - 1}{r - 2} \\
+	&\vdots \\
+	=& \binom{n + r}{r} + \binom{n + r - 1}{r - 1} + \cdots + \binom{n + 1}{1} + \binom{n + 1}{0} \\
+	=&\binom{n + r}{r} + \binom{n + r - 1}{r - 1} + \cdots + \binom{n + 1}{1} + \binom{n}{0} \\
+	=& \sum_{k = 0}^r \binom{n + k}{k}
+\end{align*}
+\end{proof}
+
+\section*{Q.15}
+
+\begin{proof}
+$ $
+
+\begin{align*}
+	\sum_{r=k}^n \binom{n}{r} \binom{r}{k} =& \sum_{r=k}^n \frac{n!}{r!(n - r)!} \cdot \frac{r!}{k!(r - k)!} \\
+	=& \sum_{r=k}^n \frac{n!}{k!(n - r)!(r - k)!} \\
+	=& \frac{n!}{k!(n-k)!} \cdot \sum_{r=k}^n \frac{(n - k)!}{(n - r)!(r - k)!} \\
+	=& \frac{n!}{k!(n-k)!} \cdot \sum_{m=0}^{n-k} \frac{(n - k)!}{m!(n - k - m)!} \\
+	=& \frac{n!}{k!(n-k)!} \cdot \sum_{m=0}^{n-k} \binom{n - k}{m} \\
+	=& \binom{n}{k} 2^{n - k}
+\end{align*}
+\end{proof}
+
+\section*{Q.16}
+
+The characteristic equation of the recurrence relation is
+\begin{equation*}
+	r^3 - 2r^2 - r + 2 = 0
+\end{equation*}
+
+The roots of the equation are -1, 1 and 2.
+Hence, the solution of the recurrence relation is
+\begin{equation*}
+	a_n = \alpha_1 (-1)^n + \alpha_2 + \alpha_3 2^n
+\end{equation*}
+
+Since $a_0 = 1$, $a_1 = 0$ and $a_2 = 7$, we have
+\begin{align*}
+	1 =& \alpha_1 + \alpha_2 + \alpha_3 \\
+	0 =& -\alpha_1 + \alpha_2 + 2\alpha_3 \\
+	7 =& \alpha_1 + \alpha_2 + 4\alpha_3
+\end{align*}
+
+Solving the equations above, we have $\alpha_1 = \frac{3}{2}$, $\alpha_2 = -\frac{5}{2}$ and $\alpha_3 = 2$.
+Therefore, the solution of the recurrence relation is
+\begin{equation*}
+	a_n = \frac{3}{2} (-1)^n - \frac{5}{2} + 2^{n + 1}
+\end{equation*}
+
+\section*{Q.17}
+
+\subsection*{(a)}
+
+The characteristic equation of associated homogeneous recurrence is $r - 2 = 0$.
+The root of the equation is 2.
+Hence, the solution of is $a_n = \alpha 2^n + p(n)$.
+
+Suppose the particular solution is $p(n) = An^2 + Bn + C$, then we have
+\begin{align*}
+	\alpha 2^n + An^2 + Bn + C =& 2[\alpha 2^{n - 1} + A(n - 1)^2 + B(n - 1) + C] + 2n^2 \\
+	=& \alpha 2^n + 2An^2 - 4An + 2A + 2Bn - 2B + 2C + 2n^2 \\
+	=& \alpha 2^n + (2A + 2)n^2 + (2B - 4A)n + (2A - 2B + 2C)
+\end{align*}
+
+Therefore, we have
+\begin{align*}
+	A = 2A + 2 \\
+	B = 4A - 2B \\
+	C = 2A - 2B + 2C
+\end{align*}
+
+Solving the equations above, we have $A = -2$, $B = -\frac{8}{3}$ and $C = -\frac{4}{3}$.
+Therefore, the solution of the recurrence relation is
+\begin{equation*}
+	a_n = \alpha 2^n - 2n^2 - \frac{8}{3}n - \frac{4}{3}
+\end{equation*}
+
+\subsection*{(b)}
+
+Since $a_1 = 4$, we have
+\begin{equation*}
+	4 = 2 \alpha - 2 - \frac{8}{3} - \frac{4}{3}
+\end{equation*}
+
+Solving the equation above, we have $\alpha = 5$.
+Therefore, the solution of the recurrence relation is
+\begin{equation*}
+	a_n = 5 \cdot 2^n - 2n^2 - \frac{8}{3}n - \frac{4}{3}
+\end{equation*}
+
+\section*{Q.18}
+
+\subsection*{(1)}
+
+Let $b_n$ denotes the number of ternary strings of size $n$ that do not contain 00 or 11.
+We can find $b_1 = 3$ and $b_2 = 7$.
+And the following recurrence relation holds for any $n \geq 3$:
+\begin{equation*}
+	b_n = 2b_{n-1} + b_{n-2}
+\end{equation*}
+This is true because:
+\begin{itemize}
+	\item For any valid string of size $n-1$, we can append a number that is different form the last digit to get a valid string of size $n$.
+		  This gives us $2b_{n-1}$ valid strings.
+	\item For a valid string of size $n-1$ that ends with a 2, we can also append a 2 to get a valid string of size $n$.
+		  This is equivalent to append 22 to a valid string of size $n-2$, which gives us $b_{n-2}$ valid strings.
+\end{itemize}
+
+For every $n$, we know that $b_n = 3^n - a_n$.
+Therefore, the recurrence relation for $a_n$ is
+\begin{align*}
+	3^n - a_n =& 2(3^{n-1} - a_{n-1}) + (3^{n-2} - a_{n-2}) \\
+	a_n =& 3^n -2(3^{n-1} - a_{n-1}) - (3^{n-2} - a_{n-2}) \\
+	a_n =& 2a_{n-1} + a_{n-2} + 3^n - 2 \cdot 3^{n-1} - 3^{n-2} \\
+	a_n =& 2a_{n-1} + a_{n-2} + 2 \cdot 3^{n-2}
+\end{align*}
+
+Therefore, the recurrence relation for $a_n$ is
+\begin{equation*}
+	a_n = 
+	\begin{cases}
+		0 & n = 1 \\
+		2 & n = 2 \\
+		2a_{n-1} + a_{n-2} + 2 \cdot 3^{n-2} & n \geq 3
+	\end{cases}
+\end{equation*}
+
+\subsection*{(2)}
+
+The characteristic equation of the associated homogeneous recurrence is $r^2 - 2r - 1 = 0$.
+The roots of the equation are $1 + \sqrt{2}$ and $1 - \sqrt{2}$.
+Hence, the solution of the recurrence relation is $a_n = \alpha_1 (1 + \sqrt{2})^n + \alpha_2 (1 - \sqrt{2})^n + p(n)$.
+
+We can find one particular solution of the recurrence relation is $p(n) = 3^n$, since $3^n = 2 \cdot 3^{n-1} + 3^{n-2} + 2 \cdot 3^{n-2}$.
+Therefore, the solution of the recurrence relation is $a_n = \alpha_1 (1 + \sqrt{2})^n + \alpha_2 (1 - \sqrt{2})^n + 3^n$.
+
+Since $a_1 = 0$ and $a_2 = 2$, we have
+\begin{align*}
+	0 =& \alpha_1 (1 + \sqrt{2}) + \alpha_2 (1 - \sqrt{2}) + 3 \\
+	2 =& \alpha_1 (1 + \sqrt{2})^2 + \alpha_2 (1 - \sqrt{2})^2 + 3^2
+\end{align*}
+
+Then we have $\alpha_1 = - \frac{1 + \sqrt{2}}{2}$ and $\alpha_2 = \frac{\sqrt{2} - 1}{2}$.
+Therefore, the solution of the recurrence relation is
+\begin{align*}
+	a_n =& - \frac{1 + \sqrt{2}}{2} (1 + \sqrt{2})^n + \frac{\sqrt{2} - 1}{2} (1 - \sqrt{2})^n + 3^n \\
+	=& 3^n - \frac{(1 + \sqrt{2})^{n+1} - (1 - \sqrt{2})^{n+1}}{2}
+\end{align*}
+
+\section*{Q.19}
+
+The number of subsets with no two consecutive integers is equivalent to the number of binary strings with no two consecutive 1s.
+
+To find a binary number of length $n$ with no two consecutive 1s, we can append a 0 to a binary number of length $n - 1$ with no two consecutive 1s or append a 01 to a binary number of length $n - 2$ with no two consecutive 1s.
+Therefore, the recurrence relation is
+\begin{equation*}
+	b_n = b_{n-1} + b_{n-2}
+\end{equation*}
+
+However, since it is required that the set is non-empty, we then have $b_i = a_i + 1$ for all $i$.
+Therefore, the recurrence relation for $a_n$ is
+\begin{equation*}
+	a_n = a_{n-1} + a_{n-2} + 1
+\end{equation*}
+
+\section*{Q.20}
+
+The following equation is evidently true
+\begin{equation*}
+	(1+x)^{m+n} = (1+x)^m (1+x)^n
+\end{equation*}
+
+We can substitute both sides with generating functions to get
+\begin{equation*}
+	\sum_{k=0}^{m+n} \binom{m+n}{k} x^k = \sum_{i=0}^m \binom{m}{i} x^i \sum_{j=0}^n \binom{n}{j} x^j
+\end{equation*}
+
+By comparing the coefficients of $x^r$ on both sides, we have
+\begin{equation*}
+	\binom{m+n}{r} = \sum_{k=0}^r \binom{m}{k} \binom{n}{r-k}
+\end{equation*}
+
+Hence, the Vandermonde's identity is proved.
+\end{document}	

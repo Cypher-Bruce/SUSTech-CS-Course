@@ -1,0 +1,1935 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+%\usepackage{setspace}
+%\setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,amsfonts,caption}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Discrete Mathematics(H): Final Review}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Discrete Mathematics(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Final Review}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section{Logic}
+
+\subsection{Propositional Logic}
+
+\subsubsection{Propositions}
+A proposition is a \textbf{declarative} sentence that is \textbf{either true or false}, but not both.
+For example, ``\textit{SUSTech is in Shenzhen}'' is a proposition, while ``\textit{No parking on campus}'' is not a proposition.
+
+\subsubsection{Logical Connectives}
+
+There are six logical connectives in propositional logic, which are \textbf{negation}($\neg$), \textbf{conjunction}($\wedge$), \textbf{disjunction}($\vee$), \textbf{exclusive or}($\oplus$), \textbf{implication}($\rightarrow$), and \textbf{biconditional}($\leftrightarrow$).
+
+For implication $p \rightarrow q$, we call $p$ the \textbf{hypothesis} and $q$ the \textbf{conclusion}.
+
+The \textbf{converse} of $p \rightarrow q$ is $q \rightarrow p$.
+The \textbf{inverse} of $p \rightarrow q$ is $\neg p \rightarrow \neg q$.
+The \textbf{contrapositive} of $p \rightarrow q$ is $\neg q \rightarrow \neg p$.
+
+\subsubsection{Tautologies and Contradictions}
+
+A \textbf{tautology} is a proposition that is always true, regardless of the truth values of its individual components.
+A \textbf{contradiction} is a proposition that is always false.
+A \textbf{contingency} is a proposition that is neither a tautology nor a contradiction.
+
+\subsubsection{Logical Equivalences}
+
+Two propositions are \textbf{logically equivalent} if they have the same truth values for all possible combinations of truth values of their component propositions.
+
+The propositions $p$ and $q$ are logically equivalent if and only if $p \leftrightarrow q$ is a tautology, denoted by $p \equiv q$ or $p \Leftrightarrow q$.
+
+\subsubsection{Important Logical Equivalences}
+
+\begin{itemize}
+	\item \textbf{Identity laws} 
+		\begin{align*}
+			p \wedge T &\equiv p \\
+			p \vee F &\equiv p
+		\end{align*}
+	\item \textbf{Domination laws}
+		\begin{align*}
+			p \vee T &\equiv T \\
+			p \wedge F &\equiv F
+		\end{align*}
+	\item \textbf{Idempotent laws}
+		\begin{align*}
+			p \vee p &\equiv p \\
+			p \wedge p &\equiv p
+		\end{align*}
+	\item \textbf{Double negation laws}
+		\begin{align*}
+			\neg(\neg p) &\equiv p
+		\end{align*}
+	\item \textbf{Commutative laws}
+		\begin{align*}
+			p \vee q &\equiv q \vee p \\
+			p \wedge q &\equiv q \wedge p
+		\end{align*}
+	\item \textbf{Associative laws}
+		\begin{align*}
+			(p \vee q) \vee r &\equiv p \vee (q \vee r) \\
+			(p \wedge q) \wedge r &\equiv p \wedge (q \wedge r)
+		\end{align*}
+	\item \textbf{Distributive laws}
+		\begin{align*}
+			p \vee (q \wedge r) &\equiv (p \vee q) \wedge (p \vee r) \\
+			p \wedge (q \vee r) &\equiv (p \wedge q) \vee (p \wedge r)
+		\end{align*}
+	\item \textbf{De Morgan's laws}
+		\begin{align*}
+			\neg (p \wedge q) &\equiv \neg p \vee \neg q \\
+			\neg (p \vee q) &\equiv \neg p \wedge \neg q
+		\end{align*}
+	\item \textbf{Absorption laws}
+		\begin{align*}
+			p \vee (p \wedge q) &\equiv p \\
+			p \wedge (p \vee q) &\equiv p
+		\end{align*}
+	\item \textbf{Negation laws}
+		\begin{align*}
+			p \vee \neg p &\equiv T\\
+			p \wedge \neg p &\equiv F
+		\end{align*}
+	\item \textbf{Useful law}
+		\begin{align*}
+			p \rightarrow q \equiv \neg p \vee q
+		\end{align*}
+\end{itemize}
+
+\subsection{Predicate Logic}
+
+\subsubsection{Predicates and Quantifiers}
+
+A \textbf{constant} models a specific object.
+A \textbf{variable} represents objects of specific type.
+A \textbf{predicate} represents properties or relations among objects.
+
+However, a predicate is not a proposition, because it is not a declarative sentence.
+It becomes a proposition when the variable is assigned a value.
+Additionally, the universal quantification and existential quantification of a predicate is a proposition.
+For example, $\text{Prime}(x)$ \textbf{is not} a proposition, while $\text{Prime}(3)$ and $\exists x \text{Prime}(x)$ \textbf{are} propositions.
+
+The \textbf{universe(domain)} $D$ of a predicate is the set of all objects that can be substituted for the variables in a predicate.
+The \textbf{truth set} of a predicate $P(x)$ is the set of objects in the universe that can be substituted for $x$ in $P(x)$ to make the resulting proposition true.
+
+The truth values of $\forall x P(x)$ and $\exists x P(x)$ depend on both the \textbf{universe} and the \textbf{predicate} $P(x)$.
+
+\subsubsection{Precedence of Quantifiers}
+
+The quantifiers $\forall$ and $\exists$ have higher precedence than all the logical operators.
+For example, $\forall x P(x) \wedge Q(x)$ means $(\forall x P(x)) \wedge Q(x)$, not $\forall x (P(x) \wedge Q(x))$.
+
+\subsubsection{Translation with Quantifiers}
+
+\textbf{Universal quantification}
+
+\qquad Sentence: All SUSTech students are smart.
+
+\qquad Universe: all students
+
+\qquad Translation: $\forall x (\text{At}(x, \text{SUSTech}) \rightarrow \text{Smart}(x))$
+
+\qquad Typical error: $\forall x (\text{At}(x, \text{SUSTech}) \wedge \text{Smart}(x))$, which means all students are at SUSTech and smart.
+
+\textbf{Existential quantification}
+
+\qquad Sentence: Some SUSTech students are smart.
+
+\qquad Universe: all students
+
+\qquad Translation: $\exists x (\text{At}(x, \text{SUSTech}) \wedge \text{Smart}(x))$
+
+\qquad Typical error: $\exists x (\text{At}(x, \text{SUSTech}) \rightarrow \text{Smart}(x))$, this is true if there is anyone who is not at SUSTech.
+
+\subsubsection{Nested Quantifiers}
+
+The order of nested quantifiers is important.
+For example, let $L(x,y)$ denotes ``$x$ loves $y$'', then $\forall x \exists y L(x,y)$ means ``Everyone loves someone'', while $\exists y \forall x L(x,y)$ means ``There is someone whom everyone loves''.
+In general, $\exists x \forall y P(x,y) \rightarrow \forall y \exists x P(x,y)$ is a tautology, but $\forall y \exists x P(x,y) \rightarrow \exists x \forall y P(x,y)$ is not always true.
+
+However, the order of nested quantifiers does not matter if quantifiers are of the same type.
+
+\subsubsection{Negating Quantifiers}
+
+\begin{itemize}
+	\item $\neg \forall x P(x) \equiv \exists x \neg P(x)$
+	\item $\neg \exists x P(x) \equiv \forall x \neg P(x)$
+	\item $\neg \forall x \exists y P(x,y) \equiv \exists x \forall y \neg P(x,y)$
+\end{itemize}
+
+\section{Mathematical Proofs}
+
+\subsection{Theorems and Proofs}
+
+\subsubsection{Definitions}
+
+An \textbf{axiom} or \textbf{postulate} is a statement or proposition that is regarded as being established, accepted, or self-evidently true.
+A \textbf{theorem} is a statement or proposition that can be proved to be true.
+A \textbf{lemma} is a statement that can be proved to be true, and is used in proving a theorem.
+
+In \textbf{formal proofs}, steps follow logically from the set of premises, axioms, lemmas, and other previously proved theorems.
+
+\subsubsection{Rules of inference}
+
+\begin{itemize}
+	\item \textbf{Modus Ponens}: $((p \rightarrow q) \wedge p) \rightarrow q$
+	\item \textbf{Modus Tollens}: $((p \rightarrow q) \wedge \neg q) \rightarrow \neg p$
+	\item \textbf{Hypothetical Syllogism}: $((p \rightarrow q) \wedge (q \rightarrow r)) \rightarrow (p \rightarrow r)$
+	\item \textbf{Disjunctive Syllogism}: $((p \vee q) \wedge \neg p) \rightarrow q$
+	\item \textbf{Addition}: $p \rightarrow (p \vee q)$
+	\item \textbf{Simplification}: $(p \wedge q) \rightarrow p$
+	\item \textbf{Conjunction}: $((p) \wedge (q)) \rightarrow (p \wedge q)$
+	\item \textbf{Resolution}: $((p \vee q) \wedge (\neg p \vee r)) \rightarrow (q \vee r)$
+	\item \textbf{Universal instantiation}: $\forall x P(x) \rightarrow P(c)$
+	\item \textbf{Universal generalization}: $P(c) \text{ for an arbitrary } c\rightarrow \forall x P(x)$
+	\item \textbf{Existential instantiation}: $\exists x P(x) \rightarrow P(c) \text{ for some element } c$
+	\item \textbf{Existential generalization}: $P(c) \rightarrow \exists x P(x)$
+\end{itemize}
+
+\subsubsection{Methods of Proof}
+
+To proof $p \rightarrow q$:
+\begin{itemize}
+	\item \textbf{Direct proof:} Show that if $p$ is true then $q$ follows.
+	\item \textbf{Proof by contrapositive:} Show that $\neg q \rightarrow \neg p$.
+	\item \textbf{Proof by contradiction:} Show that $p \wedge \neg q$ contradicts the assumptions.
+	\item \textbf{Proof by cases:} Give proofs for all possible cases.
+	\item \textbf{Proof of equivalence} $p \leftrightarrow q$: Prove $p \rightarrow q$ and $q \rightarrow p$.
+\end{itemize}
+
+\section{Sets and Functions}
+
+\subsection{Sets}
+
+\subsubsection{Definitions}
+
+A \textbf{set} is an unordered collection of objects, called \textbf{elements} or \textbf{members} of the set.
+We can represent a set by listing its elements between braces, or defining a property that its elements satisfy.
+
+\subsubsection{Important Sets}
+
+\begin{itemize}
+	\item $\mathbb{N}$ is the set of natural numbers.
+	\item $\mathbb{Z}$ is the set of integers. $\mathbb{Z^+}$ is the set of positive integers.
+	\item $\mathbb{Q}$ is the set of rational numbers.
+	\item $\mathbb{R}$ is the set of real numbers.
+	\item $\mathbb{C}$ is the set of complex numbers.
+	\item $\mathbb{U}$ is the set of all objects under consideration.
+	\item $\emptyset$ is the empty set. \textit{Note: $\emptyset \neq \{\emptyset\}$}
+	\item $P(S)$ is the power set of $S$, which is the set of all subsets of $S$.
+	\item Disjoint sets $A$ and $B$ are sets that have no elements in common, i.e., $A \cap B = \emptyset$.
+\end{itemize}
+
+\subsubsection{Set Operations}
+
+\begin{itemize}
+	\item \textbf{Union:} $A \cup B = \{x | x \in A \text{ or } x \in B\}$
+	\item \textbf{Intersection:} $A \cap B = \{x | x \in A \text{ and } x \in B\}$
+	\item \textbf{Difference:} $A - B = \{x | x \in A \text{ and } x \notin B\}$
+	\item \textbf{Complement:} $\overline{A} = \{x | x \in U \text{ and } x \notin A\}$
+	\item \textbf{Cartesian product:} $A \times B = \{(a,b) | a \in A \text{ and } b \in B\}$
+\end{itemize}
+
+\subsubsection{Cardinality}
+
+The \textbf{cardinality} of a set $S$, denoted by $|S|$, is the number of distinct elements in the set.
+The sets $A$ and $B$ have the same cardinality if there is a one-to-one correspondence between them.
+If there is a one-to-one function from $A$ to $B$, the cardinality of $A$ is less than or equal to the cardinality of $B$, denoted by $|A| \leq |B|$.
+
+A set that is either finite or has the same cardinality as the set of positive integers $\mathbb{Z^+}$ is called \textbf{countable}.
+A set that is not countable is called \textbf{uncountable}.
+
+Here are some examples of countable and uncountable sets:
+
+\begin{itemize}
+	\item \textbf{Countable Sets:} $\mathbb{N}, \mathbb{Z}, \mathbb{Q}, \mathbb{Z^+}$, the set of finite strings $S$ over a finite alphabet $A$
+	\item \textbf{Uncountable Sets:} $\mathbb{R}$, $P(\mathbb{N})$
+\end{itemize}
+
+The subset of a countable set is still countable.
+
+To prove a set is \textbf{countable}, we can use Schröder-Bernstein theorem.
+If there are one-to-one functions $f: A \rightarrow B$ and $g: B \rightarrow A$, then there is a one-to-one correspondence between $A$ and $B$, and $|A| = |B|$.
+
+To prove a set is \textbf{uncountable}, we can use Cantor's diagonalization method.
+Assume that $S$ is countable, then we can list all elements of $S$ in a table.
+Then we can construct a new element that is not in the table, which contradicts the assumption that $S$ is countable.
+
+For power set, we have the following formula:
+\begin{equation*}
+	|P(S)| = 2^{|S|}
+\end{equation*}
+
+For union and intersection, we have the following formulas:
+\begin{equation*}
+	|A \cup B| = |A| + |B| - |A \cap B|
+\end{equation*}
+
+For Cartesian product, we have the following formula:
+\begin{equation*}
+	|A \times B| = |A| \times |B|
+\end{equation*}
+
+\textit{Note: $|\emptyset| = 0$ and $|\{\emptyset\}| = 1$}
+
+\subsubsection{Computable vs. Uncomputable}
+
+We say a function is \textbf{computable} if there is an algorithm that can compute the function's value for any input in a finite amount of time.
+
+There are functions that are not computable.
+This is true because the set of computer programs is countable, while the set of functions from $\mathbb{N}$ to the set $\{0,1,2,...,9\}$ is uncountable. (Cantor's diagonalization method)
+
+\subsubsection{Cantor's Theorem}
+
+For any set $S$, $|S| < |P(S)|$.
+
+This is obviously true for finite sets, because $|P(S)| = 2^{|S|}$. 
+(Note that $|\emptyset| = 0, |P(\emptyset)| = 1$)
+
+For infinite sets, we can prove this by contradiction.
+Assume that $|S| = |P(S)|$, then there is a one-to-one correspondence between $S$ and $P(S)$.
+Let $f$ be a function from $S$ to $P(S)$, then we can construct a set $T = \{s \in S | x \notin f(s)\}$.
+Since $f$ is a one-to-one correspondence, there must be an element $s_0 \in S$ such that $f(s_0) = T$.
+However, $s_0 \in T$ implies $s_0 \notin T$, which is a contradiction.
+
+To build a one-to-one function from $P(S)$ to $S$ is trivial, because we can just map each subset of $S$ to its smallest element.
+
+Hence, we know that $|S| \neq |P(S)|$ and $|S| \leq |P(S)|$.
+Therefore, $|S| < |P(S)|$.
+
+\subsubsection{Set Identities}
+
+\begin{itemize}
+	\item \textbf{Identity laws}
+		\begin{align*}
+			A \cup \emptyset &= A \\
+			A \cap U &= A
+		\end{align*}
+	\item \textbf{Domination laws}
+		\begin{align*}
+			A \cup U &= U \\
+			A \cap \emptyset &= \emptyset
+		\end{align*}
+	\item \textbf{Idempotent laws}
+		\begin{align*}
+			A \cup A &= A \\
+			A \cap A &= A
+		\end{align*}
+	\item \textbf{Complementation laws}
+		\begin{align*}
+			\overline{\overline{A}} &= A \\
+		\end{align*}
+	\item \textbf{Commutative laws}
+		\begin{align*}
+			A \cup B &= B \cup A \\
+			A \cap B &= B \cap A
+		\end{align*}
+	\item \textbf{Associative laws}
+		\begin{align*}
+			(A \cup B) \cup C &= A \cup (B \cup C) \\
+			(A \cap B) \cap C &= A \cap (B \cap C)
+		\end{align*}
+	\item \textbf{Distributive laws}
+		\begin{align*}
+			A \cup (B \cap C) &= (A \cup B) \cap (A \cup C) \\
+			A \cap (B \cup C) &= (A \cap B) \cup (A \cap C)
+		\end{align*}
+	\item \textbf{De Morgan's laws}
+		\begin{align*}
+			\overline{A \cup B} &= \overline{A} \cap \overline{B} \\
+			\overline{A \cap B} &= \overline{A} \cup \overline{B}
+		\end{align*}
+	\item \textbf{Absorption laws}
+		\begin{align*}
+			A \cup (A \cap B) &= A \\
+			A \cap (A \cup B) &= A
+		\end{align*}
+	\item \textbf{Complement laws}
+		\begin{align*}
+			A \cup \overline{A} &= U \\
+			A \cap \overline{A} &= \emptyset
+		\end{align*}
+\end{itemize}
+
+\subsection{Tuples}
+
+An \textbf{ordered $n$-tuple} is a sequence of $n$ elements, where $n$ is a positive integer.
+
+\subsection{Functions}
+
+\subsubsection{Definitions}
+
+Let $A$ and $B$ be sets. 
+A \textbf{function} $f$ from $A$ to $B$, denoted by $f: A \rightarrow B$, is an assignment of exactly one element of $B$ to each element of $A$.
+
+We represent a function by a formula or explicitly state the assignments between elements of $A$ and $B$.
+For example, let $A = \{1,2,3\}$ and $B = \{a,b,c,d\}$, then $f: A \rightarrow B$ can be represented by $1 \mapsto a, 2 \mapsto b, 3 \mapsto c$.
+
+Let $f: A \rightarrow B$ be a function. We say that $A$ is the \textbf{domain} of $f$ and $B$ is the \textbf{codomain} of $f$.
+If $f(a) = b$, $b$ is the \textbf{image} of $a$ under $f$, and $a$ is a \textbf{preimage} of $b$.
+The \textbf{range of $f$} is the set of all images of elements of $A$, denoted by $f(A)$.
+
+\subsubsection{Injective, Surjective, and Bijective Functions}
+
+A function $f: A \rightarrow B$ is \textbf{injective (one-to-one)} if and only if $f(a_1) = f(a_2)$ implies $a_1 = a_2$ for all $a_1, a_2 \in A$.
+A function $f: A \rightarrow B$ is \textbf{surjective (onto)} if and only if $f(A) = B$.
+A function $f: A \rightarrow B$ is \textbf{bijective (one-to-one correspond)} if and only if $f$ is both injective and surjective.
+
+The inverse of a function, denoted by $f^{-1}(x)$, is only defined for bijective functions.
+
+\subsubsection{Sequences}
+
+A \textbf{sequence} is a function from a subset of integers (typically $\{0,1,2,...\}$ or $\{1,2,3,...\}$) to a set $S$.
+We use the notation $a_n$ to denote the image of $n$ under the function, and we call $a_n$ the $n$th term of the sequence.
+
+\section{Complexity of Algorithms}
+
+\subsection{Big-$O$ Notation}
+
+We say that $f(n) = O(g(n))$ (reads as ``$f(n)$ is big-$O$ of $g(n)$'') if there are positive constants $c$ and $n_0$ such that $|f(n)| \leq |c \cdot g(n)|$ for all $n \geq n_0$.
+
+Important big-$O$ estimation:
+\begin{itemize}
+	\item $n! = O(n^n)$
+	\item $\log n! = O(n \log n)$ (Actually we can prove $\log n! < n \log n < 2 \log n!$)
+	\item $\log_a n = O(n)$ for any $a \geq 2$
+	\item $n^k = O(a^n)$ for any $k$ and $a > 1$
+\end{itemize}
+
+Similarly, we can define big-$\Omega$ and big-$\Theta$.
+
+\subsection{Algorithms}
+
+An \textbf{algorithm} is a finite set of precise instructions for performing a computation or for solving a problem.
+A \textbf{computational problem} is a specification of the desired input-output relationship.
+An \textbf{instance} of a computational problem is a specific input.
+A \textbf{correct algorithm} halts with the correct output for every instance of the problem, and we can say that the algorithm \textbf{solves} the problem.
+
+\subsubsection{Time and Space Complexity}
+
+The \textbf{time complexity} of an algorithm is the number of machine operations it performs on an instance.
+The \textbf{space complexity} of an algorithm is the number of cells of memory it uses on an instance.
+
+\subsubsection{Input Size}
+The input size is the number of bits needed to represent the input.
+For an integer $n$, the input size actually is $\lceil \log_2 (n+1) \rceil$ (or just $\log_2 n$).
+Therefore, an algorithm that runs in $\Theta(n)$ seems to be linear and efficient, but it is actually exponential ($\Theta(n) = \Theta(2^{size(n)})$).
+
+We say two positive functions $f(n)$ and $g(n)$ are of the same type if and only If
+\begin{equation*}
+	c_1 g(n^{a_1})^{b_1} \leq f(n) \leq c_2 g(n^{a_2})^{b_2}
+\end{equation*}
+for all large $n$ and some positive constants $c_1, c_2, a_1, a_2, b_1, b_2$.
+
+Therefore, all polynomial functions are of the same type, and all exponential functions are of the same type.
+But polynomial functions are not of the same type as exponential functions.
+
+\subsubsection{Decision Problems and Optimization Problems}
+
+A \textbf{decision problem} is a question that has two possible answers: yes or no.
+An \textbf{optimization problem} is a question that requires an answer that is an optimal configuration.
+
+If $L$ is a decision problem and $x$ is the input, we often write $x \in L$ to mean that the answer to the decision problem is yes, and $x \notin L$ to mean that the answer is no.
+
+An optimization problem usually has a corresponding decision problem.
+
+\subsubsection{Complexity Classes}
+
+We divide the set of all decision problems into three complexity classes.
+
+A problem is \textbf{solvable (tractable)} in \textbf{polynomial time} if there is an algorithm that solves the problem and the number of steps required by the algorithm on any instance of size $n$ is $O(n^k)$ for some constant $k$.
+
+The class $P$ is the set of all decision problems that are solvable in polynomial time.
+The class $NP$ is the set of all decision problems for which there exists a certificate for each yes-input that can be verified in polynomial time.
+
+\subsubsection{NP Completeness}
+
+Reduction is a relationship between two problems.
+We say $Q$ can be reduced to $Q'$ if every instance of $Q$ can be transformed into an instance of $Q'$ such that the answer to the transformed instance is yes if and only if the answer to the original instance is yes.
+
+A polynomial-time reduction from $Q$ to $Q'$ is a reduction that can be performed in polynomial time, denoted by $Q \leq_p Q'$.
+Intuitively, this means $Q$ is no harder than $Q'$.
+
+A problem $Q$ is \textbf{NP-complete} if and only if
+\begin{itemize}
+	\item $Q \in NP$
+	\item Every problem $L \in NP$, $L \leq_p Q$
+\end{itemize}
+
+Therefore, if we can find a polynomial-time algorithm for an NP-complete problem, then we can solve all NP problems in polynomial time.
+
+\section{Number Theory}
+
+\subsection{Divisibility and Modular Arithmetic}
+
+\subsubsection{Divisibility}
+
+Let $a,b,c$ be integers. 
+Then the following holds:
+\begin{itemize}
+	\item If $a|b$ and $a|c$, then $a|(b+c)$ and $a|(b-c)$.
+	\item If $a|b$, then $a|bc$.
+	\item If $a|b$ and $b|c$, then $a|c$.
+	\item Corollary: If $a,b,c$ are integers, where $a \neq 0$, such that $a|b$ and $a|c$, then $a|(m b + n c)$ for any integers $m$ and $n$.
+\end{itemize}
+
+\subsubsection{Modular Arithmetic}
+
+Let $a,b,n$ be integers, where $n > 0$.
+We say that $a$ is \textbf{congruent to $b$ modulo $n$}, denoted by $a \equiv b \pmod{n}$, if and only if $n|(a-b)$.
+This is called \textbf{congruence} and $n$ is called the \textbf{modulus}.
+
+The following properties hold:
+\begin{itemize}
+	\item If $a \equiv b \pmod{n}$ and $c \equiv d \pmod{n}$, then $a+c \equiv b+d \pmod{n}$.
+	\item If $a \equiv b \pmod{n}$ and $c \equiv d \pmod{n}$, then $ac \equiv bd \pmod{n}$.
+	\item Corollary: $(a+b) \bmod m = ((a \bmod m) + (b \bmod m)) \bmod m$, and $(a \cdot b) \bmod m = ((a \bmod m) \cdot (b \bmod m)) \bmod m$.
+\end{itemize}
+
+\subsection{Prime}
+
+An integer $p > 1$ is \textbf{prime} if and only if its only positive divisors are 1 and $p$.
+An integer $n > 1$ is \textbf{composite} if and only if it is not prime.
+
+The \textbf{fundamental theorem of arithmetic} states that every integer greater than 1 is either prime or can be written as a unique product of prime numbers.
+
+\textbf{GCD} of two integers $a$ and $b$, denoted by $\gcd(a,b)$, is the largest integer that divides both $a$ and $b$.
+If we factorize $a$ and $b$ into prime numbers, then $\gcd(a,b) = p_1^{\text{min}(e_1, f_1)} \cdot p_2^{\text{min}(e_2, f_2)} \cdot ... \cdot p_k^{\text{min}(e_k, f_k)}$, where $e_i$ and $f_i$ are the exponents of $p_i$ in the factorization of $a$ and $b$.
+Two integers are \textbf{relatively prime} if and only if their GCD is 1.
+
+Similarly, we can define \textbf{LCM} of two integers $a$ and $b$, denoted by $\text{lcm}(a,b)$, is the smallest positive integer that is divisible by both $a$ and $b$.
+
+\subsection{Eculidean Algorithm}
+
+The \textbf{Eculidean algorithm} is an efficient method for computing the GCD of two integers.
+It can solve the problem in $O(\log n)$ time, where $n$ is the smaller of the two integers.
+
+The central idea is that if $a = bq + r$, then $\gcd(a,b) = \gcd(b,r)$.
+Here is the proof:
+If $d$ is a common divisor of $a$ and $b$, we can write $d \mid a$ and $d \mid b$.
+By the corollary, we know that $d \mid (a - bq)$, which implies $d \mid r$.
+Therefore, $d$ is a common divisor of $b$ and $r$.
+
+For example, to compute $\gcd(287,91)$:
+\begin{align*}
+	287 \bmod 91 &= 14 \\
+	91 \bmod 14 &= 7 \\
+	14 \bmod 7 &= 0
+\end{align*}
+
+Therefore, $\gcd(287,91) = 7$.
+
+\subsection{Bezout's Theorem}
+
+Let $a$ and $b$ be integers, not both zero.
+Then there exist integers $x$ and $y$ such that $\gcd(a,b) = ax + by$.
+
+We can use the extended Eculidean algorithm to find $x$ and $y$.
+
+For example, since $\gcd(503,286) = 1$, we can find $x$ and $y$ such that $503x + 286y = 1$.
+\begin{figure}[H]
+	\begin{minipage}{0.5\textwidth}
+		\begin{align*}
+			503 &= 1 \cdot 286 + 217 \\
+			286 &= 1 \cdot 217 + 69 \\
+			217 &= 3 \cdot 69 + 10 \\
+			69 &= 6 \cdot 10 + 9 \\
+			10 &= 1 \cdot 9 + 1 \\
+			9 &= 9 \cdot 1 + 0
+		\end{align*}
+		\caption*{Eculidean algorithm}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\begin{align*}
+			1 &= 10 - 1 \cdot 9 \\
+			&= 10 - 1 \cdot (69 - 6 \cdot 10) = 7 \cdot 10 - 1 \cdot 69 \\
+			&= 7 \cdot (217 - 3 \cdot 69) - 1 \cdot 69 = 7 \cdot 217 - 22 \cdot 69 \\
+			&= 7 \cdot 217 - 22 \cdot (286 - 1 \cdot 217) = 29 \cdot 217 - 22 \cdot 286 \\
+			&= 29 \cdot (503 - 1 \cdot 286) - 22 \cdot 286 = 29 \cdot 503 - 51 \cdot 286
+		\end{align*}
+		\caption*{Extended Eculidean algorithm}
+	\end{minipage}
+\end{figure}
+
+Therefore, $x = 29$ and $y = -51$.
+
+The corollaries of Bezout's theorem are:
+\begin{itemize}
+	\item If $1 = \gcd(a,b)$ and $a|bc$, then $a|c$.
+	\item If $p$ is a prime and $p|a_1 a_2 ... a_n$, then $p|a_i$ for some $i$.
+	\item If $ac \equiv bc \pmod{n}$ and $\gcd(c,n) = 1$, then $a \equiv b \pmod{n}$.
+\end{itemize}
+
+The proof of the first corollary is as follows:
+Since $\gcd(a,b) = 1$, we can find $x$ and $y$ such that $ax + by = 1$.
+Then $c = cax + cby$.
+Since $a|bc$, we know that $a|cby$.
+Therefore, $a|(cax + cby) = c$.
+
+\subsection{Linear Congruence}
+
+A \textbf{linear congruence} is an equation of the form $ax \equiv b \pmod{n}$, where $a,b,n$ are integers and $n > 0$.
+
+\subsubsection{Modular Inverse}
+
+Let $a$ and $n$ be integers, where $n > 0$.
+If there exists an integer $\overline{a}$ such that $a \cdot \overline{a} \equiv 1 \pmod{n}$, then $\overline{a}$ is called the \textbf{modular inverse} of $a$ modulo $n$.
+
+If $a$ and $n$ are relatively prime, then $a$ has a modular inverse modulo $n$.
+Furthermore, the modular inverse of $a$ modulo $n$ is unique modulo $n$.
+
+We can use the extended Eculidean algorithm to find the modular inverse of $a$ modulo $n$.
+
+\subsubsection{Chinese Remainder Theorem}
+
+Let $n_1, n_2, ..., n_k$ be positive integers that are pairwise relatively prime, and let $a_1, a_2, ..., a_k$ be any integers.
+Then the system of linear congruences:
+\begin{align*}
+	x &\equiv a_1 \pmod{n_1} \\
+	x &\equiv a_2 \pmod{n_2} \\
+	&\vdots \\
+	x &\equiv a_k \pmod{n_k}
+\end{align*}
+
+has a solution, and any two solutions are congruent modulo $n_1 n_2 ... n_k$.
+
+Let $n = n_1 n_2 ... n_k$.
+Then the solution is $x = a_1 y_1 \frac{n}{n_1} + a_2 y_2 \frac{n}{n_2} + ... + a_k y_k \frac{n}{n_k}$, where $y_i$ is the modular inverse of $\frac{n}{n_i}$ modulo $n_i$.
+
+For example, to solve the system of linear congruences:
+\begin{align*}
+	x &\equiv 2 \pmod{3} \\
+	x &\equiv 3 \pmod{5} \\
+	x &\equiv 2 \pmod{7}
+\end{align*}
+
+We can find $y_1 = 2$, $y_2 = 1$, and $y_3 = 1$.
+Therefore, $x = 2 \cdot 35 \cdot 2 + 3 \cdot 21 \cdot 1 + 2 \cdot 15 \cdot 1 = 233$ is a solution.
+
+\subsection{Fermat's Little Theorem}
+
+Let $p$ be a prime and $a$ be an integer such that $a \not\equiv 0 \pmod{p}$.
+Then $a^{p-1} \equiv 1 \pmod{p}$.
+
+\subsection{Euler's Theorem}
+
+Euler's function $\phi(n)$ is the number of positive integers less than or equal to $n$ that are relatively prime to $n$.
+The function has the following properties:
+\begin{itemize}
+	\item If $p$ is prime, then $\phi(p) = p-1$.
+	\item If $p$ is prime and $k \geq 1$, then $\phi(p^k) = p^k - p^{k-1}$.
+	\item If $m$ and $n$ are relatively prime, then $\phi(mn) = \phi(m) \phi(n)$.
+\end{itemize}
+
+Euler's theorem states that if $n$ is a positive integer and $a$ is an integer such that $a$ and $n$ are relatively prime, then $a^{\phi(n)} \equiv 1 \pmod{n}$.
+
+It is worth noting that $\phi(n)$ might not be the smallest positive integer $k$ such that $a^k \equiv 1 \pmod{n}$.
+
+\subsection{Primitive Roots}
+
+A \textbf{primitive root} modulo a prime $p$ is an integer $g$ such that every nonzero integer modulo $p$ is congruent to a power of $g$ modulo $p$.
+
+\section{Groups, Rings, and Fields}
+
+\subsection{Groups}
+
+A \textbf{group} is a set $G$ together with a binary operation $*$ on $G$ such that the following axioms hold:
+\begin{itemize}
+	\item \textbf{Closure:} For all $a,b \in G$, $a*b \in G$.
+	\item \textbf{Associativity:} For all $a,b,c \in G$, $(a*b)*c = a*(b*c)$.
+	\item \textbf{Identity:} There exists a \textbf{unique} element $1_e \in G$ such that for all $a \in G$, $a*1_e = a$.
+	\item \textbf{Inverse:} For each $a \in G$, there exists an element $a^{-1} \in G$ such that $a*a^{-1} = 1_e$.
+\end{itemize}
+
+\subsubsection{Permutation Groups}
+
+A permutation group is a group whose elements are permutations of a given set $S$ and whose operation is composition of permutations in $S$.
+Let $s_n = <1,2,...,n>$ denotes a sequence of $n$ elements, and $P_n$ denotes the set of all permutations of $s_n$.
+Then for any two elements $\pi$ and $\rho$, $\pi \circ \rho$ is also a permutation of $s_n$.
+
+For example, $s_3 = <1,2,3>$, and $P_3 = \{<1,2,3>, <1,3,2>, <2,1,3>, <2,3,1>, <3,1,2>, <3,2,1>\}$.
+If $\pi = <3,2,1>$ and $\rho = <1,3,2>$, then $\pi \circ \rho = <2,1,3>$.
+The operation is $\pi \circ \rho [i] = \rho[\pi[i]]$.
+
+Therefore, $(P_n, \circ)$ is a group.
+
+\subsubsection{Abeilian Groups}
+
+A group $G$ is \textbf{abeilian} if and only if for all $a,b \in G$, $a*b = b*a$.
+
+\subsection{Rings}
+
+If $(R,+)$ is an abeilian group, we define a second binary operation $*$ on $R$ such that the following axioms hold:
+\begin{itemize}
+	\item \textbf{Closure:} For all $a,b \in R$, $a*b \in R$.
+	\item \textbf{Associativity:} For all $a,b,c \in R$, $(a*b)*c = a*(b*c)$.
+	\item \textbf{Distributivity:} For all $a,b,c \in R$, $a*(b+c) = a*b + a*c$ and $(a+b)*c = a*c + b*c$.
+\end{itemize}
+
+\subsubsection{Commutative Ring}
+
+A ring $R$ is \textbf{commutative} if and only if for all $a,b \in R$, $a*b = b*a$.
+
+\subsubsection{Integral Domain}
+
+A commutative ring $R$ is an \textbf{integral domain} if the following axiom holds:
+\begin{itemize}
+	\item \textbf{Identity:} There exists a \textbf{unique} element $1_m \in R$ such that for all $a \in R$, $a*1_m = 1_m*a = a$.
+	\item \textbf{Nonzero product:} For all $a,b \in R$, if $a*b=0$, then $a=0$ or $b=0$.
+\end{itemize}
+
+\subsection{Fields}
+
+A commutative ring $F$ is a \textbf{field} if the following axiom holds:
+\begin{itemize}
+	\item \textbf{Inverse:} For each $a \in F$, there exists an element $a^{-1} \in F$ such that $a*a^{-1} = a^{-1}*a = 1_m$.
+\end{itemize}
+
+\subsection{Other Facts}
+
+\begin{itemize}
+	\item $Z_m$, the set of integers modulo $m$, is a commutative ring.
+	\item $(GL(n), \cdot)$ is a group but not an abeilian group. (The set of all invertible $n \times n$ matrices)
+	\item $(\mathbb{M}_{n \times n}, +, \cdot)$ is a ring but not a commutative ring.
+	\item $(Z_m, +_m, \cdot_m)$ is a commutative ring but not an integral domain.
+	\item $(\mathbb{Z}, +, \cdot)$ is an integral domain but not a field.
+\end{itemize}
+
+\section{Cryptography}
+
+\subsection{Public Key Cryptography}
+
+\subsubsection{RSA Cryptosystem}
+
+The RSA public key cryptosystem works as follows:
+\begin{enumerate}
+	\item Choose two large primes $p$ and $q$.
+	\item Compute $n = pq$ and $\phi(n) = (p-1)(q-1)$.
+	\item Choose $e$ such that $1 < e < \phi(n)$ and $\gcd(e, \phi(n)) = 1$.
+	\item Compute $d$ such that $ed \equiv 1 \pmod{\phi(n)}$.
+	\item Publish the public key $(n,e)$ and keep the private key $d$ secret.
+\end{enumerate}
+
+To encrypt a message $m$, compute $c \equiv m^e \pmod{n}$.
+To decrypt a ciphertext $c$, compute $m \equiv c^d \pmod{n}$.
+
+The correctness of the algorithm is as follows:
+\begin{alignat*}{3}
+	c^d &\equiv (m^e)^d &\pmod{n} \\
+	&\equiv m^{ed} &\pmod{n} \\
+	&\equiv m^{k \phi(n) + 1} &\pmod{n} \\
+	&\equiv m \cdot (m^{\phi(n)})^k &\pmod{n} \\
+	&\equiv m \cdot 1^k &\pmod{n} \\
+	&\equiv m &\pmod{n}
+\end{alignat*}
+
+To leave a RSA signature, compute $s \equiv m^d \pmod{n}$.
+To verify a RSA signature, compute $m \equiv s^e \pmod{n}$.($d$ and $e$ are interchangeable)
+
+\subsubsection{El Gamal Cryptosystem}
+
+The El Gamal public key cryptosystem works as follows:
+\begin{enumerate}
+	\item Choose a large prime $p$ and a primitive root $g$ modulo $p$.
+	\item Choose $x$ such that $1 < x < p-2$.
+	\item Compute $y \equiv g^x \pmod{p}$.
+	\item Publish the public key $(p,g,y)$ and keep the private key $x$ secret.
+\end{enumerate}
+
+To encrypt a message $m$, choose $k$ such that $1 < k < p-1$ and $\gcd(k,p-1) = 1$, then compute $c_1 \equiv g^k \pmod{p}$ and $c_2 \equiv m \cdot y^k \pmod{p}$.
+To decrypt a ciphertext $(c_1, c_2)$, compute $m \equiv c_2 \cdot (c_1^x)^{-1} \pmod{p}$.
+
+The correctness of the algorithm is as follows:
+\begin{alignat*}{3}
+	c_2 \cdot (c_1^x)^{-1} &\equiv m \cdot y^k \cdot (g^{kx})^{-1} &\pmod{p} \\
+	&\equiv m \cdot g^{kx} \cdot g^{-kx} &\pmod{p} \\
+	&\equiv m &\pmod{p}
+\end{alignat*}
+
+\subsection{Diffie-Hellman Key Exchange}
+
+The Diffie-Hellman key exchange works as follows:
+\begin{enumerate}
+	\item Choose a large prime $p$ and a primitive root $g$ modulo $p$.
+	\item Alice chooses $x$ such that $1 < x < p-2$ and sends $y \equiv g^x \pmod{p}$ to Bob.
+	\item Bob chooses $z$ such that $1 < z < p-2$ and sends $w \equiv g^z \pmod{p}$ to Alice.
+	\item Alice computes $w^x \equiv (g^z)^x \equiv g^{zx} \pmod{p}$.
+	\item Bob computes $y^z \equiv (g^x)^z \equiv g^{xz} \pmod{p}$.
+	\item Now Alice and Bob share the secret key $g^{xz} \pmod{p}$.
+\end{enumerate}
+
+\section{Mathematical Induction}
+
+\subsection{Proof by Smallest Counterexample}
+
+To prove a statement $P(n)$ for all $n \geq n_0$, we can use proof by smallest counterexample.
+We assume that $P(n)$ is false for some $n > 0$.
+Then there must be a smallest integer $m$ such that $P(m)$ is false.
+Since $P(n_0)$ is true, $m > n_0$.
+Then we use the fact that $P(m')$ the for all $0 \leq m' < m$ is true to show that $P(m)$ is true, which is a contradiction.
+
+\subsection{Direct Proof}
+
+\subsubsection{Weak Principle of Mathematical Induction}
+
+If the statement $P(b)$ is true, and the statement $P(n-1) \rightarrow P(n)$ is true for all integers $n > b$, then the statement $P(n)$ is true for all integers $n \geq b$.
+
+We call $P(b)$ the \textbf{basis step (inductive hypothesis)} and $P(n-1) \rightarrow P(n)$ the \textbf{inductive step (inductive conclusion)}.
+
+\subsubsection{Strong Principle of Mathematical Induction}
+
+If the statement $P(b)$ is true, and the statement $P(b) \wedge P(b+1) \wedge \cdots \wedge P(n-1) \rightarrow P(n)$ is true for all integers $n > b$, then the statement $P(n)$ is true for all integers $n \geq b$.
+
+We can see that the weak form is a special case of the strong form, and the strong form can be derived from the weak form.
+
+\subsection{Recursion}
+
+To prove a recursive algorithm is correct (for example the tower of Hanoi problem), we can use the mathematical induction.
+Also, the proof of runtime of recursive algorithms can also be proved by mathematical induction.
+
+To proof:
+\begin{equation*}
+	M(n) = 
+	\begin{cases}
+		1 & \text{if } n = 1 \\
+		2M(n-1) + 1 & \text{if } n > 1
+	\end{cases}
+\end{equation*}
+
+\textbf{Base case:} 
+When $n = 1$, $M(1) = 1$ is true.
+
+\textbf{Inductive hypothesis:}
+Assume that $M(k) = 2^k - 1$ is true for all $k < n$.
+Then for $n$, we have $M(n) = 2M(n-1) + 1 = 2(2^{n-1} - 1) + 1 = 2^n - 1$.
+
+\subsubsection{Iteration}
+
+For a recursive equation in the form of $T(n) = rT(n-1) + a$, we can use iteration to solve it.
+\begin{align*}
+	T(n) =& rT(n-1) + a \\
+	=& r^2T(n-2) + ra + a \\
+	=& r^3T(n-3) + r^2a + ra + a \\
+	&\vdots \\
+	=& r^kT(n-k) + r^{k-1}a + r^{k-2}a + \cdots + ra + a \\
+	=& r^nT(0) + a \sum_{i=0}^{n-1} r^i \\
+\end{align*}
+
+This is called the ``\textbf{Top-down}'' method.
+
+The ``\textbf{Bottom-up}'' method is to start from $T(0)$ and compute $T(1), T(2), ..., T(n)$.
+\begin{align*}
+	T(0) =& b \\
+	T(1) =& rT(0) + a = rb + a \\
+	T(2) =& rT(1) + a = r(rb + a) + a = r^2b + ra + a \\
+	&\vdots \\
+	T(n) =& rT(n-1) + a = r(r^{n-1}b + a \sum_{i=0}^{n-2} r^i) + a \\
+	=& r^n b + a \sum_{i=0}^{n-1} r^i
+\end{align*}
+
+\textbf{Formula of Recursive Equations:}
+If $T(n) = rT(n-1) + a$ and $T(0) = b$, then we have
+\begin{equation*}
+	T(n) = r^n b + a \sum_{i=0}^{n-1} r^i = r^n b + a \frac{r^n - 1}{r - 1}
+\end{equation*}
+
+\subsubsection{First Order Linear Recurrence}
+
+A \textbf{first order linear recurrence} is a recurrence of the form $T(n) = rT(n-1) + a$.
+\textbf{First order} means that the recurrence is defined by $T(n)$ and $T(n-1)$, or to say it only goes back one step.
+\textbf{Linear} means that the power of $T(n-1)$ is 1.
+
+For a first order linear recurrence that $f(n)$ is a constant, we have:
+\begin{equation*}
+	T(n) = 
+	\begin{cases}
+		a & \text{if } n = 0 \\
+		rT(n-1) + g(n) & \text{if } n > 0
+	\end{cases}
+\end{equation*}
+
+Then we have
+\begin{equation*}
+	T(n) = r^n a + \sum_{i=1}^{n} r^{n-i} g(i)
+\end{equation*}
+
+This equation can often be solved by extracting the constant factor $r^n$.
+\begin{equation*}
+	T(n) = r^n a + r^n \sum_{i=1}^{n} \frac{g(i)}{r^i}
+\end{equation*}
+
+We can use the theorem that combines the geometric series and the arithmetic series to solve the equation.
+\begin{equation*}
+	\sum_{i=1}^{n} ix^i = \frac{x - (n+1)x^{n+1} + nx^{n+2}}{(1-x)^2}
+\end{equation*}
+
+\subsubsection{Divide and Conquer Recurrence}
+
+A \textbf{divide and conquer recurrence} is a recurrence of the form $T(n) = aT(n/b) + f(n)$.
+This can be solved by the regular ``\textbf{Top-down}'' method.
+\begin{align*}
+	T(n) =& 2T(n/2) + n (\text{ assume } n = 2^k ) \\
+	=& 4T(n/4) + 2n \\
+	=& 8T(n/8) + 3n \\
+	&\vdots \\
+	=& 2^i T(n/2^i) + in \\
+	=& 2^{\log_2 n} T(n/2^{\log_2 n}) + n \log_2 n (\text{ ends when } n/2^{\log_2 n} = 1) \\
+	=& nT(1) + n \log_2 n \\
+\end{align*}
+
+\subsubsection{Master Theorem}
+
+Suppose that $T(n) = aT(n/b) + c n^d$, where $a$ is a positive integer, $b \geq 1$ and $c$ and $d$ are constants.
+Then $T(n)$ has the following asymptotic bounds:
+\begin{enumerate}
+	\item If $a < b^d$, then $T(n) = \Theta(n^d)$.
+	\item If $a = b^d$, then $T(n) = \Theta(n^d \log n)$.
+	\item If $a > b^d$, then $T(n) = \Theta(n^{\log_b a})$.
+\end{enumerate}
+
+\section{Counting}
+
+\subsection{Basic Counting Principles}
+
+\subsubsection{Product Rule}
+
+If there are $n_1$ ways to perform action 1, and for each of these ways of performing action 1, there are $n_2$ ways to perform action 2, then there are $n_1 n_2$ ways to perform action 1 and then action 2.
+
+\subsubsection{Sum Rule}
+
+If there are $n_1$ ways to perform action 1, and $n_2$ ways to perform action 2, and the two actions cannot be performed at the same time, then there are $n_1 + n_2$ ways to perform either action 1 or action 2.
+
+\subsection{Pigeonhole Principle}
+
+If there are $k+1$ objects to be placed into $k$ boxes, then there is at least one box containing two or more objects.
+
+Generalized version:
+If there are $N$ objects to be placed into $k$ boxes, then there is at least one box containing at least $\lceil N/k \rceil$ objects.
+
+\subsection{Permutations and Bijection}
+
+A bijection that maps a set $S$ to itself is called a \textbf{permutation} of $S$.
+
+In counting we usually use bijection to show two sets have the same number of elements, so that we can count one set and get the number of elements of the other set.
+And it is often done implicitly.
+For example, if we want to count the number of increasing tuple of size $n$, we can define a bijection as follows:
+\begin{equation*}
+	f((a_1, a_2, ..., a_n)) = \{a_1, a_2, ..., a_n\}
+\end{equation*}
+
+This means the number of increasing tuple of size $n$ is the same as the number of subsets of size $n$ of a set with $n$ elements, which is $\binom{n}{k}$.
+
+\subsection{Inclusion-Exclusion Principle}
+
+If $S$ is a finite set and $A_1, A_2, ..., A_n$ are its subsets, then
+\begin{equation*}
+	\left| \bigcup_{i=1}^{n} A_i \right| = \sum_{k=1}^{n} (-1)^{k+1} \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n} \left| A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k} \right|
+\end{equation*}
+
+This can be proved by mathematical induction.
+
+\textbf{Base case:}
+When $n = 2$, we have
+\begin{equation*}
+	|E \cup F| = |E| + |F| - |E \cap F|
+\end{equation*}
+
+\textbf{Inductive hypothesis:}
+Assume that the equation is true for $n = k$.
+Then for $n = k+1$, we have
+\begin{equation*}
+	\left| \bigcup_{i=1}^{k+1} A_i \right| = \left| \bigcup_{i=1}^{k} A_i \right| + \left| A_{k+1} \right| - \left| \left( \bigcup_{i=1}^{k} A_i \right) \cap A_{k+1} \right|
+\end{equation*}
+
+Notice that the right most term $\left| \left( \bigcup_{i=1}^{k} A_i \right) \cap A_{k+1} \right| = \left| \bigcup_{i=1}^{k} (A_i \cap A_{k+1}) \right|$.
+Then we can use the inductive hypothesis on this term.
+
+This principle can be used to count the number of onto functions from a set $A$ with $m$ elements to a set $B$ with $n$ elements.
+Firstly, the number of all possible functions is $n^m$.
+Then we try to exclude the functions that are not onto.
+Let the set $E_i$ be the set of functions that map nothing to element $i$.
+Then we have
+\begin{align*}
+	\#(\text{onto functions}) =& n^m - |E_1 \cup E_2 \cup \cdots \cup E_n| \\
+	=& n^m - \sum_{k=1}^{n} (-1)^{k+1} \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n} \left| E_{i_1} \cap E_{i_2} \cap \cdots \cap E_{i_k} \right| \\
+	=& n^m - \sum_{k=1}^{n} (-1)^{k+1} \binom{n}{k} (n-k)^m
+\end{align*}
+
+\subsection{$k$-Element Permutations}
+
+An ordered tuple of $k$ distinct elements taken from set $N$ is called a \textbf{$k$-element permutation} of $N$.
+
+If $N$ is a positive integer and $k$ is an integer that satisfies $1 \leq k \leq N$, then there are
+\begin{align*}
+	P(n,k) =& n(n-1)(n-2) \cdots (n-k+1) \\
+	=& \frac{n!}{(n-k)!}
+\end{align*}
+
+\subsection{Binomial Coefficients}
+
+For integers $n$ and $k$ with $0 \leq k \leq n$, the number of $k$-element subsets of an $n$-element set is denoted by $\binom{n}{k}$ and is called a \textbf{binomial coefficient}.
+\begin{equation*}
+	\binom{n}{k} = C(n,k) = \frac{P(n,k)}{k!} = \frac{n!}{k!(n-k)!}
+\end{equation*}
+
+\subsubsection{Properties of Binomial Coefficients}
+
+\begin{enumerate}
+	\item $\binom{n}{0} = \binom{n}{n} = 1$
+	\item $\binom{n}{k} = \binom{n}{n-k}$
+	\item $\sum_{k=0}^{n} \binom{n}{k} = 2^n$ This can be interpreted as: the number of subsets of an $n$-element set is equal to the sum of the number of $k$-element subsets of an $n$-element set for $k = 0, 1, ..., n$.
+	\item Pascal's identity: $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$ This can be interpreted as: the number of $k$-element subsets of an $n$-element set is equal to the sum of the number of subsets that contain element $n$ and the number of subsets that do not contain element $n$.
+\end{enumerate}
+
+\subsubsection{Binomial Theorem}
+
+For any real numbers $x$ and $y$ and any non-negative integer $n$, we have
+\begin{equation*}
+	(x+y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k
+\end{equation*}
+
+This can be proved by induction and Pascal's identity.
+
+\textbf{Base case:}
+When $n = 0$, $(x+y)^0 = 1 = \binom{0}{0} x^0 y^0$.
+
+\textbf{Inductive hypothesis:}
+Assume that the equation is true for $n = k$.
+Then for $n = k+1$, we have
+\begin{align*}
+	(x+y)^{k+1} =& (x+y)^k (x+y) \\
+	=& \sum_{i=0}^{k} \binom{k}{i} x^{k-i} y^i (x+y) \\
+	=& \sum_{i=0}^{k} \binom{k}{i} x^{k-i+1} y^i + \sum_{i=0}^{k} \binom{k}{i} x^{k-i} y^{i+1} \\
+	=& \sum_{i=0}^{k} \binom{k}{i} x^{k-i+1} y^i + \sum_{i=1}^{k+1} \binom{k}{i-1} x^{k-i+1} y^i \\
+	=& \binom{k}{0} x^{k+1} + \sum_{i=1}^{k} \left( \binom{k}{i} + \binom{k}{i-1} \right) x^{k-i+1} y^i + \binom{k}{k} y^{k+1} \\
+	=& \binom{k+1}{0} x^{k+1} + \sum_{i=1}^{k} \binom{k+1}{i} x^{k-i+1} y^i + \binom{k+1}{k+1} y^{k+1}
+\end{align*}
+
+\subsubsection{Labeling and Trinomial Coefficients}
+
+When $k_1 + k_2 + \cdots + k_r = n$, the number of ways to label $n$ distinct objects with $r$ distinct labels so that there are $k_i$ objects with label $i$ is
+\begin{equation*}
+	\binom{n}{k_1, k_2, ..., k_r} = \frac{n!}{k_1! k_2! \cdots k_r!}
+\end{equation*}
+
+\subsection{Combinatorial Proof and Arithmetic Proof}
+
+A \textbf{combinatorial proof} of an identity is a proof that there is a bijection between the two sides of the identity.
+An \textbf{arithmetic proof} of an identity is a proof that the two sides of the identity are equal by algebraic manipulation.
+
+For example, we can use combinatorial proof for Pascal's identity.
+The term $\binom{n}{k}$ is the number of $k$-element subsets of an $n$-element set.
+The term $\binom{n-1}{k-1}$ is the number of $k-1$-element subsets of an $(n-1)$-element set.
+The term $\binom{n-1}{k}$ is the number of $k$-element subsets of an $(n-1)$-element set.
+We can make a bijection between the two sides:
+On the right side, the first term represent the number of $k$-element subsets of an $n$-element set that contains element $n$.
+The second term represent the number of $k$-element subsets of an $n$-element set that does not contain element $n$.
+Therefore, the two sides are equal.
+
+\subsection{Birthday Attack}
+
+The probablity that at least two people in a group of $n$ people have the same birthday is
+\begin{align*}
+	P(n) =& 1 - P(\text{all people have different birthdays}) \\
+	=& 1 - \frac{365}{365} \cdot \frac{364}{365} \cdot \frac{363}{365} \cdots \frac{365-n+1}{365} \\
+	=& 1 - \prod_{i=0}^{n-1} \left(1 - \frac{i}{365}\right)
+\end{align*}
+
+We can estimate this number using the Taylor series of $e^x$.
+Since $e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots$, for $|x| << 1$, we have $e^x \approx 1 + x$.
+Thus, $e^{-i/H} \approx 1 - \frac{i}{H}$.
+\begin{align*}
+	P(n) =& 1 - \prod_{i=0}^{n-1} \left(1 - \frac{i}{365}\right) \\
+	\approx& 1 - \prod_{i=0}^{n-1} e^{-i/365} \\
+	=& 1 - e^{-\sum_{i=0}^{n-1} i/365} \\
+\end{align*}
+
+\section{Linear Recurrence}
+
+A linear homogeneous recurrence of degree $k$ with constant coefficients is a recurrence of the form
+\begin{equation*}
+	a_n = c_1 a_{n-1} + c_2 a_{n-2} + \cdots + c_k a_{n-k}
+\end{equation*}
+where $c_1, c_2, ..., c_k$ are constants and $c_k \neq 0$.
+
+\textbf{``Linear''} means that the power of each term is 1.
+\textbf{``Homogeneous''} all terms are a multiple of $a_n$.
+\textbf{``Degree $k$''} means that $a_n$ is defined by previous $k$ terms. 
+\textbf{``Constant coefficients''} means that the coefficients $c_1, c_2, ..., c_k$ are constants.
+
+By induction, we know that such a relation is uniquely determined by the initial values $a_0, a_1, ..., a_{k-1}$.
+
+\subsection{Solving Linear Recurrence}
+
+To solve a linear homogeneous recurrence of degree $k$ with constant coefficients, we first find the roots of the characteristic equation $x^k - c_1 x^{k-1} - c_2 x^{k-2} - \cdots - c_k = 0$.
+Then we can find the general solution of the recurrence. (Since it is linear and homogeneous, any linear combination of solutions is also a solution)
+Finally, we can find the coefficients of the general solution by using the initial values.
+
+For example, to solve the Fibonacci sequence $F_n = F_{n-1} + F_{n-2}$:
+\begin{enumerate}
+	\item Find the roots of $x^2 - x - 1 = 0$, which are $\frac{1 \pm \sqrt{5}}{2}$.
+	\item The general solution is $F_n = \alpha \left(\frac{1 + \sqrt{5}}{2}\right)^n + \beta \left(\frac{1 - \sqrt{5}}{2}\right)^n$.
+	\item Since $F_0 = 0$ and $F_1 = 1$, we have $\alpha = \frac{1}{\sqrt{5}}$ and $\beta = -\frac{1}{\sqrt{5}}$.
+\end{enumerate}
+
+\textbf{Theorem:}
+If the characteristic equation has $k$ distinct real roots $r_1, r_2, ..., r_k$, then $\{a_n\}$ is a solution of the recurrence if and only if
+\begin{equation*}
+	a_n = \alpha_1 r_1^n + \alpha_2 r_2^n + \cdots + \alpha_k r_k^n
+\end{equation*}
+
+To prove this, we need to prove two statements:
+\begin{enumerate}
+	\item $\{a_n\}$ in the form of $\alpha_1 r_1^n + \alpha_2 r_2^n + \cdots + \alpha_k r_k^n$ is a solution of the recurrence.
+	\item Any solution of the recurrence is in the form of $\alpha_1 r_1^n + \alpha_2 r_2^n + \cdots + \alpha_k r_k^n$.
+\end{enumerate}
+
+\textbf{Statement 1:}
+Let's take an example that degree is 2.
+Since $r_1$ and $r_2$ are roots of the characteristic equation, we have
+\begin{align*}
+	r_1^2 - c_1 r_1 - c_2 =& 0 \\
+	r_2^2 - c_1 r_2 - c_2 =& 0
+\end{align*}
+
+Then, we can find that
+\begin{align*}
+	c_1 a_{n-1} + c_2 a_{n-2} =& c_1 (\alpha_1 r_1^{n-1} + \alpha_2 r_2^{n-1}) + c_2 (\alpha_1 r_1^{n-2} + \alpha_2 r_2^{n-2}) \\
+	=& \alpha_1 r_1^{n-2} (c_1 r_1 + c_2) + \alpha_2 r_2^{n-2} (c_1 r_2 + c_2) \\
+	=& \alpha_1 r_1^{n-2} (r_1^2) + \alpha_2 r_2^{n-2} (r_2^2) \\
+	=& \alpha_1 r_1^n + \alpha_2 r_2^n \\
+	=& a_n
+\end{align*}
+
+Hence, $\{a_n\}$ in the form of $\alpha_1 r_1^n + \alpha_2 r_2^n$ is a solution of the recurrence.
+
+\textbf{Statement 2:}
+
+With the initial values, we can find all the constant $\alpha_1, \alpha_2, ..., \alpha_k$, thus giving us the general solution.
+Since the solution of the recurrence is unique when the initial values are given, the general solution is the only solution.
+Hence, the sequence $\{a_n\}$ is the same as $\alpha_1 r_1^n + \alpha_2 r_2^n + \cdots + \alpha_k r_k^n$.
+
+\subsubsection{Degenerate Roots}
+
+For a characteristic equation of degree 2, if the two roots are the same, then the general solution is
+\begin{equation*}
+	a_n = \alpha_1 r_1^n + \alpha_2 n r_2^n
+\end{equation*}
+
+\textbf{Theorem:}
+Suppose there are $t$ roots $r_1, r_2, ..., r_t$ of multiplicity $m_1, m_2, ..., m_t$ respectively.
+Then the general solution of the recurrence is
+\begin{equation*}
+	a_n = \sum_{i=1}^{t} \sum_{j=1}^{m_i} \alpha_{ij} n^{j-1} r_i^n
+\end{equation*}
+
+\subsection{Linear Nonhomogeneous Recurrence}
+
+A linear nonhomogeneous recurrence of degree $k$ with constant coefficients is a recurrence of the form
+\begin{equation*}
+	a_n = c_1 a_{n-1} + c_2 a_{n-2} + \cdots + c_k a_{n-k} + f(n)
+\end{equation*}
+
+The associated homogeneous recurrence is $a_n = c_1 a_{n-1} + c_2 a_{n-2} + \cdots + c_k a_{n-k}$.
+
+However, there is no general method to solve the particular solution $f(n)$.
+We can only solve it by guessing.
+
+\section{Generating Functions}
+
+The generating function for a sequence $a_0, a_1, a_2, ...$ is the formal power series
+\begin{equation*}
+	G(x) = \sum_{i=0}^{\infty} a_i x^i
+\end{equation*}
+
+A finite sequence $a_0, a_1, ..., a_n$ can be represented by the generating function by adding 0s to the end of the sequence.
+
+\subsection{Operations on Generating Functions}
+
+Let $G(x) = \sum_{i=0}^{\infty} a_i x^i$ and $H(x) = \sum_{i=0}^{\infty} b_i x^i$ be two generating functions.
+Then we have
+\begin{align*}
+	G(x) + H(x) =& \sum_{i=0}^{\infty} (a_i + b_i) x^i \\
+	G(x) H(x) =& \sum_{i=0}^{\infty} \left( \sum_{j=0}^{i} a_j b_{i-j} \right) x^i
+\end{align*}
+
+\subsection{Useful Generating Functions}
+
+\begin{itemize}
+	\item $\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots$
+	\item $\frac{1}{1-ax} = 1 + ax + a^2x^2 + a^3x^3 + \cdots$
+	\item $\frac{1}{1-x^r} = 1 + x^r + x^{2r} + x^{3r} + \cdots$
+	\item $\frac{1}{(1-x)^2} = 1 + 2x + 3x^2 + 4x^3 + \cdots$
+	\item $\frac{1}{(1-x)^n} = \sum_{k=0}^{\infty} \binom{n+k-1}{k} x^k$
+	\item $\frac{1}{(1+x)^n} = \sum_{k=0}^{\infty} \binom{-n}{k} x^k$
+	\item $\frac{1}{(1-ax)^n} = \sum_{k=0}^{\infty} \binom{n+k-1}{k} a^k x^k$
+	\item $\frac{1-x^{n+1}}{1-x} = 1 + x + x^2 + \cdots + x^{n}$
+	\item $(1+x)^n = \binom{n}{0} + \binom{n}{1} x + \binom{n}{2} x^2 + \cdots + \binom{n}{n} x^n$
+	\item $(1+ax)^n = \binom{n}{0} + \binom{n}{1} ax + \binom{n}{2} a^2 x^2 + \cdots + \binom{n}{n} a^n x^n$
+	\item $(1+x^r)^n = \binom{n}{0} + \binom{n}{1} x^r + \binom{n}{2} x^{2r} + \cdots + \binom{n}{n} x^{nr}$
+	\item $e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots$
+	\item $\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots$
+\end{itemize}
+
+Here is a way to derive the generating function if we forget it:
+Suppose $G(x) = 1 + x + x^2 + x^3 + \cdots$.
+Then $xG(x) = x + x^2 + x^3 + x^4 + \cdots$.
+Then $G(x) - xG(x) = 1$, thus $G(x) = \frac{1}{1-x}$.
+The other generating functions can be derived similarly, or by operations on the generating functions (for example, $(1+x)^2 = (1+x)(1+x)$).
+
+Another way is to use the MacLaurin series of the function.
+Here is the general formula:
+\begin{equation*}
+	f(x) = f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \frac{f'''(0)}{3!} x^3 + \cdots = \sum_{i=0}^{\infty} \frac{f^{(i)}(0)}{i!} x^i
+\end{equation*}
+\subsection{Counting with Generating Functions}
+
+\textbf{Convolution:}
+
+Let $G(x) = \sum_{i=0}^{\infty} a_i x^i$ and $H(x) = \sum_{i=0}^{\infty} b_i x^i$ be two generating functions.
+Then the coefficient of $x^k$ in $G(x) H(x)$ is $\sum_{i=0}^{k} a_i b_{k-i}$.
+
+\subsubsection{$k$-Combination with Repetition}
+
+The number of $k$-combinations with repetition allowed means to choose $k$ elements from a set $S$ and repetition is allowed.
+The generating function for this is
+\begin{equation*}
+	\left( \frac{1}{1-x} \right)^n = \sum_{k=0}^{\infty} \binom{n+k-1}{k} x^k
+\end{equation*}
+
+\subsubsection{Extended Binomial Theorem}
+
+The extended binomial theorem is
+\begin{equation*}
+	(1+x)^n = \sum_{k=0}^{\infty} \binom{n}{k} x^k
+\end{equation*}
+where $n$ is a real number and $|x| < 1$.
+
+\textbf{Corollary:}
+\begin{align*}
+	\binom{-n}{k} =& \frac{(-n)(-n-1)(-n-2) \cdots (-n-k+1)}{k!} \\
+	=& \frac{(-1)^k n(n+1)(n+2) \cdots (n+k-1)}{k!} \\
+	=& (-1)^k \binom{n+k-1}{k}
+\end{align*}
+
+\section{Relation}
+
+Let $A$ and $B$ be two sets.
+A binary \textbf{relation} $R$ from $A$ to $B$ is a subset of $A \times B$.
+Note that order matters in a relation, since it is a Cartesian product.
+
+Typical representations of relations can use a table or a directed graph.
+
+A relation \textbf{on a set} $A$ is a relation from $A$ to $A$.
+The number of relation on a set $A$ is $2^{|A|^2}$.
+
+\subsection{Properties of Relations}
+
+\subsubsection{Reflexive}
+
+A relation $R$ on a set $A$ is \textbf{reflexive} if $(a,a) \in R$ for all $a \in A$.
+In the matrix representation, the diagonal elements are all 1 if the relation is reflexive.
+For example, the divisible relation is reflexive, since $a|a$ for all $a \in \mathbb{Z}$.
+
+\subsubsection{Irrreflexive}
+
+A relation $R$ on a set $A$ is \textbf{irreflexive} if $(a,a) \notin R$ for all $a \in A$.
+In the matrix representation, the diagonal elements are all 0 if the relation is irreflexive.
+For example, the not equal relation is irreflexive, since $a = a$ for all $a \in \mathbb{Z}$.
+
+\subsubsection{Symmetric}
+
+A relation $R$ on a set $A$ is \textbf{symmetric} if $(a,b) \in R$ implies $(b,a) \in R$ for all $a,b \in A$.
+In the matrix representation, the matrix is symmetric if the relation is symmetric.
+For example, the equal relation is symmetric, since $a = b$ implies $b = a$ for all $a,b \in \mathbb{Z}$.
+
+\subsubsection{Antisymmetric}
+
+A relation $R$ on a set $A$ is \textbf{antisymmetric} if $(a,b) \in R$ and $(b,a) \in R$ implies $a = b$ for all $a,b \in A$.
+In the matrix representation, the matrix can have at most one 1 on the corresponding positions of the upper triangle and lower triangle if the relation is antisymmetric.
+But the diagonal elements can be whatever.
+For example, the divisible relation is antisymmetric, since $a|b$ and $b|a$ implies $a = b$ for all $a,b \in \mathbb{Z}$.
+
+\subsubsection{Transitive}
+
+A relation $R$ on a set $A$ is \textbf{transitive} if $(a,b) \in R$ and $(b,c) \in R$ implies $(a,c) \in R$ for all $a,b,c \in A$.
+For example, the divisible relation is transitive, since $a|b$ and $b|c$ implies $a|c$ for all $a,b,c \in \mathbb{Z}$.
+
+\textbf{Theorem:}
+The relation is transitive if and only if $R^n \subseteq R$ for all $n \geq 1$.
+
+The ``if'' part:
+If $R^n \subseteq R$ for all $n \geq 1$, then specifically $R^2 \subseteq R$.
+Then $(a,b) \in R$ and $(b,c) \in R$ implies $(a,c) \in R$.
+
+The ``only if'' part:
+Proof by induction.
+The base case is trivial.
+Suppose $R^n \subseteq R$ for all $n \geq 1$.
+Then we need to prove $R^{n+1} = R^n \circ R$.
+Since $R^n \subseteq R$, every element in $R^n$ in also in $R$.
+Since $R$ is transitive, every element in $R \circ R$ is also in $R$.
+Therefore, $R^{n+1} \subseteq R$.
+
+\subsection{Composite Relation}
+
+Let $R$ be a relation from $A$ to $B$ and $S$ be a relation from $B$ to $C$.
+Then the \textbf{composite relation} $S \circ R$ from $A$ to $C$ is defined as
+\begin{equation*}
+	S \circ R = \{(a,c) \in A \times C | \text{ there exists } b \in B \text{ such that } (a,b) \in R \text{ and } (b,c) \in S\}
+\end{equation*}
+
+\subsection{Closure of a Relation}
+
+The reflexive closure of a relation $R$ is a set $S$ that contains all elements of $R$, is reflexive and is the smallest set that satisfies these conditions.
+Similarly, we can define the symmetric closure, transitive closure, etc.
+
+The generalized definition of closure is as follows:
+Let $R$ be a relation on a set $A$.
+A relation $S$ on $A$ with property $P$ is called the \textbf{closure} of $R$ with respect to $P$ if $S$ is subset of all relations on $A$ with property $P$ and $R \subseteq S$.
+In other words, $S$ is the smallest relation on $A$ with property $P$ that contains $R$.
+
+How to find transitive closure:
+Find all pairs that are connected in the graph.
+
+\subsection{Path and Circuit}
+
+A \textbf{path} from $a$ to $b$ in a relation $R$ is a finite sequence of elements $a_0, a_1, ..., a_n$ such that $a_0 = a$, $a_n = b$ and $(a_i, a_{i+1}) \in R$ for $i = 0, 1, ..., n-1$.
+A \textbf{circuit} is a path that starts and ends at the same element.
+
+\textbf{Theorem:}
+There is a path of length $n$ from $a$ to $b$ in $R$ if and only if $(a,b) \in R^n$.
+This can be proved by induction.
+
+\subsubsection{Connectivity Relation}
+
+The \textbf{connectivity relation} $R$ on a set $A$ that contains all pairs $(a,b)$ such that there is a path from $a$ to $b$ in $R$ is an equivalence relation.
+
+Or more formally,
+\begin{equation*}
+	R = \bigcup_{n=1}^{\infty} R^n
+\end{equation*}
+
+Since a path that has no loop has at most $|A|$ elements, we can simplify the above equation to
+\begin{equation*}
+	R = \bigcup_{n=1}^{|A|} R^n
+\end{equation*}
+
+The transitive closure of $R$ is the connectivity relation.
+To prove this, we need to prove two statements:
+\begin{enumerate}
+	\item The connectivity relation is transitive.
+	\item The connectivity relation is the smallest transitive relation that contains $R$.
+\end{enumerate}
+
+\textbf{Statement 1:}
+If there is a path from $a$ to $b$ and a path from $b$ to $c$, then there is a path from $a$ to $c$.
+
+\textbf{Statement 2:}
+Let $S$ be a transitive relation that contains $R$.
+Then $R* \subseteq S* \subseteq S$, where $R*$ is the transitive closure of $R$ and $S*$ is the transitive closure of $S$.
+
+The transitive closure can be found by running a Dijkstra algorithm on the adjacency matrix of the graph.
+
+\subsection{Equivalence Relation}
+
+An \textbf{equivalence relation} is a relation that is reflexive, symmetric and transitive.
+The equivalence relation partitions the set into disjoint subsets, called \textbf{equivalence classes}, denoted by $[a]$ or $[a]_R$.
+
+The following statements are equivalent:
+\begin{enumerate}
+	\item $aRb$
+	\item $[a] = [b]$
+	\item $[a] \cap [b] \neq \emptyset$
+\end{enumerate}
+
+Proof:
+\begin{enumerate}
+	\item (1) $\Rightarrow$ (2): $[a] \subseteq [b]$ and $[b] \subseteq [a]$.
+	\item (2) $\Rightarrow$ (3): $[a] = [b]$ implies $[a] \cap [b] \neq \emptyset$, since there is at least one element in $[a]$ and $[b]$.
+	\item (3) $\Rightarrow$ (1): $[a] \cap [b] \neq \emptyset$ implies there is an element $c$ such that $c \in [a]$ and $c \in [b]$.
+	Then $aRc$ and $cRb$ implies $aRb$.
+\end{enumerate}
+
+A \textbf{partition} of a set $A$ is a collection of nonempty subsets of $A$ such that every element of $A$ is in exactly one of these subsets.
+\begin{equation*}
+	A_i \cap A_j = \emptyset \text{ for } i \neq j \text{ and } \bigcup_{i=1}^{\infty} A_i = A
+\end{equation*}
+The equivalence classes of an equivalence relation on a set $A$ form a partition of $A$.
+
+\subsection{Partial Order}
+
+A \textbf{partial order} is a relation that is reflexive, antisymmetric and transitive.
+A set $A$ with a partial order is called a \textbf{partially ordered set} or \textbf{poset}.
+
+\subsubsection{Comparable}
+
+Two elements $a$ and $b$ in a poset are \textbf{comparable} if either $a \leq b$ or $b \leq a$.
+
+\subsubsection{Total Order}
+
+A \textbf{total order} is a partial order in which every two elements are comparable.
+
+\subsubsection{Lexicographic Order}
+
+The \textbf{lexicographic order} on $A \times B$ is defined as
+\begin{equation*}
+	(a,b) \leq (c,d) \text{ if and only if } a < c \text{ or } (a = c \text{ and } b \leq d)
+\end{equation*}
+
+\subsubsection{Hasse Diagram}
+
+A \textbf{Hasse diagram} is a directed graph that represents a partial order.
+It leaves out the edges that can be inferred from the transitive or reflexive property.
+
+\subsubsection{Maximal and Minimal}
+
+An element $a$ in a poset is \textbf{maximal} if there is no element $b$ such that $a < b$.
+An element $a$ in a poset is \textbf{minimal} if there is no element $b$ such that $b < a$.
+
+The \textbf{greatest element} $a$ in a poset is an element such that $a \geq b$ for all $b \in A$, which sometimes does not exist.
+We can define the \textbf{least element} similarly.
+
+\subsubsection{Upper and Lower Bound}
+
+An element $a$ in a poset is an \textbf{upper bound} of a set $S$ if $a \geq b$ for all $b \in S$.
+The \textbf{least upper bound} of a set $S$ is an element $a$ such that $a$ is an upper bound of $S$ and $a \leq b$ for all upper bounds $b$ of $S$.
+We can define the \textbf{lower bound} and \textbf{greatest lower bound} similarly.
+
+\subsubsection{Well Ordering}
+
+A poset is \textbf{well ordered} if every nonempty subset has a least element.
+
+\subsubsection{Lattice}
+
+A \textbf{lattice} is a poset in which every two elements have a least upper bound and a greatest lower bound.
+
+\section{Graph}
+
+A \textbf{graph} $G$ is an ordered pair $(V,E)$, where $V$ is a finite set and $E$ is a set of unordered pairs of distinct elements of $V$.
+Each edge joins two endpoints, the two endpoints are \textbf{adjacent} to each other, the endpoint and the edge are \textbf{incident} to each other.
+
+\subsection{Simple Graph}
+
+A \textbf{simple graph} is a graph with no loops and no multiple edges.
+
+\subsection{Complete Graph}
+
+A \textbf{complete graph} is a simple graph in which every pair of distinct vertices is joined by exactly one edge, denoted by $K_n$.
+
+\subsection{Undirected Graph}
+
+An \textbf{undirected graph} is a graph in which the edges are not ordered pairs.
+The two endpoints of an edge are \textbf{adjacent} to each other, or \textbf{neighbors} of each other.
+We denote the set of neighbors of a vertex $v$ by $N(v)$.
+
+\subsection{Directed Graph}
+
+A \textbf{directed graph} is a graph in which the edges are ordered pairs.
+If $(u,v)$ is an edge in a directed graph, then we say that $u$ is \textbf{adjacent to} $v$ and $v$ is \textbf{adjacent from} $u$.
+
+\subsection{Degree}
+
+The \textbf{degree} of a vertex $v$ in an undirected graph is the number of edges incident to $v$, denoted by $deg(v)$.
+The \textbf{in-degree} of a vertex $v$ in a directed graph is the number of edges that end at $v$, denoted by $deg^-(v)$.
+The \textbf{out-degree} of a vertex $v$ in a directed graph is the number of edges that start at $v$, denoted by $deg^+(v)$.
+
+\subsubsection{Handshaking Theorem}
+
+In an undirected graph, the sum of the degrees of all vertices is twice the number of edges.
+\begin{equation*}
+	\sum_{v \in V} deg(v) = 2|E|
+\end{equation*}
+
+In a directed graph, the sum of the in-degrees of all vertices is equal to the sum of the out-degrees of all vertices.
+\begin{equation*}
+	\sum_{v \in V} deg^-(v) = \sum_{v \in V} deg^+(v) = |E|
+\end{equation*}
+
+\subsection{Cycle}
+
+A \textbf{cycle} is a simple graph in which all vertices have degree 2, denoted by $C_n$.
+
+\subsection{Wheel}
+
+A \textbf{wheel} can be obtained by adding a vertex to a cycle and connecting it to all vertices of the cycle, denoted by $W_n$.
+
+\subsection{$N$-Dimensional Hypercube}
+
+An $N$-dimensional hypercube is a graph with $2^N$ vertices, each of which is labeled by an $N$-bit string.
+Two vertices are adjacent if and only if their labels differ in exactly one bit.
+An $N$-dimensional hypercube is denoted by $Q_N$, has $N2^{N-1}$ edges and $N2^{N-1}$ vertices of degree $N$.
+An $N$-dimensional hypercube is always bipartite.
+
+\subsection{Bipartite Graph}
+
+A \textbf{bipartite graph} is a graph whose vertices can be partitioned into two sets $V_1$ and $V_2$ such that every edge has one endpoint in $V_1$ and the other endpoint in $V_2$.
+An equivalent definition is that a graph is possible to be colored with two colors such that no two adjacent vertices have the same color.
+A bipartite graph is denoted by $K_{m,n}$, where $m$ is the number of vertices in $V_1$ and $n$ is the number of vertices in $V_2$.
+A bipartite graph has no odd cycles.
+
+\subsubsection{Complete Bipartite Graph}
+
+A \textbf{complete bipartite graph} is a bipartite graph in which every vertex in $V_1$ is adjacent to every vertex in $V_2$, denoted by $K_{m,n}$.
+
+\subsubsection{Bipartite Matching}
+
+A \textbf{bipartite matching} is a set of edges in a bipartite graph such that no two edges share a common endpoint.
+A \textbf{maximum bipartite matching} is a bipartite matching with the maximum number of edges.
+A matching is \textbf{complete} if every vertex in $V_1$ is incident to an edge in the matching, or $|M| = |V_1|$.
+
+\textbf{Hall's Marriage Theorem:}
+A bipartite graph $G$ with bipartition $(V_1, V_2)$ has a complete matching from $V_1$ to $V_2$ if and only if $|N(S)| \geq |S|$ for all $S \subseteq V_1$.
+
+\subsection{Union of Graphs}
+
+The \textbf{union} of two graphs $G_1 = (V_1, E_1)$ and $G_2 = (V_2, E_2)$ is the graph $G = (V_1 \cup V_2, E_1 \cup E_2)$.
+
+\subsection{Representation of Graph}
+
+\subsubsection{Adjacency Matrix}
+
+The \textbf{adjacency matrix} of a graph $G$ is a $|V| \times |V|$ matrix $A$ such that
+\begin{equation*}
+	A_{ij} = \begin{cases}
+		1 & \text{ if } (i,j) \in E \\
+		0 & \text{ otherwise}
+	\end{cases}
+\end{equation*}
+
+It can be modified to have multiple edges by using the number of edges instead of 1, or to have loops.
+
+\subsubsection{Incidence Matrix}
+
+The \textbf{incidence matrix} of a graph $G$ is a $|V| \times |E|$ matrix $B$ such that
+\begin{equation*}
+	B_{ij} = \begin{cases}
+		1 & \text{ if vertex } i \text{ is incident to edge } j \\
+		0 & \text{ otherwise}
+	\end{cases}
+\end{equation*}
+
+\subsubsection{Adjacency List}
+
+The \textbf{adjacency list} of a graph $G$ is a list of vertices such that each vertex is followed by a list of vertices that are adjacent to it.
+This representation does not allow multiple edges, but allows loops.
+
+\subsection{Isoomorphism}
+
+Given two graphs $G_1 = (V_1, E_1)$ and $G_2 = (V_2, E_2)$, an \textbf{isomorphism} from $G_1$ to $G_2$ is a bijection $f: V_1 \rightarrow V_2$ such that $(u,v) \in E_1$ if and only if $(f(u), f(v)) \in E_2$.
+There are some useful graph invariants that can be used to determine whether two graphs are isomorphic:
+\begin{itemize}
+	\item Number of vertices
+	\item Number of edges
+	\item Degree sequence
+	\item The existence of a simple circuit of length $k$ for $k = 3, 4, 5, ...$
+\end{itemize}
+
+\subsection{Path}
+
+A \textbf{path} from $u$ to $v$ in a graph $G$ is a sequence of $n$ edges $e_1, e_2, ..., e_n$ such that $e_i = (x_i, x_{i+1})$ for $i = 1, 2, ..., n-1$ and $x_1 = u$ and $x_n = v$.
+The \textbf{length} of a path is the number of edges in the path.
+The path is a \textbf{cycle} if $u = v$.
+A path or cycle is \textbf{simple} if it does not contain the same edge more than once.
+
+\textbf{Lemma:}
+If there is a path from $u$ to $v$ in a graph $G$, then there is a simple path from $u$ to $v$ in $G$.
+
+\subsubsection{Connected}
+
+A graph $G$ is \textbf{connected} if there is a path from $u$ to $v$ for every pair of vertices $u$ and $v$ in $G$.
+
+\subsubsection{Connected Component}
+
+A \textbf{connected component} of a graph $G$ is a maximal connected subgraph of $G$.
+A directed graph is \textbf{strongly connected} if there is a path from $u$ to $v$ and a path from $v$ to $u$ for every pair of vertices $u$ and $v$ in $G$.
+A directed graph is \textbf{weakly connected} if the underlying undirected graph is connected.
+
+\subsubsection{Cut Vertex and Cut Edge}
+
+A \textbf{cut vertex} is a vertex whose removal disconnects the graph.
+A \textbf{cut edge} is an edge whose removal disconnects the graph.
+
+A set of edges $E'$ is an \textbf{edge cut} if $G - E'$ is disconnected.
+The \textbf{edge connectivity} of a graph $G$ is the minimum size of an edge cut of $G$, denoted by $\lambda(G)$.
+
+\subsubsection{Counting Paths}
+
+The number of paths of length $k$ from $u$ to $v$ in a graph $G$ is the $(u,v)$-entry of $A^k$, where $A$ is the adjacency matrix of $G$.
+
+\subsection{Eular Path and Circuit}
+
+An \textbf{Eular path} in a graph $G$ is a simple path that contains every edge of $G$.
+An \textbf{Eular circuit} in a graph $G$ is a simple circuit that contains every edge of $G$.
+
+The Eular path exists if and only if the graph is connected and has exactly two vertices of odd degree.
+The Eular circuit exists if and only if the graph is connected and every vertex has even degree.
+
+\subsection{Hamilton Path and Circuit}
+
+A \textbf{Hamilton path} in a graph $G$ is a simple path that passes through every vertex of $G$ exactly once.
+A \textbf{Hamilton circuit} in a graph $G$ is a simple circuit that passes through every vertex of $G$ exactly once.
+
+\textbf{Dirac's Theorem:}
+If $G$ is a simple graph with $n$ vertices such that $n \geq 3$ and $deg(v) \geq \frac{n}{2}$ for every vertex $v$ of $G$, then $G$ has a Hamilton circuit.
+
+\textbf{Ore's Theorem:}
+If $G$ is a simple graph with $n$ vertices such that $n \geq 3$ and $deg(u) + deg(v) \geq n$ for every pair of nonadjacent vertices $u$ and $v$ of $G$, then $G$ has a Hamilton circuit.
+
+\subsection{Shortest Path}
+
+If $G$ is a weighted graph, the shortest path from $u$ to $v$ is the path from $u$ to $v$ with the smallest total weight.
+
+\subsubsection{Dijkstra's Algorithm}
+
+Dijkstra's algorithm can be used to find the shortest path from a vertex $u$ to every other vertex in a weighted graph $G$.
+The algorithm is as follows:
+\begin{enumerate}
+	\item Let $S = \{u\}$ and $d(u) = 0$.
+	\item For every vertex $v \in V - S$, let $d(v)$ be the length of the shortest path from $u$ to $v$.
+	\item Choose a vertex $w \in V - S$ such that $d(w)$ is minimum and add $w$ to $S$.
+	\item For every vertex $v \in V - S$, if $d(w) + l(w,v) < d(v)$, then let $d(v) = d(w) + l(w,v)$.
+	\item Repeat steps 3 and 4 until $S = V$.
+\end{enumerate}
+
+The runtime of Dijkstra's algorithm is $O(|V|^2)$, but can be improved to $O(|E| + |V| \log |V|)$ using a priority queue.
+This algorithm can only work on graphs with nonnegative weights.
+If there are negative weights, we can use the Bellman-Ford algorithm, which runs in $O(|V||E|)$ time.
+
+\subsection{Planar Graph}
+
+A \textbf{planar graph} is a graph that can be drawn in the plane without any edges crossing.
+An $n$-dimensional hypercube is planar if and only if $n \leq 3$.
+A complete graph $K_n$ is planar if and only if $n \leq 4$.
+
+\subsubsection{Euler's Formula}
+
+If $G$ is a connected planar graph with $v$ vertices, $e$ edges and $r$ regions, then
+\begin{equation*}
+	v - e + r = 2
+\end{equation*}
+
+This can be proved by induction on the number of edges.
+The inductive step is to add an edge to the graph.
+There are two cases: the edge creates a new region or the edge does not create a new region.
+
+The \textbf{degree of a region} is the number of edges that bound the region.
+When an edge occur twice in the boundary of a region, it is counted twice.
+By this we can prove the corollaries:
+\begin{itemize}
+	\item If $G$ is a connected planar simple graph with $v$ vertices, $e$ edges and $v \geq 3$, then $e \leq 3v - 6$.
+		This is because each region is bounded by at least 3 edges and each edge is counted twice.
+		Hence $2e = \sum_{r \in R} deg(r) \geq 3r$.
+		Then we substituted $r$ in the Euler's formula and get $e \leq 3v - 6$.
+	\item If $G$ is a connected planar simple graph, there exists a vertex of degree at most 5.
+		Proof by contradiction.
+		Suppose every vertex has degree at least 6.
+		Then by Handshaking Theorem, $2e \geq 6v$.
+		Then $e \geq 3v$.
+		Then by the corollary above, $3v \leq e \leq 3v - 6$, which is a contradiction.
+	\item If $G$ is a connected planar simple graph with $v$ vertices, $e$ edges and $v \geq 3$, but has no circuits of length 3, then $e \leq 2v - 4$.
+		Similar to the first corollary, each region is bounded by at least 4 edges and each edge is counted twice.
+		Hence $2e = \sum_{r \in R} deg(r) \geq 4r$.
+		Then we substituted $r$ in the Euler's formula and get $e \leq 2v - 4$.
+\end{itemize}
+
+\subsubsection{Kuratowski's Theorem}
+
+If a graph $G$ is planar, so will be any graph obtained from $G$ by a sequence of elementary subdivisions.
+An elementary subdivision is the replacement of an edge by a path of length 2 or more.
+Two graphs are called \textbf{homeomorphic} if both can be obtained from the same graph by a sequence of elementary subdivisions.
+
+The more useful version of Kuratowski's theorem is that a graph is planar if and only if it does not contain a subgraph that is homeomorphic to $K_5$ or $K_{3,3}$.
+
+\subsubsection{Platonic Solids}
+
+There are only 5 platonic solids:
+\begin{itemize}
+	\item Tetrahedron ($\{3,3\}$)
+	\item Cube ($\{4,3\}$)
+	\item Octahedron ($\{3,4\}$)
+	\item Dodecahedron ($\{5,3\}$)
+	\item Icosahedron ($\{3,5\}$)
+\end{itemize}
+where the first number is the number of sides of each face and the second number is the number of faces that meet at each vertex.
+
+Notice that in the planar graph representation of a platonic solid of $n$ faces:
+\begin{itemize}
+	\item $r = n$
+	\item $pr = qv = 2e$
+\end{itemize}
+
+Combining this two equations with Euler's formula, we get
+\begin{equation*}
+	\frac{1}{p} + \frac{1}{q} = \frac{1}{2} + \frac{1}{r} > \frac{1}{2}
+\end{equation*}
+
+Iterating through all possible values of $p$, $q$ and $r$, we get the five platonic solids.
+
+\subsection{Graph Coloring}
+
+A \textbf{coloring} of a graph $G$ is an assignment of a color to each vertex of $G$ such that no two adjacent vertices have the same color.
+The \textbf{chromatic number} of a graph $G$, denoted by $\chi(G)$, is the minimum number of colors needed to color $G$.
+
+By the \textbf{Four Color Theorem}, every planar graph can be colored with at most 4 colors, or $\chi(G) \leq 4$.
+We now give proof to the weaker version of the theorem, which states that every planar graph can be colored with at most 6 colors, or $\chi(G) \leq 6$.
+Then another proof is given to the stronger version of the theorem, which states that every planar graph can be colored with at most 5 colors, or $\chi(G) \leq 5$.
+
+\textbf{Six Color Theorem:}
+By induction on the number of vertices.
+Base case: $|V| = 1$.
+Inductive step: Suppose every planar graph with $n$ vertices can be colored with at most 6 colors.
+By the previous corollary, there exists a vertex $v$ of degree at most 5.
+We remove the vertex $v$ and by inductive hypothesis, the remaining graph can be colored with at most 6 colors.
+Then we put back the vertex $v$, since it has at most 5 neighbors, there is at least one color that is not used by its neighbors.
+Then we can color $v$ with that color.
+
+\textbf{Five Color Theorem:}
+By induction on the number of vertices.
+The base case is the same as above.
+The inductive step is the same as above when we can find a vertex of degree 4 or less, or when we can find a vertex of degree 5 but adjacent vertices only use 4 colors.
+Then we need to proof the case when the vertex has degree 5 and adjacent vertices use all 5 colors.
+Let the 5 adjacent vertices be $v_1, v_2, v_3, v_4, v_5$, and the color of $v_i$ be $c_i$.
+Then there are 2 cases:
+\begin{enumerate}
+	\item There is no path from $v_1$ to $v_3$, then we can use the color $c_1$ to color $v_3$. (If there is a vertex adjacent to $v_3$ and colored $c_1$, we use $c_3$ to color it. Basically we flip the color of a chain that $c_3$ and $c_1$ are used repeatedly)
+		Then $c_3$ is never used and can be used to color the vertex $v$.
+	\item There is a path from $v_1$ to $v_3$, since this will create a cycle, then there must be no path from $v_2$ to $v_4$.
+		Then we repeat the same process as above.
+\end{enumerate}
+
+\subsection{Tree}
+
+A \textbf{tree} is a connected undirected graph with no simple circuits.
+An undirected graph is a tree if and only if there is a unique simple path between every pair of vertices.
+
+\textbf{Proof:}
+``$\Rightarrow$'':
+Easy since a tree is connected and has no simple circuits.
+``$\Leftarrow$'':
+Easy to find it is connected.
+Suppose there is a simple circuit in the graph.
+Then there are two simple paths between two vertices in the circuit, which is a contradiction.
+
+A \textbf{rooted tree} is a tree in which one vertex has been designated as the root and every edge is directed away from the root.
+A rooted tree is an \textbf{$m$-ary tree} if every vertex has at most $m$ children.
+A \textbf{full $m$-ary tree} is an $m$-ary tree in which every internal vertex has exactly $m$ children.
+A full $m$-ary tree with $n$ vertices, $i$ of which are internal, $l$ leaves satisfies the following equations:
+\begin{equation*}
+	n = mi + 1, \quad n = i + l
+\end{equation*}
+
+The \textbf{level} of a vertex in a rooted tree is the length of the path from the root to the vertex.
+The \textbf{height} of a rooted tree is the maximum level of any vertex in the tree.
+A rooted tree is \textbf{balanced} if all leaves are at level $h$ or $h-1$.
+There are at most $m^h$ leaves in an $m$-ary tree of height $h$.
+The equation $h \geq \lceil \log_m l \rceil$ holds for any $m$-ary tree with $l$ leaves.
+
+\subsubsection{Polish Notation and Expression Tree}
+
+The \textbf{Polish notation} of an expression is an expression in which the operator is written before its operands.
+For example, $3 + 4$ is written as $+ 3 4$.
+This corresponds to the preorder traversal of the expression tree.
+
+Similarly, the \textbf{reverse Polish notation} of an expression is an expression in which the operator is written after its operands.
+For example, $3 + 4$ is written as $3 4 +$.
+This corresponds to the postorder traversal of the expression tree.
+
+\subsection{Catalan Number}
+
+The \textbf{Catalan number} $C_n$ is the number of different binary trees with $n$ vertices.
+Since a binary tree can be partitioned into a root, a left subtree and a right subtree, we have the following recurrence relation:
+\begin{equation*}
+	C_n = \sum_{i=0}^{n-1} C_i C_{n-1-i}
+\end{equation*}
+
+Let $f(x) = \sum_{i=0}^{\infty} C_i x^i$.
+Then we have
+\begin{align*}
+	f(x)^2 &= \left( \sum_{i=0}^{\infty} C_i x^i \right) \left( \sum_{j=0}^{\infty} C_j x^j \right) \\
+	&= \sum_{i=0}^{\infty} \sum_{j=0}^{\infty} C_i C_j x^{i+j} \\
+	&= \sum_{n=0}^{\infty} \sum_{i=0}^{n} C_i C_{n-i} x^n \\
+	&= \sum_{n=0}^{\infty} C_{n+1} x^n
+\end{align*}
+
+Then we have
+\begin{equation*}
+	xf(x)^2 + 1 = f(x)
+\end{equation*}
+
+Solving the quadratic equation, we get
+\begin{equation*}
+	f(x) = \frac{1 \pm \sqrt{1 - 4x}}{2x}
+\end{equation*}
+
+Since $f(0) = 1$, we have
+\begin{equation*}
+	f(x) = \frac{1 - \sqrt{1 - 4x}}{2x}
+\end{equation*}
+
+Then, using the extended binomial theorem, we have
+\begin{equation*}
+	\sqrt{1 - 4x} = \sum_{i=0}^{\infty} \binom{\frac{1}{2}}{i} (-4x)^i
+\end{equation*}
+
+Substituting this into the equation above, we get
+\begin{align*}
+	\frac{1 - \sqrt{1-4x}}{2x} =& \frac{1 - \sum_{i=0}^{\infty} \binom{\frac{1}{2}}{i} (-4x)^i}{2x} \\
+	=& \frac{-\sum_{i=1}^{\infty} \binom{\frac{1}{2}}{i} (-4x)^i}{2x} \\
+	=& \sum_{i=1}^{\infty} -\frac{1}{2} \binom{\frac{1}{2}}{i} (-4)^i x^{i-1} \\
+	=& \sum_{i=0}^{\infty} -\frac{1}{2} \binom{\frac{1}{2}}{i+1} (-4)^{i+1} x^i \\
+\end{align*}
+
+Then we have
+\begin{align*}
+	C_n =& -\frac{1}{2} \binom{\frac{1}{2}}{n+1} (-4)^{n+1} \\
+	=& -\frac{1}{2} \frac{\frac{1}{2} (\frac{1}{2} - 1) (\frac{1}{2} - 2) ... (\frac{1}{2} - n)}{(n+1)!} (-4)^{n+1} \\
+	=& -\frac{1}{2} \frac{(-1)^n \frac{1}{2}^{n+1} 1 \cdot 3 \cdot 5 \cdot ... \cdot (2n-1)}{(n+1)!} (-4)^{n+1} \\
+	=& \frac{2^n 1 \cdot 3 \cdot 5 \cdot ... \cdot (2n-1)}{(n+1)!} \\
+	=& \frac{1}{n+1} \frac{1 \cdot 2 \cdot 3 \cdot 4 \cdot ... \cdot (2n-1) \cdot 2n}{n! n!} \\
+	=& \frac{1}{n+1} \binom{2n}{n}
+\end{align*}
+
+\subsection{Spanning Tree}
+
+A simple graph $G$ is \textbf{connected} if and only if it has a spanning tree.
+
+\subsubsection{Prim's Algorithm}
+
+Prim's algorithm can be used to find the minimum spanning tree of a weighted graph $G$.
+
+\textbf{runtime:} $O(e \log v)$
+
+\textbf{correctness:}
+By induction on the number of edges.
+Suppose the current tree is $T$ and it is a subgraph of some minimum spanning tree $M$.
+When adding an edge $e$ to the tree $T$, we want to prove that $T \cup \{e\}$ is still a subgraph of some minimum spanning tree $M$.
+If $e$ is in $M$, then $T \cup \{e\}$ is a subgraph of $M$.
+If $e$ is not in $M$, then $T \cup \{e\}$ contains a cycle.
+Then there must be an edge $f$ in the cycle that is not in $T$.
+Then $M \cup \{e\} - \{f\}$ is another minimum spanning tree that contains $T \cup \{e\}$.
+
+\subsubsection{Kruskal's Algorithm}
+
+Very similar to Prim's algorithm, but instead of adding edges to the tree, we add edges to the forest.
+
+\textbf{runtime:} $O(e \log e)$
+
+\textbf{correctness:}
+Same as Prim's algorithm.
+
+\subsection{NP Complete and SAT}
+
+A given boolean expression is \textbf{satisfiable} if there is an assignment of truth values to the variables that makes the expression true.
+A \textbf{k-CNF} expression is a boolean expression which is $f_1 \land f_2 \land ... \land f_k$, where each $f_i$ is $l_{i1} \lor l_{i2} \lor ... \lor l_{ik}$, where each $l_{ij}$ is a literal.
+
+\subsubsection{2-CNF}
+
+The 2-CNF expression is satisfiable, and is polynomial time decidable.
+For each disjunction $l_{i1} \lor l_{i2}$, we add an edge between $\neg l_{i1}$ and $l_{i2}$ and $\neg l_{i2}$ and $l_{i1}$.
+Then if there is exists a path from $l$ to $\neg l$ and $\neg l$ to $l$, then the expression is not satisfiable.
+
+\textbf{Proof:}
+\begin{itemize}
+	\item Claim 1: If there is a path from $x$ to $y$, then there is no path from $\neg y$ to $\neg x$.
+	\item Claim 2: The expression is unsatisfiable if and only if there is a variable $x$ such that there is a path from $x$ to $\neg x$ and $\neg x$ to $x$.
+		This is because, one of these two path must begin with $\top$ and end with $\bot$, then somewhere in the middle, we can find $\top \rightarrow \bot$, which is a contradiction.
+		If there are no such literal, then we do as follows:
+		\begin{itemize}
+			\item Find an unassigned literal $x$, with no path from $x$ to $\neg x$.
+			\item Assign $x$ to $\top$ and all its reachable literals to $\top$.
+			\item Assign $\neg x$ to $\bot$ and all its reachable literals to $\bot$.
+			\item Repeat until all literals are assigned.
+		\end{itemize}
+		This assignment is well defined because there is no path from $x$ to $y$ and $\neg y$ at the same time.
+		If so, by claim 1 we know there is a path from $y$ to $\neg x$, then concatenating the two paths, we get a path from $x$ to $\neg x$, which is a contradiction.
+\end{itemize}
+
+\subsubsection{SAT and Other NP Complete Problems}
+
+By \textbf{Cook's Theorem}, SAT is NP complete.
+Then we prove DCLIQUE is NP complete by reducing SAT to DCLIQUE.
+Then we prove DVC is NP complete by reducing DCLIQUE to DVC.
+
+A \textbf{clique} in an undirected graph $G$ is a subset $S$ of vertices such that every two vertices in $S$ are adjacent.
+The \textbf{CLIQUE} problem is to find the maximum clique in a graph.
+The \textbf{DCLIQUE} problem is to determine whether a graph has a clique of size $k$.
+We can reduce a k-SAT problem to a DCLIQUE problem by constructing a graph $G$ with vertices representing the literals and edges representing the clauses.
+Then we can reduce a DCLIQUE problem to a DVC problem by constructing a graph $G$ with vertices representing every literals (allow duplicates) and edges across clauses (but not from $x$ to $\neg x$).
+A clique of size $k$ in $G$ corresponds to a set of literals that satisfies $k$ clauses.
+
+A vertex color of a graph $G$ is a set of vertices that every edge is incident to at least one vertex in the set.
+The \textbf{vertex coloring} problem is to find the minimum size of such a set.
+The \textbf{DVC} problem is to determine whether a graph has a vertex color of size $k$.
+We can reduce a DVC problem to a vertex coloring problem by constructing a complement graph $G'$ of $G$.
+If there is a vertex color of size $k$ in $G'$, then there is a clique of size $|V| - k$ in $G$.
+
+We have a 2-approximation algorithm for vertex coloring.
+\begin{enumerate}
+	\item Choose an arbitrary edge $e = (u,v)$ in $E$.
+	\item Remove all edges incident to $u$ and $v$.
+	\item Repeat until all edges are removed.
+\end{enumerate}
+This is because the algorithm gives a maximum matching for $G$.
+The optimal vertex coloring is at least the size of the maximum matching.
+And the vertex coloring given by the algorithm is twice the size of the maximum matching.
+Hence we have
+\begin{equation*}
+	|C| = 2|M| \leq 2|C^*|, \frac{|C|}{|C^*|} \leq 2
+\end{equation*}
+\end{document}

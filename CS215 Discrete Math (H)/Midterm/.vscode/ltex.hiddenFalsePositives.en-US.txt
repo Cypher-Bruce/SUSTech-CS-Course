@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QWe say that \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is the domain of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is the codomain of \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}

@@ -1,0 +1,715 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+%\usepackage{setspace}
+%\setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,amsfonts}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Discrete Mathematics(H): Homework 2}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Discrete Mathematics(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 2}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Q.1}
+
+\subsection*{(a)}
+True.
+
+\begin{proof}
+$ $
+
+Assume there exists two sets $A_1$ and $A_2$ that $A_1 = A - B$ and $A_2 = A \cap B$. 
+Therefore, we have $A_2 \ne \emptyset$, $A_1 \cap A_2 = \emptyset$, and $A_1 \cup A_2 = A$.
+
+Since $A_2 \ne \emptyset$, there exists an element $x \in A_2$.
+Since $A_2 = A \cap B$, we have $x \in A$.
+Also, since $A_1 \cap A_2 = \emptyset$, we have $x \notin A_1$.
+Therefore, we can find an element $x \in A$ that $x \notin A_1$.
+
+Hence, we can infer that $A_1$ is a true subset of $A$.
+Equivalently, we can say that $(A - B) \subset A$.
+\end{proof}
+
+\subsection*{(b)}
+True.
+
+\begin{proof}
+$ $
+
+According to the commutative law, the statement on the right side of the implication $A \cap B = B \cap A$ is a tautology.
+Therefore, the whole statement is always true.
+\end{proof}
+
+\subsection*{(c)}
+False.
+
+\begin{proof}[Disproof]
+$ $
+
+For the sets $A$ and $B$ that $A = B = \{1, 2\}$, we have $A \subseteq B$.
+However, $|A \cup B| = 2 \not\geq 2|A| = 4$.
+\end{proof}
+
+\section*{Q.2}
+
+The "Barber's paradox" can be stated as:
+\begin{equation*}
+	\exists x (Barber(x) \rightarrow \forall y (\neg Shaves(y, y) \leftrightarrow Shaves(x, y)))
+\end{equation*}
+
+When we let $y$ be the barber himself, we have:
+\begin{equation*}
+	\exists x (Barber(x) \rightarrow \neg Shaves(x, x) \leftrightarrow Shaves(x, x))
+\end{equation*}
+
+Since the statement on the right side of the implication is a contradiction, the whole statement can only be true when the statement on the left side of the implication is false, which means there does not exist a barber.
+
+\section*{Q.3}
+
+\subsection*{(1)}
+
+\subsubsection*{(a)}
+Since there is no element in an empty set, we cannot find any $a + b$ pair. 
+Therefore, the result of pairwise addition is still an empty set.
+\begin{equation*}
+	\mathbb{N} \oplus \emptyset = \emptyset
+\end{equation*}
+
+\subsubsection*{(b)}
+\begin{equation*}
+	\mathbb{N} \oplus \mathbb{N} = \{0, 1, 2, \cdots\} = \mathbb{N}
+\end{equation*}
+
+\subsubsection*{(c)}
+\begin{equation*}
+	\mathbb{N}^+ \oplus \mathbb{N}^+ = \{2, 3, 4, \cdots\} = \mathbb{N} \backslash \{0, 1\}
+\end{equation*}
+
+\subsubsection*{(d)}
+\begin{equation*}
+	\mathbb{N}^+ \otimes \mathbb{N}^+ = \{1, 2, 3, \cdots\} = \mathbb{N}^+
+\end{equation*}
+
+\subsection*{(2)}
+\begin{align*}
+	\{x|x\text{ is positive multiple of 4}\} &= E \otimes E\\
+	\{x|x\text{ is positive multiple of 8}\} &= E \otimes E \otimes E
+\end{align*}
+	
+\subsection*{(3)}
+\begin{equation*}
+	\{z^2\} = (S \oplus S) \cap S
+\end{equation*}
+
+\section*{Q.4}
+
+\subsection*{(1)}
+\begin{proof}
+\begin{align*}
+	(B - A) \cup (C - A) =& (B \cap \bar{A}) \cup (C \cap \bar{A})\\ 
+	=& (B \cup C) \cap \bar{A}\\
+	=& (B \cup C) - A
+\end{align*}
+\end{proof}
+
+\subsection*{(2)}
+\begin{proof}
+\begin{align*}
+	(A \cap B) \cap \overline{(B \cap C)} \cap (A \cap C) =& A \cap (B \cap C) \cap \overline{(B \cap C)}\\
+	=& A \cap \emptyset\\
+	=& \emptyset
+\end{align*}
+\end{proof}
+
+\section*{Q.5}
+
+\subsection*{(a)}
+
+\begin{align*}
+	A =& \{x\ |\ 0 \le x \le 1 \  \text{and}\ x \in \mathbb{R}\}\\
+	B =& \{x\ |\ 1 \le x \le 2 \  \text{and}\ x \in \mathbb{R}\}
+\end{align*}
+
+Therefore, $A \cap B = \{1\}$, which is finite.
+
+\subsection*{(b)}
+\begin{align*}
+	A =& \{x\ |\ 0 \le x \le 1 \  \text{and}\ x \in \mathbb{R}\} \cup \mathbb{Z}\\
+	B =& \{x\ |\ 2 \le x \le 3 \  \text{and}\ x \in \mathbb{R}\} \cup \mathbb{Z}\\
+\end{align*}
+
+Therefore, $A \cap B = \mathbb{Z}$, which is countably infinite.
+
+\subsection*{(c)}
+\begin{align*}
+	A = B = \mathbb{R}
+\end{align*}
+
+Therefore, $A \cap B = \mathbb{R}$, which is uncountable.
+
+\section*{Q.6}
+We can find that
+\begin{equation*}
+	A \oplus B = (A \cup B) - (A \cap B)
+\end{equation*}
+
+\subsection*{(a)}
+\begin{align*}
+	A =& \{x\ |\ 0 < x \le 1 \  \text{and}\ x \in \mathbb{R}\}\\
+	B =& \{x\ |\ 0 \le x < 1 \  \text{and}\ x \in \mathbb{R}\}
+\end{align*}
+
+Therefore, $A \oplus B = \{0, 1\}$, which is finite.
+
+\subsection*{(b)}
+\begin{align*}
+	A =& \{x\ |\ 0 \le x \le 1 \  \text{and}\ x \in \mathbb{R}\} \cup \mathbb{Z}\\
+	B =& \{x\ |\ 0 \le x \le 1 \  \text{and}\ x \in \mathbb{R}\} \cup \mathbb{Z}^+\\
+\end{align*}
+
+Therefore, $A \oplus B = \{0,-1,-2,\cdots\}$, which is countably infinite.
+
+\subsection*{(c)}
+\begin{align*}
+	A =& \{x\ |\ x \ge 0 \  \text{and}\ x \in \mathbb{R}\}\\
+	B =& \{x\ |\ x < 0 \  \text{and}\ x \in \mathbb{R}\}
+\end{align*}
+
+Therefore, $A \oplus B = \mathbb{R}$, which is uncountable.
+
+\section*{Q.7}
+
+\subsection*{(a)}
+
+Type ii.
+
+The function is not a one-to-one function, since $f(-1) = f(1) = 2$.
+The function is also not an onto function, since there is no $x \in \mathbb{Z}$ that $f(x) = -1$.
+
+\subsection*{(b)}
+
+Type i.
+
+It is not a function since $f(3)$ is not defined.
+
+\subsection*{(c)}
+
+Type v.
+
+The function is a one-to-one function, since $f(x) = f(y) \leftrightarrow 8 - 2x = 8 - 2y \leftrightarrow x = y$.
+The function is also an onto function, since for any $y \in \mathbb{R}$, we can find an $x = \frac{8 - y}{2} \in \mathbb{R}$ that $f(x) = 8 - 2x = 8 - 2 \cdot \frac{8 - y}{2} = y$.
+
+\subsection*{(d)}
+
+Type iii.
+
+The function is not a one-to-one function, since $f(1) = f(1.5) = 2$.
+The function is an onto function, since for any $y \in \mathbb{Z}$, we can find an $x = y - 1 \in \mathbb{R}$ that $f(x) = \lfloor x + 1 \rfloor = \lfloor y \rfloor = y$.
+
+\subsection*{(e)}
+
+Type i.
+
+It is not a function since $f(0.5)$ is not defined.
+
+\subsection*{(f)}
+
+Type iv.
+
+The function is a one-to-one function, since $f(x) = f(y) \leftrightarrow x + 1 = y + 1 \leftrightarrow x = y$.
+The function is not an onto function, since there is no $x \in \mathbb{Z}^+$ that $f(x) = 1$.
+
+\section*{Q.8}
+\begin{proof}[Proof by contradiction]
+$ $
+
+It's obvious that the \textit{identity function} $1_A$ is a one-to-one and onto function.
+
+Assume $f$ is not a one-to-one function, then there exists $x_1, x_2 \in A$ that $x_1 \ne x_2$ and $f(x_1) = f(x_2)$.
+Therefore, we have $g(f(x_1)) = g(f(x_2))$, which means $g \circ f$ is not a one-to-one function.
+This contradicts the fact that $1_A$ is a one-to-one function.
+
+Assume $g$ is not an onto function, then there exists $y \in A$ that for any $x$, $g(x) \ne y$.
+Therefore, we have $g(f(x)) \ne y$, which means $g \circ f$ is not an onto function.
+This contradicts the fact that $1_A$ is an onto function.
+\end{proof}
+
+\section*{Q.9}
+
+\subsection*{(a)}
+
+False.
+
+\begin{proof}[Disproof]
+$ $
+
+$f$ does not must be a one-to-one function.
+
+For example, let $f(x)$ be defined as $1 \mapsto 1, 2 \mapsto 1, 3 \mapsto 1$.
+Then $f$ is not a one-to-one function.
+
+We assume $g(x)$ is defined as $1 \mapsto 1$, which is a one-to-one function, and $A = \{1\}$, $B = \{1,2,3\}$, $C = \{1\}$.
+Then $f \circ g$ is defined as $1 \mapsto 1$, which is also a one-to-one function.
+\end{proof}
+
+\subsection*{(b)}
+
+True.
+
+\begin{proof}[Proof by contradiction]
+$ $
+
+Assume $g$ is not a one-to-one function, then there exists $x_1, x_2 \in A$ that $x_1 \ne x_2$ and $g(x_1) = g(x_2)$.
+
+Therefore, we have $f(g(x_1)) = f(g(x_2))$, which means $f \circ g$ is not a one-to-one function.
+This contradicts the fact that $f \circ g$ is a one-to-one function.
+\end{proof}
+
+\subsection*{(c)}
+
+True.
+
+\begin{proof}[Proof by contradiction]
+$ $
+
+This proof is the same as the proof in (b).
+\end{proof}
+
+\subsection*{(d)}
+
+True.
+
+\begin{proof}[Proof by contradiction]
+$ $
+
+Assume $f$ is not an onto function, then there exists $y \in C$ that for any $x \in B$, $f(x) \ne y$.
+Therefore, for any $x \in A$, we have $f(g(x)) \ne y$, which means $f \circ g$ is not an onto function.
+\end{proof}
+
+\subsection*{(e)}
+
+False.
+
+\begin{proof}[Disproof]
+$ $
+
+$g$ does not have to be an onto function.
+
+For example, let $g(x)$ be defined as $1 \mapsto 1, 2 \mapsto 1, 3 \mapsto 1$ with $A = \{1,2,3\}$, $B = \{1,2\}$.
+Then $g$ is not an onto function.
+
+We assume $f(x)$ is defined as $1 \mapsto 1, 2 \mapsto 1$ and $C = \{1\}$.
+Then $f \circ g$ is defined as $1 \mapsto 1, 2 \mapsto 1, 3 \mapsto 1$ with $A = \{1,2,3\}$, $C = \{1\}$, which is an onto function.
+\end{proof}
+
+\section*{Q.10}
+\begin{proof}[Proof by cases]
+$ $
+
+\textbf{Case 1:} $c \leq x < c + \frac{1}{3}$ for some $c \in \mathbb{Z}$.
+
+\begin{align*}
+	LHS =& \lfloor 3x \rfloor\\
+	=& 3c\\
+	RHS =& \lfloor x \rfloor + \lfloor x + \frac{1}{3} \rfloor + \lfloor x + \frac{2}{3} \rfloor\\
+	=& c + c + c\\
+	=& 3c
+\end{align*}
+
+\textbf{Case 2:} $c + \frac{1}{3} \leq x < c + \frac{2}{3}$ for some $c \in \mathbb{Z}$.
+
+\begin{align*}
+	LHS =& \lfloor 3x \rfloor\\
+	=& 3c + 1\\
+	RHS =& \lfloor x \rfloor + \lfloor x + \frac{1}{3} \rfloor + \lfloor x + \frac{2}{3} \rfloor\\
+	=& c + c + (c + 1)\\
+	=& 3c + 1
+\end{align*}
+
+\textbf{Case 3:} $c + \frac{2}{3} \leq x < c + 1$ for some $c \in \mathbb{Z}$.
+
+\begin{align*}
+	LHS =& \lfloor 3x \rfloor\\
+	=& 3c + 2\\
+	RHS =& \lfloor x \rfloor + \lfloor x + \frac{1}{3} \rfloor + \lfloor x + \frac{2}{3} \rfloor\\
+	=& c + (c + 1) + (c + 1)\\
+	=& 3c + 2
+\end{align*}
+\end{proof}
+
+\section*{Q.11}
+\begin{align*}
+	\sum_{k = 1}^{n} [k^3 - (k - 1)^3] =& n^3 - (n-1)^3 + (n-1)^3 - (n-2)^3 + \cdots + 2^3 - 1^3 + 1^3 - 0^3\\
+	=& n^3 - 0^3\\
+	=& n^3\\
+	\sum_{k = 1}^{n} [k^3 - (k - 1)^3] =& \sum_{k = 1}^{n} [3k^2 - 3k + 1]\\
+	=& 3\sum_{k = 1}^{n} k^2 - 3\sum_{k = 1}^{n} k + \sum_{k = 1}^{n} 1\\
+	=& 3\sum_{k = 1}^{n} k^2 - 3\cdot \frac{n(n+1)}{2} + n
+\end{align*}
+
+Therefore, we have
+\begin{align*}
+	n^3 =& 3\sum_{k = 1}^{n} k^2 - 3\cdot \frac{n(n+1)}{2} + n\\
+	\sum_{k = 1}^{n} k^2 =& \frac{n(n+1)}{2} - \frac{n}{3} + \frac{n^3}{3}\\
+	=& \frac{n(n+1)(2n+1)}{6}
+\end{align*}
+
+\section*{Q.12}
+\begin{align*}
+	\sum_{k = 1}^{n} [k^4 - (k - 1)^4] =& n^4 - (n-1)^4 + (n-1)^4 - (n-2)^4 + \cdots + 2^4 - 1^4 + 1^4 - 0^4\\
+	=& n^4 - 0^4\\
+	=& n^4\\
+	\sum_{k = 1}^{n} [k^4 - (k - 1)^4] =& \sum_{k = 1}^{n} [4k^3 - 6k^2 + 4k - 1]\\
+	=& 4\sum_{k = 1}^{n} k^3 - 6\sum_{k = 1}^{n} k^2 + 4\sum_{k = 1}^{n} k - \sum_{k = 1}^{n} 1\\
+	=& 4\sum_{k = 1}^{n} k^3 - 6\cdot \frac{n(n+1)(2n+1)}{6} + 4\cdot \frac{n(n+1)}{2} - n
+\end{align*}
+
+Therefore, we have
+\begin{align*}
+	n^4 =& 4\sum_{k = 1}^{n} k^3 - 6\cdot \frac{n(n+1)(2n+1)}{6} + 4\cdot \frac{n(n+1)}{2} - n\\
+	\sum_{k = 1}^{n} k^3 =& \frac{n^4 + n(n+1)(2n+1) - 2n(n+1) + n}{4}\\
+	=& \frac{n^2(n+1)^2}{4}
+\end{align*}
+
+\section*{Q.13}
+\begin{align*}
+	\sum_{k = 0}^{m} \lfloor \sqrt{k} \rfloor =& \lfloor \sqrt{0} \rfloor + \lfloor \sqrt{1} \rfloor + \lfloor \sqrt{2} \rfloor + \cdots + \lfloor \sqrt{m} \rfloor\\
+	=& (1^2 - 0^2) \times 0 + (2^2 - 1^2) \times 1 + (3^2 - 2^2) \times 2 + \cdots
+\end{align*}
+
+Let $n = \lfloor \sqrt{m} \rfloor$, we have
+\begin{align*}
+	\sum_{k = 0}^{m} \lfloor \sqrt{k} \rfloor =& (1^2 - 0^2) \times 0 + (2^2 - 1^2) \times 1 + \cdots + (n^2 - (n-1)^2) \cdot (n - 1)\\
+	 &+ (m - n^2 + 1) \cdot n\\
+	=& \sum_{k = 0}^{n - 1} [(k+1)^2 - k^2] \cdot k + (m - n^2 + 1) \cdot n\\
+	=& \sum_{k = 0}^{n - 1} [2k^2 + k] + (m - n^2 + 1) \cdot n\\
+	=& \frac{2n(n-1)(2n-1)}{6} + \frac{n(n-1)}{2} + (m - n^2 + 1) \cdot n\\
+	=& \frac{n(n-1)(4n+1)}{6} + (m - n^2 + 1) \cdot n\\
+	=& -\frac{n(n-1)(2n+5)}{6} + mn\\
+	=& -\frac{\lfloor \sqrt{m} \rfloor(\lfloor \sqrt{m} \rfloor-1)(2\lfloor \sqrt{m} \rfloor+5)}{6} + m\lfloor \sqrt{m} \rfloor\\
+\end{align*}
+
+\section*{Q.14}
+\begin{proof}
+$ $
+
+Let $A$ be a countable set and $B$ be a subset of $A$, denoted by $B \subseteq A$.
+
+\textbf{Case 1: $B$ is finite:} 
+
+Then $B$ is obviously countable.
+
+\textbf{Case 2: $B$ is infinite:} 
+
+Since $B$ is a subset of $A$, the mapping $f(x) = x$ from $B$ to $A$ is a one-to-one function.
+Hence, $|B| \leq |A| = |\mathbb{N}^+|$. 
+
+Let $A = \{a_1, a_2, a_3, \cdots\}$.
+For every $a_n \in B$, assume $a_n$ is the $m$th element in $B$, then we can define a mapping $g(m) = a_n$ from $\mathbb{N^+}$ to $B$, which is also a one-to-one function.
+Hence, $|B| \geq |\mathbb{N}^+|$.
+
+Therefore, we have $|B| = |\mathbb{N}^+|$, which means $B$ is countable.
+\end{proof}
+
+\section*{Q.15}
+\begin{proof}
+$ $
+
+If the sets are finite, then it is obviously true.
+
+If the sets are infinite, since $|A| = |B|$ and $|B| = |C|$, we can find a one-to-one function $f_1$ from $A$ to $B$ and a one-to-one function $f_2$ from $B$ to $C$.
+Therefore, the mapping $f_2 \circ f_1$ from $A$ to $C$ is also a one-to-one function.
+
+Also, we can find a one-to-one function $g_1$ from $B$ to $A$ and a one-to-one function $g_2$ from $C$ to $B$.
+Therefore, the mapping $g_1 \circ g_2$ from $C$ to $A$ is also a one-to-one function.
+
+Hence, we have $|A| = |C|$.
+\end{proof}
+
+\section*{Q.16}
+\begin{proof}
+$ $
+
+If the sets are finite, then it is obviously true.
+
+If the sets are infinite, since $|A| \leq |B|$ and $|B| \leq |C|$,we can find a one-to-one function $f_1$ from $A$ to $B$ and a one-to-one function $f_2$ from $B$ to $C$.
+Therefore, the mapping $f_2 \circ f_1$ from $A$ to $C$ is also a one-to-one function.
+
+Hence, we have $|A| \leq |C|$.
+\end{proof}
+
+\section*{Q.17}
+
+True.
+
+\begin{proof}[Proof by contradiction]
+$ $
+
+Let us assume $A - B$ is a countable set.
+Let $A - B = \{a_1,a_2,a_3,\cdots\}$ and $B = \{b_1,b_2,b_3,\cdots\}$, we can find such mapping $f$:
+\begin{align*}
+	f(a_n) =& n\\
+	f(b_n) =& -n
+\end{align*}
+
+Since $(A - B) \cup B = A$, $f$ is a mapping from $A$ to $\mathbb{Z} \backslash \{0\}$.
+We can infer that $|A| \leq |\mathbb{Z}|$.
+Therefore, $A$ is a countable set, which contradicts the fact that $A$ is an uncountable set.
+\end{proof}
+
+\section*{Q.18}
+\begin{proof}
+$ $
+
+Let $A = \{x\ |\ x \in [0,1]\ \text{and}\ x\in \mathbb{R}\}$ and $B = \{x\ |\ x \in (0,1)\ \text{and}\ x\in \mathbb{R}\}$.
+
+Mapping $f(x) = x$ from $B$ to $A$ is a one-to-one function.
+Therefore, $|B| \leq |A|$.
+
+Mapping $g(x) = \frac{x}{2} + \frac{1}{4}$ from $A$ to $B$ is a one-to-one function.
+Therefore, $|A| \leq |B|$.
+
+Using the Schröder-Bernstein theorem, we have $|A| = |B|$.
+Equivalently, we can say that $[0,1]$ and $(0,1)$ have the same cardinality.
+\end{proof}
+
+\section*{Q.19}
+\begin{proof}
+$ $
+
+First, we show that $f(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0 = O(x^n)$.
+\begin{align*}
+	|f(x)| =& |a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0|\\
+	\leq& |a_n| x^n + |a_{n-1}| x^{n-1} + \cdots + |a_1| x + |a_0|\\
+	\leq& (|a_n| + |a_{n-1}| + \cdots + |a_1| + |a_0|) x^n\\
+	=& c \cdot x^n
+\end{align*}
+
+We can conclude that:
+\begin{equation*}
+	|f(x)| \leq c \cdot x^n
+\end{equation*}
+
+Then, we show that $f(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0 = \Omega(x^n)$.
+\begin{align*}
+	|f(x)| =& |a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0|\\
+	=& |a_n + a_{n-1} x^{-1} + \cdots + a_1 x^{1-n} + a_0 x^{-n}| \cdot x^n\\
+	\geq& \big| |a_n| - |a_{n-1} x^{-1} + \cdots + a_1 x^{1-n} + a_0 x^{-n}| \big| \cdot x^n
+\end{align*}
+
+$|a_{n-1} x^{-1} + \cdots + a_1 x^{1-n} + a_0 x^{-n}|$ approaches 0 as $x$ approaches infinity.
+Since $a_n \ne 0$, we can find a $c$ that $0 < c < |a_n|$ and $|a_n| - |a_{n-1} x^{-1} + \cdots + a_1 x^{1-n} + a_0 x^{-n}| \geq c$ when $x$ is large enough.
+Therefore, we have:
+\begin{equation*}
+	|f(x)| \geq c \cdot x^n
+\end{equation*}
+
+Therefore, we have $f(x) = \Theta(x^n)$.
+\end{proof}
+
+\section*{Q.20}
+\begin{proof}
+$ $
+
+First, we show that $n \log n = O(\log n!)$.
+\begin{align*}
+	2 \log n! =& 2(\log 1 + \log 2 + \cdots + \log n)\\
+	=& (\log 1 + \log n) + [\log 2 + \log (n-1)] + \cdots + (\log n + \log 1)\\
+	=& \sum_{k = 1}^{n} \log [k \cdot (n + 1 - k)]\\
+	=& \sum_{k = \frac{n - 1}{2}}^{\frac{1 - n}{2}} \log [(\frac{n + 1}{2} - k) \cdot (\frac{n + 1}{2} + k)]\\
+	=& \sum_{k = \frac{n - 1}{2}}^{\frac{1 - n}{2}} \log [(\frac{n + 1}{2})^2 - k^2]
+\end{align*}
+
+It's obvious that the term $(\frac{n + 1}{2})^2 - k^2$ reach its maximum when $k = 0$, and reach its minimum when $k = \frac{n - 1}{2}$ or $k = \frac{1 - n}{2}$.
+Therefore, we have:
+
+\begin{align*}
+	2 \log n! =& \sum_{k = \frac{n - 1}{2}}^{\frac{1 - n}{2}} \log [(\frac{n + 1}{2})^2 - k^2]\\
+	\geq& \sum_{k = \frac{n - 1}{2}}^{\frac{1 - n}{2}} \log [(\frac{n + 1}{2})^2 - (\frac{n - 1}{2})^2]\\
+	=& \sum_{k = \frac{n - 1}{2}}^{\frac{1 - n}{2}} \log n\\
+	=& n \log n\\
+\end{align*}
+
+We can conclude that:
+\begin{equation*}
+	n \log n \leq 2 \log n!
+\end{equation*}
+
+Then, we show that $n \log n = \Omega(\log n!)$.
+\begin{align*}
+	n^n \geq&\ n!\\
+	\log n^n \geq& \log n!\\
+	n \log n \geq& \log n!
+\end{align*}
+
+Since $\log n! \leq n \log n \leq 2 \log n!$, we have $n \log n = \Theta(\log n!)$.
+\end{proof}
+
+\section*{Q.21}
+
+\subsection*{(1)}
+\begin{proof}
+$ $
+
+\begin{align*}
+	(\sqrt{2})^{\log_2 n} =& 2^{\frac{1}{2} \log_2 n}\\
+	=& 2^{\log_2 \sqrt{n}}\\
+	=& \sqrt{n}\\
+	=& O(\sqrt{n})
+\end{align*}
+\end{proof}
+
+\subsection*{(2)}
+\begin{equation*}
+	(\log n)^2,\ 2^{\sqrt{\log_2 n}},\ n(\log n)^{1001},\ n^{1.0001},\ (1.0001)^n,\ n^n
+\end{equation*}
+
+\section*{Q.22}
+
+\subsection*{(1)}
+\begin{equation*}
+	f(n) = O(g(n))
+\end{equation*}
+
+\subsection*{(2)}
+\begin{equation*}
+	f(n) = \Omega(g(n))
+\end{equation*}
+
+\subsection*{(3)}
+\begin{equation*}
+	f(n) = \Omega(g(n))
+\end{equation*}
+
+\subsection*{(4)}
+\begin{equation*}
+	f(n) = O(g(n))
+\end{equation*}
+
+\subsection*{(5)}
+\begin{equation*}
+	f(n) = \Theta(g(n))
+\end{equation*}
+
+\subsection*{(6)}
+\begin{equation*}
+	f(n) = O(g(n))
+\end{equation*}
+
+\subsection*{(7)}
+\begin{equation*}
+	f(n) = \Omega(g(n))
+\end{equation*}
+
+\section*{Q.23}
+
+\subsection*{(1)}
+
+True.
+
+\begin{proof}
+$ $
+
+Assume $T_1(n) \leq c_1 \cdot f(n)$ for $n \geq n_1$ and $T_2(n) \leq c_2 \cdot f(n)$ for $n \geq n_2$.
+Then we have $T_1(n) + T_2(n) \leq  (c_1 + c_2) \cdot f(n)$ for $n \geq \max(n_1, n_2)$.
+Therefore, we have $T_1(n) + T_2(n) = O(f(n))$.
+\end{proof}
+
+\subsection*{(2)}
+
+False.
+
+\begin{proof}[Disproof]
+$ $
+
+Let $f(n) = n^2$, $T_1(n) = n^2$ and $T_2(n) = n$.
+Then we have $\frac{T_1(n)}{T_2(n)} = n$, which is not in $O(1)$.
+\end{proof}
+
+\subsection*{(3)}
+
+False.
+
+\begin{proof}[Disproof]
+$ $
+
+Let $f(n) = n^2$, $T_1(n) = n^2$ and $T_2(n) = n$.
+Then $T_1(n)$ is not in $O(T_2(n))$.
+\end{proof}
+
+\section*{Q.24}
+
+A, C, and E.
+
+\begin{proof}
+$ $
+
+Let the \textit{3SAT} problem be $L_0$.
+
+Since the \textit{3SAT} problem is NP-complete, we can infer that for every $L$ in \textit{NP}, there exists a polynomial-time reduction $f$ from $L$ to $L_0$.
+Equivalently, we have $L \leq_p L_0$ for every $L$ in \textit{NP}.
+Since $L_0$ is solvable in $O(n^8)$, we can infer that every $L$ in \textit{NP} is solvable in polynomial time, which means \textit{NP} = \textit{P}.
+Hence, A, C, and E are true.
+
+Since the transformation function in $f$ is in polynomial time but not necessarily in $O(n^8)$ time, we can't say that every $L$ in \textit{NP} is solvable in $O(n^8)$ time.
+Hence, B is false.
+
+By limiting the input of the \textit{3SAT} problem, we can create another NP-complete problem $L_1$ that is solvable in $O(n^7)$ time.
+It's obvious the transformation function is in $O(1)$ time.
+Therefore, we can infer that $L_1$ is solvable in $O(n^7)$ time, which is faster than $O(n^8)$ time.
+Hence, D is false.
+\end{proof}
+\end{document}

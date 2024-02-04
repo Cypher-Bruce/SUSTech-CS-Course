@@ -1,0 +1,2 @@
+irreflexive
+poset

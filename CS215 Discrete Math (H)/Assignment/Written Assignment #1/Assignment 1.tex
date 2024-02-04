@@ -1,0 +1,509 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,amssymb}
+
+\newtheorem{lemma}{Lemma}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Discrete Mathematics(H): Assignment 1}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Discrete Mathematics(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 1}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Q.1}
+
+\subsection*{(a)}
+\begin{equation*}
+	p \wedge \neg q 
+\end{equation*}
+
+\subsection*{(b)}
+\begin{equation*}
+	p \to q
+\end{equation*}
+
+\subsection*{(c)}
+\begin{equation*}
+	\neg p \to \neg q
+\end{equation*}
+
+\subsection*{(d)}
+\begin{equation*}
+	p \to q
+\end{equation*}
+
+\subsection*{(e)}
+\begin{equation*}
+	q \to p
+\end{equation*}
+
+\section*{Q.2}
+
+\subsection*{(a)}
+\begin{center}
+	\begin{tabular}{cccccc}
+		\toprule
+		 & & \multicolumn{4}{c}{$(p \leftrightarrow q) \oplus (\neg p \leftrightarrow q)$}\\
+		 \cmidrule(lr){3-6}
+		$p$ & $q$ & $\neg p$ & $p \leftrightarrow q$ & $\neg p \leftrightarrow q$ & $(p \leftrightarrow q) \oplus (\neg p \leftrightarrow q)$ \\
+		\midrule
+		F & F & T & T & F & T\\
+		F & T & T & F & T & T\\
+		T & F & F & F & T & T\\
+		T & T & F & T & F & T\\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection*{(b)}
+\begin{center}
+	\begin{tabular}{cccccc}
+		\toprule
+		& & \multicolumn{4}{c}{$(p \oplus q) \wedge (p \oplus \neg q)$}\\
+		\cmidrule(lr){3-6}
+		$p$ & $q$ & $\neg q$ & $p \oplus q$ & $p \oplus \neg q$ & $(p \oplus q) \wedge (p \oplus \neg q)$ \\
+		\midrule
+		F & F & T & F & T & F\\
+		F & T & F & T & F & F\\
+		T & F & T & T & F & F\\
+		T & T & F & F & T & F\\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section*{Q.3}
+
+\subsection*{(a)}
+Equivalent.
+\begin{center}
+	\begin{tabular}{cccccccc}
+		\toprule
+		& & & \multicolumn{3}{c}{$(p \to q) \vee  (p \to r)$} & \multicolumn{2}{c}{$p \to (q \vee r)$}\\
+		\cmidrule(lr){4-6} \cmidrule(lr){7-8}
+		$p$ & $q$ & $r$ & $p \to q$ & $p \to r$ & $(p \to q) \vee  (p \to r)$ & $q \vee r$ & $p \to (q \vee r)$ \\
+		\midrule
+		F & F & F & T & T & T & F & T \\
+		F & F & T & T & T & T & T & T \\
+		F & T & F & T & T & T & T & T \\
+		F & T & T & T & T & T & T & T \\
+		T & F & F & F & F & F & F & F \\
+		T & F & T & F & T & T & T & T \\
+		T & T & F & T & F & T & T & T \\
+		T & T & T & T & T & T & T & T \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection*{(b)}
+Not equivalent.
+\begin{center}
+	\begin{tabular}{ccccccc}
+		\toprule
+		& & & \multicolumn{2}{c}{$(p \to q)\to r$} & \multicolumn{2}{c}{$p \to (q \to r)$}\\
+		\cmidrule(lr){4-5} \cmidrule(lr){6-7}
+		$p$ & $q$ & $r$ & $p \to q$ & $(p \to q)\to r$ & $q \to r$ & $p \to (q \to r)$ \\
+		\midrule
+		F & F & T & T & T & T & T \\
+		F & T & F & T & F & F & T \\
+		F & T & T & T & T & T & T \\
+		T & F & F & F & T & T & T \\
+		T & F & T & F & T & T & T \\
+		T & T & F & T & F & F & F \\
+		T & T & T & T & T & T & T \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection*{(c)}
+Equivalent.
+\begin{center}
+	\begin{tabular}{cccccccc}
+		\toprule
+		& & & \multicolumn{2}{c}{$(p \vee q) \to r$} & \multicolumn{3}{c}{$(p \to r) \wedge (q \to r)$}\\
+		\cmidrule(lr){4-5} \cmidrule(lr){6-8}
+		$p$ & $q$ & $r$ & $p \vee q$ & $(p \vee q)\to r$ & $p \to r$ & $q \to r$ & $(p \to r)\wedge(q \to r)$\\
+		\midrule
+		F & F & F & F & T & T & T & T\\
+		F & F & T & F & T & T & T & T\\
+		F & T & F & T & F & T & F & F\\
+		F & T & T & T & T & T & T & T\\
+		T & F & F & T & F & F & T & F\\
+		T & F & T & T & T & T & T & T\\
+		T & T & F & T & F & F & F & F\\
+		T & T & T & T & T & T & T & T\\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section*{Q.4}
+
+\subsection*{(a)}
+\begin{proof}
+	\begin{align*}
+		\neg p \to (q \to r) &\equiv \neg p \to (\neg q \vee r)\\
+		& \equiv p \vee (\neg q \vee r)\\
+		& \equiv \neg q \vee (p \vee r)\\
+		& \equiv q \to (p \vee r)
+	\end{align*}
+\end{proof}
+
+\subsection*{(b)}
+\begin{proof}
+	\begin{align*}
+		(p \to q) \to ((r \to p) \to (r \to q)) & \equiv \neg (p \to q) \vee ((r \to p) \to (r \to q))\\
+		& \equiv \neg (p \to q) \vee (\neg (r \to p) \vee (r \to q))\\
+		& \equiv (\neg (p \to q) \vee \neg (r \to p)) \vee (r \to q)\\
+		& \equiv \neg ((p \to q) \wedge (r \to p)) \vee (r \to q)\\
+		& \equiv \neg (r \to q) \vee (r \to q)\\
+		& \equiv T
+	\end{align*}
+	Since the statement is always true, it is a tautology.
+\end{proof}
+
+\section*{Q.5}
+
+\begin{proof}
+	\begin{align*}
+		(q \to (r \vee p)) \to ((\neg r \vee s) \wedge  \neg s) & \equiv \neg (q \to (r \vee p)) \vee ((\neg r \vee s) \wedge  \neg s)\\
+		& \equiv \neg (\neg q \vee (r \vee p)) \vee ((\neg r \vee s) \wedge  \neg s)\\
+		& \equiv (q \wedge \neg (r \vee p)) \vee ((\neg r \vee s) \wedge  \neg s)\\
+		& \equiv (q \wedge (\neg r \wedge \neg p)) \vee ((\neg r \vee s) \wedge  \neg s)\\
+		& \equiv (\neg r \wedge (q \wedge \neg p)) \vee ((\neg r \vee s) \wedge  \neg s)\\
+		& \equiv (\neg r \wedge (q \wedge \neg p)) \vee ((\neg r \wedge \neg s) \vee (s \wedge \neg s))\\
+		& \equiv (\neg r \wedge (q \wedge \neg p)) \vee ((\neg r \wedge \neg s) \vee F)\\
+		& \equiv (\neg r \wedge (q \wedge \neg p)) \vee (\neg r \wedge \neg s)\\
+		& \equiv \neg r \wedge ((q \wedge \neg p) \vee \neg s)
+	\end{align*}
+	The original statement implies $\neg r$ now becomes 
+	\begin{equation*}
+		\neg r \wedge ((q \wedge \neg p) \vee \neg s) \to \neg r
+	\end{equation*}
+	which is a tautology. (Simplification rule)
+\end{proof}
+
+\section*{Q.6}
+\subsection*{(a)}
+\begin{equation*}
+	\forall x F(x, Fred)
+\end{equation*}
+
+\subsection*{(b)}
+\begin{equation*}
+	\forall x \exists y F(x, y)
+\end{equation*}
+
+\subsection*{(c)}
+\begin{equation*}
+	\neg \exists x \forall y F(x, y)
+\end{equation*}
+
+\subsection*{(d)}
+\begin{equation*}
+	\forall y \exists x F(x, y)
+\end{equation*}
+
+\subsection*{(e)}
+\begin{equation*}
+	\neg \exists x (F(x, Fred) \wedge F(x, Jerry))
+\end{equation*}
+
+\subsection*{(f)}
+\begin{equation*}
+	\exists x \exists y (F(Nancy, x) \wedge F(Nancy, y) \wedge x \neq y \wedge \forall z(F(Nancy, z) \to (z = x \vee z = y)))
+\end{equation*}
+
+\subsection*{(g)}
+\begin{equation*}
+	\exists y (\forall x F(x, y) \wedge \forall z (\forall x F(x, z) \to z = y))
+\end{equation*}
+
+\subsection*{(h)}
+\begin{equation*}
+	\exists x \exists y (F(x, y) \wedge \forall z (F(x, z) \to z = y) \wedge x \neq y)
+\end{equation*}
+
+\section*{Q.7}
+
+\subsection*{(1)}
+\begin{equation*}
+	\forall x \exists y \exists z Parent(y, x) \wedge Parent(z, x) \wedge x \neq y \wedge x \neq z \wedge y \neq z
+\end{equation*}
+
+\subsection*{(2)}
+\begin{equation*}
+	Parent(x, y) \vee \exists z (Parent(z, y) \wedge Ancestor(x, z)) \to Ancestor(x, y)
+\end{equation*}
+
+\section*{Q.8}
+
+\subsection*{(a)}
+\begin{align*}
+	\neg (\exists x \exists y P(x,y) \wedge \forall x \forall y Q(x,y)) & \equiv \neg \exists x \exists y P(x,y) \vee \neg \forall x \forall y Q(x,y)\\
+	& \equiv \forall x \forall y \neg P(x,y) \vee \exists x \exists y \neg Q(x,y)\
+\end{align*}
+
+\subsection*{(b)}
+\begin{align*}
+	\neg (\forall x \exists y P(x,y) \vee \forall x \exists y Q(x,y)) & \equiv \neg \forall x \exists y P(x,y) \wedge \neg \forall x \exists y Q(x,y)\\
+	& \equiv \exists x \forall y \neg P(x,y) \wedge \exists x \forall y \neg Q(x,y)
+\end{align*}
+
+\subsection*{(c)}
+\begin{align*}
+	\neg (\forall x \exists y (P(x,y) \to Q(x,y))) & \equiv \neg \forall x \exists y (\neg P(x,y) \vee Q(x,y))\\
+	& \equiv \exists x \forall y \neg (\neg P(x,y) \vee Q(x,y))\\
+	& \equiv \exists x \forall y (P(x,y) \wedge \neg Q(x,y))
+\end{align*}
+
+\section*{Q.9}
+\begin{proof}
+	$ $\\
+	\begin{center}
+		\begin{tabular}{ll}
+			\toprule
+			Step & Reason\\
+			\midrule
+			1. $\exists x \forall y P(x,y)$ & Premise\\
+			2. $\forall y P(x_0,y)$ & Existential instantiation from 1\\
+			3. $P(x_0,y_0)$ & Universal instantiation from 2\\
+			4. $\exists x P(x,y_0)$ & Existential generalization from 3\\
+			5. $\forall y \exists x P(x,y)$ & Universal generalization from 4\\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	Hence, we can conclude that $\exists x \forall y P(x,y) \to \forall y \exists x P(x,y)$ is a tautology.
+\end{proof}
+
+\section*{Q.10}
+Let $Dis(x)$ means $x$ has taken a course in discrete mathematics and $Alg(x)$ means $x$ can take a course in algorithm.
+And we assume that the domain consists of all students.
+Then the premises can be written as:
+\begin{equation*}
+	\forall x (Dis(x) \to Alg(x)) , Dis(A) , Dis(B) , Dis(C) , Dis(D) , Dis(E)
+\end{equation*}
+The process of deduction for $A$ is as follows:
+\begin{center}
+	\begin{tabular}{ll}
+		\toprule
+		Step & Reason\\
+		\midrule
+		1. $\forall x (Dis(x) \to Alg(x))$ & Premise\\
+		2. $Dis(A) \to Alg(A)$ & Universal instantiation from 1\\
+		3. $Dis(A)$ & Premise\\
+		4. $Alg(A)$ & Modus ponens from 2 and 3\\
+		\bottomrule
+	\end{tabular}
+\end{center}
+Since this is true for each of $A$, $B$, $C$, $D$ and $E$, we can conclude that
+\begin{equation*}
+	Alg(A) \wedge Alg(B) \wedge Alg(C) \wedge Alg(D) \wedge Alg(E) \qquad \text{(Reason: Conjunction)}
+\end{equation*}
+
+\section*{Q.11}
+
+\subsection*{(a)}
+\begin{proof}
+	\begin{align*}
+		P & \equiv \neg(p \leftrightarrow (q \vee \neg p))\\
+		& \equiv \neg((p \wedge (q \vee \neg p)) \vee (\neg p \wedge \neg (q \vee \neg p)))\\
+		& \equiv \neg((p \wedge (q \vee \neg p)) \vee (\neg p \wedge (\neg q \wedge p)))\\
+		& \equiv \neg((p \wedge q) \vee (p \wedge \neg p) \vee ((\neg p \wedge p) \wedge \neg q))\\
+		& \equiv \neg((p \wedge q) \vee F \vee (F \wedge \neg q))\\
+		& \equiv \neg((p \wedge q) \vee F \vee F)\\
+		& \equiv \neg(p \wedge q)\\
+		& \equiv \neg p \vee \neg q
+	\end{align*}
+\end{proof}
+
+\subsection*{(b)}
+\begin{proof}
+	$ $\\
+	\begin{center}
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{cccccccccccccccccc}
+				\toprule
+				 & & No T & \multicolumn{4}{c}{one T} & \multicolumn{6}{c}{two Ts} & \multicolumn{4}{c}{three Ts} & four Ts\\
+				\cmidrule(lr){3-3} \cmidrule(lr){4-7} \cmidrule(lr){8-13} \cmidrule(lr){14-17} \cmidrule(lr){18-18}
+				$p$ & $q$ & $p \wedge \neg p$ & $\neg p \wedge \neg q$ & $\neg p \wedge q$ & $p \wedge \neg q$ & $p \wedge q$ & $\neg p \wedge \neg p$ & $\neg q \wedge \neg q$ & $p \leftrightarrow q$ & $\neg p \leftrightarrow q$ & $q \wedge q$ & $p \wedge p$ & $\neg p \vee \neg q$ & $\neg p \vee q$ & $p \vee \neg q$ & $p \vee q$ & $p \vee \neg p$ \\
+				\midrule
+				F & F & F & T & F & F & F & T & T & T & F & F & F & T & T & T & F & T \\
+				F & T & F & F & T & F & F & T & F & F & T & T & F & T & T & F & T & T \\ 
+				T & F & F & F & F & T & F & F & T & F & T & F & T & T & F & T & T & T \\ 
+				T & T & F & F & F & F & T & F & F & T & F & T & T & F & T & T & T & T \\
+				\bottomrule
+			\end{tabular}
+		}
+	\end{center}
+
+	As listed above, statement in the form of $A \square B$ can produce all possible truth tables consist of two atomic propositions, where $\square$ is one of $\wedge$, $\vee$, $\leftrightarrow$, and $A$ and $B$ are chosen from $\{ p, \neg p, q, \neg q \}$.
+	For each possible proposition $P$ consist of atomic propositions $p$ and $q$, we can find a statement $A \square B$ that has the same truth table as $P$, which means that $P$ is logically equivalent to $A \square B$.
+\end{proof}
+
+\section*{Q.12}
+
+\begin{proof}[Disproof]
+	$ $\\
+	When $a = 2$ and $b = \frac{1}{2}$, $a^b = \sqrt{2}$ which is an irrational number.
+\end{proof}
+
+\section*{Q.13}
+
+\subsection*{(1)}
+\begin{proof}[Disproof]
+	$ $\\
+	When $a = e$ and $b = \ln 2$, $a^b = 2$ which is a rational number.
+\end{proof}
+
+\subsection*{(2)}
+\begin{proof}[Proof by contrapositive]
+	$ $\\
+	If $\sqrt{a}$ is a rational number, we can write $\sqrt{a} = \frac{m}{n}$ where $m,n \in Z$. 
+	Then we can infer that $a = (\sqrt{a})^2 = \frac{m^2}{n^2}$.
+	Therefore, $a$ is a rational number.
+\end{proof}
+
+\section*{Q.14}
+\begin{proof}[Proof by contradiction]
+	$ $\\
+	We assume that $\sqrt[3]{2}$ is a rational number. 
+	Then we can write $\sqrt[3]{2} = \frac{m}{n}$ where $m,n \in Z$.
+	Without loss of generality, we assume that $\text{gcd} (m,n) = 1$.
+	Since $(\sqrt[3]{2})^3 = 2 = \frac{m^3}{n^3}$, we can infer that $m^3 = 2n^3$.
+	Then $m^3$ is an even number, which means $m$ is also an even number.
+	Let $m = 2k$ where $k \in Z$, then $m^3 = 8k^3 = 2n^3$.
+	Hence, we have $n^3 = 4k^3$, which means $n^3$ is an even number, which means $n$ is also an even number.
+	Since both $m$ and $n$ are even numbers, $\text{gcd} (m,n)$ is at least 2, which contradicts with our original assumption.
+\end{proof}
+
+\section*{Q.15}
+\begin{proof}
+	\begin{lemma}
+		\label{lemma:1}
+		For any rational number $r$ and any irrational number $s$, $r + s$ is irrational.
+		\begin{proof}[Proof by contradiction]
+			$ $\\
+			We assume that $r + s$ is a rational number. 
+			Then we can write $r + s = \frac{m_1}{n_1} + s = \frac{m_2}{n_2}$ where $m_1,m_2,n_1,n_2 \in Z$.
+			We can infer that $s = \frac{m_2}{n_2} - \frac{m_1}{n_1} = \frac{m_2n_1-m_1n_2}{n_1n_2}$, which means $s$ is a rational number.
+			This contradicts with our premise.
+		\end{proof}
+	\end{lemma}
+
+	\begin{lemma}
+		\label{lemma:2}
+		For any rational number $r$ and any irrational number $s$, $r \cdot s$ is irrational.
+		\begin{proof}[Proof by contradiction]
+			$ $\\
+			We assume that $r \cdot s$ is a rational number. 
+			Then we can write $r \cdot s = \frac{m_1}{n_1} \cdot s = \frac{m_2}{n_2}$ where $m_1,m_2,n_1,n_2 \in Z$.
+			We can infer that $s = \frac{m_2}{n_2} \cdot \frac{n_1}{m_1} = \frac{m_2n_1}{m_1n_2}$, which means $s$ is a rational number.
+			This contradicts with our premise.
+		\end{proof}
+	\end{lemma}
+	For any rational number $a$ and $b$, assuming $a < b$ without loss of generality, we can always find a number $c = a + \frac{\sqrt{2}}{2} |a - b|$ that satisfies $a < c < b$.
+	And since lemma \ref{lemma:1} and lemma \ref{lemma:2} have proved that the sum and product of a rational number and an irrational number is irrational, we can infer that $c$ is an irrational number.
+\end{proof}
+
+\section*{Q.16}
+\begin{proof}[Proof by cases]
+	$ $\\
+	If $a^2+b^2$ is even, then $a^2$ and $b^2$ must be both even or both odd, which means $a$ and $b$ must be both even or both odd.
+	
+	\textbf{Case 1:} $a$ and $b$ are both even.\\
+	Let $a = 2m$ and $b = 2n$ where $m,n \in Z$, then $a + b = 2m + 2n = 2 (m + n)$, which means $a + b$ is even.
+
+	\textbf{Case 2:} $a$ and $b$ are both odd.\\
+	Let $a = 2m + 1$ and $b = 2n + 1$ where $m,n \in Z$, then $a + b = 2m + 1 + 2n + 1 = 2 (m + n + 1)$, which means $a + b$ is even.
+\end{proof}
+
+\section*{Q.17}
+\begin{proof}[Proof by contradiction]
+	$ $\\
+	If one real root is neither an integer nor an irrational number, then it must be a fractional number.
+	In that case, we assume that there exist two integers $m$ and $h$ such that $\text{gcd} (m,h) = 1$ and $|h| \ne 1$ or $0$, and the real root can be expressed as $\frac{m}{h}$.
+	Then we can rewrite the equation as 
+	\begin{align*}
+		f(\frac{m}{h}) &= a_0 + a_1\frac{m}{h} + a_2\frac{m^2}{h^2} + \cdots + a_{n-1}\frac{m^{n-1}}{h^{n-1}} + \frac{m^n}{h^n}\\
+		&= a_0 + \frac{a_1}{h}m + \frac{a_2}{h^2}m^2 + \cdots + \frac{a_{n-1}}{h^{n-1}}m^{n-1} + \frac{1}{h^n}m^n\\
+		&= 0
+	\end{align*}
+	Then we move the last term $\frac{1}{h^n}m^n$ to the other side
+	\begin{equation*}
+		- \frac{1}{h^n}m^n = a_0 + \frac{a_1}{h}m + \frac{a_2}{h^2}m^2 + \cdots + \frac{a_{n-1}}{h^{n-1}}m^{n-1}
+	\end{equation*}
+	We multiply both sides by $h^n$
+	\begin{align*}
+		-m^n &= a_0h^n + a_1h^{n-1}m + a_2h^{n-2}m^2 + \cdots + a_{n-1}hm^{n-1} \\
+		&= h(a_0h^{n-1} + a_1h^{n-2}m + a_2h^{n-3}m^2 + \cdots + a_{n-1}m^{n-1})
+	\end{align*}
+	Since all variables are integers, $a_0h^{n-1} + a_1h^{n-2}m + a_2h^{n-3}m^2 + \cdots + a_{n-1}m^{n-1}$ is also an integer.
+	This means $h$ is a factor of $m^n$.
+
+	If we consider the prime factorization of $h$, we can write $|h| = p_1^{f_1}p_2^{f_2}\cdots p_k^{f_k}$ where $p_1,p_2,\cdots,p_k$ are prime numbers and $f_1,f_2,\cdots,f_k$ are non-negative integers.
+	Since $|h| \ne 1$ or $0$, there must exist at least one $f_i$ that is not equal to $0$.
+	Without loss of generality, we assume that $f_1 \ne 0$.
+	Then we can infer that $p_1^{f_1}$ is a factor of $m^n$. 
+
+	\begin{lemma}
+		\label{lemma:3}
+		If a prime p is a factor of some power of an integer, then it is a factor of that integer.
+	\end{lemma}
+
+	By lemma \ref{lemma:3}, we can infer that $p_1$ is also a factor of $m$, which means $\text{gcd} (m,h) \geq p_1$
+	However, this contradicts with our original assumption that $\text{gcd} (m,h) = 1$.
+\end{proof}
+\end{document}
