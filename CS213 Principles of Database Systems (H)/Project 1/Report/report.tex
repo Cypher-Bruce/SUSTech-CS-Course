@@ -1,0 +1,314 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm}
+
+\usepackage{listings}
+\lstset{
+    breaklines     = true
+}
+
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Principles of Database Systems(H): Project 1 Report}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Principles of Database Systems(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Project 1 Report}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section{Introduction}
+DBMS(Database Management System) is a powerful tool that can perform data queries and updates efficiently. 
+To better understand the high efficiently of DBMS, this report presents experiments comparing the performance of DBMS and direct file access and manipulation. 
+
+To be precise, this report compares the execution time of retrieval test and update test between three different combinations: 
+a Java client application using PostgreSQL, a DataGrip client application using PostgreSQL and a Java program performing direct file access and manipulation.
+
+\section{Experiment Setup}
+
+\subsection{Environment}
+\begin{center}
+    \begin{tabular}{cc}
+        \toprule
+        Item & Model \\
+        \midrule
+        OS & Windows 11 22H2\\
+        CPU & Intel Core i9-12900H\\
+        Memory & 16 GB 4800 MHz DDR5\\
+        Storage & 1 TB SSD\\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\subsection{Data}
+The data used in this experiment comes from \href{https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset}{The Movies Dataset} on \href{https://www.kaggle.com/}{Kaggle}.
+The dataset is 943.76 MB in size and contains metadata for 45459 movies, including title, cast, crew, ratings, overview and other attributes.
+
+\subsection{Experiment Design}
+The experiment consists of two parts: retrieval test and update test.
+
+\subsubsection{Retrieval Test}
+The retrieval test is designed to compare the execution time of finding all movies with the word "XXX" in their titles.
+This repost uses the 34.45 MB movies\textunderscore metadata.csv file in the dataset.
+
+The retrieval test is conducted 10 times for each combination and the average execution time is calculated.
+When calculating the execution time using a Java client application, the execution time is calculated from the time the SQL statement is executed to the time the result set is received.
+When calculating the execution time using a DataGrip client application, this report uses the execution time shown in the console.
+When calculating the execution time using a Java program performing direct file access and manipulation, the execution time is calculated from the time when the program accesses the file to the time the result set is received.
+Also, the time of establishing the connection to the database is not included in the execution time.
+
+\subsubsection{Update Test}
+The update test is designed to compare the execution time of replacing all "To" in person name to "TTOO".
+This repost uses the 189.92 MB credits.csv file in the dataset.
+
+The update test is conducted 10 times for each combination and the average execution time is calculated.
+The way of calculating the execution time is the same as the retrieval test, except that there is no result set in the update test.
+
+\section{Results}
+\noindent
+Note: All the results are in milliseconds.
+
+\subsection{Retrieval Test}
+\begin{center}
+	\begin{tabular}{cccc}
+		\toprule
+		Test Case & DataGrip + PostgreSQL & Java + PostgreSQL & Java + File \\ 
+		\midrule
+        1 & 42 & 33 & 189 \\ 
+        2 & 38 & 32 & 177 \\ 
+        3 & 35 & 33 & 179 \\ 
+        4 & 34 & 31 & 181 \\ 
+        5 & 35 & 36 & 185 \\ 
+        6 & 33 & 30 & 186 \\ 
+        7 & 38 & 35 & 181 \\ 
+        8 & 40 & 40 & 162 \\ 
+        9 & 39 & 34 & 175 \\ 
+        10 & 33 & 37 & 179 \\ 
+        Avg & 36.7 & 34.1 & 179.4 \\ 
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection{Update Test}
+\begin{center}
+	\begin{tabular}{cccc}
+		\toprule
+		Test Case & DataGrip + PostgreSQL & Java + PostgreSQL & Java + File \\ 
+		\midrule
+        1 & 2313 & 1928 & 5360 \\ 
+        2 & 2560 & 1703 & 5642 \\ 
+        3 & 2004 & 1707 & 5604 \\ 
+        4 & 2386 & 1729 & 5389 \\ 
+        5 & 2049 & 1714 & 5592 \\ 
+        6 & 1978 & 1720 & 5512 \\ 
+        7 & 2137 & 1742 & 5674 \\ 
+        8 & 2376 & 2003 & 5429 \\ 
+        9 & 2085 & 1721 & 5679 \\ 
+        10 & 2090 & 1659 & 5607 \\ 
+        Avg & 2197.8 & 1762.6 & 5548.8 \\ 
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section{Conclusion}
+In retrieval test, the execution time using direct file access and manipulation is approximately four times longer than using PostgreSQL.
+In update test, it's approximately three times longer.
+
+Some possible reasons are listed below:
+
+\begin{enumerate}
+    \item PostgreSQL uses caching to store frequently accessed data in memory. 
+    Since accessing memory is much faster than accessing disk, when we run the same query again, the execution time will decrease.
+    This could be seen in both test where the execution time of the first test case is often longer than the rest.
+    \item PostgreSQL creates indexes to locate data more efficiently. 
+    Since indexes are also stored in memory, they are faster to access than file in disks, which also contribute to high efficiently of PostgreSQL.
+    \item By creating a table with different attributes, PostgreSQL can scan and search for data in certain column, while direct file access and manipulation has to traverse the whole file.
+\end{enumerate}
+
+\section{Extra Experiment}
+\subsection{Experiment Design}
+In addition to the experiments above, this report conducts two extra experiments:
+a traverse test and a retrieval test without PostgreSQL features by applying a function.
+
+\subsubsection{Traverse Test}
+In this experiment, the traverse time of PostgreSQL and direct file access and manipulation is compared.
+
+The test is conducted 10 times for each file and the average traverse time is calculated.
+When calculating the traverse time of PostgreSQL, this report uses the execution time of retrieving the whole table.
+When calculating the traverse time of Java program performing direct file access and manipulation, this report uses the time of reading the whole file by each line, splitting each line into a string array that corresponds to each attribute and write each line into result set.
+
+Since the result set would be large, the time of receiving the result set cannot be ignored in this experiment.
+However, in the combination of Java client application and PostgreSQL, the time of receiving the result set cannot be measured or excluded.
+Therefore, this experiment is not conducted in this combination.
+
+\subsubsection{Retrieval Test without PostgreSQL Features}
+In this experiment, the features of PostgreSQL are deliberately broken by applying a function to the column name in the 'where' clause.
+By doing so, the table content will be first modified by the function and then filtered by the 'where' clause.
+Therefore, caching and indexing will not be used in the filtering process.
+
+When calculating the retrieval time, this report compares the execution time to find all titles with the word 'man' in them with a normal SQL statement and a SQL statement with the function applied to the column name as mentioned above.
+Since no comparison with file access and manipulation is needed in this experiment, the test is only conducted in DataGrip.
+The test is conducted 10 times and the average time is calculated.
+When calculating the execution time, this report uses the execution time shown in the console.
+\subsection{Results}
+
+\noindent
+Note: All the results are in milliseconds.
+
+\subsubsection{Traverse Test}
+\begin{center}
+    \begin{tabular}{ccccc}
+        \toprule
+        \multirow{2}[3]{*}{Test Case} & \multicolumn{2}{c}{credits.csv} & \multicolumn{2}{c}{movies\textunderscore metadata.csv} \\ 
+        \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+        & DataGrip + PostgreSQL & Java + File & DataGrip + PostgreSQL & Java + File \\
+        \midrule
+        1 & 23 & 412 & 5 & 108 \\ 
+        2 & 16 & 474 & 5 & 116 \\ 
+        3 & 12 & 527 & 7 & 121 \\ 
+        4 & 11 & 421 & 8 & 107 \\ 
+        5 & 10 & 414 & 5 & 112 \\ 
+        6 & 12 & 421 & 5 & 106 \\ 
+        7 & 12 & 443 & 6 & 109 \\ 
+        8 & 11 & 445 & 4 & 107 \\ 
+        9 & 9 & 424 & 4 & 114 \\ 
+        10 & 11 & 412 & 4 & 109 \\ 
+        Avg & 12.7 & 439.3 & 5.3 & 110.9 \\ 
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\subsubsection{Retrieval Test without PostgreSQL Features}
+\begin{center}
+    \begin{tabular}{ccc}
+        \toprule
+        Test Case & Normal & Without PostgreSQL Features \\ 
+        \midrule
+        1 & 20 & 70 \\ 
+        2 & 19 & 66 \\ 
+        3 & 17 & 81 \\ 
+        4 & 18 & 69 \\ 
+        5 & 18 & 70 \\ 
+        6 & 17 & 72 \\ 
+        7 & 16 & 80 \\ 
+        8 & 21 & 66 \\ 
+        9 & 18 & 92 \\ 
+        10 & 18 & 84 \\ 
+        Avg & 18.2 & 75 \\ 
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\subsection{Conclusion}
+The traverse time of PostgreSQL is much shorter than direct file access and manipulation.
+The possible reasons could be caching which are the same as the reasons listed in the conclusion of the previous experiments.
+
+The retrieval time without PostgreSQL features is approximately four times longer than normal retrieval time.
+Therefore, we can conclude that the features of PostgreSQL contribute a lot to the high efficiency of PostgreSQL.
+\newpage
+\appendix
+\section{Code}
+This appendix contains SQL code used in this experiment.
+The Java code is available in attachment.
+\begin{lstlisting}[language=SQL, caption=SQL for Retrieval Test]
+    SELECT title 
+    FROM movies_metadata 
+    WHERE title LIKE '%XXX%';
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL, caption=SQL for Update Test]
+    UPDATE credits
+    SET crew = REPLACE(crew, 'To','TTOO')
+    WHERE crew LIKE E'%\'name\': \'%To%\'%';
+    UPDATE credits
+    SET "cast" = REPLACE("cast", 'To','TTOO')
+    WHERE "cast" LIKE E'%\'name\': \'%To%\'%';
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL, caption=SQL for Traverse Test(1)]
+    SELECT * FROM credits;
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL, caption=SQL for Traverse Test(2)]
+    SELECT * FROM movies_metadata;
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL, caption=SQL for Retrieval Test without PostgreSQL Features(1)]
+    SELECT title
+    FROM movies_metadata
+    WHERE UPPER(title) LIKE '% MAN %'
+    OR UPPER(title) LIKE 'MAN %'
+    OR UPPER(title) LIKE '% MAN';
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL, caption=SQL for Retrieval Test without PostgreSQL Features(2)]
+    SELECT title
+    FROM movies_metadata
+    WHERE title LIKE '% Man %'
+    OR title LIKE 'Man %'
+    OR title LIKE '% Man'
+    OR title LIKE '% man %'
+    OR title LIKE 'man %'
+    OR title LIKE '% man';
+\end{lstlisting}
+\end{document}

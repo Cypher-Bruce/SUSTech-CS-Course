@@ -1,0 +1,5 @@
+[plugins]
+spring-boot = { id = 'org.springframework.boot', version = '2.7.16' }
+spring-dependencyManagement = { id = 'io.spring.dependency-management', version = '1.0.15.RELEASE' }
+lombok = { id = 'io.freefair.lombok', version = '8.4' }
+shadow = { id = 'com.github.johnrengelman.shadow', version = '8.1.1' }

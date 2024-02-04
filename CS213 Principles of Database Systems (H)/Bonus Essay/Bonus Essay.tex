@@ -1,0 +1,59 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2cm, bottom = 2cm, left = 2.5cm, right = 2.5cm]{geometry} 
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+\begin{document}
+
+\begin{center}
+	{\Large \bf Bonus Essay} \\
+	\bf 吴梦轩
+\end{center}  
+
+OpenGuass 数据库是基于 PostgreSQL 开发的，因此其语法与 PostgreSQL 语法基本一致。
+我认为相比于其他特性， OpenGuass 数据库的一大创新优势在于其开发的AI自治运维和AI引擎。
+
+OpenGauss 将自己形容为一款“自治”（Autonomous）的数据库，这是因为其内置的 AI 工具可以完成自动优化系统、自动发现问题、自动诊断问题、自动给出解决方案并计算该方案置信度这样一整套流程，从而极大地减轻了运维人员的工作量。
+
+具体而言，OpenGauss 为其各个功能都研发了相应的 AI 组件\cite{10.14778/3476311.3476380}。
+针对查询优化，OpenGauss 开发了 Learned Optimizer，其组件包括 Learned Query Rewriter、Learned Cost Estimator 和 Learned Plan Generator，分别负责对 SQL 语句进行重写、估算 SQL 语句的执行代价和生成执行计划。
+针对系统自优化，OpenGauss 开发了 Learned Advisor，其组件可以完成慢SQL发现及原因诊断、系统指标异常发现及原因诊断和系统自动调参。
+值得一提的是，OpenGauss 为每个组件单独选择了不同的 AI 算法，例如 Learned Query Rewriter 采用了启发式搜索算法蒙特卡洛树搜索（MCTS），对于 Learned Cost Estimator 则采用了深度强化学习算法（deepRL）。
+
+
+在此之外，还有两个 AI 系统值得一提。
+一个是 MV Recommender，可以自动发现并推荐适合当前需求的材料化视图（Materialized View）。
+另一个是 Index Recommender，与前者类似，可以自动发现并推荐适合当前需求的索引，并提供了虚拟索引功能，即模拟创建索引后的优化效果，帮助用户决定是否真的需要创建索引。
+
+\vspace{0.5cm}
+
+OpenGauss 的其他优势还包括：
+\begin{itemize}
+	\item OpenGauss 针对企业级应用场景进行了优化，例如优化了多核性能，增加了对于分表分库的支持
+	\item 与 PostgreSQL 相比，OpenGauss 内置线程池，可以有效减少线程切换开销
+	\item 与 PostgreSQL 相比，OpenGauss 将默认密码加密算法从不安全的MD5算法替换为SHA-256算法。
+\end{itemize}
+
+\newpage
+
+\bibliographystyle{acm}
+\bibliography{reference}
+
+\end{document}
