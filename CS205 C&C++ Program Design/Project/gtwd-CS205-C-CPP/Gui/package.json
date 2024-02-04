@@ -1,0 +1,15 @@
+{
+  "name": "gtwd-gui",
+  "version": "1.0.0",
+  "description": "GUI for GTWD",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^28.0.0"
+  },
+  "dependencies": {
+    "node-cmd": "^5.0.0"
+  }
+}

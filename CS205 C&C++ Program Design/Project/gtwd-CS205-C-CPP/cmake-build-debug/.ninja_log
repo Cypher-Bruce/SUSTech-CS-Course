@@ -1,0 +1,17 @@
+# ninja log v5
+187	394	7270274263643620	CMakeFiles/gtwd.dir/Libraries/ConvertUTF.c.obj	2705c02fe772765f
+32	654	7270274266239464	CMakeFiles/gtwd.dir/Encoder/Pcm2wav.cpp.obj	b43197c564c30304
+21	557	7270309980660017	CMakeFiles/gtwd.dir/Encoder/Wav2flac.cpp.obj	25cc2b03d98323c8
+66	741	7270274267104613	CMakeFiles/gtwd.dir/Decoder/Wav2pcm.cpp.obj	a520b53852e259b3
+148	944	7270274269184984	CMakeFiles/gtwd.dir/Utils/MD5.cpp.obj	2e59d43e15ba36b7
+3	489	7270322047158728	CMakeFiles/gtwd.dir/Decoder/Flac2wav.cpp.obj	e0cd172906d11148
+168	849	7270274268209773	CMakeFiles/gtwd.dir/Utils/FileIO.cpp.obj	3cfec6069dd75c67
+108	1050	7270274270240181	CMakeFiles/gtwd.dir/AIFF/Wav2aiff.cpp.obj	f7e87bde131a83f7
+128	1081	7270274270540346	CMakeFiles/gtwd.dir/AIFF/Aiff2wav.cpp.obj	9c9a6c6feb75dea0
+49	1139	7270274271116128	CMakeFiles/gtwd.dir/Decoder/FlacMetadata.cpp.obj	64984661117b7415
+3	3289	7270275979027486	CMakeFiles/gtwd.dir/main.cpp.obj	edd2e4e56d6b0204
+489	1754	7270322059741347	gtwd.exe	4e99ac63f1c0f7fd
+2	171	7270324520347405	build.ninja	c90df8776292cb3b
+15	547	7270324525964654	CMakeFiles/gtwd.dir/Encoder/Wav2flac.cpp.obj	25cc2b03d98323c8
+3	3209	7270324552529218	CMakeFiles/gtwd.dir/main.cpp.obj	edd2e4e56d6b0204
+3210	4495	7270324565395523	gtwd.exe	4e99ac63f1c0f7fd
