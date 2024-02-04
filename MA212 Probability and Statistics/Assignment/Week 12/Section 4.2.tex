@@ -1,0 +1,175 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 4.2}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 4.2}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P118 Q49}
+
+\subsubsection*{a.}
+
+\begin{align*}
+	E(Z) =& E(\alpha X + (1 - \alpha) Y) \\
+	     =& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} [\alpha x + (1 - \alpha) y] f(x, y) \mathrm{d}x \mathrm{d}y \\
+		 =& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} [\alpha x + (1 - \alpha) y] f(x) f(y) \mathrm{d}x \mathrm{d}y \\
+		 =& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \alpha x f(x) f(y) \mathrm{d}x \mathrm{d}y + \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} (1 - \alpha) y f(x) f(y) \mathrm{d}x \mathrm{d}y \\
+		 =& \alpha \int_{-\infty}^{\infty} x f(x) \mathrm{d}x + (1 - \alpha) \int_{-\infty}^{\infty} y f(y) \mathrm{d}y \\
+		 =& \alpha E(X) + (1 - \alpha) E(Y) \\
+		 =& \alpha \mu + (1 - \alpha) \mu \\
+		 =& \mu
+\end{align*}
+
+\subsubsection*{b.}
+
+\begin{align*}
+	Var(Z) =& Var[\alpha X + (1 - \alpha) Y] \\
+	       =& Var(\alpha X) + Var[(1 - \alpha) Y] \\
+		   =& \alpha^2 Var(X) + (1 - \alpha)^2 Var(Y) \\
+		   =& \alpha^2 \sigma_X^2 + (1 - \alpha)^2 \sigma_Y^2 \\
+		   =& (\sigma_X^2 + \sigma_Y^2) \alpha^2 - 2 \sigma_Y^2 \alpha + \sigma_Y^2
+\end{align*}
+
+可知，当$\alpha = \frac{\sigma_Y^2}{\sigma_X^2 + \sigma_Y^2}$时，$Var(Z)$取得最小值，最小值为$\frac{\sigma_X^2 \sigma_Y^2}{\sigma_X^2 + \sigma_Y^2}$。
+
+\subsubsection*{c.}
+
+由上式可知，$\alpha = \frac{1}{2}$时，$Var(Z)$为
+\begin{align*}
+	Var(Z) = \frac{\sigma_X^2 + \sigma_Y^2}{4}
+\end{align*}
+
+若要使使用平均值优于单独使用$X$或$Y$，则需要
+\begin{align*}
+	\frac{\sigma_X^2 + \sigma_Y^2}{4} < \sigma_X^2 \quad \text{且} \quad \frac{\sigma_X^2 + \sigma_Y^2}{4} < \sigma_Y^2
+\end{align*}
+
+即
+\begin{align*}
+	\sigma_Y < \sqrt{3} \sigma_X \\
+	\sigma_X < \sqrt{3} \sigma_Y
+\end{align*}
+
+\subsection*{P118 Q50}
+
+\begin{align*}
+	E(\overline{X}) =& E\left(\frac{1}{n} \sum_{i = 1}^{n} X_i\right) \\
+	                =& \frac{1}{n} \sum_{i = 1}^{n} E(X_i) \\
+					=& \frac{1}{n} \sum_{i = 1}^{n} \mu \\
+					=& \mu
+\end{align*}
+
+\begin{align*}
+	Var(\overline{X}) =& Var\left(\frac{1}{n} \sum_{i = 1}^{n} X_i\right) \\
+	                  =& \frac{1}{n^2} \sum_{i = 1}^{n} Var(X_i) \\
+					  =& \frac{1}{n^2} \sum_{i = 1}^{n} \sigma^2 \\
+					  =& \frac{1}{n} \sigma^2
+\end{align*}
+
+\subsection*{P119 Q55}
+
+\begin{align*}
+	E(T) =& E\left(\sum_{k=1}^{n} k X_k\right) \\
+	     =& \sum_{k=1}^{n} k E(X_k) \\
+		 =& \sum_{k=1}^{n} k \mu \\
+		 =& \mu \sum_{k=1}^{n} k \\
+		 =& \mu \frac{n(n+1)}{2}
+\end{align*}
+
+\begin{align*}
+	Var(T) =& Var\left(\sum_{k=1}^{n} k X_k\right) \\
+	       =& \sum_{k=1}^{n} k^2 Var(X_k) \\
+		   =& \sum_{k=1}^{n} k^2 \sigma^2 \\
+		   =& \sigma^2 \sum_{k=1}^{n} k^2 \\
+		   =& \sigma^2 \frac{n(n+1)(2n+1)}{6}
+\end{align*}
+
+\subsection*{补充1}
+
+\begin{align*}
+	E(Z) =& E(5X - 2Y + 15) \\
+	     =& 5 E(X) - 2 E(Y) + 15 \\
+		 =& 5 \times 3 - 2 \time 1 + 15 \\
+		 =& 28
+\end{align*}
+
+\begin{align*}
+	Var(Z) =& Var(5X - 2Y + 15) \\
+	       =& 5^2 Var(X) + (-2)^2 Var(Y) \\
+		   =& 5^2 \times 4 + (-2)^2 \times 9 \\
+		   =& 136
+\end{align*}
+
+\subsection*{补充2}
+
+\begin{align*}
+	E(Z) =& E(2X_1 - X_2 + 3X_3 - \frac{1}{2}X_4) \\
+	     =& 2 E(X_1) - E(X_2) + 3 E(X_3) - \frac{1}{2} E(X_4) \\
+		 =& 2 \times 2 - 4 + 3 \times 6 - \frac{1}{2} \times 8 \\
+		 =& 14
+\end{align*}
+
+\begin{align*}
+	Var(Z) =& Var(2X_1 - X_2 + 3X_3 - \frac{1}{2}X_4) \\
+	       =& 2^2 Var(X_1) + (-1)^2 Var(X_2) + 3^2 Var(X_3) + (-\frac{1}{2})^2 Var(X_4) \\
+		   =& 2^2 \times 4 + (-1)^2 \times 3 + 3^2 \times 2 + (-\frac{1}{2})^2 \times 1 \\
+		   =& \frac{149}{4}
+\end{align*}
+\end{document}

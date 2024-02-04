@@ -1,0 +1,340 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 3.3}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 3.3}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P76 Q5}
+
+假设所有平行线竖直放置，令变量$X$表示针的左端距离其右侧最近的平行线的距离，令变量$Y$表示以左端为顶点时针与竖直方向的夹角。
+可知$X$服从均值为$\frac{1}{D}$的均匀分布，且$0 \leq X \leq D$。
+$Y$服从均值为$\frac{1}{\pi}$的均匀分布，且$0 \leq Y \leq \pi$。
+$X$与$Y$相互独立，故$f_{X,Y}(x,y) = f_X(x) f_Y(y) = \frac{1}{\pi D}$。
+因此针与平行线相交的概率为：
+\begin{align*}
+	P\{L \sin Y \geq X\} &= \iint_{L \sin y \leq x} f_{X,Y}(x,y) \mathrm{d}x \mathrm{d}y \\
+	&= \int_0^{\pi} \int_0^{L \sin y} \frac{1}{\pi D} \mathrm{d}x \mathrm{d}y \\
+	&= \frac{L}{\pi D} \int_0^{\pi} \sin y \mathrm{d}y \\
+	&= \frac{2L}{\pi D}
+\end{align*}
+
+由于$L$，$D$为已知常数，故可用$\frac{2L}{\pi D}$估计$\pi$。
+
+\subsection*{P76 Q6}
+
+设$X$为该点的横坐标，$Y$为该点的纵坐标。
+由于该点在椭圆$\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$内随机选择，故其概率函数为$f_{X,Y}(x,y) = \frac{1}{\pi a b}$。
+其边际密度为：
+\begin{align*}
+	f_X(x) &= \int_{-\sqrt{b^2 (1 - \frac{x^2}{a^2})}}^{\sqrt{b^2 (1 - \frac{x^2}{a^2})}} \frac{1}{\pi a b} \mathrm{d}y \\
+	&= \frac{2}{\pi a} \sqrt{1 - \frac{x^2}{a^2}} \\
+	f_Y(y) &= \int_{-\sqrt{a^2 (1 - \frac{y^2}{b^2})}}^{\sqrt{a^2 (1 - \frac{y^2}{b^2})}} \frac{1}{\pi a b} \mathrm{d}x \\
+	&= \frac{2}{\pi b} \sqrt{1 - \frac{y^2}{b^2}}
+\end{align*}
+
+考虑$X$，$Y$的取值范围，有：
+\begin{equation*}
+	f_X(x) = 
+	\begin{cases}
+		\frac{2}{\pi a} \sqrt{1 - \frac{x^2}{a^2}} & -a \leq x \leq a \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+\begin{equation*}
+	f_Y(y) = 
+	\begin{cases}
+		\frac{2}{\pi b} \sqrt{1 - \frac{y^2}{b^2}} & -b \leq y \leq b \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+\subsection*{P76 Q7}
+已知$F(x,y) = (1-e^{-\alpha x})(1 - e^{-\beta y})$且$x \geq 0$，$y \geq 0$，$\alpha > 0$，$\beta > 0$。
+则其联合密度为：
+\begin{align*}
+	f(x,y) &= \frac{\partial^2 F(x,y)}{\partial x \partial y} \\
+	&= \frac{\partial}{\partial y} \frac{\partial}{\partial x} (1-e^{-\alpha x})(1 - e^{-\beta y}) \\
+	&= \frac{\partial}{\partial y} \alpha e^{-\alpha x} (1 - e^{-\beta y}) \\
+	&= \alpha \beta e^{-\alpha x} e^{-\beta y} \\
+	&= \alpha \beta e^{-\alpha x - \beta y}
+\end{align*}
+
+其边际密度为：
+\begin{align*}
+	f_X(x) &= \int_0^{\infty} \alpha \beta e^{-\alpha x - \beta y} \mathrm{d}y \\
+	&= \alpha e^{-\alpha x} \\
+	f_Y(y) &= \int_0^{\infty} \alpha \beta e^{-\alpha x - \beta y} \mathrm{d}x \\
+	&= \beta e^{-\beta y}
+\end{align*}
+
+考虑$X$，$Y$的取值范围，有：
+\begin{equation*}
+	f_X(x) = 
+	\begin{cases}
+		\alpha e^{-\alpha x} & x \geq 0 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+\begin{equation*}
+	f_Y(y) = 
+	\begin{cases}
+		\beta e^{-\beta y} & y \geq 0 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+\newpage
+\subsection*{P76 Q8}
+
+\subsubsection*{a.}
+
+\textbf{(i)}
+
+\begin{align*}
+	P\{X > Y\} &= \int_0^1 \int_0^x f_{X,Y}(x,y) \mathrm{d}y \mathrm{d}x \\
+	&= \int_0^1 \int_0^x \frac{6}{7} (x + y)^2 \mathrm{d}y \mathrm{d}x \\
+	&= \frac{6}{7} \int_0^1 \left( x^2y + xy^2 + \frac{y^3}{3} \right) \Big|_0^x \mathrm{d}x \\
+	&= \frac{6}{7} \int_0^1 \left( x^3 + x^3 + \frac{x^3}{3} \right) \mathrm{d}x \\
+	&= \frac{6}{7} \cdot \frac{7}{3} \int_0^1 x^3 \mathrm{d}x \\
+	&= 2 \cdot \frac{1}{4} \\
+	&= \frac{1}{2}
+\end{align*}
+
+\textbf{(ii)}
+
+\begin{align*}
+	P\{X + Y < 1\} &= P\{Y < 1 - X\} \\
+	&= \int_0^1 \int_0^{1-x} f_{X,Y}(x,y) \mathrm{d}y \mathrm{d}x \\
+	&= \int_0^1 \int_0^{1-x} \frac{6}{7} (x + y)^2 \mathrm{d}y \mathrm{d}x \\
+	&= \frac{6}{7} \int_0^1 \left( x^2y + xy^2 + \frac{y^3}{3} \right) \Big|_0^{1-x} \mathrm{d}x \\
+	&= \frac{6}{7} \int_0^1 \frac{1}{3} - \frac{x^3}{3} \mathrm{d}x \\
+	&= \frac{6}{7} \cdot \frac{1}{3} \int_0^1 1 - x^3 \mathrm{d}x \\
+	&= \frac{6}{7} \cdot \frac{1}{3} \cdot \left( x - \frac{x^4}{4} \right) \Big|_0^1 \\
+	&= \frac{6}{7} \cdot \frac{1}{3} \cdot \frac{3}{4} \\
+	&= \frac{3}{14}
+\end{align*}
+
+\textbf{(iii)}
+
+\begin{align*}
+	P\{X \leq \frac{1}{2}\} &= \int_0^{\frac{1}{2}} \int_0^1 f_{X,Y}(x,y) \mathrm{d}y \mathrm{d}x \\
+	&= \int_0^{\frac{1}{2}} \int_0^1 \frac{6}{7} (x + y)^2 \mathrm{d}y \mathrm{d}x \\
+	&= \frac{6}{7} \int_0^{\frac{1}{2}} \left( x^2y + xy^2 + \frac{y^3}{3} \right) \Big|_0^1 \mathrm{d}x \\
+	&= \frac{6}{7} \int_0^{\frac{1}{2}} \left( x^2 + x + \frac{1}{3} \right) \mathrm{d}x \\
+	&= \frac{6}{7} \cdot \frac{1}{3} \int_0^{\frac{1}{2}} 3x^2 + 3x + 1 \mathrm{d}x \\
+	&= \frac{6}{7} \cdot \frac{1}{3} \cdot \left( x^3 + \frac{3}{2}x^2 + x \right) \Big|_0^{\frac{1}{2}} \\
+	&= \frac{6}{7} \cdot \frac{1}{3} \\
+	&= \frac{2}{7}
+\end{align*}
+
+\subsubsection*{b.}
+
+$X$，$Y$的边际密度为：
+\begin{align*}
+	f_X(x) &= \int_0^1 \frac{6}{7} (x + y)^2 \mathrm{d}y \\
+	&= \frac{6}{7} \left( x^2y + xy^2 + \frac{y^3}{3} \right) \Big|_0^1 \\
+	&= \frac{6}{7} \left( x^2 + x + \frac{1}{3} \right) \\
+	&= \frac{6x^2 + 6x + 2}{7} \\
+	f_Y(y) &= \int_0^1 \frac{6}{7} (x + y)^2 \mathrm{d}x \\
+	&= \frac{6}{7} \left( x^2y + xy^2 + \frac{y^3}{3} \right) \Big|_0^1 \\
+	&= \frac{6}{7} \left( y^2 + y + \frac{1}{3} \right) \\
+	&= \frac{6y^2 + 6y + 2}{7}
+\end{align*}
+
+考虑$X$，$Y$的取值范围，有：
+\begin{equation*}
+	f_X(x) = 
+	\begin{cases}
+		\frac{6x^2 + 6x + 2}{7} & 0 \leq x \leq 1 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+\begin{equation*}
+	f_Y(y) = 
+	\begin{cases}
+		\frac{6y^2 + 6y + 2}{7} & 0 \leq y \leq 1 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+\subsubsection*{c.}
+
+条件密度$f_{X|Y}(x|y)$为：
+\begin{align*}
+	f_{X|Y}(x|y) &= \frac{f_{X,Y}(x,y)}{f_Y(y)} \\
+	&= \frac{\frac{6}{7} (x + y)^2}{\frac{6y^2 + 6y + 2}{7}} \\
+	&= \frac{3(x + y)^2}{3y^2 + 3y + 1}
+\end{align*}
+
+条件密度$f_{Y|X}(y|x)$为：
+\begin{align*}
+	f_{Y|X}(y|x) &= \frac{f_{X,Y}(x,y)}{f_X(x)} \\
+	&= \frac{\frac{6}{7} (x + y)^2}{\frac{6x^2 + 6x + 2}{7}} \\
+	&= \frac{3(x + y)^2}{3x^2 + 3x + 1}
+\end{align*}
+
+\subsection*{补充1}
+
+\begin{align*}
+	\lim_{x \rightarrow \infty, y \rightarrow \infty} F(x,y) &= \lim_{x \rightarrow \infty, y \rightarrow \infty} k(1-e^{-x})(1-e^{-y}) \\
+	&= k \cdot 1 \cdot 1 \\
+	&= k
+\end{align*}
+
+故$k = 1$，
+$(X,Y)$的联合密度为：
+\begin{align*}
+	f_{X,Y}(x,y) &= \frac{\partial^2 F(x,y)}{\partial x \partial y} \\
+	&= \frac{\partial^2 (1-e^{-x})(1-e^{-y})}{\partial x \partial y} \\
+	&= \frac{\partial}{\partial y} \frac{\partial}{\partial x} (1-e^{-x})(1-e^{-y}) \\
+	&= \frac{\partial}{\partial y} e^{-x} (1 - e^{-y}) \\
+	&= e^{-x} e^{-y} \\
+	&= e^{-(x+y)}
+\end{align*}
+\begin{equation*}
+	f_{X,Y}(x,y) = 
+	\begin{cases}
+		e^{-(x+y)} & x \geq 0, y \geq 0 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+故边缘密度函数为：
+\begin{align*}
+	f_X(x) &= \int_0^{\infty} e^{-(x+y)} \mathrm{d}y \\
+	&= e^{-x} \\
+	f_Y(y) &= \int_0^{\infty} e^{-(x+y)} \mathrm{d}x \\
+	&= e^{-y}
+\end{align*}
+\begin{equation*}
+	f_X(x) = 
+	\begin{cases}
+		e^{-x} & x \geq 0 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+\begin{equation*}
+	f_Y(y) = 
+	\begin{cases}
+		e^{-y} & y \geq 0 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+则$P\{1 < X < 3, 1 < Y < 2\}$为：
+\begin{align*}
+	P\{1 < X < 3, 1 < Y < 2\} &= \int_{1}^{3} \int_{1}^{2} e^{-(x+y)} \mathrm{d}y \mathrm{d}x \\
+	&= \int_{1}^{3} e^{-x} \int_{1}^{2} e^{-y} \mathrm{d}y \mathrm{d}x \\
+	&= \int_{1}^{3} e^{-x} \left( -e^{-y} \right) \Big|_1^2 \mathrm{d}x \\
+	&= \int_{1}^{3} e^{-x} \left( -e^{-2} + e^{-1} \right) \mathrm{d}x \\
+	&= \left( -e^{-2} + e^{-1} \right) \int_{1}^{3} e^{-x} \mathrm{d}x \\
+	&= \left( -e^{-2} + e^{-1} \right) \left( -e^{-x} \right) \Big|_1^3 \\
+	&= \left( -e^{-2} + e^{-1} \right) \left( -e^{-3} + e^{-1} \right) \\
+	&= e^{-5} - e^{-4} - e^{-3} + e^{-2}
+\end{align*}
+
+\subsection*{补充2}
+
+\subsubsection*{(1)}
+
+其边缘密度函数为：
+\begin{align*}
+	f_X(x) &= \int_0^1 x + y \mathrm{d}y \\
+	&= x + \frac{1}{2} \\
+	f_Y(y) &= \int_0^1 x + y \mathrm{d}x \\
+	&= y + \frac{1}{2}
+\end{align*}
+\begin{equation*}
+	f_X(x) = 
+	\begin{cases}
+		x + \frac{1}{2} & 0 < x < 1 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+\begin{equation*}
+	f_Y(y) = 
+	\begin{cases}
+		y + \frac{1}{2} & 0 < y < 1 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+\subsubsection*{(2)}
+
+\begin{align*}
+	P\{X > Y\} &= \int_0^1 \int_0^x f_{X,Y}(x,y) \mathrm{d}y \mathrm{d}x \\
+	&= \int_0^1 \int_0^x (x + y) \mathrm{d}y \mathrm{d}x \\
+	&= \int_0^1 \left( xy + \frac{y^2}{2} \right) \Big|_0^x \mathrm{d}x \\
+	&= \frac{3}{2} \int_0^1 x^2 \mathrm{d}x \\
+	&= \frac{3}{2} \cdot \frac{1}{3} \\
+	&= \frac{1}{2}
+\end{align*}
+
+\subsubsection*{(3)}
+
+\begin{align*}
+	P\{X < 0.5\} &= \int_0^{0.5} f_X(x) \mathrm{d}x \\
+	&= \int_0^{0.5} x + \frac{1}{2} \mathrm{d}x \\
+	&= \left( \frac{x^2}{2} + \frac{x}{2} \right) \Big|_0^{0.5} \\
+	&= \frac{1}{8} + \frac{1}{4} \\
+	&= \frac{3}{8}
+\end{align*}
+\end{document}

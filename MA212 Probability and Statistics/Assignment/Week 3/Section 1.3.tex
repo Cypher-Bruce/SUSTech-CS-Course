@@ -1,0 +1,137 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 1.3}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 1.3}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P20 Q4}
+要证明$P \left( \bigcup_{i=1}^n A_i \right) \le \sum_{i=1}^n P(A_i)$可以使用数学归纳法。
+
+当$n=1$时，有
+\begin{equation*}
+	P(A_1) = P(A_1)
+\end{equation*}
+
+显然成立。
+
+假设当$n=k$时，不等式成立，即
+\begin{equation*}
+	P \left( \bigcup_{i=1}^k A_i \right) \le \sum_{i=1}^k P(A_i)
+\end{equation*}
+
+则当$n=k+1$时，有
+\begin{align*}
+	P \left( \bigcup_{i=1}^{k+1} A_i\right)
+	&= P \left( \bigcup_{i=1}^k A_i \cup A_{k+1} \right)\\
+	&= P \left( \bigcup_{i=1}^k A_i \right) + P(A_{k+1}) - P \left( \bigcup_{i=1}^k A_i \cap A_{k+1} \right)\\
+	&\le \sum_{i=1}^k P(A_i) + P(A_{k+1}) - P \left( \bigcup_{i=1}^k A_i \cap A_{k+1} \right)\\
+	&\le \sum_{i=1}^k P(A_i) + P(A_{k+1})\\
+	&= \sum_{i=1}^{k+1} P(A_i)
+\end{align*}
+
+由数学归纳法可知，不等式对任意$n$成立。
+
+\subsection*{P20 Q7}
+由加法原理可知
+\begin{equation*}
+	P(A \cup B) = P(A) + P(B) - P(A \cap B)
+\end{equation*}
+
+又因为$A \cup B \subseteq \Omega$，所以$P(A \cup B) \le P(\Omega) = 1$，带入上式可得
+\begin{align*}
+	P(A) + P(B) - P(A \cap B) \le 1\\
+	P(A \cap B) \ge P(A) + P(B) - 1
+\end{align*}
+
+得证。
+
+\subsection*{补充1}
+由加法原理可知
+\begin{equation*}
+	P(A \cup B \cup C) = P(A) + P(B) + P(C) - P(AB) - P(AC) - P(BC) + P(ABC)
+\end{equation*}
+
+已知$ABC \subseteq AB$且$P(AB)=0$,所以$P(ABC) \le P(AB) = 0$，则$P(ABC)=0$，带入上式可得
+\begin{align*}
+	P(A \cup B \cup C) &= \frac{1}{4} + \frac{1}{4} + \frac{1}{4} - \frac{1}{8}\\
+	&= \frac{5}{8}
+\end{align*}
+
+\subsection*{补充2}
+\begin{align*}
+	P(AB) &= P(\widebar{A} \widebar{B})\\
+	&= P(\widebar{A \cup B})\\
+	&= 1 - P(A \cup B)
+\end{align*}
+
+由加法原理可知
+\begin{equation*}
+	P(A \cup B) = P(A) + P(B) - P(AB)
+\end{equation*}
+
+综合上述两式可得
+\begin{align*}
+	P(B) &= P(A \cup B) - P(A) + P(AB)\\
+	&= P(A \cup B) - P(A) + 1 - P(A \cup B)\\
+	&= 1 - P(A)\\
+	&= 1 - p
+\end{align*}
+\end{document}

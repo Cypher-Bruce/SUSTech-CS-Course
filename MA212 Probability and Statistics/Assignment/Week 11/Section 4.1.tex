@@ -1,0 +1,238 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx,mathfont}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 4.1}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 4.1}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P116 Q6}
+
+\subsubsection*{a.}
+
+\begin{align*}
+	E(x) =& \int_{-\infty}^{\infty} xf(x) \mathrm{d}x \\
+	=& \int_{0}^{1} x \cdot 2x \mathrm{d}x \\
+	=& \frac{2}{3}
+\end{align*}
+
+\subsubsection*{b.}
+
+$Y$的分布函数为
+\begin{align*}
+	F_Y(y) =& P\{Y \leq y\} \\
+	=& P\{X^2 \leq y\} \\
+	=& P\{X \leq \sqrt{y}\} \\
+	=& \int_{0}^{\sqrt{y}} 2x \mathrm{d}x \\
+	=& y\ (0 \leq y \leq 1)
+\end{align*}
+
+$Y$的密度函数为
+\begin{equation*}
+	f_Y(y) =
+	\begin{cases}
+		\frac{\mathrm{d}F_Y(y)}{\mathrm{d}y} = 1 & (0 \leq y \leq 1) \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+$Y$的期望为
+\begin{align*}
+	E(Y) =& \int_{0}^{1} y \cdot 1 \mathrm{d}y \\
+	=& \frac{1}{2}
+\end{align*}
+
+\subsubsection*{c.}
+
+直接计算$X^2$的期望为
+\begin{align*}
+	E(X^2) =& \int_{0}^{1} x^2 \cdot 2x \mathrm{d}x \\
+	=& \frac{1}{2} x^4 \bigg|_0^1 \\
+	=& \frac{1}{2}
+\end{align*}
+
+\subsubsection*{d.}
+
+根据方差的定义有
+\begin{align*}
+	Var(x) =& \int_{-\infty}^{\infty} (x - E(x))^2 f(x) \mathrm{d}x \\
+	=& \int_{0}^{1} \left(x - \frac{2}{3}\right)^2 \cdot 2x \mathrm{d}x \\
+	=& \frac{1}{18}
+\end{align*}
+
+由定理4.2.2计算方差为
+\begin{align*}
+	Var(x) =& E(x^2) - [E(x)]^2 \\
+	=& \frac{1}{2} - \left(\frac{2}{3}\right)^2 \\
+	=& \frac{1}{18}
+\end{align*}
+
+\subsection*{P117 Q15}
+
+从一种彩票中购买两张的期望为
+\begin{align*}
+	E(X) =& \sum_{x=0}^{C_n^2} c \cdot P(X = x) \\
+	=& c \cdot \frac{n-1}{C_n^2} \\
+	=& \frac{2c}{n}
+\end{align*}
+
+从两种彩票中各购买一张的期望为
+\begin{align*}
+	E(Y) =& 2 \cdot \sum_{x=0}^{n} c \cdot P(Y = x) \\
+	=& 2 \cdot c \cdot \frac{1}{n} \\
+	=& \frac{2c}{n}
+\end{align*}
+
+可知，两种彩票的期望相同。
+
+\subsection*{P117 Q20}
+
+当$X$为泊松随机变量时，有
+\begin{align*}
+	E\left(\frac{1}{1+X}\right) =& \sum_{x=0}^{\infty} \frac{1}{1+x} \cdot \frac{e^{-\lambda} \lambda^x}{x!} \\
+	=& \sum_{x=0}^{\infty} \frac{e^{-\lambda} \lambda^x}{(x+1)!} \\
+	=& \frac{e^{-\lambda} }{\lambda} \sum_{x=0}^{\infty} \frac{\lambda^{x+1}}{(x+1)!} \\
+	=& \frac{e^{-\lambda} }{\lambda} \sum_{x=1}^{\infty} \frac{\lambda^{x}}{x!} \\
+	=& \frac{e^{-\lambda} }{\lambda} \cdot (e^{\lambda} - 1) \\
+\end{align*}
+
+\subsection*{P117 Q21}
+
+由题可知$X \sim U(0,1)$，则$S = X^2$的期望为
+\begin{align*}
+	E(S) =& \int_{0}^{1} x^2 P(x) \mathrm{d}x \\
+	=& \int_{0}^{1} x^2 \mathrm{d}x \\
+	=& \frac{1}{3}
+\end{align*}
+
+\subsection*{P117 Q31}
+
+由题可知$X \sim U(1,2)$，则$Y = \frac{1}{X}$的期望为
+\begin{align*}
+	E(Y) =& \int_{1}^{2} \frac{1}{x} \cdot \frac{1}{2-1} \mathrm{d}x \\
+	=& \ln 2
+\end{align*}
+
+易知$X$的期望为$\frac{1+2}{2} = \frac{3}{2}$。
+明显有
+\begin{equation*}
+	E\left(\frac{1}{X}\right) \neq \frac{1}{E(X)}
+\end{equation*}
+
+\subsection*{补充1}
+
+\subsubsection*{(1)}
+
+\begin{align*}
+	E(Y) =& \int_{-\infty}^{\infty} 2x \cdot P\{X = x\} \mathrm{d}x \\
+	=& \int_{0}^{\infty} 2x \cdot e^{-x} \mathrm{d}x \\
+	=& -2(x + 1)e^{-x} \bigg|_0^\infty \\
+	=& 2
+\end{align*}
+
+\subsubsection*{(2)}
+
+\begin{align*}
+	E(Y) =& \int_{-\infty}^{\infty} e^{-2x} \cdot P\{X = x\} \mathrm{d}x \\
+	=& \int_{0}^{\infty} e^{-2x} \cdot e^{-x} \mathrm{d}x \\
+	=& -\frac{1}{3} e^{-3x} \bigg|_0^\infty \\
+	=& \frac{1}{3}
+\end{align*}
+
+\subsection*{补充2}
+
+\begin{align*}
+	E(X) =& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x \cdot f(x,y) \mathrm{d}x \mathrm{d}y \\
+	=& \int_{0}^{1} \int_{y}^{1} x \cdot 12y^2 \mathrm{d}x \mathrm{d}y \\
+	=& \int_{0}^{1} 12y^2 \int_{y}^{1} x \mathrm{d}x \mathrm{d}y \\
+	=& \int_{0}^{1} 12y^2 \cdot \frac{1}{2} (1 - y^2) \mathrm{d}y \\
+	=& \int_{0}^{1} 6y^2 - 6y^4 \mathrm{d}y \\
+	=& 2y^3 - \frac{6}{5} y^5 \bigg|_0^1 \\
+	=& \frac{4}{5}
+\end{align*}
+
+\begin{align*}
+	E(Y) =& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} y \cdot f(x,y) \mathrm{d}x \mathrm{d}y \\
+	=& \int_{0}^{1} \int_{y}^{1} y \cdot 12y^2 \mathrm{d}x \mathrm{d}y \\
+	=& \int_{0}^{1} 12y^3 \cdot (1 - y) \mathrm{d}y \\
+	=& \int_{0}^{1} 12y^3 - 12y^4 \mathrm{d}y \\
+	=& 3y^4 - \frac{12}{5} y^5 \bigg|_0^1 \\
+	=& \frac{3}{5}
+\end{align*}
+
+\begin{align*}
+	E(XY) =& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} xy \cdot f(x,y) \mathrm{d}x \mathrm{d}y \\
+	=& \int_{0}^{1} \int_{y}^{1} xy \cdot 12y^2 \mathrm{d}x \mathrm{d}y \\
+	=& \int_{0}^{1} 12y^3 \int_{y}^{1} x \mathrm{d}x \mathrm{d}y \\
+	=& \int_{0}^{1} 12y^3 \cdot \frac{1}{2} (1 - y^2) \mathrm{d}y \\
+	=& \int_{0}^{1} 6y^3 - 6y^5 \mathrm{d}y \\
+	=& \frac{3}{2} y^4 - y^6 \bigg|_0^1 \\
+	=& \frac{1}{2}
+\end{align*}
+
+\begin{align*}
+	E(X^2+Y^2) =& \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} (x^2+y^2) \cdot f(x,y) \mathrm{d}x \mathrm{d}y \\
+	=& \int_{0}^{1} \int_{y}^{1} (x^2+y^2) \cdot 12y^2 \mathrm{d}x \mathrm{d}y \\
+	=& \int_{0}^{1} \int_{y}^{1} 12x^2y^2 + 12y^4 \mathrm{d}x \mathrm{d}y \\
+	=& \int_{0}^{1} 4y^2 + 12y^4 - 16y^5 \mathrm{d}y \\
+	=& \frac{4}{3} y^3 + \frac{12}{5} y^5 - \frac{8}{3} y^6 \bigg|_0^1 \\
+	=& \frac{16}{15}
+\end{align*}
+\end{document}

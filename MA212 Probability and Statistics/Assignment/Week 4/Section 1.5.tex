@@ -1,0 +1,168 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 1.5}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 1.5}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P22 Q46}
+
+\subsubsection*{a.}
+
+设硬币正面向上为事件$A$，抽到红球为事件$B$，则有$P(A) = \frac{1}{2}$,$P(B|A)=\frac{3}{5}$,$P(B|\bar{A})=\frac{2}{7}$。
+则由全概率公式，有
+
+\begin{equation*}
+	P(B) = P(B|A)P(A) + P(B|\bar{A})P(\bar{A}) = \frac{1}{2} \times \frac{3}{5} + \frac{1}{2} \times \frac{2}{7} = \frac{31}{70}
+\end{equation*}
+
+\subsubsection*{b.}
+
+抽到红球时，硬币正面向上的概率可以写为$P(A|B)$。由贝叶斯公式，有
+
+\begin{equation*}
+	P(A|B) = \frac{P(B|A)P(A)}{P(B)} = \frac{\frac{3}{5} \times \frac{1}{2}}{\frac{31}{70}} = \frac{21}{31}
+\end{equation*}
+
+\subsection*{P23 Q53}
+由贝叶斯公式，有
+
+\begin{equation*}
+	P = \frac{0.02 \times 0.10}{0.02 \times 0.10 + 0.01 \times 0.20 + 0.0025 \times 0.70} = \frac{8}{23}
+\end{equation*}
+
+\subsection*{P23 Q54}
+
+\subsubsection*{a.}
+
+设今天下雨的事件为$R_1$。由全概率公式，有
+\begin{align*}
+	P(R_2) &= P(R_2|R_1)P(R_1) + P(R_2|\bar{R_1})P(\bar{R_1})\\
+	&= \alpha p + (1-\beta)(1-p)\\
+	&= 1 - \beta + (\alpha + \beta - 1)p
+\end{align*}
+
+\subsubsection*{b.}
+易知
+\begin{equation*}
+	P(R_3) = 1 - \beta + (\alpha + \beta - 1)P(R_2)
+\end{equation*}
+
+带入$P(R_2)$的表达式，有
+\begin{align*}
+	P(R_3) &= 1 - \beta + (\alpha + \beta - 1)(1 - \beta + (\alpha + \beta - 1)p)\\
+	&= 1 - \beta + (\alpha + \beta - 1) - (\alpha + \beta - 1)\beta + (\alpha + \beta - 1)^2p\\
+	&= (\alpha + \beta)(1 - \beta) + (\alpha + \beta - 1)^2 p
+\end{align*}
+
+\subsubsection*{c.}
+\begin{align*}
+	P(R_4) &= 1 - \beta + (\alpha + \beta - 1)P(R_3)\\
+	&= 1 - \beta + (\alpha + \beta - 1)[(\alpha + \beta)(1 - \beta) + (\alpha + \beta - 1)^2 p]\\
+	&= 1 - \beta + (\alpha + \beta - 1)(\alpha + \beta)(1 - \beta) + (\alpha + \beta - 1)^3 p\\
+	&= \sum_{i=0}^{2}(\alpha + \beta - 1)^i + (\alpha + \beta - 1)^3 p
+\end{align*}
+
+则当$n$趋于无穷时，有
+\begin{equation*}
+	P(R_n) = \sum_{i=0}^{n-2}(\alpha + \beta - 1)^i + (\alpha + \beta - 1)^{n-1} p
+\end{equation*}
+
+\subsection*{P24 Q63}
+设人活到70岁为事件$A$，人活到80岁为事件$B$，则有$P(A) = 0.6$,$P(B) = 0.2$，则$P(B|A) = \frac{P(AB)}{P(A)} = \frac{P(B)}{P(A)} = \frac{1}{3}$。
+
+\subsection*{补充1}
+设第一次选中汽车为事件$A$，改变选择后选中汽车为事件$B$。已知$P(A) = \frac{1}{3}$，$P(B|A) = 0$，$P(B|\bar{A}) = 1$。
+则由全概率公式，有
+
+\begin{equation*}
+	P(B) = P(B|A)P(A) + P(B|\bar{A})P(\bar{A}) = 0 \times \frac{1}{3} + 1 \times \frac{2}{3} = \frac{2}{3}
+\end{equation*}
+
+故应该改变选择。
+
+\subsection*{补充2}
+\begin{equation*}
+	P(\text{母亲及孩子得病})=P(\text{孩子得病})P(\text{母亲得病}|\text{孩子得病}) = 0.6 \times 0.5 = 0.3
+\end{equation*}
+
+又有
+\begin{equation*}
+	P(\text{父亲不得病}|\text{母亲及孩子得病}) = 1 - P(\text{父亲得病}|\text{母亲及孩子得病}) = 0.6
+\end{equation*}
+
+故
+\begin{align*}
+	P(\text{母亲及孩子得病但父亲未得病}) &= P(\text{母亲及孩子得病})P(\text{父亲不得病}|\text{母亲及孩子得病}) \\
+	&= 0.3 \times 0.6 \\
+	&= 0.18
+\end{align*}
+
+\subsection*{补充3}
+设机器调整良好为事件$A$，生产出的第一件产品为合格品为事件$B$。已知$P(A)=0.95$，$P(B|A)=0.98$，$P(B|\bar{A})=0.55$。
+由贝叶斯公式可知，当生产出的第一件产品为合格品时，机器调整良好的概率为
+\begin{align*}
+	P(A|B) &= \frac{P(B|A)P(A)}{P(B)}\\
+	&= \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|\bar{A})P(\bar{A})}\\
+	&= \frac{0.98 \times 0.95}{0.98 \times 0.95 + 0.55 \times 0.05}\\
+	&= \frac{1862}{1917}\\
+	&\approx 0.971
+\end{align*}
+\end{document}

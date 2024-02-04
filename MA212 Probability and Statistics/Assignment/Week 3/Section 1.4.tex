@@ -1,0 +1,123 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 1.4}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 1.4}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P21 Q28}
+可能的组合数为：$C_{52}^5 \cdot C_{47}^5 \cdot C_{42}^5 \cdot C_{37}^5 \cdot C_{32}^5$
+
+\subsection*{P21 Q29}
+
+已知扑克牌共52张，则分去5张后剩余47张。黑桃共13张，分去3张后剩余10张。则再抽两张牌全为黑桃的概率为：
+\begin{equation*}
+	\frac{C^{2}_{10}}{C^{2}_{47}}
+\end{equation*}
+
+\subsection*{补充1}
+
+\subsubsection*{1)}
+
+共$2n$只鞋子，若要使取走的鞋子没有两只成对，则选择某双鞋子中的一只后，必然不能选择剩下的一只。
+则选取第一只时有$2n$种选择，选取第二只时有$2n-2$种选择，以此类推，选取第$2r$只时有$2n-4r+2$种选择。
+故所取$2r$只鞋子中没有两只成对的概率为：
+\begin{align*}
+	P &= \frac{2n \cdot (2n-2) \cdots (2n-4r+2)}{A^{2r}_{2r}} \div {C^{2r}_{2n}}\\
+	&= \frac{2n \cdot (2n-2) \cdots (2n-4r+2)}{A^{2r}_{2n}}\\
+	&= \frac{2^{2r} \cdot n \cdot (n-1) \cdots (n-2r+1)}{A^{2r}_{2n}}\\
+	&= 2^{2r} \frac{A^{2r}_{n}}{A^{2r}_{2n}}
+\end{align*}
+
+\subsubsection*{2)}
+
+可将问题转化为先从$n$双鞋子中取走一双，再在剩下的$2n-2$只鞋子中取走不成双的$2r-2$只鞋子。
+先取走一双的组合数为：
+\begin{equation*}
+	C^1_n = n
+\end{equation*}
+
+由上一问易知，再取走不成双的$2r-2$只鞋子的组合数为：
+\begin{equation*}
+	2^{2r-2} \frac{A^{2r-2}_{n-1}}{A^{2r-2}_{2n-2}} \cdot C^{2r-2}_{2n-2} = \frac{2^{2r-2}}{(2r-2)!} A^{2r-2}_{n-1} = 2^{2r-2} C^{2r-2}_{n-1}
+\end{equation*}
+
+故取走$2r$只鞋子中只有一双成对的概率为：
+\begin{equation*}
+	P = \frac{n \cdot 2^{2r-2} C^{2r-2}_{n-1}}{C^{2r}_{2n}}
+\end{equation*}
+
+\subsubsection*{3)}
+
+所取$2r$只鞋子恰好配成$r$对的概率为：
+\begin{equation*}
+	P = \frac{A^{2r}_{n}}{A^{2r}_{2n}}
+\end{equation*}
+
+\subsection*{补充2}
+
+在所有的组合中，只有$(2,1,4,3)$,$(2,3,4,1)$,$(2,4,1,3)$,$(3,1,4,2)$,$(3,4,1,2)$,$(3,4,2,1)$,\\
+$(4,1,2,3)$,$(4,3,1,2)$,$(4,3,2,1)$共9种组合使得没有人可以开门。故至少有一人能开门的概率为：
+\begin{align*}
+	P &= 1 - \frac{9}{A_4^4}\\
+	&= \frac{5}{8}
+\end{align*}
+
+\end{document}

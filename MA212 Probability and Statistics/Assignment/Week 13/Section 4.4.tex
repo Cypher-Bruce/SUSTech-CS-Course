@@ -1,0 +1,253 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 4.4}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 4.4}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P120 Q67}
+
+令底为$X$，宽为$Y$，则由条件概率公式有
+\begin{equation*}
+	P_{Y|X}(y|x) = \frac{1}{x}
+\end{equation*}
+
+由于$X \sim U(0,1)$，易知$X$的条件期望为$\frac{1}{2}$。
+$Y$的条件期望为
+\begin{align*}
+	E(Y|X = x) &= \int_{0}^{x} y \cdot \frac{1}{x} dy \\
+	&= \frac{1}{x} \cdot \frac{y^2}{2} \bigg|_{0}^{x} \\
+	&= \frac{x}{2} 
+\end{align*}
+
+该长方形周长的期望为
+\begin{align*}
+	E(2(X+Y)) &= E(E(2(X+Y)|X)) \\
+	&= E(2E(X|X) + 2E(Y|X)) \\
+	&= E\left(2 \cdot X + 2 \cdot \frac{X}{2}\right) \\
+	&= E(3X) \\
+	&= 3 \cdot \frac{1}{2} \\
+	&= \frac{3}{2}
+\end{align*}
+
+该长方形面积的期望为
+\begin{align*}
+	E(XY) &= E(E(XY|X)) \\
+	&= E(XE(Y|X)) \\
+	&= E\left(X \cdot \frac{X}{2}\right) \\
+	&= \frac{1}{2} E(X^2) \\
+	&= \frac{1}{2} \cdot \frac{1}{3} \\
+	&= \frac{1}{6}
+\end{align*}
+
+\subsection*{P120 Q77}
+
+\subsubsection*{a.}
+
+\begin{align*}
+	Cov(X,Y) &= E(XY) - E(X)E(Y) \\
+	&= \int_{0}^{\infty} \int_{x}^{\infty} xy e^{-y} dy dx - \int_{0}^{\infty} \int_{x}^{\infty} x e^{-y} dy dx \int_{0}^{\infty} \int_{x}^{\infty} y e^{-y} dy dx \\
+	&= 3 - 2 \\
+	&= 1
+\end{align*}
+
+\begin{align*}
+	\rho(X,Y) &= \frac{Cov(X,Y)}{\sqrt{D(X)D(Y)}} \\
+	&= \frac{1}{\sqrt{(2-1^2)(6-2^2)}} \\
+	&= \frac{\sqrt{2}}{2}
+\end{align*}
+
+\subsubsection*{b.}
+
+\begin{align*}
+	f_X(x) &= \int_{x}^{\infty} e^{-y} dy \\
+	&= e^{-x} \ (x > 0) \\
+	f_Y(y) &= \int_{0}^{y} e^{-y} dx \\
+	&= ye^{-y} \ (y > 0)
+\end{align*}
+
+可得条件概率为
+\begin{align*}
+	f_{X|Y}(x|y) &= \frac{f_{X,Y}(x,y)}{f_Y(y)} \\
+	&= \frac{e^{-y}}{ye^{-y}} \\
+	&= \frac{1}{y} \ (0 < x < y) \\
+	f_{Y|X}(y|x) &= \frac{f_{X,Y}(x,y)}{f_X(x)} \\
+	&= \frac{e^{-y}}{e^{-x}} \\
+	&= e^{x-y} \ (0 < x < y)
+\end{align*}
+
+可得条件期望为
+\begin{align*}
+	E(X|Y = y) &= \int_{0}^{y} x \cdot \frac{1}{y} dx \\
+	&= \frac{1}{y} \cdot \frac{x^2}{2} \bigg|_{0}^{y} \\
+	&= \frac{y}{2} \ (y > 0) \\
+	E(Y|X = x) &= \int_{x}^{\infty} y \cdot e^{x-y} dy \\
+	&= e^x \cdot \left(-y e^{-y}\right) \bigg|_{x}^{\infty} - e^x \cdot \int_{x}^{\infty} -e^{-y} dy \\
+	&= e^x \cdot x e^{-x} + e^x \cdot e^{-x} \\
+	&= x + 1 \ (x > 0) 
+\end{align*}
+
+\subsubsection*{c.}
+
+\begin{align*}
+	P\{E(X|Y) < z\} =& P\{\frac{Y}{2} < z\} \\
+	=& P\{Y < 2z\} \\
+	=& \int_{0}^{2z} ye^{-y} dy \\
+	=& [(-1-y)e^{-y}] \bigg|_{0}^{2z} \\
+	=& (-1-2z)e^{-2z} + 1 \ (z > 0)
+\end{align*}
+
+\begin{align*}
+	P\{E(Y|X) < z\} =& P\{X + 1 < z\} \\
+	=& P\{X < z - 1\} \\
+	=& \int_{0}^{z-1} e^{-x} dx \\
+	=& (-e^{-x}) \bigg|_{0}^{z-1} \\
+	=& 1 - e^{1-z} \ (z > 1)
+\end{align*}
+
+\subsection*{补充1}
+
+\begin{align*}
+	E(E(X|Y)) =& \int_{-\infty}^{\infty} E(X|Y) f_Y(y) dy \\
+	=& \int_{-\infty}^{\infty} \left(\int_{-\infty}^{\infty} x f_{X|Y}(x|y) dx\right) f_Y(y) dy \\
+	=& \int_{-\infty}^{\infty} \left(\int_{-\infty}^{\infty} x \frac{f_{X,Y}(x,y)}{f_Y(y)} dx\right) f_Y(y) dy \\
+	=& \int_{-\infty}^{\infty} \left(\int_{-\infty}^{\infty} x f_{X,Y}(x,y) dx\right) dy \\
+	=& \int_{-\infty}^{\infty} \left(\int_{-\infty}^{\infty} x f_{X,Y}(x,y) dy\right) dx \\
+	=& \int_{-\infty}^{\infty} x \left(\int_{-\infty}^{\infty} f_{X,Y}(x,y) dy\right) dx \\
+	=& \int_{-\infty}^{\infty} x f_X(x) dx \\
+	=& E(X)
+\end{align*}
+
+\subsection*{补充2}
+
+\subsubsection*{(1)}
+
+\begin{align*}
+	\int_{0}^{\infty} \int_{y}^{\infty} ke^{-(x+y)} dx dy =& \frac{k}{2} \\
+	=& 1
+\end{align*}
+
+因此可得$k = 2$。
+
+\begin{align*}
+	E(XY) =& \int_{0}^{\infty} \int_{y}^{\infty} xy 2e^{-(x+y)} dx dy \\
+	=&\int_{0}^{\infty} y e^{-y} \int_{y}^{\infty} x e^{-x}  dx dy \\
+	=&\int_{0}^{\infty} y e^{-y} (1+y) e^{-y} dy \\
+	=&\left[\frac{1}{2}(1+y)^2e^{-2y}\right] \bigg|_{0}^{\infty} \\
+	=& 1 \\
+	E(X) =& \int_{0}^{\infty} \int_{y}^{\infty} x 2e^{-(x+y)} dx dy \\
+	=& \frac{3}{2} \\
+	E(Y) =& \int_{0}^{\infty} \int_{y}^{\infty} y 2e^{-(x+y)} dx dy \\
+	=& \frac{1}{2} \\
+	E(X^2) =& \int_{0}^{\infty} \int_{y}^{\infty} x^2 2e^{-(x+y)} dx dy \\
+	=& \frac{7}{2} \\
+	E(Y^2) =& \int_{0}^{\infty} \int_{y}^{\infty} y^2 2e^{-(x+y)} dx dy \\
+	=& \frac{1}{2} 
+\end{align*}
+
+由此可得
+\begin{align*}
+	Cov(X,Y) =& E(XY) - E(X)E(Y) \\
+	=& 1 - \frac{3}{2} \cdot \frac{1}{2} \\
+	=& \frac{1}{4} \\
+	\rho(X,Y) =& \frac{Cov(X,Y)}{\sqrt{D(X)D(Y)}} \\
+	=& \frac{\frac{1}{4}}{\sqrt{(\frac{7}{2} - \frac{3}{2}^2)(\frac{1}{2} - \frac{1}{2}^2)}} \\
+	=& \frac{1}{\sqrt{5}}
+\end{align*}
+
+\subsubsection*{(2)}
+
+\begin{align*}
+	f_X(x) =& \int_{0}^{x} 2e^{-(x+y)} dy \\
+	=& 2e^{-x} - 2e^{-2x} \\
+	f_Y(y) =& \int_{y}^{\infty} 2e^{-(x+y)} dx \\
+	=& 2e^{-2y} \\
+\end{align*}
+
+可得条件概率为
+\begin{align*}
+	f_{X|Y}(x|y) =& \frac{f_{X,Y}(x,y)}{f_Y(y)} \\
+	=& \frac{2e^{-(x+y)}}{2e^{-2y}} \\
+	=& e^{y-x} \ (0 \leq y \leq x) \\
+	f_{Y|X}(y|x) =& \frac{f_{X,Y}(x,y)}{f_X(x)} \\
+	=& \frac{2e^{-(x+y)}}{2e^{-x} - 2e^{-2x}} \\
+	=& \frac{e^{-x-y}}{e^{-x} - e^{-2x}} \\
+	=& \frac{e^{-y}}{1 - e^{-x}} \ (0 \leq y \leq x)
+\end{align*}
+
+可得条件期望为
+\begin{align*}
+	E(X|Y = y) =& \int_{y}^{\infty} x e^{y-x} dx \\
+	=& e^y \cdot \left(-x e^{-x}\right) \bigg|_{y}^{\infty} - e^y \cdot \int_{y}^{\infty} -e^{-x} dx \\
+	=& e^y \cdot y e^{-y} + e^y \cdot e^{-y} \\
+	=& y + 1 \ (y \geq 0) \\
+	E(Y|X = x) =& \int_{0}^{x} y \frac{e^{-y}}{1 - e^{-x}} dy \\
+	=& \frac{1}{1 - e^{-x}} \cdot \left(-y e^{-y}\right) \bigg|_{0}^{x} + \frac{1}{1 - e^{-x}} \cdot \int_{0}^{x} e^{-y} dy \\
+	=& \frac{1}{1 - e^{-x}} \cdot \left(-x e^{-x} - e^{-x} + 1\right) \\
+	=& 1 - \frac{x}{e^x-1} \ (x \geq 0)
+\end{align*}
+
+\subsubsection*{(3)}
+
+\begin{align*}
+	P\{E(X|Y) < z\} =& P\{Y + 1 < z\} \\
+	=& P\{Y < z - 1\} \\
+	=& \int_{0}^{z-1} 2e^{-2y} dy \\
+	=& 1 - e^{2-2z} \ (z \geq 1)
+\end{align*}
+\end{document}

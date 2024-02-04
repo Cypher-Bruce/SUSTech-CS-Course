@@ -1,0 +1,307 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 2.2}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 
+吴梦轩 \\ 
+12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 2.2}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P48 Q33}
+
+已知，当$x$趋于负无穷时，$F(x)$趋于0。
+
+当$x$趋于正无穷时，$F(x)$趋于1：
+\begin{align*}
+	\lim_{x \rightarrow \infty} F(x) =& \lim_{x \rightarrow \infty} 1 - e^{-\alpha x^\beta}\\
+	=& 1 - e^{-\infty}\\
+	=& 1 - 0\\
+	=& 1
+\end{align*}
+
+由于$x \geq 0,\alpha > 0,\beta > 0$，可知$-\alpha x^\beta \leq 0$，故$0 < e^{-\alpha x^\beta} \leq 1$，故$0 \leq F(x) \leq 1$。
+
+$F(x)$是单调不减函数：
+\begin{equation*}
+	F'(x) = \alpha \beta x^{\beta - 1} e^{-\alpha x^\beta} \geq 0
+\end{equation*}
+
+$F(x)$是右连续的：
+\begin{equation*}
+	\lim_{x \rightarrow x_0^+} F(x) = \lim_{x \rightarrow x_0^+} 1 - e^{-\alpha x^\beta} = 1 - e^{-\alpha x_0^\beta} = F(x_0)
+\end{equation*}
+
+综上，$F(x)$是分布函数。
+
+$F(x)$的密度函数为：
+\begin{equation*}
+	f(x) = \frac{dF(x)}{dx} = \alpha \beta x^{\beta - 1} e^{-\alpha x^\beta}
+\end{equation*}
+
+\subsection*{P48 Q40}
+
+\subsubsection*{a.}
+
+\begin{align*}
+	\int_{-\infty}^{\infty} f(x)\ dx =& \int_{0}^{1} cx^2\ dx\\
+	=& \frac{c}{3} x^3 \Big|_0^1\\
+	=& \frac{c}{3}\\
+	=& 1
+\end{align*}
+
+可得$c = 3$。
+
+\subsubsection*{b.}
+
+当$0 \leq x \leq 1$时，$F(x)$的值为：
+\begin{align*}
+	F(x) =& \int_{-\infty}^{x} f(t)\ dt\\
+	=& \int_{0}^{x} 3t^2\ dt\\
+	=& t^3 \Big|_0^x\\
+	=& x^3
+\end{align*}
+
+可得累计分布函数为：
+\begin{equation*}
+	F(x) = \begin{cases}
+		0 & x < 0\\
+		x^3 & 0 \leq x \leq 1\\
+		1 & x > 1
+	\end{cases}
+\end{equation*}
+
+\subsubsection*{c.}
+
+\begin{align*}
+	P\{0.1 \leq x \leq 0.5\} =& F(0.5) - F(0.1)\\
+	=& 0.5^3 - 0.1^3\\
+	=& 0.124
+\end{align*}
+
+\subsection*{P48 Q45}
+
+\subsubsection*{a.}
+\begin{align*}
+	P\{x < 10\} =& F(10)\\
+	=& 1 - e^{-0.1 \times 10}\\
+	=& 1 - e^{-1}
+\end{align*}
+
+\subsubsection*{b.}
+\begin{align*}
+	P\{5 < x < 15\} =& F(15) - F(5)\\
+	=& e^{-0.1 \times 5} - e^{-0.1 \times 15}\\
+	=& e^{-0.5} - e^{-1.5}
+\end{align*}
+
+\subsubsection*{c.}
+\begin{align*}
+	P\{x > t\} =& 1 - F(t)\\
+	=& e^{-0.1t}\\
+	=& 0.01
+\end{align*}
+
+可得$t = \ln 0.01 \times -10 \approx 46.05$。
+
+\subsection*{P49 Q52}
+
+\subsubsection*{a.}
+\begin{align*}
+	P\{X > 72\} =& 1 - P\{X \leq 72\}\\
+	=& 1 - \Phi\left(\frac{72 - 70}{3}\right)\\
+	=& 1 - \Phi\left(\frac{2}{3}\right)\\
+	\approx& 1 - 0.7475\\
+	=& 0.2525
+\end{align*}
+
+\subsubsection*{b.}
+
+\begin{align*}
+	X \sim& N(70\ \text{inch}, 9\ \text{inch}^2)\\
+	X \sim& N(177.8\ \text{cm}, 58.06\ \text{cm}^2)\\
+	X \sim& N(1.778\ \text{m}, 0.005806\ \text{m}^2)\\
+\end{align*}
+
+\subsection*{P49 Q53}
+
+\subsubsection*{(a)}
+
+\begin{align*}
+	P\{X > 10\} =& 1 - P\{X \leq 10\}\\
+	=& 1 - \Phi\left(\frac{10 - 5}{10}\right)\\
+	=& 1 - \Phi\left(\frac{1}{2}\right)\\
+	\approx& 1 - 0.6915\\
+	=& 0.3085
+\end{align*}
+
+\subsubsection*{(b)}
+
+\begin{align*}
+	P\{-20 < X < 15\} =& P\{X < 15\} - P\{X < -20\}\\
+	=& \Phi\left(\frac{15 - 5}{10}\right) - \Phi\left(\frac{-20 - 5}{10}\right)\\
+	=& \Phi(1) - \Phi\left(\frac{-5}{2}\right)\\
+	=& \Phi(1) + \Phi\left(\frac{5}{2}\right) - 1\\
+	\approx& 0.8413 + 0.9938 - 1\\
+	=& 0.8351
+\end{align*}
+
+\subsubsection*{(c)}
+\begin{align*}
+	P\{X > x\} =& 1 - P\{X \leq x\}\\
+	=& 1 - \Phi\left(\frac{x - 5}{10}\right)\\
+	=& 0.05
+\end{align*}
+
+可得$\Phi\left(\frac{x - 5}{10}\right) = 0.95$，故$\frac{x - 5}{10} = 1.645$，$x = 21.45$。
+
+\subsection*{补充1}
+
+\subsubsection*{(1)}
+
+\begin{align*}
+	\int_{-\infty}^{\infty} f(x)\ dx =& \int_{-\infty}^{\infty} Ae^{-|x|}\ dx\\
+	=& 2A \int_{0}^{\infty} Ae^{-x}\ dx\\
+	=& 2A \left(-e^{-x}\right) \Big|_0^\infty\\
+	=& 2A (-0 + 1)\\
+	=& 2A\\
+	=& 1
+\end{align*}
+
+可得$A = \frac{1}{2}$。
+
+\subsubsection*{(2)}
+
+\begin{align*}
+	P\{0 < X < 1\} =& \int_{0}^{1} f(x)\ dx\\
+	=& \int_{0}^{1} \frac{1}{2} e^{-|x|}\ dx\\
+	=& \frac{1}{2} \int_{0}^{1} e^{-x}\ dx\\
+	=& \frac{1}{2} \left(-e^{-x}\right) \Big|_0^1\\
+	=& \frac{1}{2} (1 - e^{-1})\\
+	=& \frac{1 - e^{-1}}{2}
+\end{align*}
+
+\subsubsection*{(3)}
+
+\begin{align*}
+	F(x) =& \int_{-\infty}^{x} f(t)\ dt\\
+	=& \int_{-\infty}^{x} \frac{1}{2} e^{-|t|}\ dt
+\end{align*}
+
+当$x < 0$时，有：
+\begin{align*}
+	F(x) =& \int_{-\infty}^{x} \frac{1}{2} e^{-(-t)}\ dt\\
+	=& \frac{1}{2} \int_{-\infty}^{x} e^{t}\ dt\\
+	=& \frac{1}{2} \left(e^{t}\right) \Big|_{-\infty}^{x}\\
+	=& \frac{1}{2} (e^{x} - e^{-\infty})\\
+	=& \frac{1}{2} e^{x}
+\end{align*}
+
+当$x \geq 0$时，有：
+\begin{align*}
+	F(x) =& \int_{-\infty}^{x} \frac{1}{2} e^{-t}\ dt\\
+	=& \frac{1}{2} \int_{-\infty}^{0} e^{-t}\ dt + \frac{1}{2} \int_{0}^{x} e^{-t}\ dt\\
+	=& \frac{1}{2} + \frac{1}{2} \left(-e^{-t}\right) \Big|_{0}^{x}\\
+	=& \frac{1}{2} + \frac{1}{2} (-e^{-x} + e^{-0})\\
+	=& 1 - \frac{1}{2} e^{-x}
+\end{align*}
+
+综上，累计分布函数为：
+\begin{equation*}
+	F(x) = \begin{cases}
+		\frac{1}{2} e^{x} & x < 0\\
+		1 - \frac{1}{2} e^{-x} & x \geq 0
+	\end{cases}
+\end{equation*}
+
+\subsection*{补充2}
+
+每一次未等到服务而离开的概率为：
+\begin{align*}
+	P\{X > 10\} =& 1 - F(10)\\
+	=& 1 - (1 - e^{-0.2 \times 10})\\
+	=& e^{-2}
+\end{align*}
+
+每月次数$Y$服从二项分布，即$Y \sim b(5, e^{-2})$。
+则可得$Y$的分布律为：
+
+\begin{center}
+	\begin{tabular}{cc}
+		\toprule
+		$y$ & $P\{Y = y\}$\\
+		\midrule
+		0 & $(1-e^{-2})^5$\\
+		1 & $5e^{-2}(1-e^{-2})^4$\\
+		2 & $10e^{-4}(1-e^{-2})^3$\\
+		3 & $10e^{-6}(1-e^{-2})^2$\\
+		4 & $5e^{-8}(1-e^{-2})$\\
+		5 & $e^{-10}$\\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+故$P\{Y \geq 1\}$为：
+\begin{align*}
+	P\{Y \geq 1\} =& 1 - P\{Y = 0\}\\
+	=& 1 - (1-e^{-2})^5\\
+	\approx& 1 - 0.4833\\
+	=& 0.5167
+\end{align*}
+\end{document}

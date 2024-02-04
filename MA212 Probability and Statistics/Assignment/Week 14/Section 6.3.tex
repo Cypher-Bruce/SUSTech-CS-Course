@@ -1,0 +1,212 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 6.3}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 6.3}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P136 Q3}
+
+\begin{equation*}
+	\frac{\overline{X} - \mu}{\frac{\sigma}{\sqrt{n}}} = \frac{\overline{X}}{\frac{1}{\sqrt{16}}} = 4\overline{X} \sim N(0, 1)
+\end{equation*}
+
+因此有
+\begin{align*}
+	P(|\overline{X}| < c) =& P(-c < \overline{X} < c) \\
+	=& P(-4c < 4\overline{X} < 4c) \\
+	=& \Phi(4c) - \Phi(-4c) \\
+	=& 2\Phi(4c) - 1 \\
+	=& 0.5
+\end{align*}
+
+即$\Phi(4c) = 0.75$，查表得$c \approx 0.1686$。
+
+\subsection*{P136 Q6}
+
+已知$T \sim t_n$，则有
+\begin{equation*}
+	T = \frac{X}{\sqrt{\frac{Y}{n}}} \text{ 且 } X \sim N(0, 1), Y \sim \chi^2_n
+\end{equation*}
+
+因此有
+\begin{equation*}
+	T^2 = \frac{X^2}{\frac{Y}{n}} = \frac{\frac{X^2}{1}}{\frac{Y}{n}} \text{ 且 } X^2 \sim \chi^2_1, Y \sim \chi^2_n
+\end{equation*}
+
+因此，$T^2 \sim F_{1, n}$。
+
+\subsection*{P136 Q8}
+
+若$X$，$Y$为$\lambda = 1$的独立指数分布，令$Z = \frac{X}{Y}$，则有
+\begin{align*}
+	f_Z(z) =& \int_0^{\infty} f_X(zy) f_Y(y) |y| dy \\
+	=& \int_0^{\infty} e^{-zy} e^{-y} y dy \\
+	=& \int_0^{\infty} y e^{-(z+1)y} dy \\
+	=& \left[-\frac{y}{z+1} e^{-(z+1)y}\right] \Big|_0^{\infty} + \int_0^{\infty} \frac{1}{z+1} e^{-(z+1)y} dy \\
+	=& \frac{1}{z+1} \int_0^{\infty} e^{-(z+1)y} dy \\
+	=& \frac{1}{z+1} \left[-\frac{1}{z+1} e^{-(z+1)y}\right] \Big|_0^{\infty} \\
+	=& \frac{1}{(z+1)^2}
+\end{align*}
+
+即
+\begin{align*}
+	f_Z(z) =& \frac{1}{(z+1)^2} \\
+	=& 4 \cdot \frac{1}{(2z+2)^2} \\
+	=& \frac{1}{1 \cdot 1} \cdot 2^1 \cdot 2^1 \cdot \frac{z^{1-1}}{(2z+2)^2} \\
+	=& \frac{\Gamma(\frac{2+2}{2})}{\Gamma(\frac{2}{2}) \cdot \Gamma(\frac{2}{2})} \cdot 2^{\frac{2}{2}} \cdot 2^{\frac{2}{2}} \cdot \frac{z^{\frac{2}{2}-1}}{(2z+2)^2} \\
+\end{align*}
+
+因此，$Z \sim F(2, 2)$。
+
+\subsection*{补充1}
+
+\begin{equation*}
+	\frac{\overline{X} - \mu}{\frac{\sigma}{\sqrt{n}}} = \frac{\overline{X} - \mu}{\frac{4}{\sqrt{n}}} \sim N(0, 1)
+\end{equation*}
+
+因此有
+\begin{align*}
+	P(|\overline{X} - \mu| < 1) =& P(-1 < \overline{X} - \mu < 1) \\
+	=& P(-\frac{\sqrt{n}}{4} < \frac{\overline{X} - \mu}{\frac{4}{\sqrt{n}}} < \frac{\sqrt{n}}{4}) \\
+	=& \Phi(\frac{\sqrt{n}}{4}) - \Phi(-\frac{\sqrt{n}}{4}) \\
+	=& 2\Phi(\frac{\sqrt{n}}{4}) - 1 \\
+	\geq& 0.95
+\end{align*}
+
+即$\Phi(\frac{\sqrt{n}}{4}) \geq 0.975$，查表得$\frac{\sqrt{n}}{4} \geq 1.96$，解得$n \geq 61.47$。
+
+\subsection*{补充2}
+
+\begin{equation*}
+	\frac{(\overline{X} - \overline{Y}) - (\mu_1 - \mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}} = \frac{\overline{X} - \overline{Y}}{20 \sqrt{\frac{1}{36}+\frac{1}{49}}} \sim N(0, 1)
+\end{equation*}
+
+因此有
+\begin{align*}
+	P(|\overline{X} - \overline{Y}| \leq 10) =& P(-10 \leq \overline{X} - \overline{Y} \leq 10) \\
+	=& P(-\frac{1}{2\sqrt{\frac{1}{36}+\frac{1}{49}}} \leq \frac{\overline{X} - \overline{Y}}{20 \sqrt{\frac{1}{36}+\frac{1}{49}}} \leq \frac{1}{2\sqrt{\frac{1}{36}+\frac{1}{49}}}) \\
+	=& 2\Phi(\frac{1}{2\sqrt{\frac{1}{36}+\frac{1}{49}}}) - 1 \\
+	\approx& 0.9772
+\end{align*}
+
+\subsection*{补充3}
+
+\begin{equation*}
+	\sum_{i=1}^n \frac{(X_i - \mu)^2}{\sigma^2} = \frac{\sum_{i=1}^{10} X_i^2}{0.3^2} \sim \chi^2_{10}
+\end{equation*}
+
+因此有
+\begin{align*}
+	P\{\sum_{i=1}^{10} X_i^2 \leq c\} =& P\{\frac{\sum_{i=1}^{10} X_i^2}{0.3^2} \leq \frac{c}{0.3^2}\} \\
+	=& P\{\chi^2_{10} \leq \frac{c}{0.3^2}\} \\
+	=& 0.95
+\end{align*}
+
+查表得$\frac{c}{0.3^2} \approx 18.307$，解得$c \approx 1.64763$。
+
+\subsection*{补充4}
+
+\subsubsection*{(1)}
+
+可知$X_1 - X_2 \sim N(0, 2\sigma^2)$，$X_1 + X_2 \sim N(0, 2\sigma^2)$，因此有
+\begin{equation*}
+	\frac{X_1 - X_2}{\sqrt{2}\sigma}^2 \sim \chi^2_1 \text{ 且 } \frac{X_1 + X_2}{\sqrt{2}\sigma}^2 \sim \chi^2_1
+\end{equation*}
+
+两者相互独立，其非奇异线性组合也相互独立，因此有
+\begin{equation*}
+	\left(\frac{X_1 - X_2}{X_1 + X_2}\right)^2 = \frac{(\frac{X_1 - X_2}{\sqrt{2}\sigma})^2}{(\frac{X_1 + X_2}{\sqrt{2}\sigma})^2} \sim F_{1, 1}
+\end{equation*}
+
+\subsubsection*{(2)}
+
+\begin{equation*}
+	\frac{1}{\frac{(X_1+X_2)^2}{(X_1+X_2)^2+(X_1-X_2)^2}} = \frac{(X_1+X_2)^2+(X_1-X_2)^2}{(X_1+X_2)^2} = 1 + \frac{(X_1-X_2)^2}{(X_1+X_2)^2}
+\end{equation*}
+
+可将原式改为
+\begin{equation*}
+	P\{\frac{(X_1+X_2)^2}{(X_1+X_2)^2+(X_1-X_2)^2} > k\} = 0.10 \rightarrow P\{\frac{(X_1-X_2)^2}{(X_1+X_2)^2} < \frac{1}{k} - 1\} = 0.10
+\end{equation*}
+
+查表可知$F_{0.10}(1,1) = \frac{1}{F_{0.90}(1,1)} \approx \frac{1}{39.9}$。
+因此有$\frac{1}{k} - 1 \approx \frac{1}{39.9}$，解得$k \approx 0.9755$。
+
+\subsection*{补充5}
+
+已知$\overline{X_n} \sim N(\mu, \frac{\sigma^2}{n})$，$X_{n+1} \sim N(\mu, \sigma^2)$，则有
+\begin{align*}
+	X_{n+1} - \overline{X_n} \sim& N(0, \frac{n+1}{n}\sigma^2) \\
+	\frac{X_{n+1} - \overline{X_n}}{\sigma\sqrt{\frac{n+1}{n}}} \sim& N(0, 1)
+\end{align*}
+
+又有
+\begin{align*}
+	\frac{(n-1)S_n^2}{\sigma^2} \sim \chi^2_{n-1}
+\end{align*}
+
+因此有
+\begin{equation*}
+	\frac{\frac{X_{n+1} - \overline{X_n}}{\sigma\sqrt{\frac{n+1}{n}}}}{\sqrt{\frac{(n-1)S_n^2}{\sigma^2} \cdot \frac{1}{n-1}}} = \frac{X_{n+1} - \overline{X_n}}{S_n \sqrt{\frac{n+1}{n}}} \sim t_{n-1}
+\end{equation*}
+
+因此$c = \sqrt{\frac{n}{n+1}}$，$t_c \sim t_{n-1}$。
+\end{document}

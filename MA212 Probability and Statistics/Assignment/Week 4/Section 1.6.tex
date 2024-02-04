@@ -1,0 +1,247 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 1.6}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 1.6}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P24 Q68}
+该证明为假。
+反例如下：
+
+若令$\Omega = \{1,2,3,4\}$，$A = \{1,2\}$，$B = \{2,3\}$，$C = \{3,4\}$，则此时$P(A) = P(B) = P(C) = \frac{1}{2}$，$P(AB) = P(BC) = \frac{1}{4}$。
+
+由于$P(AB) = P(A)P(B)$且$P(BC) = P(B)P(C)$，所以$A$与$B$独立，$B$与$C$独立。
+但此时$P(AC) = 0 \neq P(A)P(C)$，所以$A$与$C$不独立。
+
+\subsection*{P24 Q71}
+已知$A$，$B$和$C$相互独立，所以$P(ABC) = P(A)P(B)P(C)$，$P(AB) = P(A)P(B)$，$P(AC) = P(A)P(C)$，$P(BC) = P(B)P(C)$。
+
+由于：
+\begin{align*}
+	P((A\cap B)\cap C) &= P(ABC)\\
+	&= P(A)P(B)P(C)\\
+	&= P(A\cap B)P(C)
+\end{align*}
+所以$A\cap B$与$C$独立。
+
+由于：
+\begin{align*}
+	P((A\cup B)\cap C) &= P((AC)\cup(BC))\\
+	&= P(AC) + P(BC) - P(ABC)\\
+	&= P(A)P(C) + P(B)P(C) - P(A)P(B)P(C)\\
+	&= (P(A) + P(B) - P(AB))P(C)\\
+	&= P(A\cup B)P(C)
+\end{align*}
+所以$A\cup B$与$C$独立。
+
+\subsection*{P24 Q74}
+记$A = \{\text{整个系统正常工作}\}$，$A_i= \{\text{第}i\text{个单元正常工作}\}$。则有：
+\begin{align*}
+	P(A) =& P(A_1A_2\cup A_3\cup A_4A_5)\\
+	=& P(A_1A_2) + P(A_3) + P(A_4A_5)\\
+	 &- P(A_1A_2A_3) - P(A_1A_2A_4A_5) - P(A_3A_4A_5) \\
+	 &+ P(A_1A_2A_3A_4A_5)\\
+	=& P(A_1)P(A_2) + P(A_3) + P(A_4)P(A_5)\\
+	 &- P(A_1)P(A_2)P(A_3) - P(A_1)P(A_2)P(A_4)P(A_5) - P(A_3)P(A_4)P(A_5)\\
+	 &+ P(A_1)P(A_2)P(A_3)P(A_4)P(A_5)\\
+	=& (1-p) + 2(1-p)^2 -2(1-p)^3 - (1-p)^4 + (1-p)^5\\
+	=& -p^5 + 4p^4 - 4p^3 + 1
+\end{align*}
+
+\subsection*{P24 Q77}
+记$A = \{\text{命中靶心至少一次}\}$，$A_i= \{\text{第}i\text{次命中靶心}\}$。
+则有：
+\begin{align*}
+	P(A) =& P(\bigcup_{i=1}^n A_i)\\
+	=& 1 - P(\bigcap_{i=1}^n \bar{A_i})\\
+	=& 1 - \prod_{i=1}^n P(\bar{A_i})\\
+	=& 1 - 0.95^n
+\end{align*}
+
+为使$P(A) \geq 0.5$，则有：
+\begin{align*}
+	1 - 0.95^n \geq 0.5\\
+	0.95^n \leq 0.5\\
+	n \geq \log_{0.95}0.5 \approx 13.5
+\end{align*}
+
+所以至少需要扔14次。
+
+\subsection*{P25 Q79}
+
+\subsubsection*{a.}
+记$A_i=\{\text{第}i\text{个人给出A基因}\}$，易知对于携带者有$P(A_i) = 0.5$，则有：
+\begin{align*}
+	P(\text{后代为AA}) =& P(A_1A_2)\\
+	=& P(A_1)P(A_2)\\
+	=& 0.5^2\\
+	=& 0.25\\
+	P(\text{后代为Aa}) =& P(A_1\bar{A_2} \cup \bar{A_1}A_2)\\
+	=& P(A_1\bar{A_2}) + P(\bar{A_1}A_2)\\
+	=& P(A_1)P(\bar{A_2}) + P(\bar{A_1})P(A_2)\\
+	=& 2\times 0.5\times 0.5\\
+	=& 0.5\\
+	P(\text{后代为aa}) =& P(\bar{A_1}\bar{A_2})\\
+	=& P(\bar{A_1})P(\bar{A_2})\\
+	=& 0.5^2\\
+	=& 0.25
+\end{align*}
+
+\subsubsection*{b.}
+\begin{align*}
+	P(\text{后代为Aa}|\text{后代为Aa或aa}) =& \frac{P(\text{后代为Aa})}{P(\text{后代为Aa}) + P(\text{后代为aa})}\\
+	=& \frac{0.5}{0.5 + 0.25}\\
+	=& \frac{2}{3}
+\end{align*}
+
+\subsubsection*{c.}
+已知该无病后代为Aa的概率为$\frac{2}{3}$，为aa的概率为$\frac{1}{3}$。
+由全概率公式可知：
+\begin{align*}
+	P(A_1) &= \frac{1}{2} \times \frac{2}{3} + 0 \times \frac{1}{3}\\
+	&= \frac{1}{3}
+\end{align*}
+其配偶为Aa的概率为$p$，为aa的概率为$1-p$。
+由全概率公式可知：
+\begin{align*}
+	P(A_2) &= \frac{1}{2} \cdot p + 0 \cdot (1-p)\\
+	&= \frac{p}{2}
+\end{align*}
+故有：
+\begin{align*}
+	P(\text{后代为AA}) =& P(A_1A_2)\\
+	=& P(A_1)P(A_2)\\
+	=& \frac{1}{3} \cdot \frac{p}{2}\\
+	=& \frac{p}{6}\\
+	P(\text{后代为Aa}) =& P(A_1\bar{A_2} \cup \bar{A_1}A_2)\\
+	=& P(A_1\bar{A_2}) + P(\bar{A_1}A_2)\\
+	=& P(A_1)P(\bar{A_2}) + P(\bar{A_1})P(A_2)\\
+	=& \frac{1}{3} \cdot (1 - \frac{p}{2}) + \frac{2}{3} \cdot \frac{p}{2}\\
+	=& \frac{1}{3} + \frac{p}{6}\\
+	P(\text{后代为aa}) =& P(\bar{A_1}\bar{A_2})\\
+	=& P(\bar{A_1})P(\bar{A_2})\\
+	=& \frac{2}{3} \cdot (1 - \frac{p}{2})\\
+	=& \frac{2}{3} - \frac{p}{3}
+\end{align*}
+
+\subsubsection*{d.}
+由贝叶斯公式可知：
+\begin{align*}
+	P(\text{父亲是携带者}|\text{后代不患病}) =& \frac{P(\text{后代不患病}|\text{父亲是携带者})P(\text{父亲是携带者})}{P(\text{后代不患病})}\\
+	=& \frac{(1-p + \frac{3p}{4}) \cdot \frac{2}{3}}{(1-p + \frac{3p}{4}) \cdot \frac{2}{3} + 1 \cdot \frac{1}{3}}\\
+	=& \frac{4-p}{6-p}
+\end{align*}
+
+\subsection*{补充1}
+已知事件$A$与事件$B$独立，且有$P(\bar{A}\bar{B}) = \frac{1}{9}$，$P(A\bar{B}) = P(\bar{A}B)$。
+则有：
+\begin{align*}
+	P(A\bar{B}) &= P(\bar{A}B)\\
+	P(A)P(\bar{B}) &= P(\bar{A})P(B)\\
+	P(A) - P(A)P(B) &= P(B) - P(A)P(B)\\
+	P(A) &= P(B)
+\end{align*}
+
+由于$P(A) = P(B)$，所以$P(\bar{A}) = P(\bar{B})$。
+
+又由于$P(\bar{A}\bar{B}) = \frac{1}{9}$，所以$P(A) = P(B) = \frac{2}{3}$。
+
+\subsection*{补充2}
+\begin{align*}
+	P(A\cup B\cup C) =& P(A) + P(B) + P(C)\\
+	 &- P(AB) - P(AC) - P(BC)\\
+	 &+ P(ABC)\\
+	=& 3P(A) -3P(A)^2 + 0\\
+	=& \frac{9}{16} 
+\end{align*}
+
+解方程可得$P(A) = \frac{3}{4}\text{或}\frac{1}{4}$。
+然而，若$P(A) = P(B) = P(C) = \frac{3}{4}$，则$P(ABC) \geq \frac{1}{4}$，与题设矛盾。
+
+所以$P(A) = P(B) = P(C) = \frac{1}{4}$。
+
+\subsection*{练习}
+
+\subsubsection*{1.}
+正确的是3
+\begin{align*}
+	P(A|B) =& \frac{P(AB)}{P(B)}\\
+	=& \frac{0}{P(B)}\\
+	=& 0
+\end{align*}
+
+\subsubsection*{2.}
+正确的是1，2，4
+\begin{align*}
+	P(B|A) =& \frac{P(AB)}{P(A)}\\
+	=& \frac{P(A)P(B)}{P(A)}\\
+	=& P(B)\\
+	>& 0
+\end{align*}
+
+\begin{align*}
+	P(A|B) =& \frac{P(AB)}{P(B)}\\
+	=& \frac{P(A)P(B)}{P(B)}\\
+	=& P(A)
+\end{align*}
+
+由独立的定义可知4正确。
+\end{document}

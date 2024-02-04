@@ -1,0 +1,152 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx,diagbox}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 3.2}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 3.2}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P76 Q3}
+
+这是一个多项分布。令玩家一，玩家二，玩家三赢得游戏的次数分别为$x_1$，$x_2$，$x_3$，则每个人赢得游戏次数的联合频率函数为：
+\begin{equation*}
+	P\{X_1 = x_1, X_2 = x_2, X_3 = x_3 \} = 
+	\begin{cases}
+		\frac{10!}{3^{10} \cdot x_1!x_2!x_3!} & x_1+x_2+x_3 = 10 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+\subsection*{补充1}
+
+$(X,Y)$的频率函数可由下表表示：
+\begin{center}
+	\begin{tabular}{c|cc}
+		\diagbox{$X$}{$Y$} & 1 & 3 \\ \hline
+		0 & 0 & $\frac{1}{8}$ \\
+		1 &	$\frac{3}{8}$ & 0 \\
+		2 & $\frac{3}{8}$ & 0 \\
+		3 & 0 & $\frac{1}{8}$ 
+	\end{tabular}
+\end{center}
+
+\subsection*{补充2}
+
+$(X,Y)$的联合频率函数及边缘频率函数可由下表表示：
+\begin{center}
+	\begin{tabular}{c|cc|c}
+		\diagbox{$X$}{$Y$} & 0 & 1 & $P_X(x)$ \\ \hline
+		-1 & 0 & $\frac{1}{3}$ & $\frac{1}{3}$ \\
+		0 & $\frac{1}{3}$ & 0 & $\frac{1}{3}$ \\
+		1 & 0 & $\frac{1}{3}$ & $\frac{1}{3}$ \\ \hline
+		$P_Y(y)$ & $\frac{1}{3}$ & $\frac{2}{3}$ & 1
+	\end{tabular}
+\end{center}
+
+\subsection*{补充3}
+
+二维随机变量$(X_1, X_2)$的频率函数可由下式表示：
+\begin{equation*}
+	P\{X_1 = x_1, X_2 = x_2\} = P\{X_1 = x_1 | X_2 = x_2\} \cdot P\{X_2 = x_2\}
+\end{equation*}
+
+故有：
+\begin{align*}
+	P\{X_1 = 0, X_2 = 0\} =& P\{X_1 = 0 | X_2 = 0\} \cdot P\{X_2 = 0\} \\
+	=& P\{Y \leq 1 | Y \leq 2\} \cdot P\{Y \leq 2\} \\
+	=& \frac{F(1)}{F(2)} \cdot F(2) \\
+	=& F(1) \\
+	=& 1 - e^{-1}
+\end{align*}
+
+\begin{align*}
+	P\{X_1 = 0, X_2 = 1\} =& P\{X_1 = 0 | X_2 = 1\} \cdot P\{X_2 = 1\} \\
+	=& P\{Y \leq 1 | Y > 2\} \cdot P\{Y > 2\} \\
+	=& \frac{0}{1 - F(2)} \cdot (1 - F(2)) \\
+	=& 0
+\end{align*}
+
+\begin{align*}
+	P\{X_1 = 1, X_2 = 0\} =& P\{X_1 = 1 | X_2 = 0\} \cdot P\{X_2 = 0\} \\
+	=& P\{Y > 1 | Y \leq 2\} \cdot P\{Y \leq 2\} \\
+	=& \frac{F(2) - F(1)}{F(2)} \cdot F(2) \\
+	=& F(2) - F(1) \\
+	=& 1 - e^{-2} - (1 - e^{-1}) \\
+	=& e^{-1} - e^{-2}
+\end{align*}
+
+\begin{align*}
+	P\{X_1 = 1, X_2 = 1\} =& P\{X_1 = 1 | X_2 = 1\} \cdot P\{X_2 = 1\} \\
+	=& P\{Y > 1 | Y > 2\} \cdot P\{Y > 2\} \\
+	=& \frac{1 - F(2)}{1 - F(2)} \cdot (1 - F(2)) \\
+	=& 1 - F(2) \\
+	=& e^{-2}
+\end{align*}
+
+\newpage
+综上，$(X_1, X_2)$的联合频率函数及边缘频率函数可由下表表示：
+\begin{center}
+	\begin{tabular}{c|cc|c}
+		\diagbox{$X_1$}{$X_2$} & 0 & 1 & $P_{X_1}(x_1)$ \\ \hline
+		0 & $1 - e^{-1}$ & 0 & $1 - e^{-1}$ \\
+		1 & $e^{-1} - e^{-2}$ & $e^{-2}$ & $e^{-1}$ \\ \hline
+		$P_{X_2}(x_2)$ & $1 - e^{-2}$ & $e^{-2}$ & 1
+	\end{tabular}
+\end{center}
+\end{document}

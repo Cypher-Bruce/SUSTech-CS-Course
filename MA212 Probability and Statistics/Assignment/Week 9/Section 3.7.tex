@@ -1,0 +1,135 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx,diagbox}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 3.7}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 3.7}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P81 Q70}
+
+令$X = X_{(1)}, Y = X_{(n)}$，则有：
+\begin{align*}
+	P\{x \leq X_{(1)} \leq x + \mathrm{d} x, y \leq X_{(n)} \leq y + \mathrm{d} y\} &= n(n-1) \cdot [F(y) - F(x)]^{n-2} \cdot f(x) \mathrm{d} x \cdot f(y) \mathrm{d} y \\
+	&= f(x,y) \mathrm{d} y \mathrm{d} x
+\end{align*}
+
+因此可知$U,V$的联合密度函数为：
+\begin{equation*}
+	f(x,y) = n(n-1)f(x)f(y)[F(y) - F(x)]^{n-2}\ (x \leq y)
+\end{equation*}
+
+其联合累计分布函数为：
+\begin{align*}
+	F(x,y) &= P\{X \leq x, Y \leq y\} \\
+	&= \int_{-\infty}^{x} \int_{u}^{y} f(u,v) \mathrm{d} v \mathrm{d} u \\
+	&= \int_{-\infty}^{x} \int_{u}^{y} n(n-1)f(u)f(v)[F(v) - F(u)]^{n-2} \mathrm{d} v \mathrm{d} u \\
+	&= \int_{-\infty}^{x} nf(u) \int_{u}^{y} (n-1)f(v)[F(v) - F(u)]^{n-2} \mathrm{d} v \mathrm{d} u \\
+	&= \int_{-\infty}^{x} nf(u) \left[[F(v) - F(u)]^{n-1} \right]_{u}^{y} \mathrm{d} u \\
+	&= \int_{-\infty}^{x} nf(u) [F(y) - F(u)]^{n-1} \mathrm{d} u \\
+	&= \left[ - [F(y) - F(u)]^{n} \right]_{-\infty}^{x} \\
+	&= F(y)^n - [F(y) - F(x)]^{n}
+\end{align*}
+
+\subsection*{补充1}
+
+可知$\{x,y,z\}$共有$3=6$种等可能的排列，分别为：
+\begin{equation*}
+	\{1,2,2\}, \{1,3,3\}, \{2,3,3\}, \{2,1,2\}, \{3,1,3\}, \{3,2,3\}
+\end{equation*}
+
+因此可知$(X,Y)$的联合频率函数及边缘频率函数为：
+\begin{center}
+	\begin{tabular}{c|ccc|c}
+		\diagbox{$X$}{$Y$} & 1 & 2 & 3 & $f_X(x)$ \\
+		\hline
+		1 & 0 & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{3}$ \\
+		2 & $\frac{1}{6}$ & 0 & $\frac{1}{6}$ & $\frac{1}{3}$ \\
+		3 & $\frac{1}{6}$ & $\frac{1}{6}$ & 0 & $\frac{1}{3}$ \\
+		\hline
+		$f_Y(y)$ & $\frac{1}{3}$ & $\frac{1}{3}$ & $\frac{1}{3}$ & 1
+	\end{tabular}
+\end{center}
+
+$(X,Z)$的联合频率函数及边缘频率函数为：
+\begin{center}
+	\begin{tabular}{c|cc|c}
+		\diagbox{$X$}{$Z$} & 2 & 3 & $f_X(x)$ \\
+		\hline
+		1 & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{3}$ \\
+		2 & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{3}$ \\
+		3 & 0 & $\frac{1}{3}$ & $\frac{1}{3}$ \\
+		\hline
+		$f_Z(z)$ & $\frac{1}{3}$ & $\frac{2}{3}$ & 1
+	\end{tabular}
+\end{center}
+
+\subsection*{补充2}
+
+\begin{align*}
+	F_{\text{min}}(z) &= P\{Z \leq z\} \\
+	&= P\{\text{min}(X,Y) \leq z\} \\
+	&= 1 - P\{\text{min}(X,Y) > z\} \\
+	&= 1 - P\{X > z, Y > z\} \\
+	&= 1 - P\{X > z\} P\{Y > z\} \\
+	&= 1 - (1 - F_X(z))(1 - F_Y(z)) \\
+	&= 1 - (1 - \Phi(z))(1 - \Phi(z)) \\
+	&= 2\Phi(z) - \Phi^2(z)
+\end{align*}
+\end{document}

@@ -1,0 +1,172 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx,diagbox}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 3.4}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 3.4}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P77 Q19}
+
+由于$T_1$和$T_2$是独立的且服从参数分别为$\alpha$和$\beta$的指数分布，则其联合密度$f(t_1,t_2) = f(t_1)f(t_2) = \alpha\beta e^{-\alpha t_1}e^{-\beta t_2}$。
+
+\subsubsection*{(a)}
+
+\begin{align*}
+	P\{T_1 > T_2\} &= \int_{0}^{\infty}\int_{0}^{t_1}\alpha\beta e^{-\alpha t_1}e^{-\beta t_2} \mathrm{d}t_2 \mathrm{d}t_1 \\
+	&= \int_{0}^{\infty}\alpha e^{-\alpha t_1}\int_{0}^{t_1}\beta e^{-\beta t_2} \mathrm{d}t_2 \mathrm{d}t_1 \\
+	&= \int_{0}^{\infty}\alpha e^{-\alpha t_1}(-e^{-\beta t_2})\Big|_{0}^{t_1} \mathrm{d}t_1 \\
+	&= \int_{0}^{\infty}\alpha e^{-\alpha t_1}(1-e^{-\beta t_1}) \mathrm{d}t_1 \\
+	&= \int_{0}^{\infty}\alpha e^{-\alpha t_1}dt_1 - \int_{0}^{\infty}\alpha e^{-(\alpha+\beta) t_1} \mathrm{d}t_1 \\
+	&= \frac{\alpha}{\alpha} - \frac{\alpha}{\alpha+\beta} \\
+	&= \frac{\beta}{\alpha+\beta}
+\end{align*}
+
+\subsubsection*{(b)}
+
+\begin{align*}
+	P\{T_1 > 2T_2\} &= \int_{0}^{\infty}\int_{0}^{\frac{t_1}{2}}\alpha\beta e^{-\alpha t_1}e^{-\beta t_2} \mathrm{d}t_2 \mathrm{d}t_1 \\
+	&= \int_{0}^{\infty}\alpha e^{-\alpha t_1}\int_{0}^{\frac{t_1}{2}}\beta e^{-\beta t_2} \mathrm{d}t_2 \mathrm{d}t_1 \\
+	&= \int_{0}^{\infty}\alpha e^{-\alpha t_1}(-e^{-\beta t_2})\Big|_{0}^{\frac{t_1}{2}} \mathrm{d}t_1 \\
+	&= \int_{0}^{\infty}\alpha e^{-\alpha t_1}(1-e^{-\frac{\beta t_1}{2}}) \mathrm{d}t_1 \\
+	&= \int_{0}^{\infty}\alpha e^{-\alpha t_1}dt_1 - \int_{0}^{\infty}\alpha e^{-(\alpha+\frac{\beta}{2}) t_1} \mathrm{d}t_1 \\
+	&= \frac{\alpha}{\alpha} - \frac{\alpha}{\alpha+\frac{\beta}{2}} \\
+	&= 1 - \frac{2\alpha}{2\alpha+\beta} \\
+	&= \frac{\beta}{2\alpha+\beta}
+\end{align*}
+
+\subsection*{补充1}
+
+\subsubsection*{(1)}
+
+当先后有放回地取两球时，$X$表示第一次取到白球的数量，$Y$表示第二次取到白球的数量。
+则易知$P\{X = 0\} = \frac{3}{5}$，$P\{X = 1\} = \frac{2}{5}$，$P\{Y = 0\} = \frac{3}{5}$，$P\{Y = 1\} = \frac{2}{5}$。
+其联合频率函数及边缘频率函数如下：
+\begin{center}
+	\begin{tabular}{c|cc|c}
+		\diagbox{$X$}{$Y$} & 0 & 1 & $f_X(x)$ \\
+		\hline
+		0 & $\frac{9}{25}$ & $\frac{6}{25}$ & $\frac{3}{5}$ \\
+		1 & $\frac{6}{25}$ & $\frac{4}{25}$ & $\frac{2}{5}$ \\
+		\hline
+		$f_Y(y)$ & $\frac{3}{5}$ & $\frac{2}{5}$ & 1
+	\end{tabular}
+\end{center}
+
+易知$X$和$Y$独立。
+
+\subsubsection*{(2)}
+
+当先后无放回地取两球时，$X$表示第一次取到白球的数量，$Y$表示第二次取到白球的数量。
+则有$P\{X = 0, Y = 0\} = \frac{3}{5}\times\frac{2}{4} = \frac{3}{10}$，$P\{X = 0, Y = 1\} = \frac{3}{5}\times\frac{2}{4} = \frac{3}{10}$，$P\{X = 1, Y = 0\} = \frac{2}{5}\times\frac{3}{4} = \frac{3}{10}$，$P\{X = 1, Y = 1\} = \frac{2}{5}\times\frac{1}{4} = \frac{1}{10}$。
+其联合频率函数及边缘频率函数如下：
+\begin{center}
+	\begin{tabular}{c|cc|c}
+		\diagbox{$X$}{$Y$} & 0 & 1 & $f_X(x)$ \\
+		\hline
+		0 & $\frac{3}{10}$ & $\frac{3}{10}$ & $\frac{3}{5}$ \\
+		1 & $\frac{3}{10}$ & $\frac{1}{10}$ & $\frac{2}{5}$ \\
+		\hline
+		$f_Y(y)$ & $\frac{3}{5}$ & $\frac{2}{5}$ & 1
+	\end{tabular}
+\end{center}
+
+易知$X$和$Y$不独立，因为$P\{X = 0, Y = 0\} = \frac{3}{10} \neq \frac{3}{5}\times\frac{3}{5} = P\{X = 0\}P\{Y = 0\}$。
+
+\subsection*{补充2}
+
+\subsubsection*{(1)}
+
+\begin{align*}
+	\iint_{x^2 + y^2 \leq R^2} f(x,y) \mathrm{d}x \mathrm{d}y &= \iint_{x^2 + y^2 \leq R^2} c \mathrm{d}x \mathrm{d}y \\
+	&= c \iint_{x^2 + y^2 \leq R^2} \mathrm{d}x \mathrm{d}y \\
+	&= c \pi R^2 \\
+	&= 1
+\end{align*}
+
+所以$c = \frac{1}{\pi R^2}$。
+
+\subsubsection*{(2)}
+
+其边缘密度函数为：
+\begin{align*}
+	f_X(x) &= \int_{-\sqrt{R^2-x^2}}^{\sqrt{R^2-x^2}} \frac{1}{\pi R^2} \mathrm{d}y \\
+	&= \frac{2}{\pi R^2} \sqrt{R^2-x^2} \\
+	f_Y(y) &= \int_{-\sqrt{R^2-y^2}}^{\sqrt{R^2-y^2}} \frac{1}{\pi R^2} \mathrm{d}x \\
+	&= \frac{2}{\pi R^2} \sqrt{R^2-y^2}
+\end{align*}
+\begin{equation*}
+	f_X(x) =
+	\begin{cases}
+		\frac{2}{\pi R^2} \sqrt{R^2-x^2} & -R \leq x \leq R \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+\begin{equation*}
+	f_Y(y) =
+	\begin{cases}
+		\frac{2}{\pi R^2} \sqrt{R^2-y^2} & -R \leq y \leq R \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+\subsubsection*{(3)}
+
+变量$X$与$Y$不独立，因为$f_X(x)f_Y(y) = \frac{4}{\pi^2 R^4} (R^2-x^2)(R^2-y^2) \neq \frac{1}{\pi R^2} = f(x,y)$。
+\end{document}

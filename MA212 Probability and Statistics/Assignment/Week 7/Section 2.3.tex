@@ -1,0 +1,263 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 2.3}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 2.3}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P49 Q54}
+
+\begin{align*}
+	F_Y(y) =& P\{Y \leq y\} \\
+	=& P\{|X| \leq y\} \\
+	=& P\{-y \leq X \leq y\} \\
+	=& F_X(y) - F_X(-y)
+\end{align*}
+
+已知$x \sim N(0, \sigma^2)$，则$F_X(x) = \Phi(\frac{x}{\sigma})$且$F_X(-x) = \Phi(\frac{-x}{\sigma}) = 1 - \Phi(\frac{x}{\sigma})$，所以$F_Y(y) = 2\Phi(\frac{y}{\sigma}) - 1$。
+
+故$Y$的密度函数为：
+\begin{equation*}
+	f_Y(y) = \frac{d}{dy}F_Y(y) =
+	\begin{cases}
+		\frac{2}{\sigma}\phi(\frac{y}{\sigma}) = \frac{2}{\sqrt{2\pi}\sigma}e^{-\frac{y^2}{2\sigma^2}} & y \geq 0 \\
+		0 & y < 0
+	\end{cases}
+\end{equation*}
+
+\subsection*{P49 Q59}
+
+$U$是$[-1,1]$上的均匀分布，则$U$的分布函数为：
+\begin{equation*}
+	F_U(u) =
+	\begin{cases}
+		0 & u < -1 \\
+		\frac{1}{2}(u + 1) & -1 \leq u \leq 1 \\
+		1 & u < 1
+	\end{cases}
+\end{equation*}
+
+对于$U^2$，则有：
+\begin{align*}
+	F_{U^2}(u) =& P\{U^2 \leq u\} \\
+	=& P\{-\sqrt{u} \leq U \leq \sqrt{u}\} \\
+	=& F_U(\sqrt{u}) - F_U(-\sqrt{u})
+\end{align*}
+
+所以$U^2$的分布函数为：
+\begin{equation*}
+	F_{U^2}(u) = 
+	\begin{cases}
+		0 & u < 0 \\
+		\sqrt{u} & 0 \leq u \leq 1 \\
+		1 & u < 1
+	\end{cases}
+\end{equation*}
+
+故$U^2$的密度函数为：
+\begin{equation*}
+	f_{U^2}(u) = \frac{d}{du}F_{U^2}(u) =
+	\begin{cases}
+		\frac{1}{2\sqrt{u}} & 0 \leq u \leq 1 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+\subsection*{P49 Q64}
+
+当$a \geq 0$时，有：
+\begin{align*}
+	f_Y(y) =& \frac{d}{du}F_Y(y) \\
+	=& \frac{d}{dy}P\{Y \leq y\} \\
+	=& \frac{d}{dy}P\{a X + b \leq y\} \\
+	=& \frac{d}{dy}P\{X \leq \frac{y - b}{a}\} \\
+	=& \frac{d}{dy}F_X(\frac{y - b}{a}) \\
+	=& \frac{1}{a}f_X(\frac{y - b}{a})
+\end{align*}
+
+当$a < 0$时，有：
+\begin{align*}
+	f_Y(y) =& \frac{d}{du}F_Y(y) \\
+	=& \frac{d}{dy}P\{Y \leq y\} \\
+	=& \frac{d}{dy}P\{a X + b \leq y\} \\
+	=& \frac{d}{dy}P\{X \geq \frac{y - b}{a}\} \\
+	=& \frac{d}{dy}(1 - P\{X \leq \frac{y - b}{a}\}) \\
+	=& -\frac{1}{a}f_X(\frac{y - b}{a})
+\end{align*}
+
+综上可知：
+\begin{equation*}
+	f_Y(y) = \frac{1}{|a|}f_X(\frac{y - b}{a})
+\end{equation*}
+
+\subsection*{补充1}
+
+可知$P\{Y = 0\} = P\{X = 0\}$，$P\{Y = 1\} = P\{X = 1\} + P\{X = -1\}$，$P\{Y = 4\} = P\{X = 2\} + P\{X = -2\}$。
+
+故$Y = X^2$的频率函数为：
+\begin{equation*}
+	P\{Y = y\} =
+	\begin{cases}
+		\frac{1}{5} & y = 0 \\
+		\frac{7}{30} & y = 1 \\
+		\frac{17}{30} & y = 4 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+\subsection*{补充2}
+
+已知随机变量$Y = \sin X$，可知：
+\begin{align*}
+	F_Y(y) =& P\{Y \leq y\} \\
+	=& P\{\sin X \leq y\} \\
+	=& P\{X \leq \arcsin y\} + P\{X \geq \pi - \arcsin y\} \\
+	=& F_X(\arcsin y) + 1 - F_X(\pi - \arcsin y)
+\end{align*}
+
+又已知$X$的密度函数为：
+\begin{equation*}
+	f_X(x) = 
+	\begin{cases}
+		\frac{2x}{\pi^2} & 0 < x < \pi \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+$\int_{0}^{x} \frac{2x}{\pi^2} dx = \frac{x^2}{\pi^2}$，所以$X$的分布函数为：
+\begin{equation*}
+	F_X(x) = 
+	\begin{cases}
+		0 & x \leq 0 \\
+		\frac{x^2}{\pi^2} & 0 < x < \pi \\
+		1 & x \geq \pi
+	\end{cases}
+\end{equation*}
+
+故$Y$的分布函数为：
+\begin{equation*}
+	F_Y(y) = 
+	\begin{cases}
+		0 & y \leq 0 \\
+		\frac{2 \arcsin y}{\pi} & 0 < y \leq 1 \\
+		1 & y > 1
+	\end{cases}
+\end{equation*}
+
+故$Y$的密度函数为：
+\begin{equation*}
+	f_Y(y) = \frac{d}{dy}F_Y(y) =
+	\begin{cases}
+		\frac{2}{\pi \sqrt{1 - y^2}} & 0 < y \leq 1 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+\subsection*{补充3}
+
+可知：
+\begin{align*}
+	P\{Y = 1\} =& \sum_{k = 1}^{\infty} P\{X = 2k\} \\
+	=& \sum_{k = 1}^{\infty} (\frac{1}{2})^{2k} \\
+	=& \sum_{k = 1}^{\infty} (\frac{1}{4})^{k} \\
+	=& \frac{1}{3} \\
+	P\{Y = -1\} =& \sum_{k = 1}^{\infty} P\{X = 2k - 1\} \\
+	=& \sum_{k = 1}^{\infty} (\frac{1}{2})^{2k - 1} \\
+	=& \frac{2}{3} 
+\end{align*}
+
+故$Y$的分布律为：
+\begin{center}
+	\begin{tabular}{c|cc}
+		$Y$ & $1$ & $-1$ \\
+		\hline
+		$P$ & $\frac{1}{3}$ & $\frac{2}{3}$
+	\end{tabular}
+\end{center}
+
+\subsection*{补充4}
+
+已知$X$在区间$(1,2)$上服从均匀分布，随机变量$Y = e^{2X}$，可知：
+\begin{align*}
+	F_Y(y) =& P\{Y \leq y\} \\
+	=& P\{e^{2X} \leq y\} \\
+	=& P\{2X \leq \ln y\} \\
+	=& P\{X \leq \frac{\ln y}{2}\} 
+\end{align*}
+
+所以$Y$的分布函数为：
+\begin{equation*}
+	F_Y(y) = 
+	\begin{cases}
+		0 & y \leq e^2 \\
+		\frac{\ln y - 2}{2} & e^2 < y < e^4 \\
+		1 & y \geq e^4
+	\end{cases}
+\end{equation*}
+
+故$Y$的密度函数为：
+\begin{equation*}
+	f_Y(y) = \frac{d}{dy}F_Y(y) =
+	\begin{cases}
+		\frac{1}{2y} & e^2 < y < e^4 \\
+		0 & \text{otherwise}
+	\end{cases}
+\end{equation*}
+\end{document}

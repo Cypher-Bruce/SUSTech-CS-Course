@@ -1,0 +1,201 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Section 7.1}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Section 7.1}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\subsection*{P218 Q5}
+
+\subsubsection*{(a)}
+
+\begin{equation*}
+	E(X) = 1 \times P\{X = 1\} + 2 \times P\{X = 2\} = \theta + 2 \times (1 - \theta) = 2 - \theta
+\end{equation*}
+
+因此有：
+\begin{equation*}
+	\theta = 2 - E(X)
+\end{equation*}
+
+使用$\bar{X}$代替$E(X)$，有：
+\begin{align*}
+	\hat{\theta} =& 2 - \bar{X} \\
+	=& 2 - \frac{1 + 2 + 2}{3} \\
+	=& \frac{1}{3}
+\end{align*}
+
+\subsubsection*{(b)}
+
+最大似然函数为：
+\begin{equation*}
+	L(\theta) = \prod P\{X = x_i\} = \prod \theta^{2-x_i} (1 - \theta)^{x_i-1} = \theta^{2n - \sum x_i} (1 - \theta)^{\sum x_i - n}
+\end{equation*}
+
+\subsubsection*{(c)}
+
+最大似然估计为：
+\begin{equation*}
+	\frac{d \ln L(\theta)}{d \theta} = \frac{2n - \sum x_i}{\theta} - \frac{\sum x_i - n}{1 - \theta} = 0
+\end{equation*}
+
+带入$n=3$，$\sum x_i = 5$，解得$\theta = \frac{1}{3}$。
+\subsection*{补充1}
+
+矩估计为：
+\begin{align*}
+	E(X) =& \int_{0}^{\theta} x \cdot f(x ; \theta) dx \\
+	=& \int_{0}^{\theta} x \cdot \frac{2}{\theta^2} (\theta - x) dx \\
+	=& \frac{2}{\theta^2} \int_{0}^{\theta} (\theta x - x^2) dx \\
+	=& \frac{2}{\theta^2} \left( \frac{1}{2} \theta x^2 - \frac{1}{3} x^3 \right) \bigg|_{0}^{\theta} \\
+	=& \frac{\theta}{3}
+\end{align*}
+
+因此有：
+\begin{equation*}
+	\theta = 3 E(X)
+\end{equation*}
+
+使用$\bar{X}$代替$E(X)$，有：
+\begin{equation*}
+	\hat{\theta} = 3 \bar{X}
+\end{equation*}
+
+\subsection*{补充2}
+
+\subsubsection*{(1)}
+
+最大似然函数为：
+\begin{equation*}
+	L(\theta) = \prod \frac{\theta^x}{x!} e^{-\theta} = \frac{\theta^{\sum x_i}}{\prod x_i!} e^{-n \theta}
+\end{equation*}
+
+对数似然函数为：
+\begin{equation*}
+	\ln L(\theta) = \ln \theta \sum x_i - \ln \prod x_i! - n \theta
+\end{equation*}
+
+最大似然估计为：
+\begin{equation*}
+	\frac{d \ln L(\theta)}{d \theta} = \frac{\sum x_i}{\theta} - n = 0
+\end{equation*}
+
+解得$\hat{\theta} = \frac{\sum x_i}{n}$。
+
+\subsubsection*{(2)}
+
+最大似然函数为：
+\begin{equation*}
+	L(\theta) = \prod \theta \alpha x^{\alpha - 1} e^{-\theta x^{\alpha}} = \theta^n \alpha^n \prod x_i^{\alpha - 1} e^{-\theta \sum x_i^{\alpha}}
+\end{equation*}
+
+对数似然函数为：
+\begin{equation*}
+	\ln L(\theta) = n \ln \theta + n \ln \alpha + (\alpha - 1) \sum \ln x_i - \theta \sum x_i^{\alpha}
+\end{equation*}
+
+最大似然估计为：
+\begin{equation*}
+	\frac{d \ln L(\theta)}{d \theta} = \frac{n}{\theta} - \sum x_i^{\alpha} = 0
+\end{equation*}
+
+解得$\hat{\theta} = \frac{n}{\sum x_i^{\alpha}}$。
+
+\subsection*{补充3}
+
+\textbf{矩估计}
+
+矩估计为：
+\begin{align*}
+	E(X) =& \int_{0}^{1} x \cdot f(x ; \theta) dx \\
+	=& \int_{0}^{1} x \cdot \theta (1 - x)^{\theta - 1} dx \\
+	=& - x (1 - x)^{\theta} \bigg|_{0}^{1} + \int_{0}^{1} (1 - x)^{\theta} dx \\
+	=& \frac{1}{\theta + 1}
+\end{align*}
+
+因此有：
+\begin{equation*}
+	\theta = \frac{1}{E(X)} - 1
+\end{equation*}
+
+使用$\bar{X}$代替$E(X)$，有：
+\begin{equation*}
+	\hat{\theta} = \frac{1}{\bar{X}} - 1 \text{ 且 } \bar{X} = \frac{\sum X_i}{n}
+\end{equation*}
+
+\textbf{最大似然估计}
+
+最大似然函数为：
+\begin{equation*}
+	L(\theta) = \prod \theta (1 - X_i)^{\theta - 1} = \theta^n \prod (1 - X_i)^{\theta - 1}
+\end{equation*}
+
+对数似然函数为：
+\begin{equation*}
+	\ln L(\theta) = n \ln \theta + (\theta - 1) \sum \ln (1 - X_i)
+\end{equation*}
+
+最大似然估计为：
+\begin{equation*}
+	\frac{d \ln L(\theta)}{d \theta} = \frac{n}{\theta} + \sum \ln (1 - X_i) = 0
+\end{equation*}
+
+解得$\hat{\theta} = - \frac{n}{\sum \ln (1 - X_i)}$。
+\end{document}

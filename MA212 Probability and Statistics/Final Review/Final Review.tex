@@ -1,0 +1,1075 @@
+\documentclass[a4paper,12pt]{ctexart} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,mathabx}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Probability and Statistics: Final Review}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize 吴梦轩} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Probability and Statistics} \\
+Southern University of Science and Technology \\ 吴梦轩 \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Final Review}
+	\vspace{2mm}
+
+	{\bf 吴梦轩}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section{随机变量}
+
+\subsection{重要分布}
+
+\subsubsection{二项分布}
+
+二项分布的符号表示为$X\sim b(n,p)$，其频率函数为：
+\begin{equation*}
+	P\{X = x\} = C_n^xp^x(1-p)^{n-x} = \frac{n!}{x!(n-x)!}p^x(1-p)^{n-x}
+\end{equation*}
+
+意为：$n$次独立重复试验中，事件$A$发生$x$次的概率。
+
+\textbf{多项分布：}
+
+多项分布的符号表示为$X\sim m(n,p_1,p_2,\cdots,p_k)$，其频率函数为：
+\begin{equation*}
+	P\{X_1 = x_1,X_2 = x_2,\cdots,X_k = x_k\} = \frac{n!}{x_1!x_2!\cdots x_k!}p_1^{x_1}p_2^{x_2}\cdots p_k^{x_k}\ \left(\sum_{i=1}^kp_i = 1, \sum_{i=1}^kx_i = n\right)
+\end{equation*}
+
+意为：$n$次独立重复试验中，事件$A_1,A_2,\cdots,A_k$分别发生$x_1,x_2,\cdots,x_k$次的概率。
+
+\subsubsection{泊松分布}
+
+泊松分布的符号表示为$X\sim P(\lambda)$或$X\sim \pi(\lambda)$，其频率函数为：
+\begin{equation*}
+	P\{X = x\} = \frac{\lambda^x}{x!}e^{-\lambda}
+\end{equation*}
+
+意为：单位时间（或单位面积）内随机事件发生$x$次的概率。
+
+\textbf{泊松定理：}
+
+设$X\sim b(n,p)$，当$n\rightarrow\infty,p\rightarrow0$，使得$np=\lambda$不变，则有：
+\begin{equation*}
+	\lim_{n\rightarrow\infty}P\{X = x\} = \lim_{n\rightarrow\infty}C_n^xp^x(1-p)^{n-x} = \frac{\lambda^x}{x!}e^{-\lambda}
+\end{equation*}
+
+\textbf{泊松流：}
+
+记在时间$(0,t]$内随机事件发生的次数为$N(t)$，则$N(t)\sim P(\lambda t)$，称$N(t)$为泊松流。
+\begin{equation*}
+	P\{N(t) = n\} = \frac{(\lambda t)^n}{n!}e^{-\lambda t}
+\end{equation*}
+
+\subsubsection{均匀分布}
+
+均匀分布的符号表示为$X\sim U(a,b)$，其频率函数为：
+\begin{equation*}
+	P\{X = x\} = \begin{cases}
+		\frac{1}{b-a}, & a<x<b \\
+		0, & \text{otherwise}
+	\end{cases}
+\end{equation*}
+
+其分布函数为：
+\begin{equation*}
+	F(x) = \begin{cases}
+		0, & x\leq a \\
+		\frac{x-a}{b-a}, & a<x<b \\
+		1, & x\geq b
+	\end{cases}
+\end{equation*}
+
+\subsubsection{正态分布}
+
+正态分布的符号表示为$X\sim N(\mu,\sigma^2)$，其频率函数为：
+\begin{equation*}
+	P\{X = x\} = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{equation*}
+
+特别的，当$\mu = 0,\sigma = 1$时，称为标准正态分布，记为$X\sim N(0,1)$。
+标准正态分布的分布函数记为$\Phi(x)$，其频率函数记为$\varphi(x)$。
+
+\textbf{分布函数的积分过程：}
+\begin{align*}
+	F(+\infty) &= \int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\mathrm{d}x \\
+	&= \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{+\infty}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\mathrm{d}x
+\end{align*}
+
+此时令$t = \frac{x-\mu}{\sigma}$，则有：
+\begin{align*}
+	F(+\infty) &= \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{+\infty}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\mathrm{d}x \\
+	&= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty}e^{-\frac{t^2}{2}}\mathrm{d}t \\
+	&= \frac{1}{\sqrt{2\pi}} \sqrt{2\pi} \\
+	&= 1
+\end{align*}
+
+\textbf{规范化：}
+证明若$X \sim N(\mu,\sigma^2)$，则$Z = \frac{X-\mu}{\sigma} \sim N(0,1)$。
+\begin{align*}
+	F_Z(z) &= P\{Z \leq z\} \\
+	&= P\left\{\frac{X-\mu}{\sigma} \leq z\right\} \\
+	&= P\{X \leq \sigma z + \mu\} \\
+	&= F_X(\sigma z + \mu) \\
+	&= \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{\sigma z + \mu}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\mathrm{d}x
+\end{align*}
+
+此时令$t = \frac{x-\mu}{\sigma}$，则有：
+\begin{align*}
+	F_Z(z) &= \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{\sigma z + \mu}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\mathrm{d}x \\
+	&= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^z e^{-\frac{t^2}{2}}\mathrm{d}t \\
+	&= \Phi(z)
+\end{align*}
+
+\subsubsection{指数分布}
+
+指数分布的符号表示为$X\sim EXP(\lambda)$，其频率函数为：
+\begin{equation*}
+	P\{X = x\} = \begin{cases}
+		\lambda e^{-\lambda x}, & x\geq 0 \\
+		0, & x<0
+	\end{cases}
+\end{equation*}
+
+其分布函数为：
+\begin{equation*}
+	F(x) = \begin{cases}
+		1-e^{-\lambda x}, & x\geq 0 \\
+		0, & x<0
+	\end{cases}
+\end{equation*}
+
+\textbf{指数分布与泊松流：}
+
+设$N(t)$为泊松流，$N(t)\sim P(\lambda t)$。
+记$X$为第一个事件发生的时间，则$P\{X > t\} = P\{N(t) = 0\} = e^{-\lambda t}$。
+因此$X\sim EXP(\lambda)$。
+
+\textbf{指数分布的无记忆性：}
+
+设$X\sim EXP(\lambda)$，则对任意$s,t>0$，有：
+\begin{align*}
+	P\{X > s+t|X > s\} &= \frac{P\{X > s+t,X > s\}}{P\{X > s\}} \\
+	&= \frac{P\{X > s+t\}}{P\{X > s\}} \\
+	&= \frac{e^{-\lambda(s+t)}}{e^{-\lambda s}} \\
+	&= e^{-\lambda t} \\
+	&= P\{X > t\}
+\end{align*}
+
+\subsection{频率（密度）函数与分布函数}
+
+\textbf{频率函数}的基本性质（本质特征）：
+\begin{itemize}
+	\item $P\{X = x\} \geq 0$
+	\item $\sum_{x\in X}P\{X = x\} = 1$
+\end{itemize}
+
+满足以上两个性质的数列必定是一个离散型随机变量的频率函数。
+
+\textbf{密度函数}的基本性质（本质特征）：
+\begin{itemize}
+	\item $f(x) \geq 0$
+	\item $\int_{-\infty}^{+\infty}f(x)\mathrm{d}x = 1$
+\end{itemize}
+
+满足以上两个性质的函数必定是一个连续型随机变量的密度函数。
+
+\textbf{分布函数}的基本性质（本质特征）：
+\begin{itemize}
+	\item $F(x)$是一个单调不减函数
+	\item $\lim_{x\rightarrow-\infty}F(x) = 0,\lim_{x\rightarrow+\infty}F(x) = 1$
+	\item $F(x)$是右连续的，即$\lim_{x\rightarrow x_0^+}F(x) = F(x_0)$
+\end{itemize}
+
+满足以上三个性质的函数必定是一个随机变量的分布函数。
+
+\subsection{分位数}
+
+\textbf{分位数}：
+设$X$是一个连续型随机变量，$F(x)$是其分布函数，对于$0<p<1$，若实数$x_p$使得$F(x_p) = p$，则称$x_p$为$X$的$p$分位数。
+特殊的，当$p = 0.5$时，称为中位数。
+当$p = 0.25$时，称为下四分之一位数。
+当$p = 0.75$时，称为上四分之一位数。
+
+\subsection{随机变量的函数的分布}
+
+令$Y = g(X)$，当$Y$是严格单调函数时，有：
+\begin{equation*}
+	f_Y(y) = f_X(g^{-1}(y))\left|\frac{\mathrm{d}g^{-1}(y)}{\mathrm{d}y}\right|
+\end{equation*}
+
+正态分布的线性组合以及线性函数的分布仍然是正态分布。
+假设有$n$个随机变量$X_1,X_2,\cdots,X_n$，且$X_i\sim N(\mu_i,\sigma_i^2)$，则有：
+\begin{equation*}
+	\sum_{i=1}^n a_i X_i + b \sim N\left(\sum_{i=1}^n a_i\mu_i + b, \sum_{i=1}^n a_i^2\sigma_i^2\right)
+\end{equation*}
+
+\subsection{二维随机变量}
+
+\subsubsection{联合分布函数与边缘分布函数}
+
+根据Farlie-Morgenstern定理，对于给定的两个一维随机变量$X,Y$，可以证明只要$|a| \leq 1$，就有：
+\begin{equation*}
+	H(x,y) = F(x)G(y) \{1 + a[1 - F(x)][1 - G(y)]\}
+\end{equation*}
+是二元连续型分布函数。
+
+换言之，给定边际分布，可以构造出无限多个联合分布。
+
+\subsubsection{连接函数}
+
+将使得边缘分布为均匀分布的联合分布函数称为连接函数。
+定义联合分布为：
+\begin{equation*}
+	F_{XY}(x,y) = C(F_X(x),F_Y(y))
+\end{equation*}
+
+定义密度函数为：
+\begin{equation*}
+	f_{XY}(x,y) = c(F_X(x),F_Y(y)) f_X(x) f_Y(y)
+\end{equation*}
+
+\subsubsection{二维正态分布}
+
+二维正态分布记为$X\sim N(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)$，其联合密度函数为：
+\begin{equation*}
+	f(x,y) = \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\exp\left\{-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_1)^2}{\sigma_1^2} - 2\rho\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2} + \frac{(y-\mu_2)^2}{\sigma_2^2}\right]\right\}
+\end{equation*}
+
+对于其边际分布，有：
+\begin{equation*}
+	X\sim N(\mu_1,\sigma_1^2),\ Y\sim N(\mu_2,\sigma_2^2)
+\end{equation*}
+
+证明如下：
+\begin{align*}
+	f_X(x) =& \int_{-\infty}^{+\infty}f(x,y)\mathrm{d}y \\
+	=& \int_{-\infty}^{+\infty}\exp\left\{-\frac{1}{2(1-\rho^2)}\left[\frac{(x-\mu_1)^2}{\sigma_1^2} - 2\rho\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2} + \frac{(y-\mu_2)^2}{\sigma_2^2}\right]\right\}\mathrm{d}y \\
+	=& \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}} \exp\left\{-\frac{(x-\mu_1)^2}{2\sigma_1^2}\right\} \cdot \\
+	 & \int_{-\infty}^{+\infty}\exp\left\{-\frac{1}{2(1-\rho^2)}\left[\frac{(y-\mu_2)^2}{\sigma_2^2} - 2\rho\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2} + p^2 \frac{(x-\mu_1)^2}{\sigma_1^2}\right]\right\}\mathrm{d}y \\
+	=& \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}} \exp\left\{-\frac{(x-\mu_1)^2}{2\sigma_1^2}\right\} \cdot \\
+	 & \int_{-\infty}^{+\infty}\exp\left\{-\frac{1}{2(1-\rho^2)}\left[\frac{y-\mu_2}{\sigma_2} - \rho \frac{x-\mu_1}{\sigma_1}\right]^2\right\}\mathrm{d}y
+\end{align*}
+
+令$t = \frac{1}{\sqrt{1-\rho^2}}\left(\frac{y-\mu_2}{\sigma_2} - \rho \frac{x-\mu_1}{\sigma_1}\right)$，则有：
+\begin{align*}
+	f_X(x) =& \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}} \exp\left\{-\frac{(x-\mu_1)^2}{2\sigma_1^2}\right\} \cdot \\
+	 & \int_{-\infty}^{+\infty}\exp\left\{-\frac{t^2}{2}\right\} \frac{1}{\sigma_2 \sqrt{1 - \rho^2}}\mathrm{d}t \\
+	=& \frac{1}{\sqrt{2\pi}\sigma_1} \exp\left\{-\frac{(x-\mu_1)^2}{2\sigma_1^2}\right\} \\
+	=& N(\mu_1,\sigma_1^2)
+\end{align*}
+
+注意：边际分布为正态分布时，联合分布不一定为二维正态分布。
+
+\subsubsection{二维独立性}
+
+设$X,Y$为二维随机变量，若对于任意$x,y$，有：
+\begin{equation*}
+	F(x,y) = F_X(x)F_Y(y)
+\end{equation*}
+
+则称$X,Y$相互独立。
+
+对于离散型随机变量，有：
+\begin{equation*}
+	P\{X = x,Y = y\} = P\{X = x\}P\{Y = y\}
+\end{equation*}
+
+对于连续型随机变量，有：
+\begin{equation*}
+	f(x,y) = f_X(x)f_Y(y)
+\end{equation*}
+
+特别的，二维正态分布的独立性等价于$\rho = 0$。
+
+两组独立的数据$(X_1, X_2, \cdots, X_n)$和$(Y_1, Y_2, \cdots, Y_m)$，其函数$h(X_1, X_2, \cdots, X_n)$和$g(Y_1, Y_2, \cdots, Y_m)$相互独立。
+
+\subsubsection{条件分布}
+
+设$X,Y$为二维随机变量，$f(x,y)$为其联合密度函数，$f_X(x)$为$X$的边际密度函数，若$f_X(x) > 0$，则称：
+\begin{equation*}
+	f_{Y|X}(y|x) = \frac{f(x,y)}{f_X(x)}
+\end{equation*}
+
+为$Y$在$X = x$的条件密度函数。
+
+二维随机变量的全概率公式：
+\begin{equation*}
+	f_Y(y) = \int_{-\infty}^{+\infty}f_{Y|X}(y|x)f_X(x)\mathrm{d}x
+\end{equation*}
+
+特别的，对于二维正态分布，指定$X$的条件下$Y$的条件分布仍然是正态分布。
+准确的说，若$(X,Y) \sim N(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)$，则有：
+\begin{equation*}
+	f_{Y|X}(y|x) \sim N\left(\mu_2 + \rho\frac{\sigma_2}{\sigma_1}(x-\mu_1),\sigma_2^2(1-\rho^2)\right)
+\end{equation*}
+
+\subsubsection{联合分布随机变量的函数}
+
+设$X,Y$为二维随机变量，$Z = f(X,Y)$，则有：
+\begin{equation*}
+	F_Z(z) = P\{Z \leq z\} = P\{f(X,Y) \leq z\} = \iint_{f(x,y) \leq z}f(x,y)\mathrm{d}x\mathrm{d}y
+\end{equation*}
+
+\textbf{$Z = X + Y$的分布：}
+
+\begin{align*}
+	P\{Z \leq z\} &= P\{X + Y \leq z\} \\
+	&= P\{X \leq z - Y\} \\
+	&= \int_{-\infty}^{+\infty}\int_{-\infty}^{z-y}f(x,y)\mathrm{d}x\mathrm{d}y
+\end{align*}
+
+令$x = u - y$，则有：
+\begin{align*}
+	P\{Z \leq z\} &= \int_{-\infty}^{+\infty} \int_{-\infty}^{z} f(u-y,y)\mathrm{d}u\mathrm{d}y \\
+	f_Z(z) &= \int_{-\infty}^{\infty} f(z-y,y)\mathrm{d}y \\
+	&= \int_{-\infty}^{\infty} f(x,z-x)\mathrm{d}x
+\end{align*}
+
+特别的，当$X,Y$相互独立时，有：
+\begin{equation*}
+	f_Z(z) = \int_{-\infty}^{\infty} f_X(x)f_Y(z-x)\mathrm{d}x = \int_{-\infty}^{\infty} f_X(z-y)f_Y(y)\mathrm{d}y
+\end{equation*}
+
+特别的，当$X \sim P(\lambda_1), Y \sim P(\lambda_2)$时，$Z = X + Y \sim P(\lambda_1 + \lambda_2)$。
+
+\textbf{$Z = \frac{X}{Y}$的分布：}
+
+同理，通过换元法，有：
+\begin{equation*}
+	f_Z(z) = \int_{-\infty}^{\infty} |y|f_X(zy,y)\mathrm{d}y = \int_{-\infty}^{\infty} |x|f_X(x,xz)\mathrm{d}x
+\end{equation*}
+
+\textbf{两个随机变量变换的分布：}
+
+如果两个随机变量的联合分布为二维正态分布，则他们的非奇异线性变换的分布仍然是二维正态分布。
+
+\subsection{极值}
+
+\begin{align*}
+	F_{\text{max}}(z) &= P\{X \leq z,Y \leq z\} \\
+	&= P\{X \leq z\}P\{Y \leq z\} \\
+	&= F_X(z)F_Y(z) \\
+	F_{\text{min}}(z) &= 1 - P\{X > z,Y > z\} \\
+	&= 1 - P\{X > z\}P\{Y > z\} \\
+	&= 1 - [1 - F_X(z)][1 - F_Y(z)]
+\end{align*}
+
+特别的，如果$X \sim EXP(\lambda), Y \sim EXP(\mu)$，则$Z = \min\{X,Y\} \sim EXP(\lambda + \mu)$。
+
+\subsection{顺序统计量}
+
+$X_{(k)}$的密度函数为：
+\begin{equation*}
+	f_{X_{(k)}}(x) = \frac{n!}{(k-1)!(n-k)!}[F(x)]^{k-1}[1-F(x)]^{n-k}f(x)
+\end{equation*}
+
+$(X_{(1)},X_{(n)})$的联合密度函数为：
+\begin{equation*}
+	f_{X_{(1)},X_{(n)}}(x,y) = n(n-1)[F(y) - F(x)]^{n-2}f(x)f(y)
+\end{equation*}
+
+\section{古典概型}
+
+\subsection{集合}
+
+试验的样本点记为$\omega$，样本空间记为$\Omega$，样本空间的子集称为事件。
+
+当事件$A$与事件$B$不可能同时发生时，称事件$A$与事件$B$互不相容，或互斥，或互不相交，记为$A \cap B = \emptyset$。
+
+加法公式：
+\begin{equation*}
+	P(A\cup B) = P(A) + P(B) - P(AB)
+\end{equation*}
+
+\subsubsection{计数方法}
+
+选排列：
+从$n$个不同元素中任取$m$个元素，按照一定的顺序排成一列，称为从$n$个不同元素中选取$m$个元素的排列，记为$A_n^m = \frac{n!}{(n-m)!}$。
+特别的，当$m = n$时，称为全排列，记为$A_n^n = n!$。
+
+组合：
+从$n$个不同元素中任取$m$个元素，不考虑顺序，称为从$n$个不同元素中选取$m$个元素的组合，记为$C_n^m = \frac{A_n^m}{m!} = \frac{n!}{m!(n-m)!}$。
+特别的，将$n$个不同元素分成$r$组，使得第$i$组有$n_i$个元素，且$\sum_{i=1}^rn_i = n$，则称为将$n$个不同元素分成$r$组的组合，记为$C_n^{n_1,n_2,\cdots,n_r} = \frac{n!}{n_1!n_2!\cdots n_r!}$。
+
+将$n$个相同的球放入$m$个不同的盒子中，每个盒子中至少有一个球的方法数为$C_{n-1}^{m-1}$。（相当于在$n-1$个间隔中选取$m-1$个间隔放入隔板）
+将$n$个相同的球放入$m$个不同的盒子中，盒子可以为空的方法数为$C_{n+m-1}^{m-1}$。（相当于将$n+m$个相同的球放入$m$个不同的盒子中，每个盒子中至少有一个球）
+
+\subsection{全概率公式与贝叶斯公式}
+
+全概率公式：
+设$B_1,B_2,\cdots,B_n$为样本空间$\Omega$的一个划分，即$B_i\cap B_j = \emptyset(i\neq j),\bigcup_{i=1}^nB_i = \Omega$，则对任一事件$A$，有：
+\begin{equation*}
+	P(A) = \sum_{i=1}^nP(A|B_i)P(B_i)
+\end{equation*}
+
+贝叶斯公式：
+设$B_1,B_2,\cdots,B_n$为样本空间$\Omega$的一个划分，即$B_i\cap B_j = \emptyset(i\neq j),\bigcup_{i=1}^nB_i = \Omega$，则对任一事件$A$，有：
+\begin{equation*}
+	P(B_i|A) = \frac{P(A|B_i)P(B_i)}{\sum_{j=1}^nP(A|B_j)P(B_j)}
+\end{equation*}
+
+\subsection{独立性}
+
+设$A,B$为两事件，若$P(AB) = P(A)P(B)$，则称事件$A$与事件$B$相互独立。
+
+独立不同于互不相容，独立是指两事件发生的概率互不影响，互不相容是指两事件不能同时发生。
+
+两两独立不能推出多个事件相互独立。独立也没有传递性，即$A,B$独立，$B,C$独立，不能推出$A,C$独立。
+
+
+\section{期望、方差、标准差与相关系数}
+
+\subsection{常见分布的期望与方差}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		分布 & 期望 & 方差 \\
+		\hline
+		$X\sim b(n,p)$ & $np$ & $np(1-p)$ \\
+		\hline
+		$X\sim P(\lambda)$ & $\lambda$ & $\lambda$ \\
+		\hline
+		$X\sim U(a,b)$ & $\frac{a+b}{2}$ & $\frac{(b-a)^2}{12}$ \\
+		\hline
+		$X\sim N(\mu,\sigma^2)$ & $\mu$ & $\sigma^2$ \\
+		\hline
+		$X\sim EXP(\lambda)$ & $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$ \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection{期望存在的条件}
+
+对于连续型随机变量，当$\int_{-\infty}^{+\infty}|x|f(x)\mathrm{d}x < +\infty$时，称随机变量$X$的期望存在。
+
+对于离散型随机变量，当$\sum_{x\in X}|x|P\{X = x\} < +\infty$时，称随机变量$X$的期望存在。
+
+\subsection{马尔可夫不等式}
+
+设$X$是一个非负随机变量，且$E(X)$存在，则对于任意的$t > 0$，有：
+\begin{equation*}
+	P\{X \geq t\} \leq \frac{E(X)}{t}
+\end{equation*}
+
+证明：
+\begin{align*}
+	E(X) &= \int_{-\infty}^{+\infty}xf(x)\mathrm{d}x \\
+	&= \int_{0}^{+\infty}xf(x)\mathrm{d}x \\
+	&\geq \int_{t}^{+\infty}xf(x)\mathrm{d}x \\
+	&\geq \int_{t}^{+\infty}tf(x)\mathrm{d}x \\
+	&= t\int_{t}^{+\infty}f(x)\mathrm{d}x \\
+	&= tP\{X \geq t\}
+\end{align*}
+
+\subsection{随机变量函数的期望}
+
+设$X$是一个随机变量，$Y = g(X)$，则有：
+\begin{equation*}
+	E(Y) = E[g(X)] = \begin{cases}
+		\sum_{x\in X}g(x)P\{X = x\}, & X\text{为离散型} \\
+		\int_{-\infty}^{+\infty}g(x)f(x)\mathrm{d}x, & X\text{为连续型}
+	\end{cases}
+\end{equation*}
+
+\subsection{二维随机变量的期望}
+
+设$(X,Y)$是一个二维随机变量，若要求$E(X),E(Y)$，除了先求边缘分布，再求期望外，还可以通过以下公式求得：
+\begin{equation*}
+	E(X) = \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}xf(x,y)\mathrm{d}x\mathrm{d}y,\ E(Y) = \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}yf(x,y)\mathrm{d}x\mathrm{d}y
+\end{equation*}
+
+\subsection{期望的性质}
+
+\begin{enumerate}
+	\item 设$a < X < b$，则$a < E(X) < b$
+	\item $E(cX) = cE(X)$
+	\item $E(X+Y) = E(X) + E(Y)$
+	\item 当$X,Y$相互独立时，$E(XY) = E(X)E(Y)$
+\end{enumerate}
+
+相关推论：
+\begin{enumerate}
+	\item 当$X = c$时，$E(X) = c$
+	\item $E\left(\sum_{i=1}^nc_iX_i\right) = \sum_{i=1}^nc_iE(X_i)$
+	\item 当$X_1,X_2,\cdots,X_n$相互独立时，$E\left(\prod_{i=1}^nX_i\right) = \prod_{i=1}^nE(X_i)$
+\end{enumerate}
+
+\subsection{方差的定义}
+
+\begin{equation*}
+	Var(X) = D(X) = E\left\{[X - E(X)]^2\right\}
+\end{equation*}
+
+\subsection{方差的计算公式}
+\begin{equation*}
+	Var(X) = D(X) = \begin{cases}
+		\sum_{x\in X}[x - E(X)]^2P\{X = x\}, & X\text{为离散型} \\
+		\int_{-\infty}^{+\infty}[x - E(X)]^2f(x)\mathrm{d}x, & X\text{为连续型}
+	\end{cases}
+\end{equation*}
+
+但一般使用以下公式计算方差：
+\begin{equation*}
+	Var(X) = D(X) = E(X^2) - [E(X)]^2
+\end{equation*}
+
+\subsection{方差的基本性质}
+\begin{enumerate}
+	\item $D(c) = 0$
+	\item $D(cX) = c^2D(X)$
+	\item $D(X + Y) = D(X) + D(Y) + 2E\{[X - E(X)][Y - E(Y)]\}$，当$X,Y$相互独立时，$D(X + Y) = D(X) + D(Y)$。
+	可以推广到$n$个随机变量的情况：当$X_1,X_2,\cdots,X_n$相互独立时，$D\left(\sum_{i=1}^nX_i\right) = \sum_{i=1}^nD(X_i)$。
+\end{enumerate}
+
+\subsection{切比雪夫不等式}
+
+设$X$是一个随机变量，设$E(X)$和$D(X)$存在，则对于任意的$\varepsilon > 0$，有：
+\begin{equation*}
+	P\{|X - E(X)| \geq \varepsilon\} \leq \frac{D(X)}{\varepsilon^2}
+\end{equation*}
+
+证明如下：
+\begin{align*}
+	P\{|X - E(X)| \geq \varepsilon\} &= \int_{|x - E(X)| \geq \varepsilon}f(x)\mathrm{d}x \\
+	&\leq \int_{|x - E(X)| \geq \varepsilon}\frac{(x - E(X))^2}{\varepsilon^2}f(x)\mathrm{d}x \\
+	&\leq \frac{1}{\varepsilon^2}\int_{-\infty}^{+\infty}(x - E(X))^2f(x)\mathrm{d}x \\
+	&= \frac{D(X)}{\varepsilon^2}
+\end{align*}
+
+\subsection{协方差的定义}
+
+\begin{equation*}
+	Cov(X,Y) = E\{[X - E(X)][Y - E(Y)]\}
+\end{equation*}
+
+但一般使用以下公式计算协方差：
+\begin{equation*}
+	Cov(X,Y) = E(XY) - E(X)E(Y)
+\end{equation*}
+
+\subsection{协方差的性质}
+
+\begin{enumerate}
+	\item $Cov(X,X) = D(X)$
+	\item $Cov(X,Y) = Cov(Y,X)$
+	\item 当$X,Y$相互独立时，$Cov(X,Y) = 0$
+	\item 协方差的双线性性质：$Cov(aX + bY,Z) = aCov(X,Z) + bCov(Y,Z)$。
+	进一步有，当$U = a + \sum_{i=1}^nb_iX_i$，$V = c + \sum_{j=1}^md_jY_j$时，有$Cov(U,V) = \sum_{i=1}^n\sum_{j=1}^mb_id_jCov(X_i,Y_j)$。
+\end{enumerate}
+
+\subsection{相关系数的定义}
+
+\begin{equation*}
+	\rho_{XY} = \frac{Cov(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}
+\end{equation*}
+
+\subsection{相关系数的性质}
+
+\begin{enumerate}
+	\item $|\rho_{XY}| \leq 1$
+	\item $|\rho_{XY}| = 1$当且仅当存在常数$a,b$，使得$P\{Y = aX + b\} = 1$
+	\item 当$X,Y$相互独立时，$\rho_{XY} = 0$
+	\item $\rho_{XY} = \rho_{YX}$
+	\item $D(aX + bY) = a^2D(X) + b^2D(Y) + 2abCov(X,Y)$
+\end{enumerate}
+
+需要\textbf{强调}的是，相互独立的两个随机变量一定不相关，但不相关的两个随机变量不一定相互独立。
+但特别的有，当$X,Y$服从二维正态分布时，$X,Y$相互独立等价于$\rho_{XY} = 0$，即$X,Y$不相关等价于$X,Y$相互独立。
+
+\subsection{条件期望}
+
+设$X,Y$是二维随机变量，$E(X)$存在，$E(Y)$存在，$E(Y|X)$存在，则称$E(Y|X)$为$Y$关于$X$的条件期望。
+
+其计算公式为：
+\begin{equation*}
+	E(Y|X) = \begin{cases}
+		\sum_{y\in Y}yP\{Y = y|X\}, & Y\text{为离散型} \\
+		\int_{-\infty}^{+\infty}yf(y|X)\mathrm{d}y, & Y\text{为连续型}
+	\end{cases}
+\end{equation*}
+
+关于$Y$的函数的条件期望的计算公式为：
+\begin{equation*}
+	E[g(Y)|X] = \begin{cases}
+		\sum_{y\in Y}g(y)P\{Y = y|X\}, & Y\text{为离散型} \\
+		\int_{-\infty}^{+\infty}g(y)f(y|X)\mathrm{d}y, & Y\text{为连续型}
+	\end{cases}
+\end{equation*}
+
+\subsection{条件期望的性质}
+
+\begin{enumerate}
+	\item $E(c|X) = c$
+	\item $E(aY_1 + bY_2|X) = aE(Y_1|X) + bE(Y_2|X)$
+	\item 若$X$与$Y$相互独立，则$E(Y|X) = E(Y)$
+	\item $E(E(Y|X)) = E(Y)$
+	\item $E(D(Y|X)) + D(E(Y|X)) = D(Y)$
+\end{enumerate}
+
+关于性质4的证明如下：
+\begin{align*}
+	E(E(Y|X)) &= \int_{-\infty}^{+\infty}E(Y|X)f_X(x)\mathrm{d}x \\
+	&= \int_{-\infty}^{+\infty}\left[\int_{-\infty}^{+\infty}yf(y|x)\mathrm{d}y\right]f_X(x)\mathrm{d}x \\
+	&= \int_{-\infty}^{+\infty} y \left[\int_{-\infty}^{+\infty}f(y|x)f_X(x)\mathrm{d}x\right]\mathrm{d}y \\
+	&= \int_{-\infty}^{+\infty} y f_Y(y)\mathrm{d}y \\
+	&= E(Y)
+\end{align*}
+
+\section{大数定律与中心极限定理}
+
+\subsection{大数定律}
+
+\subsubsection{伯努利大数定律}
+
+设$X_1,X_2,\cdots,X_n$是相互独立的随机变量，且$P\{X_i = 1\} = p, P\{X_i = 0\} = 1 - p(i = 1,2,\cdots,n)$，则对于任意的$\varepsilon > 0$，有：
+\begin{equation*}
+	\lim_{n\rightarrow\infty}P\left\{\left|\frac{X_1 + X_2 + \cdots + X_n}{n} - p\right| \geq \varepsilon\right\} = 0
+\end{equation*}
+
+\subsubsection{切比雪夫大数定律}
+
+设$X_1,X_2,\cdots,X_n$是相互独立的随机变量，且$E(X_i) = \mu, D(X_i) = \sigma^2(i = 1,2,\cdots,n)$，则对于任意的$\varepsilon > 0$，有：
+\begin{equation*}
+	\lim_{n\rightarrow\infty}P\left\{\left|\frac{X_1 + X_2 + \cdots + X_n}{n} - \mu\right| \geq \varepsilon\right\} = 0
+\end{equation*}
+
+\textbf{注意}，此处并不要求$X_i$服从同一分布。
+
+\subsection{中心极限定理}
+
+设$X_1,X_2,\cdots,X_n$是独立同分布的的随机变量，且$E(X_i) = \mu, D(X_i) = \sigma^2(i = 1,2,\cdots,n)$，则对于任意的$x$，有：
+\begin{equation*}
+	Z_n = \frac{\sum_{i=1}^nX_i - E\left(\sum_{i=1}^nX_i\right)}{\sqrt{D\left(\sum_{i=1}^nX_i\right)}} = \frac{\sum_{i=1}^nX_i - n\mu}{\sigma\sqrt{n}}
+\end{equation*}
+
+则$E(Z_n) = 0, D(Z_n) = 1$。若$F_n(x)$为$Z_n$的分布函数，则有：
+\begin{equation*}
+	\lim_{n\rightarrow\infty}F_n(x) = \Phi(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{-\frac{t^2}{2}}\mathrm{d}t
+\end{equation*}
+
+\subsection{棣莫弗-拉普拉斯中心极限定理}
+
+设$X_1,X_2,\cdots,X_n$是相互独立的随机变量，且$E(X_i) = \mu, D(X_i) = \sigma^2(i = 1,2,\cdots,n)$，则对于任意的$x$，有：
+\begin{equation*}
+	\lim_{n \rightarrow \infty} P\left\{\frac{\sum_{i=1}^nX_i - np}{\sqrt{np(1-p)}} \leq x \right\} = \Phi(x)
+\end{equation*}
+
+\section{数理统计的基本概念}
+
+\subsection{总体与样本}
+
+一个样本$X_1,X_2,\cdots,X_n$作为一个多维随机变量，其联合分布函数为：
+\begin{equation*}
+	F(x_1,x_2,\cdots,x_n) = F(x_1)F(x_2)\cdots F(x_n)
+\end{equation*}
+
+其联合密度函数为：
+\begin{equation*}
+	f(x_1,x_2,\cdots,x_n) = f(x_1)f(x_2)\cdots f(x_n)
+\end{equation*}
+
+\subsection{样本均值与样本方差}
+
+\begin{equation*}
+	\overline{X} = \frac{1}{n}\sum_{i=1}^nX_i,\ S^2 = \frac{1}{n-1}\sum_{i=1}^n(X_i - \overline{X})^2
+\end{equation*}
+
+设总体的均值为$\mu$，方差为$\sigma^2$，则有：
+\begin{equation*}
+	E(\overline{X}) = \mu,\ D(\overline{X}) = \frac{\sigma^2}{n},\ E(S^2) = \sigma^2
+\end{equation*}
+
+\subsection{辛钦大数定律}
+
+设$X_1,X_2,\cdots,X_n$是来自总体$X$的样本，$E(X)$存在，则对于任意的$\varepsilon > 0$，有：
+\begin{equation*}
+	\lim_{n\rightarrow\infty}P\left\{\left|\frac{X_1 + X_2 + \cdots + X_n}{n} - E(X)\right| \geq \varepsilon\right\} = 0
+\end{equation*}
+
+\subsection{抽样分布}
+
+\subsubsection{$\chi^2$分布}
+
+设$X_1,X_2,\cdots,X_n$是来自总体$N(0,1)$的样本，则有：
+\begin{equation*}
+	\chi^2 = \sum_{i=1}^nX_i^2 \sim \chi^2(n)
+\end{equation*}
+其中$n$称为自由度。
+
+$\chi^2$分布具有可加性，即若$\chi_1^2 \sim \chi^2(n_1), \chi_2^2 \sim \chi^2(n_2)$，且$\chi_1^2$与$\chi_2^2$相互独立，则$\chi_1^2 + \chi_2^2 \sim \chi^2(n_1 + n_2)$。
+
+$\chi^2$分布的期望和方差为：
+\begin{equation*}
+	E(\chi^2) = n,\ D(\chi^2) = 2n
+\end{equation*}
+
+特殊的，当$X_1,X_2,\cdots,X_n$是来自参数为$\lambda$的指数分布的样本，则有：
+\begin{equation*}
+	2n \lambda \overline{X} \sim \chi^2(2n)
+\end{equation*}
+
+\subsubsection{$t$分布}
+
+设$X \sim N(0,1), Y \sim \chi^2(n)$，且$X,Y$相互独立，则有：
+\begin{equation*}
+	t = \frac{X}{\sqrt{Y/n}} \sim t(n)
+\end{equation*}
+其中$n$称为自由度。
+
+$t$分布的期望和方差为：
+\begin{equation*}
+	E(t) = 0,\ D(t) = \frac{n}{n-2}(n > 2)
+\end{equation*}
+
+当自由度$n$充分大时，$t$分布近似于标准正态分布。
+
+\subsubsection{$F$分布}
+
+设$X \sim \chi^2(n_1), Y \sim \chi^2(n_2)$，且$X,Y$相互独立，则有：
+\begin{equation*}
+	F = \frac{X/n_1}{Y/n_2} \sim F(n_1,n_2)
+\end{equation*}
+其中$n_1,n_2$称为自由度。
+
+$F$分布的重要性质为：
+\begin{equation*}
+	F(n_1,n_2) = \frac{1}{F(n_2,n_1)}
+\end{equation*}
+
+由此性质可以推出关于$F$分布的$\alpha$分位点的性质：
+\begin{equation*}
+	F_{\alpha}(n_1,n_2) = \frac{1}{F_{1-\alpha}(n_2,n_1)}
+\end{equation*}
+
+\subsection{$\alpha$分位点}
+
+设$X$为连续型随机变量，其分布函数为$F(x)$，则称$x_\alpha$为$X$的$\alpha$分位点，当且仅当：
+\begin{equation*}
+	F(x_\alpha) = \alpha
+\end{equation*}
+
+\subsection{抽样分布定理}
+
+\subsubsection{定理一}
+
+设$X_1,X_2,\cdots,X_n$是来自总体$X \sim N(\mu,\sigma^2)$的样本，则有：
+\begin{equation*}
+	\overline{X} \sim N\left(\mu,\frac{\sigma^2}{n}\right)
+\end{equation*}
+
+\subsubsection{定理二}
+
+设$X_1,X_2,\cdots,X_n$是来自总体$X \sim N(\mu,\sigma^2)$的样本，$\overline{X}$为样本均值，$S^2$为样本方差，则有：
+\begin{equation*}
+	\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)
+\end{equation*}
+且$\overline{X}$与$S^2$相互独立。
+
+\subsubsection{定理三}
+
+设$X_1,X_2,\cdots,X_n$是来自总体$X \sim N(\mu,\sigma^2)$的样本，$\overline{X}$为样本均值，$S^2$为样本方差，则有：
+\begin{equation*}
+	\frac{\overline{X} - \mu}{S/\sqrt{n}} \sim t(n-1)
+\end{equation*}
+
+\subsubsection{定理四}
+
+设$X_1,X_2,\cdots,X_n$是来自总体$X \sim N(\mu_1,\sigma_1^2)$的样本，$Y_1,Y_2,\cdots,Y_m$是来自总体$Y \sim N(\mu_2,\sigma_2^2)$的样本，且$X_1,X_2,\cdots,X_n$与$Y_1,Y_2,\cdots,Y_m$相互独立，则有：
+\begin{equation*}
+	\frac{S_1^2/S_2^2}{\sigma_1^2/\sigma_2^2} \sim F(n-1,m-1)
+\end{equation*}
+
+\subsubsection{定理五}
+
+设$X_1,X_2,\cdots,X_n$是来自总体$X \sim N(\mu_1,\sigma^2)$的样本，$Y_1,Y_2,\cdots,Y_m$是来自总体$Y \sim N(\mu_2,\sigma^2)$的样本，且$X_1,X_2,\cdots,X_n$与$Y_1,Y_2,\cdots,Y_m$相互独立，则有：
+\begin{equation*}
+	\frac{\overline{X} - \overline{Y} - (\mu_1 - \mu_2)}{S_{\omega} \sqrt{\frac{1}{n} + \frac{1}{m}}} \sim t(n+m-2)
+\end{equation*}
+其中$S_{\omega}^2 = \frac{(n-1)S_1^2 + (m-1)S_2^2}{n+m-2}$。
+
+\textbf{注意}，此处不同于定理四，定理四中的两个总体方差可以不相等，而定理五中的两个总体方差相等。
+
+\section{参数估计}
+
+\subsection{点估计}
+
+\subsubsection{矩估计}
+
+设$X_1,X_2,\cdots,X_n$是来自总体$X$的样本，$k$阶原点矩为：
+\begin{equation*}
+	\mu_k = E(X^k) = \int_{-\infty}^{+\infty}x^kf(x)\mathrm{d}x
+\end{equation*}
+
+一般来说，只需要求出前两阶原点矩，可以由以下公式计算：
+\begin{align*}
+	\mu_1 &= E(X) \\
+	\mu_2 &= E(X^2) = D(X) + [E(X)]^2
+\end{align*}
+
+特别的，对于总体为正态分布的情况，有：
+\begin{align*}
+	\hat{\mu} &= \overline{X} \\
+	\hat{\sigma}^2 &= \widetilde{S}^2 = \frac{1}{n}\sum_{i=1}^n(X_i - \overline{X})^2
+\end{align*}
+其中$\widetilde{S}^2$被称为修正样本方差。
+
+通过矩估计法估计参数的步骤为：
+\begin{enumerate}
+	\item 写出总体的前$k$阶原点矩$\mu_1,\mu_2,\cdots,\mu_k$。
+	\item 将未知参数用$\mu_1,\mu_2,\cdots,\mu_k$表示，得到方程组。
+	\item 用样本的前$k$阶原点矩$\overline{X},\frac{1}{n}\sum_{i=1}^nX_i^2,\cdots,\frac{1}{n}\sum_{i=1}^nX_i^k$代替总体的前$k$阶原点矩$\mu_1,\mu_2,\cdots,\mu_k$，解方程组，得到未知参数的估计量。
+	\item 将估计量代入总体的分布函数，得到参数的估计值。
+\end{enumerate}
+
+\subsubsection{极大似然估计}
+
+设$X_1,X_2,\cdots,X_n$是来自总体$X$的样本，$X_1,X_2,\cdots,X_n$的联合概率密度函数为$f(x_1,x_2,\cdots,x_n;\theta_1,\theta_2,\cdots,\theta_k)$，其中$\theta_1,\theta_2,\cdots,\theta_k$为待估参数，$L(\theta_1,\theta_2,\cdots,\theta_k)$为样本的似然函数，定义为：
+\begin{equation*}
+	L(\theta_1,\theta_2,\cdots,\theta_k) = L(\theta) = \prod_{i=1}^nf(x_i;\theta)
+\end{equation*}
+即似然函数代表了该样本出现的概率。
+
+一般需要求出似然函数的对数，即对数似然函数：
+\begin{equation*}
+	\ln L(\theta) = \sum_{i=1}^n\ln f(x_i;\theta)
+\end{equation*}
+
+由于极大值点与对数似然函数的极大值点相同，因此可以通过求对数似然函数的极大值点来求得参数的估计值。
+一般通过以下步骤求得参数的极大似然估计值：
+\begin{enumerate}
+	\item 写出样本的似然函数$L(\theta)$。
+	\item 求出对数似然函数$\ln L(\theta)$。
+	\item 求出$\ln L(\theta)$的极大值点，即$\frac{\partial \ln L(\theta)}{\partial \theta_i} = 0(i = 1,2,\cdots,k)$。
+	\item 解方程组，得到未知参数的估计量。
+	\item 将估计量代入总体的分布函数，得到参数的估计值。
+\end{enumerate}
+
+特别的，对于均匀分布$U(a,b)$，其最大似然估计为：
+\begin{equation*}
+	\hat{a} = \min\{x_1,x_2,\cdots,x_n\},\ \hat{b} = \max\{x_1,x_2,\cdots,x_n\}
+\end{equation*}
+
+\subsection{估计量的评选标准}
+
+\subsubsection{无偏性}
+
+设$\hat{\theta}$是$\theta$的估计量，若$E(\hat{\theta}) = \theta$，则称$\hat{\theta}$为$\theta$的无偏估计量。
+若$\lim_{n\rightarrow\infty}E(\hat{\theta}) = \theta$，则称$\hat{\theta}$为$\theta$的渐近无偏估计量。
+若两者都不满足，则称$\hat{\theta}$为$\theta$的有偏估计量。
+
+无论总体服从什么分布，样本均值$\overline{X}$都是总体均值$\mu$的无偏估计量，样本方差$S^2$都是总体方差$\sigma^2$的无偏估计量。
+而修正后的样本方差$\widetilde{S}^2$是总体方差$\sigma^2$的渐进无偏估计量。
+如果总体的$k$阶原点矩$\mu_k$存在，则样本的$k$阶原点矩$\frac{1}{n}\sum_{i=1}^nX_i^k$都是总体的$k$阶原点矩$\mu_k$的无偏估计量。
+
+\textbf{重点}：当最大似然估计为$max$或$min$时，应这样计算其期望：
+\begin{align*}
+	f_{max}(z) =& nf(z)[F(z)]^{n-1} \\
+	E(\hat{\theta}) =& \int_{-\infty}^{+\infty}zF_{max}(z)\mathrm{d}z \\
+\end{align*}
+
+特别的，当整体服从指数分布时，$n * min(X_1,X_2,\cdots,X_n)$为$\theta$的无偏估计量。
+
+\subsubsection{有效性}
+
+设$\hat{\theta}_1,\hat{\theta}_2$都是$\theta$的无偏估计量，若$D(\hat{\theta}_1) \leq D(\hat{\theta}_2)$，则称$\hat{\theta}_1$比$\hat{\theta}_2$有效。
+
+\subsubsection{相合性}
+
+设$\hat{\theta}_1,\hat{\theta}_2,\cdots,\hat{\theta}_n$都是$\theta$的无偏估计量，若$\lim_{n\rightarrow\infty} P\{|\hat{\theta}_n - \theta| \geq \varepsilon\} = 0$，则称$\hat{\theta}_n$为$\theta$的相合估计量。
+
+\begin{enumerate}
+	\item 无论总体服从什么分布，样本均值$\overline{X}$都是总体均值$\mu$的相合估计量，样本方差$S^2$都是总体方差$\sigma^2$的相合估计量。
+	\item 矩估计一定是相合估计，最大似然估计一般是相合估计。
+	\item 相合估计不一定时无偏估计。
+	\item 一个无偏估计，当$\lim_{n\rightarrow\infty}D(\hat{\theta}_n) = 0$时，一定是相合估计。(切比雪夫不等式)
+\end{enumerate}
+
+\subsection{区间估计}
+
+\subsubsection{置信区间}
+
+设总体服从$F(x;\theta)$，若存在两个统计量$\overline{\theta},\underline{\theta}$，使得：
+\begin{equation*}
+	P\{\underline{\theta} < \theta < \overline{\theta}\} = 1 - \alpha
+\end{equation*}
+则称随机区间$(\underline{\theta},\overline{\theta})$为$\theta$的置信水平为$1 - \alpha$的置信区间。
+
+以下为各种情况的总结：
+\begin{enumerate}
+	\item 当方差已知时，总体均值的置信区间为：$\overline{X} - \frac{\sigma}{\sqrt{n}}u_{1-\alpha/2} < \mu < \overline{X} + \frac{\sigma}{\sqrt{n}}u_{1-\alpha/2}$。
+	\item 当均值和方差都未知时，总体均值的置信区间为：$\overline{X} - \frac{S}{\sqrt{n}}t_{1-\alpha/2}(n-1) < \mu < \overline{X} + \frac{S}{\sqrt{n}}t_{1-\alpha/2}(n-1)$。
+	\item 当均值未知时，总体方差的置信区间为：$\frac{(n-1)S^2}{\chi_{1-\alpha/2}^2(n-1)} < \sigma^2 < \frac{(n-1)S^2}{\chi_{\alpha/2}^2(n-1)}$。
+	\item 当双正态总体的方差都已知时，总体均值之差的置信区间为：$\overline{X} - \overline{Y} - u_{1-\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} < \mu_1 - \mu_2 < \overline{X} - \overline{Y} + u_{1-\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}$。
+	\item 当双正态总体的方差未知但相等时，总体均值之差的置信区间为：$\overline{X} - \overline{Y} - t_{1-\alpha/2}(n_1 + n_2 - 2)\sqrt{\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2}} < \mu_1 - \mu_2 < \overline{X} - \overline{Y} + t_{1-\alpha/2}(n_1 + n_2 - 2)\sqrt{\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2}}$。
+	\item 当双正态总体的方差未知时，方差之比的置信区间为：$\frac{S_1^2}{S_2^2}\frac{1}{F_{1-\alpha/2}(n_1 - 1,n_2 - 1)} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{S_1^2}{S_2^2}\frac{1}{F_{\alpha/2}(n_1 - 1,n_2 - 1)}$。
+\end{enumerate}
+
+单侧置信区间与双侧置信区间类似，以下为各种情况的总结：
+\begin{enumerate}
+	\item 当方差和均值都未知时，均值的单侧置信下限为：$\mu > \overline{X} - \frac{S}{\sqrt{n}}t_{1-\alpha}(n-1)$，均值的单侧置信上限为：$\mu < \overline{X} + \frac{S}{\sqrt{n}}t_{1-\alpha}(n-1)$。
+	\item 当方差和均值都未知时，方差的单侧置信下限为：$\sigma^2 > \frac{(n-1)S^2}{\chi_{1-\alpha}^2(n-1)}$，方差的单侧置信上限为：$\sigma^2 < \frac{(n-1)S^2}{\chi_{\alpha}^2(n-1)}$。
+\end{enumerate}
+
+\section{假设检验}
+
+\subsection*{建立假设}
+
+\begin{enumerate}
+	\item 保护原假设$H_0$：如果错误的拒绝原假设，将会产生严重的后果。例如，原假设为新药有毒副作用，备择假设为新药无毒副作用，如果错误的拒绝原假设，将会导致新药上市，从而导致严重的后果。
+	\item 原假设为维持现状：例如，原假设为新药物有减肥效果，备择假设为新药物无减肥效果。
+	\item 原假设为简单假设，即原假设中参数的值已知。
+\end{enumerate}
+
+\subsection{拒绝域}
+
+第一类错误：拒绝了正确的原假设，即$H_0$为真，但是拒绝了$H_0$。（弃真）
+第二类错误：接受了错误的原假设，即$H_0$为假，但是接受了$H_0$。（取伪）
+
+Neyman-Pearson准则：在保证第一类错误概率不超过$\alpha$的条件下，使得第二类错误概率最小。
+其中，$\alpha$被称为显著性水平。
+
+\subsection{双边$u$检验法}
+
+已知$\sigma_0^2$，检验$H_0: \mu = \mu_0$，$H_1: \mu \neq \mu_0$。
+拒绝域为：
+\begin{equation*}
+	P\{\frac{|X - \mu_0|}{\sigma_0 / \sqrt{n}} > u_{1-\alpha/2}\} = \alpha
+\end{equation*}
+
+\subsection{单边$u$检验法}
+
+\begin{enumerate}
+	\item 已知$\sigma_0^2$，检验$H_0: \mu \leq \mu_0$，$H_1: \mu > \mu_0$。拒绝域为：$P\{\frac{X - \mu_0}{\sigma_0 / \sqrt{n}} > u_{1-\alpha}\} = \alpha$
+	\item 已知$\sigma_0^2$，检验$H_0: \mu \geq \mu_0$，$H_1: \mu < \mu_0$。拒绝域为：$P\{\frac{X - \mu_0}{\sigma_0 / \sqrt{n}} < u_{\alpha}\} = \alpha$
+\end{enumerate}
+
+\subsection{双边$t$检验法}
+
+未知$\sigma_0^2$和$\mu_0$，检验$H_0: \mu = \mu_0$，$H_1: \mu \neq \mu_0$。
+拒绝域为：
+\begin{equation*}
+	P\{\frac{|X - \mu_0|}{S / \sqrt{n}} > t_{1-\alpha/2}(n-1)\} = \alpha
+\end{equation*}
+
+\subsection{单边$t$检验法}
+
+\begin{enumerate}
+	\item 未知$\sigma_0^2$和$\mu_0$，检验$H_0: \mu \leq \mu_0$，$H_1: \mu > \mu_0$。拒绝域为：$P\{\frac{X - \mu_0}{S / \sqrt{n}} > t_{1-\alpha}(n-1)\} = \alpha$
+	\item 未知$\sigma_0^2$和$\mu_0$，检验$H_0: \mu \geq \mu_0$，$H_1: \mu < \mu_0$。拒绝域为：$P\{\frac{X - \mu_0}{S / \sqrt{n}} < t_{\alpha}(n-1)\} = \alpha$
+\end{enumerate}
+
+\subsection{双边$\chi^2$检验法}
+
+\begin{enumerate}
+	\item 未知$\sigma_0^2$和$\mu_0$，检验$H_0: \sigma^2 = \sigma_0^2$，$H_1: \sigma^2 \neq \sigma_0^2$。拒绝域为：$P\{\frac{(n-1)S^2}{\sigma_0^2} < \chi_{\alpha/2}^2(n-1)\} + P\{\frac{(n-1)S^2}{\sigma_0^2} > \chi_{1-\alpha/2}^2(n-1)\} = \alpha$
+	\item 已知$\sigma_0^2$，检验$H_0: \sigma^2 \leq \sigma_0^2$，$H_1: \sigma^2 > \sigma_0^2$。拒绝域为：$P\{\frac{1}{\sigma_0^2} \sum_{i=1}^n(X_i - \mu_0)^2 < \chi_{\alpha/2}^2(n)\} + P\{\frac{1}{\sigma_0^2} \sum_{i=1}^n(X_i - \mu_0)^2 > \chi_{1-\alpha/2}^2(n)\} = \alpha$
+\end{enumerate}
+
+\subsection{单边$\chi^2$检验法}
+
+\begin{enumerate}
+	\item 未知$\sigma_0^2$和$\mu_0$，检验$H_0: \sigma^2 \leq \sigma_0^2$，$H_1: \sigma^2 > \sigma_0^2$。拒绝域为：$P\{\frac{(n-1)S^2}{\sigma_0^2} > \chi_{1-\alpha}^2(n-1)\} = \alpha$
+	\item 未知$\sigma_0^2$和$\mu_0$，检验$H_0: \sigma^2 \geq \sigma_0^2$，$H_1: \sigma^2 < \sigma_0^2$。拒绝域为：$P\{\frac{(n-1)S^2}{\sigma_0^2} < \chi_{\alpha}^2(n-1)\} = \alpha$
+	\item 已知$\mu_0$，未知$\sigma_0^2$，检验$H_0: \sigma^2 \leq \sigma_0^2$，$H_1: \sigma^2 > \sigma_0^2$。拒绝域为：$P\{\frac{1}{\sigma_0^2} \sum_{i=1}^n(X_i - \mu_0)^2 > \chi_{1-\alpha}^2(n)\} = \alpha$
+	\item 已知$\mu_0$，未知$\sigma_0^2$，检验$H_0: \sigma^2 \geq \sigma_0^2$，$H_1: \sigma^2 < \sigma_0^2$。拒绝域为：$P\{\frac{1}{\sigma_0^2} \sum_{i=1}^n(X_i - \mu_0)^2 < \chi_{\alpha}^2(n)\} = \alpha$
+\end{enumerate}
+
+\subsection{双总体均值差的检验}
+
+已知$\sigma_1^2$和$\sigma_2^2$时
+\begin{enumerate}
+	\item 检验$H_0: \mu_1 = \mu_2$，$H_1: \mu_1 \neq \mu_2$。拒绝域为：$P\{\frac{(\overline{X} - \overline{Y}) - (\mu_1 - \mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}} > u_{1-\alpha/2}\} + P\{\frac{(\overline{X} - \overline{Y}) - (\mu_1 - \mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}} < u_{\alpha/2}\} = \alpha$
+	\item 检验$H_0: \mu_1 \leq \mu_2$，$H_1: \mu_1 > \mu_2$。拒绝域为：$P\{\frac{(\overline{X} - \overline{Y}) - (\mu_1 - \mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}} > u_{1-\alpha}\} = \alpha$
+	\item 检验$H_0: \mu_1 \geq \mu_2$，$H_1: \mu_1 < \mu_2$。拒绝域为：$P\{\frac{(\overline{X} - \overline{Y}) - (\mu_1 - \mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}} < u_{\alpha}\} = \alpha$
+\end{enumerate}
+
+未知$\sigma_1^2$和$\sigma_2^2$，但是保证$\sigma_1^2 = \sigma_2^2$时
+\begin{enumerate}
+	\item 检验$H_0: \mu_1 = \mu_2$，$H_1: \mu_1 \neq \mu_2$。拒绝域为：$P\{\frac{(\overline{X} - \overline{Y}) - (\mu_1 - \mu_2)}{S_{\omega}\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} > t_{1-\alpha/2}(n_1 + n_2 - 2)\} + P\{\frac{(\overline{X} - \overline{Y}) - (\mu_1 - \mu_2)}{S_{\omega}\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} < t_{\alpha/2}(n_1 + n_2 - 2)\} = \alpha$
+	\item 检验$H_0: \mu_1 \leq \mu_2$，$H_1: \mu_1 > \mu_2$。拒绝域为：$P\{\frac{(\overline{X} - \overline{Y}) - (\mu_1 - \mu_2)}{S_{\omega}\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} > t_{1-\alpha}(n_1 + n_2 - 2)\} = \alpha$
+	\item 检验$H_0: \mu_1 \geq \mu_2$，$H_1: \mu_1 < \mu_2$。拒绝域为：$P\{\frac{(\overline{X} - \overline{Y}) - (\mu_1 - \mu_2)}{S_{\omega}\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} < t_{\alpha}(n_1 + n_2 - 2)\} = \alpha$
+\end{enumerate}
+
+\subsection{双总体方差比的检验}
+
+未知$\mu_1$和$\mu_2$时
+\begin{enumerate}
+	\item 检验$H_0: \sigma_1^2 = \sigma_2^2$，$H_1: \sigma_1^2 \neq \sigma_2^2$。拒绝域为：$P\{\frac{S_1^2}{S_2^2} > F_{1-\alpha/2}(n_1 - 1,n_2 - 1)\} + P\{\frac{S_1^2}{S_2^2} < F_{\alpha/2}(n_1 - 1,n_2 - 1)\} = \alpha$
+	\item 检验$H_0: \sigma_1^2 \leq \sigma_2^2$，$H_1: \sigma_1^2 > \sigma_2^2$。拒绝域为：$P\{\frac{S_1^2}{S_2^2} > F_{1-\alpha}(n_1 - 1,n_2 - 1)\} = \alpha$
+	\item 检验$H_0: \sigma_1^2 \geq \sigma_2^2$，$H_1: \sigma_1^2 < \sigma_2^2$。拒绝域为：$P\{\frac{S_1^2}{S_2^2} < F_{\alpha}(n_1 - 1,n_2 - 1)\} = \alpha$
+\end{enumerate}
+
+\section{重要的分布及其特征}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		分布 & 分布函数 & 密度函数 & 期望 & 方差 \\
+		\hline
+		$N(\mu,\sigma^2)$ & $\Phi\left(\frac{x-\mu}{\sigma}\right)$ & $\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ & $\mu$ & $\sigma^2$ \\
+		\hline
+		$U(a,b)$ & $\frac{x-a}{b-a}$ & $\frac{1}{b-a}$ & $\frac{a+b}{2}$ & $\frac{(b-a)^2}{12}$ \\
+		\hline
+		$Exp(\lambda)$ & $1 - e^{-\lambda x}$ & $\lambda e^{-\lambda x}$ & $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$ \\
+		\hline
+		$P(\lambda)$ & $\frac{\lambda^x}{x!}e^{-\lambda}$ & $\frac{\lambda^x}{x!}e^{-\lambda}$ & $\lambda$ & $\lambda$ \\
+		\hline
+		$B(n,p)$ & $\sum_{i=0}^x C_n^ip^i(1-p)^{n-i}$ & $C_n^xp^x(1-p)^{n-x}$ & $np$ & $np(1-p)$ \\
+		\hline
+		$\chi^2(n)$ & 不需记忆 & 不需记忆 & $n$ & $2n$ \\
+		\hline
+		$t(n)$ & 不需记忆 & 不需记忆 & $0(n > 2)$ & $\frac{n}{n-2}(n > 2)$ \\
+		\hline
+		$F(n_1,n_2)$ & 不需记忆 & 不需记忆 & 不需记忆 & 不需记忆 \\
+		\hline
+	\end{tabular}
+\end{center}
+\end{document}
