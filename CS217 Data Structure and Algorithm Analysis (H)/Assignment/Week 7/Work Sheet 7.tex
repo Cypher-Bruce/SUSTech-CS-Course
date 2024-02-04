@@ -1,0 +1,261 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+%\usepackage{setspace}
+%\setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,caption}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Data Structure and Algorithm Analysis(H): Work Sheet 7}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Data Structure and Algorithm Analysis(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Work Sheet 7}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 7.1}
+
+\subsection*{1.}
+
+After the first loop:
+\begin{center}
+	\begin{tabular}{cccc}
+		0 & 1 & 2 & 3 \\
+	\end{tabular}
+
+	\begin{tabular}{|c|c|c|c|}
+		\hline 
+		0 & 0 & 0 & 0 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+After the second loop:
+\begin{center}
+	\begin{tabular}{cccc}
+		0 & 1 & 2 & 3 \\
+	\end{tabular}
+
+	\begin{tabular}{|c|c|c|c|}
+		\hline 
+		2 & 3 & 1 & 1 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+After the third loop:
+\begin{center}
+	\begin{tabular}{cccc}
+		0 & 1 & 2 & 3 \\
+	\end{tabular}
+
+	\begin{tabular}{|c|c|c|c|}
+		\hline 
+		2 & 5 & 6 & 7 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection*{2.}
+
+\begin{figure}[H]
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\begin{tabular}{ccccccc}
+			1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+		\end{tabular}
+
+		\begin{tabular}{|c|c|c|c|c|c|c|}
+			\hline
+			& & & & 1 & & \\ \hline \hline
+			& & & 1 & 1 & & \\ \hline \hline
+			& & & 1 & 1 & & 3 \\ \hline \hline
+			& & 1 & 1 & 1 & & 3 \\ \hline \hline
+			& 0 & 1 & 1 & 1 & & 3 \\ \hline \hline
+			& 0 & 1 & 1 & 1 & 2 & 3 \\ \hline \hline
+			0 & 0 & 1 & 1 & 1 & 2 & 3 \\ \hline
+		\end{tabular}
+		\caption*{Array $B$}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\begin{tabular}{cccc}
+			0 & 1 & 2 & 3 \\
+		\end{tabular}
+
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			2 & 4 & 6 & 7 \\ \hline \hline
+			2 & 3 & 6 & 7 \\ \hline \hline
+			2 & 3 & 6 & 6 \\ \hline \hline
+			2 & 2 & 6 & 6 \\ \hline \hline
+			1 & 2 & 6 & 6 \\ \hline \hline
+			1 & 2 & 5 & 6 \\ \hline \hline
+			0 & 2 & 5 & 6 \\ \hline
+		\end{tabular}
+		\caption*{Array $C$}
+	\end{minipage}
+\end{figure}
+
+\newpage
+\section*{Question 7.2}
+
+We proof this by loop invariant.
+
+\textbf{Loop invariant:} 
+At the beginning of each iteration of the for loop of lines 6-7, every element $C[j]$ in the subarray $C[0..i-1]$ counts how many elements in the original array are less or equal to $j$.
+And every element $C[l]$ in the subarray $C[i-1..k]$ counts how many elements in the original array are equal to $l$.
+
+\textbf{Initialization:}
+Before the first iteration of the loop, $i = 1$, the subarrays are $C[0]$ and $C[1..k]$.
+Since the first two loops let $C[j]$ counts how many $j$ are in the original array, and no element is smaller than 0, both subarrays are correct.
+
+\textbf{Maintenance:}
+We know this equation holds for every element j in $0,1, \cdots ,k$:
+\begin{equation*}
+	\text{number of element } \leq j = \text{number of element } \leq (j-1) + \text{number of element } = j
+\end{equation*}
+
+Since $C[i-1]$ counts how many elements in the original array are less or equal to $i-1$, and $C[i]$ counts how many elements in the original array are equal to $i$, we know that $c[i] + c[i-1]$ counts how many elements in the original array are less or equal to $i$.
+So we let $C[i] = C[i] + C[i-1]$ and the invariant holds.
+
+\textbf{Termination:}
+When the loop terminates, $i = k+1$, the first subarray is $C[0..k]$ and the second is empty.
+Now we know that every element $C[j]$ counts how many elements in the original array are less or equal to $j$.
+
+\section*{Question 7.3}
+
+3.
+
+The algorithm will still sort the array correctly, but every element that has the same value will be in reversed order.
+
+This is because after the third loop, every element $C[j]$ represents where the last $j$ is in the sorted array.
+And $C[j]$ will be updated to $C[j]-1$ once a $j$ is put into the sorted array.
+This means no matter how we read the original array, we will always put the first $j$ we read into the last position of all sorted $j$.
+
+If we read the original array from the beginning, we will put the first $j$ we read into the last position of all sorted $j$.
+The second $j$ we read will be put into the second last position of all sorted $j$.
+And so on.
+
+Therefore, the algorithm will still sort the array correctly, but every element that has the same value will be in reversed order.
+
+\section*{Question 7.4}
+
+\begin{center}
+	\begin{tabular}{ll}
+		\toprule
+		\multicolumn{2}{l}{\textsc{CountingRange}$(A,k,a,b)$} \\
+		\midrule
+		1. & let $C[0..k]$ be a new array \\
+		2. & $n = A.\text{length}$ \\
+		3. & \textbf{for} $i = 0$ \textbf{to} $k$ \textbf{do} \\
+		4. & \qquad $C[i] = 0$ \\
+		5. & \textbf{for} $j = 1$ \textbf{to} $n$ \textbf{do} \\
+		6. & \qquad $C[A[j]] = C[A[j]] + 1$ \\
+		7. & \textbf{for} $i = 1$ \textbf{to} $k$ \textbf{do} \\
+		8. & \qquad $C[i] = C[i] + C[i-1]$ \\
+		9. & \textbf{if} $a = 0$ \textbf{then} \\
+		10. & \qquad \textbf{return} $C[b]$ \\
+		11. & \textbf{else} \\
+		12. & \qquad \textbf{return} $C[b] - C[a-1]$ \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section*{Question 7.5}
+
+\begin{center}
+	\begin{tabular}{ccccccc}
+		\toprule
+		Original & & After first loop & & After second loop & & After third loop \\
+		\midrule
+		COW & & MOB & & TAB & & BAR \\ 
+        DOG & & TAB & & BAR & & BIG \\ 
+        TUG & & DOG & & CAR & & BOX \\ 
+        ROW & & TUG & & TAR & & CAR \\ 
+        MOB & & PIG & & PIG & & COW \\ 
+        BOX & & BIG & & BIG & & DOG \\ 
+        TAB & $\rightarrow$ & BAR & $\rightarrow$ & MOB & $\rightarrow$ & MOB \\ 
+        BAR & & CAR & & DOG & & PIG \\ 
+        CAR & & TAR & & COW & & ROW \\ 
+        TAR & & COW & & ROW & & TAB \\ 
+        PIG & & ROW & & WOW & & TAR \\ 
+        BIG & & WOW & & BOX & & TUG \\ 
+        WOW & & BOX & & TUG & & WOW \\ 
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section*{Question 7.6}
+
+\textbf{Stable:}
+InsertionSort, MergeSort
+
+\textbf{Not stable:}
+HeapSort, QuickSort
+
+For InsertionSort, if we read the original array from the beginning ,and when we insert an element into the sorted array, we always stop at the first position of all elements that have the same value.
+This means that the relative order of elements that have the same value will not change.
+
+For MergeSort, when we merge two sorted arrays, we always put the element from the first array first.
+This means that the relative order of elements that have the same value will not change.
+
+For HeapSort, it is not stable. 
+For example, if we have an array $A = [1_a,1_b,1_c]$, which is already a max-heap.
+The sorted array will be $A = [1_a,1_c,1_b]$, because we take the root of the heap first.
+
+For QuickSort, it is not stable.
+For example, if we have an array $A = [2_a,2_b,1]$.
+The sorted array will be $A = [1,2_b,2_a]$.
+Because at the end of the first partition, $1$ and $2_a$ will be swapped.
+\end{document}

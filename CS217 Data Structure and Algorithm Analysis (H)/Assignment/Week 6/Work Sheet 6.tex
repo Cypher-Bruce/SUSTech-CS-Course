@@ -1,0 +1,260 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+%\usepackage{setspace}
+%\setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm}
+
+\usepackage{tikz}
+\usetikzlibrary{graphs, graphdrawing}
+\usegdlibrary{trees}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Data Structure and Algorithm Analysis(H): Work Sheet 6}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Data Structure and Algorithm Analysis(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Work Sheet 6}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 6.1}
+
+\subsection*{1.}
+
+\textbf{Loop Invariant:} At the end of each iteration, $A[j-1]$ is the smallest element in $A[j-1..A.\text{length}]$.
+
+\textbf{Initialization:} Before the first iteration, we can assume a $j = A.\text{length} + 1$, so the array $A[j-1..A.\text{length}]$ contains one element $A[A.\text{length}]$, which is the smallest element in the array. 
+
+\textbf{Maintenance:} Assume that $A[j]$ is the smallest element in $A[j..A.\text{length}]$ before iteration.
+Then, in the iteration, if $A[j-1] < A[j]$, then $A[j-1]$ is the smallest element in $A[j-1..A.\text{length}]$.
+Otherwise, $A[j]$ is the smallest element in $A[j-1..A.\text{length}]$, and we swap $A[j]$ and $A[j-1]$.
+
+\textbf{Termination:} When the loop terminates, $j = i + 1$, so $A[i]$ is the smallest element in $A[i..A.\text{length}]$.
+
+\subsection*{2.}
+
+\textbf{Loop Invariant:} At the end of the $i$-th iteration, $A[1..i]$ contains the first $i$ smallest elements in $A[1..A.\text{length}]$ in sorted order.
+
+\textbf{Initialization:} After the first inner loop, $A[1]$ is the smallest element in $A[1..A.\text{length}]$, so $A[1..1]$ contains the first $1$ smallest elements in $A[1..A.\text{length}]$ in sorted order.
+
+\textbf{Maintenance:} Assume that $A[1..i-1]$ contains the first $i-1$ smallest elements in $A[1..A.\text{length}]$ in sorted order before the $i$-th iteration.
+Then, in the $i$-th iteration, we find the smallest element in $A[i..A.\text{length}]$, which is the $i$-th smallest element in $A[1..A.\text{length}]$.
+We put it in $A[i]$, then $A[1..i]$ contains the first $i$ smallest elements in $A[1..A.\text{length}]$ in sorted order.
+
+\textbf{Termination:} When the loop terminates, $i = A.\text{length}$, so $A[1..A.\text{length}]$ contains the first $A.\text{length}$ smallest elements in $A[1..A.\text{length}]$ in sorted order.
+
+\subsection*{3.}
+
+\begin{center}
+	\begin{tabular}{llc}
+		\toprule
+		\multicolumn{2}{l}{\textsc{Bubble-Sort}$(A)$} & Runtime (in one iteration)\\
+		\midrule
+		1. & \textbf{for} $i = 1$ \textbf{to} $A.\text{length} - 1$ \textbf{do} & $\Theta(n - 1)$ \\
+		2. & \quad \textbf{for} $j = A.\text{length}$ \textbf{downto} $i + 1$ \textbf{do} & $\Theta(n - i)$ \\
+		3. & \quad \quad \textbf{if} $A[j] < A[j-1]$ \textbf{then} & $\Theta(1)$ \\
+		4. & \quad \quad \quad exchange $A[j]$ with $A[j-1]$ & $\Theta(1)$ \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{align*}
+	T(n) =& \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} (\Theta(1) + \Theta(1))\\
+	=& \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} \Theta(1)\\
+	=& \frac{n(n-1)}{2} \Theta(1)\\
+	=& \Theta(n^2)
+\end{align*}
+
+Hence, the asymptotic runtime of \textsc{Bubble-Sort} is $\Theta(n^2)$.
+
+\section*{Question 6.2}
+
+First, we sort the array:
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+		\hline
+		$A[4]$ & $A[3]$ & $A[7]$ & $A[6]$ & $A[9]$ & $A[5]$ & $A[2]$ & $A[1]$ & $A[8]$\\
+		\hline
+		$z_1$ & $z_2$ & $z_3$ & $z_4$ & $z_5$ & $z_6$ & $z_7$ & $z_8$ & $z_9$\\
+		\hline
+		2 & 4 & 5 & 6 & 8 & 9 & 10 & 12 & 25\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection*{1.}
+
+The probability that $A[2]=10=z_7$ and $A[3]=4=z_2$ are compared is:
+\begin{align*}
+	\text{Pr}(\text{$z_2$ is compared to $z_7$}) =& \frac{2}{7-2+1}\\
+	=& \frac{1}{3} 
+\end{align*}
+
+\subsection*{2.}
+
+Likewise, we have the probability that $z_8$ is compared to $z_9$ is $1$.
+
+\subsection*{3.}
+
+Likewise, we have the probability that $z_1$ is compared to $z_9$ is $\frac{2}{9}$.
+
+\subsection*{4.}
+
+Likewise, we have the probability that $z_3$ is compared to $z_7$ is $\frac{2}{5}$.
+
+\newpage
+\section*{Question 6.3}
+
+\begin{proof}
+$ $
+
+First, we proof this inequality $\sum_{i=1}^{n-1} \sum_{k=1}^{n-i} \frac{1}{k} \geq \sum_{i=1}^{\frac{n}{2}} \sum_{k=1}^{n-1} \frac{1}{k}$.
+
+We can write the two sums by each term as follows:
+\begin{align*}
+	\sum_{i=1}^{n-1} \sum_{k=1}^{n-i} \frac{1}{k} &= (n-1) \cdot \frac{1}{1} + (n-2) \cdot \frac{1}{2} + \cdots + \frac{n}{2} \cdot \frac{1}{\frac{n}{2}} + \cdots + 1 \cdot \frac{1}{n-1}\\ 
+	\sum_{i=1}^{\frac{n}{2}} \sum_{k=1}^{n-1} \frac{1}{k} &= \frac{n}{2} \cdot \frac{1}{1} + \frac{n}{2} \cdot \frac{1}{2} + \cdots + \frac{n}{2} \cdot \frac{1}{\frac{n}{2}} + \cdots + \frac{n}{2} \cdot \frac{1}{n-1}
+\end{align*}
+
+And both sums have $\frac{n^2-n}{2}$ elements.
+
+The inequality holds because we remove some elements that are bigger than $\frac{1}{\frac{n}{2}}$ from the first sum and add the same number of elements that are smaller than $\frac{1}{\frac{n}{2}}$ to the second sum.
+
+Then, we have:
+\begin{center}
+	\begin{align*}
+		E(X) =& \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} \frac{2}{j-i+1}\\
+		=& \sum_{i=1}^{n-1} \sum_{k=1}^{n-i} \frac{2}{k+1}\\
+		\geq& \sum_{i=1}^{n-1} \sum_{k=1}^{n-i} \frac{2}{k+k}\\
+		=& \sum_{i=1}^{n-1} \sum_{k=1}^{n-i} \frac{1}{k}\\
+		\geq& \sum_{i=1}^{\frac{n}{2}} \sum_{k=1}^{n-1} \frac{1}{k}\\
+		=& \frac{n}{2} \sum_{k=1}^{n-1} \frac{1}{k}\\
+		\geq& \frac{n}{2} \ln (n-1)\\
+		=& \Theta(n \log n)
+	\end{align*}
+\end{center}
+
+Therefore, $E(X) \geq \Theta(n \log n)$.
+Equally, we have $E(X) = \Omega(n \log n)$.
+\end{proof}
+
+\section*{Question 6.4}
+
+\begin{center}
+	\resizebox{\textwidth}{!}{
+		\begin{tikzpicture}[
+			binary tree layout,
+			level distance=1.5cm,
+			sibling distance=3cm,
+			nodes={circle, draw}
+		  ]
+		  
+		  \node[label=left:{$\leq$}, label=right:{$>$}]{$1:2$}  
+		  child{
+			node[label=left:{$\leq$}, label=right:{$>$}]{$1:3$}
+			child{
+				node[label=left:{$\leq$}, label=right:{$>$}]{$2:3$}
+				child{
+					node[rectangle]{$<1,2,3>$}
+				}
+				child{
+					node[rectangle]{$<1,3,2>$}
+				}
+			}
+			child{
+				node[label=left:{$\leq$}]{$1:2$}
+				child{
+					node[rectangle]{$<3,1,2>$}
+				}
+				child[missing]
+			}
+		  }
+		  child{
+			node[label=left:{$\leq$}, label=right:{$>$}]{$2:3$}
+			child{
+				node[label=left:{$\leq$}, label=right:{$>$}]{$1:3$}
+				child{
+					node[rectangle]{$<2,1,3>$}
+				}
+				child{
+					node[rectangle]{$<2,3,1>$}
+				}
+			}
+			child{
+				node[label=right:{$>$}]{$1:2$}
+				child[missing]
+				child{
+					node[rectangle]{$<3,2,1>$}
+				}
+			}
+		  };
+		\end{tikzpicture}
+	}
+\end{center}
+
+Note: The notation $i:j$ means to compare $a_i$ and $a_j$, where $a_n$ is the $n$-th element in the original array.
+
+\section*{Question 6.5}
+
+The smallest possible depth of a leaf in a decision tree for a comparison sort is $n-1$.
+
+\begin{proof}
+$ $
+
+For each comparison, we can concatenate at most one element to the sorted sequence.
+Hence, for a result of $n$ elements, we need at least $n-1$ comparisons and this cannot be optimized. 
+By definition of decision tree, we know all leaves of comparison sort have depth at least $n-1$.
+\end{proof}
+
+\end{document}

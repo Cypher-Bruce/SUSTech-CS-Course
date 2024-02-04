@@ -1,0 +1,349 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,tikz,caption}
+\usetikzlibrary{graphs, graphdrawing}
+\usegdlibrary[trees]
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Data Structure and Algorithm Analysis(H): Work Sheet 4}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Data Structure and Algorithm Analysis(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\end{tabular}
+
+\begin{center}
+	{\Large \bf Work Sheet 4}
+\end{center}  
+
+\section*{Question 4.1}
+\begin{center}
+	\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.9cm}]
+		\node {34}
+		  child{node{20}
+			child{node[fill=red!50]{16}
+			  child{node{14}}
+			  child{node[fill=red!50]{17}}
+			}
+			child{node{14}
+			  child{node{13}}
+			}
+		  }
+		  child{node{21}
+			child{node{11}}
+			child{node{3}}
+		  };
+	  \end{tikzpicture}
+\end{center}
+As the graph shows, the array is not a Max-Heap.
+
+\section*{Question 4.2}
+\begin{figure}[H]
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.9cm}]
+			\node {25}
+				child{node{12}
+					child{node{10}
+						child{node{2}}
+						child{node{8}}
+					}
+					child{node{9}}
+				}
+				child{node{6}
+				child{node{4}}
+				child{node{5}}
+			};
+		\end{tikzpicture}
+		\caption*{1}
+
+		\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.9cm}]
+			\node {9}
+				child{node{8}
+					child{node{5}}
+					child{node{2}}
+				}
+				child{node{6}
+					child{node{4}}
+					child[missing]
+				};
+		\end{tikzpicture}
+		\caption*{4}
+
+		\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.9cm}]
+			\node {5}
+			  child{node{4}}
+			  child{node{2}};
+		\end{tikzpicture}
+		\caption*{7}
+	\end{minipage}
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.9cm}]
+			\node {12}
+				child{node{10}
+					child{node{8}
+			  			child{node{2}}
+				  		child[missing]
+					}
+				child{node{9}}
+				}
+				child{node{6}
+					child{node{4}}
+					child{node{5}}
+				};
+		\end{tikzpicture}
+		\caption*{2}
+
+		\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.9cm}]
+			\node {8}
+				child{node{5}
+					child{node{4}}
+					child{node{2}}
+				}
+				child{node{6}};
+		\end{tikzpicture}
+		\caption*{5}
+
+		\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.9cm}]
+			\node {4}
+			  child{node{2}}
+			  child[missing];
+		\end{tikzpicture}
+		\caption*{8}
+	\end{minipage}
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.9cm}]
+			\node {10}
+				child{node{9}
+					child{node{8}}
+					child{node{2}}
+				}
+				child{node{6}
+					child{node{4}}
+					child{node{5}}
+				};
+		\end{tikzpicture}
+		\caption*{3}
+
+		\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.9cm}]
+			\node {6}
+				child{node{5}
+					child{node{4}}
+					child[missing]
+				}
+				child{node{2}};
+		\end{tikzpicture}
+		\caption*{6}
+
+		\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.9cm}]
+			\node {2};
+		\end{tikzpicture}
+		\caption*{9}
+	\end{minipage}
+\end{figure}
+
+\section*{Question 4.3}
+
+\subsection*{1.}
+\begin{center}
+	\begin{tabular}{ll}
+		\toprule
+		\multicolumn{2}{l}{\textsc{Max-Heapify}$(A,i)$} \\
+		\midrule
+		1. & $\textbf{while}\ i \leq A.\text{heap-size}\ \textbf{do}$ \\
+		2. & \qquad $l = \text{Left}(i)$ \\
+		3. & \qquad $r = \text{Right}(i)$ \\
+		4. & \qquad $\textbf{if}\ l \leq A.\text{heap-size}\ \textbf{and}\ A[l] > A[i]\ \textbf{then}$ \\
+		5. & \qquad \qquad $\text{largest} = l$ \\
+		6. & \qquad $\textbf{else}$ \\
+		7. & \qquad \qquad $\text{largest} = i$ \\
+		8. & \qquad $\textbf{if}\ r \leq A.\text{heap-size}\ \textbf{and}\ A[r] > A[\text{largest}]\ \textbf{then}$ \\
+		9. & \qquad \qquad $\text{largest} = r$ \\
+		10. & \qquad $\textbf{if}\ \text{largest} \neq i\ \textbf{then}$ \\
+		11. & \qquad \qquad exchange $A[i]$ with $A[\text{largest}]$ \\
+		12. & \qquad \qquad $i = \text{largest}$ \\
+		13. & \qquad \textbf{else} \\
+		14. & \qquad \qquad break \\
+		\bottomrule 
+	\end{tabular}
+\end{center}
+\textit{Assume that $A.$heap-size is updated in \textsc{HeapSort}.}
+
+\subsection*{2.}
+\textbf{Loop invariant:} At the start of each iteration of the \textbf{while} loop, the array is a Max-Heap except that $A[i]$ might be smaller than its children.
+
+\textbf{Initialization:} Before the first iteration of the loop, the array is a Max-Heap except that one element $A[i]$ might be smaller than its children.
+
+\textbf{Maintenance:} The algorithm finds the largest element $A[\text{largest}]$ among $A[i]$, $A[\text{Left}(i)]$ and $A[\text{Right}(i)]$, and exchange $A[i]$ with $A[\text{largest}]$. 
+Then the array is a Max-Heap except that one element $A[\text{largest}]$ might be smaller than its children.
+Then the algorithm sets $i = \text{largest}$ and continues the loop.
+
+\textbf{Termination:} 
+
+\textbf{Case 1:} The loop terminates when $\text{Left}(i)$ is larger than the heap size, which means $A[i]$ is a leaf node.
+Since the leaf node has no children, $A[i]$ cannot be smaller than its children.
+Therefore, the array is a Max-Heap.
+
+\textbf{Case 2:} The algorithm breaks the loop if $A[i]$ is larger than its children.
+Since the array is a Max-Heap everywhere else already, the array is a Max-Heap.
+
+\section*{Question 4.4}
+
+\subsection*{1.}
+Assume the right subtree of the root node has the last level empty and the left subtree has the last level full.
+When the right subtree has height $h$ ($h \ge 0$), the left subtree has height $h+1$.
+The number of nodes in the right subtree is $2^h - 1$ and the number of nodes in the left subtree is $2^{h+1} - 1$.
+Therefore, the left subtree contains $\frac{2^{h+1} - 1}{2^h - 1 + 2^{h+1} - 1 + 1}$ of the nodes in the tree.
+
+The maximum percentage can be achieved when $h$ approaches infinity.
+\begin{align*}
+	&\lim_{h \to \infty} \frac{2^{h+1} - 1}{2^h - 1 + 2^{h+1} - 1 + 1} \\
+	= &\lim_{h \to \infty} \frac{2 \cdot 2^h - 1}{3 \cdot 2^h - 1} \\
+	= &\lim_{h \to \infty} \frac{2 - \frac{1}{2^h}}{3 - \frac{1}{2^h}} \\
+	= &\ \frac{2}{3}
+\end{align*}
+
+Therefore, the left subtree contains at most $\frac{2}{3}$ of the nodes in the tree.
+
+\subsection*{2.}
+Using Master Theorem, the \textsc{Max-Heapify} algorithm has recurrence equation $T(n) \leq T(\frac{2n}{3}) + \Theta(1)$.
+Since $a = 1$, $b = \frac{3}{2}$, $f(n) = \Theta(1)$, we have $n^{\log_b a} = n^{\log_{\frac{3}{2}} 1} = n^0$.
+This is case 2 of Master Theorem, since there exists $k = 0$ that $f(n) = \Theta(1) = \Theta(n^0 \log^0 n)$.
+Therefore, $T(n) = \Theta(n^0 \log^{0+1} n) = \Theta(\log n)$. 
+
+However, this is not the tight bound since we use $\leq$ in the recurrence equation.
+What we have proved is that $T(n) \leq \Theta(\log n)$.
+Hence, $T(n) = O(\log n)$.
+
+\section*{Question 4.5}
+
+Since the runtime of \textsc{Build-Max-Heap} is in $O(n)$, we don't need to consider it.
+We will focus on the runtime of \textsc{Max-Heapify}.
+To be more specific, we will estimate the runtime of \textsc{Max-Heapify} on an already sorted array by calculating how many exchange operations and comparison operations it will perform.
+
+Since incomplete binary trees can be turned into complete binary trees by discarding the last level, their runtime will always be bigger than the runtime of corresponding complete binary trees of smaller height.
+Therefore, we can omit them when calculating the lower bound.
+Let's assume the heap is a complete binary tree with $n$ nodes.
+Therefore, the height of the tree is $h = \log (n+1)$ when the algorithm starts.
+
+In the process of discarding elements until the heap becomes a complete binary tree of height $h - 1$, only the last $2^{h - 1} - 1$ elements remain, since the array is sorted.
+We color them in red and blue separately.
+
+\begin{figure}[H]
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.9cm}]
+			\node [fill=red!50]{7}
+				child{node[fill=red!50]{6}
+					child{node[fill=red!50]{4}}
+					child{node[fill=blue!50]{3}}
+				}
+				child{node[fill=red!50]{5}
+					child{node[fill=blue!50]{2}}
+					child{node[fill=blue!50]{1}}
+				};
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.9cm}]
+			\node [fill=blue!50]{3}
+				child{node[fill=blue!50]{1}}
+				child{node[fill=blue!50]{2}};
+		\end{tikzpicture}
+	\end{minipage}
+	\caption*{\textit{An example of 7 elements.}}
+\end{figure}
+
+Since the number of comparisons is exactly twice the number of exchanges during \textsc{Max-Heapify}, we only need to count the number of exchanges.
+To achieve this transformation, the blue nodes will first exchange with the root node and then move downwards.
+The number of exchanges will be:
+
+\begin{align*}
+	&2^{h-1} - 1 + \sum_{n=1}^{h-1} (n-1)\,2^{n-1} \\
+	= &2^{h-1} - 1 + (h-3)\,2^{h-1} + 2\\
+	= &(h-2)\,2^{h-1} + 1\\
+	= &\frac{1}{2}h 2^h-2^h+1
+\end{align*}
+
+Since $h = \log (n+1)$, the number of exchanges will be:
+
+\begin{align*}
+	&\frac{1}{2}h 2^h-2^h+1\\
+	= &\frac{1}{2}(n+1)\log (n+1)-(n+1)+1\\
+	= &\frac{1}{2}(n+1)\log (n+1)-n\\
+\end{align*}
+
+And $\frac{1}{2}(n+1)\log (n+1)-n$ is in $\Theta(n\log n)$ since:
+\begin{align*}
+	\frac{1}{2}(n+1)\log (n+1)-n &\leq \frac{1}{2}(n+1)\log (n+1)\\
+	&\leq (n+1)\log (n+1)\\
+	&\leq 2n\log (2n)\\
+	&= 2n(\log 2 + \log n)\\
+	&= 2n\log 2 + 2n\log n\\
+	&\leq 4n\log n\\
+	&= O(n\log n)
+\end{align*}
+\begin{align*}
+	\frac{1}{2}(n+1)\log (n+1)-n &\geq \frac{1}{2}n\log n - n\\
+	&= \Omega (n\log n)
+\end{align*}
+
+Therefore, the runtime of discarding the last level is in $\Theta(n\log n)$.
+In the best case, the remaining complete binary tree is also a sorted array. 
+We can obtain the recurrence equation:
+
+\begin{equation*}
+	T(n) \geq T(n/2) + \Theta(n\log n)
+\end{equation*}
+
+Using Master Theorem, we have $a = 1$, $b = 2$, $f(n) = \Theta(n\log n)$. 
+This is case 3 of Master Theorem, since there exists $\epsilon = 1$ that $f(n) = \Theta(n\log n) = \Omega(n^{\log_b a+\epsilon}  n) = \Omega(n)$, and there exists $c = \frac{1}{2}$ that $af(\frac{n}{b}) = f(\frac{n}{2}) = \Theta(\frac{n}{2}\log \frac{n}{2}) \leq \frac{1}{2}\Theta(n\log n)$. 
+Therefore, $T(n) = \Theta(n\log n)$.
+
+Since we use $\geq$ in the recurrence equation, what we have proved is that $T(n) \geq \Theta(n\log n)$.
+Therefore, $T(n) = \Omega(n\log n)$.
+Hence, the runtime of \textsc{HeapSort} on an already sorted array is in $\Omega(n\log n)$.
+\end{document}

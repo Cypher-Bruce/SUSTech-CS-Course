@@ -1,0 +1,268 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm}
+
+\usepackage{tikz}
+\usetikzlibrary{graphs, graphdrawing}
+\usegdlibrary{trees}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Data Structure and Algorithm Analysis(H): Work Sheet 11}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Data Structure and Algorithm Analysis(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Work Sheet 11}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 11.1}
+
+\begin{center}
+	\begin{tabular}{ll}
+		\toprule
+		\multicolumn{2}{l}{\textsc{Buttom-Up-Cut-Rod'}$(p,n)$} \\
+		\midrule
+		1. & let $r[0..n]$ and $s[0..n]$ be new arrays \\
+		2. & $r[0] = 0$ \\
+		3. & \textbf{for} $j = 1$ to $n$ \textbf{do} \\
+		4. & \qquad $q = p[j]$ \\
+		5. & \qquad $s[j] = j$ \\
+		6. & \qquad \textbf{for} $i = 1$ to $j-1$ \textbf{do} \\
+		7. & \qquad \qquad \textbf{if} $q < p[i] + r[j-i] - c$ \textbf{then} \\
+		8. & \qquad \qquad \qquad $q = p[i] + r[j-i] - c$ \\
+		9. & \qquad \qquad \qquad $s[j] = i$ \\
+		10. & \qquad $r[j] = q$ \\
+		11. & \textbf{return} $r$ and $s$ \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section*{Question 11.2}
+
+\begin{figure}[H]
+	\begin{minipage}{0.5\linewidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{ll}
+				\toprule
+				\multicolumn{2}{l}{\textsc{Memoized-Cut-Rod'}$(p,n)$} \\
+				\midrule
+				1. & let $r[0..n]$ and $s[0..n]$ be new arrays \\
+				2. & \textbf{for} $i = 0$ to $n$ \textbf{do} \\
+				3. & \qquad $r[i] = -\infty$ \\
+				4. & \textbf{return} \textsc{Memoized-Cut-Rod-Aux'}$(p,n,r,s)$ \\
+				\midrule
+			\end{tabular}
+		}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{ll}
+				\toprule
+				\multicolumn{2}{l}{\textsc{Memoized-Cut-Rod-Aux'}$(p,n,r,s)$} \\
+				\midrule
+				1. & \textbf{if} $r[n] \geq 0$ \textbf{then} \\
+				2. & \qquad \textbf{return} $(r[n], s)$ \\
+				3. & \textbf{if} $n == 0$ \textbf{then} \\
+				4. & \qquad $q = 0$ \\
+				5. & \textbf{else} \\
+				6. & \qquad $q = -\infty$ \\
+				7. & \qquad \textbf{for} $i = 1$ to $n$ \textbf{do} \\
+				8. & \qquad \qquad $t, - = \textsc{Memoized-Cut-Rod-Aux'}(p,n-i,r,s)$ \\
+				9. & \qquad \qquad \textbf{if} $q < p[i] + t$ \textbf{then} \\
+				10. & \qquad \qquad \qquad $q = p[i] + t$ \\
+				11. & \qquad \qquad \qquad $s[n] = i$ \\
+				12. & $r[n] = q$ \\
+				13. & \textbf{return} $(r[n], s)$ \\
+				\bottomrule
+				\midrule
+			\end{tabular}
+		}
+	\end{minipage}
+\end{figure}
+
+\section*{Question 11.3}
+
+\begin{center}
+	\begin{tabular}{ll}
+		\toprule
+		\multicolumn{2}{l}{\textsc{Fibonacci-Number}$(n)$} \\
+		\midrule
+		1. & let $f[0..n]$ be a new array \\
+		2. & $f[0] = 0$ \\
+		3. & $f[1] = 1$ \\
+		4. & \textbf{for} $i = 2$ to $n$ \textbf{do} \\
+		5. & \qquad $f[i] = f[i-1] + f[i-2]$ \\
+		6. & \textbf{return} $f[n]$ \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\textbf{A non-optimal solution:}
+
+\begin{center}
+	\begin{tikzpicture}[
+		tree layout,
+		level distance=1.5cm,
+		sibling distance=1cm,
+		minimum size=1cm,
+		nodes={circle, draw}
+	]
+	\node {n}
+	child {node {n-1}
+		child {node {n-2}
+			child {node {...}}
+			child {node {...}}
+		}
+		child {node {n-3}
+			child {node {...}}
+			child {node {...}}
+		}
+	}
+	child {node {n-2}
+		child {node {n-3}
+			child {node {...}}
+			child {node {...}}
+		}
+		child {node {n-4}
+			child {node {...}}
+			child {node {...}}
+		}
+	};
+
+	\node{4}
+	child {node {3}
+		child {node {2}
+			child {node {1}}
+			child {node {0}}
+		}
+		child {node {1}}
+	}
+	child {node {2}
+		child {node {1}}
+		child {node {0}}
+	};
+	\end{tikzpicture}
+\end{center}
+
+As it is shown in the graph, if we denote the number of nodes in the tree as $N(n)$, then we have $N(n) = N(n-1) + N(n-2) + 1$. 
+And we know that $N(0) = 1$ and $N(1) = 1$.
+
+By characteristic equation, we can prove that $N(n) = \frac{2}{\sqrt{5}}(\frac{1+\sqrt{5}}{2})^{n+1} - \frac{2}{\sqrt{5}}(\frac{1-\sqrt{5}}{2})^{n+1} - 1$.
+The number of edges is $E(n) = N(n) - 1 = \frac{2}{\sqrt{5}}(\frac{1+\sqrt{5}}{2})^{n+1} - \frac{2}{\sqrt{5}}(\frac{1-\sqrt{5}}{2})^{n+1} - 2$.
+
+\textbf{An optimal solution:}
+
+\begin{center}
+	\begin{tikzpicture}[minimum size=1cm, nodes={circle, draw}]
+		\draw (0,0) node (n) {n};
+		\draw (0,-2) node (n-1) {n-1};
+		\draw (0,-4) node (n-2) {n-2};
+		\draw (0,-6) node (n-3) {n-3};
+		\draw (0,-8) node (n-4) {...};
+		\draw [->] (n) to [bend left=45] (n-2);
+		\draw [->] (n-1) to [bend right=45] (n-3); 
+		\draw [->] (n-2) to [bend left=45] (n-4);
+		\draw [->] (n) to (n-1);
+		\draw [->] (n-1) to (n-2);
+		\draw [->] (n-2) to (n-3);
+		\draw [->] (n-3) to (n-4);
+
+		\draw (4,0) node (5) {...};
+		\draw (4,-2) node (4) {4};
+		\draw (4,-4) node (3) {3};
+		\draw (4,-6) node (2) {2};
+		\draw (3,-8) node (1) {1};
+		\draw (5,-8) node (0) {0};
+		\draw [->] (5) to [bend right=45] (3);
+		\draw [->] (4) to [bend left=45] (2);
+		\draw [->] (3) to [bend right=45] (1);
+		\draw [->] (5) to (4);
+		\draw [->] (4) to (3);
+		\draw [->] (3) to (2);
+		\draw [->] (2) to (1);
+		\draw [->] (2) to (0);
+	\end{tikzpicture}
+\end{center}
+
+For an optimal solution, we have $N(n) = n+1$ with an exception that $N(1) = 1$
+The number of edges is $E(n) = 2n - 2$ with an exception that $E(0) = 0$.
+\section*{Question 11.4}
+
+The Bellman equation for share price is $A_k = \max \{B_i | 1 \leq i \leq k\}$ and $B_k = \max \{a_k, B_{k-1} + a_k\}$.
+
+\subsection*{(a)}
+
+\begin{center}
+	\begin{tabular}{ll}
+		\toprule
+		\multicolumn{2}{l}{\textsc{Max-Share-Price}$(a, n)$} \\
+		\midrule
+		1. & $A = 0$ \\
+		2. & $B = 0$ \\
+		3. & \textbf{for} $i = 1$ to $n$ \textbf{do} \\
+		4. & \qquad $B = \max (a_i, B + a_i)$ \\
+		5. & \qquad $A = \max (A, B)$ \\
+		6. & \textbf{return} $A$ \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection*{(b)}
+
+The time complexity is $O(n)$.
+This the loop is executed $n$ times and each time it takes constant time, and the other operations take constant time.
+Hence, $f(n) = c_1n + c_2 = O(n)$.
+\end{document}

@@ -1,0 +1,132 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Data Structure and Algorithm Analysis(H): Work Sheet 12}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Data Structure and Algorithm Analysis(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Work Sheet 12}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 12.1}
+
+\subsection*{1.}
+
+No.
+
+Consider $a_1 = [0,3)$, $a_2 = [2,4)$, $a_3 = [3,6)$.
+To choose the activity of the least duration, we should choose $a_2$ and stop.
+But the optimal solution is to choose $a_1$ and $a_3$.
+
+\subsection*{2.}
+
+No.
+
+Consider $a_1 = [0,2)$, $a_2 = [2,4)$, $a_3 = [4,6)$, $a_4 = [6,8)$ (first 4 are optimal solution), $a_5 = [3,5)$, $a_6 = a_7 = [1,3)$, $a_8 = a_9 = [5,7)$.
+Then $a_5$ is the greedy choice because it only overlaps twice, but choosing $a_5$ will lead to a solution of 3 activities, while the optimal solution is 4 activities.
+
+\subsection*{3.}
+
+Yes.
+
+\begin{proof}
+$ $
+
+Let set $S_k$ be the set of activities that finish before $a_k$ starts, and $A_k$ be the optimal solution of $S_k$.
+If $a_m$ is the last-to-start activity in $A_k$, and $a_n$ is the last-to-start activity in $A_{k+1}$,
+then if $a_m \neq a_n$, we can replace $a_m$ with $a_n$ and still get a compatible solution with same number of activities.
+Hence, $a_n$ is in one of maximum-size subset of mutually compatible activities.
+\end{proof}
+
+\subsection*{4.}
+
+No.
+
+Consider $a_1 = [0,8)$, $a_2 = [1,2)$, $a_3 = [2,3)$.
+Then $a_1$ is the greedy choice, but the optimal solution is to choose $a_2$ and $a_3$.
+
+\section*{Question 12.2}
+
+Without loss of generality, we assume that the items in knapsack are sorted by their value per unit weight in decreasing order.
+Then we can proof that in a fractional knapsack problem, the greedy choice is to choose the item with the largest value per unit weight.
+
+\begin{proof}
+$ $
+
+Let $K_i$ be the knapsack after the $i$th item is added, and $A_i$ be the optimal solution of $K_i$.
+Then if the $i+2$th item is added to $K_i$ before all fraction of the $i+1$th item is added, then we can replace the $i+2$th item with the $i+1$th item and get a better solution.
+Hence, the greedy choice is to choose the item with the largest value per unit weight.
+\end{proof}
+
+\section*{Question 12.3}
+
+\subsection*{(a)}
+
+The greedy solution is to find the farthest point that Eddy can reach, and stop for supply there.
+
+\subsection*{(b)}
+
+\begin{proof}
+$ $
+
+Let $S_k$ be the set of supply points that Eddy can reach after station $k$, and $A_k$ be the optimal solution of starting from station $k$.
+If $s_m$ is the farthest supply point Eddy can reach in he starts from station $k$, 
+then if the first stop in $A_k$ is not $s_m$, the subproblem (distances after the first stop) will be longer than the subproblem that chooses $s_m$, and will produce a worse or equal solution.
+Hence, $s_m$ is in one of $A_k$.
+\end{proof}
+\end{document}

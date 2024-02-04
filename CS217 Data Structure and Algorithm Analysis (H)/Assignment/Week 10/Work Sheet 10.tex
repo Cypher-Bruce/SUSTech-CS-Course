@@ -1,0 +1,446 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+%\usepackage{setspace}
+%\setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm}
+
+\usepackage{tikz}
+\usetikzlibrary{graphs, graphdrawing}
+\usegdlibrary{trees}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Data Structure and Algorithm Analysis(H): Work Sheet 10}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Data Structure and Algorithm Analysis(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Work Sheet 10}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 10.1}
+
+\subsection*{Step 1}
+\begin{center}
+	\begin{tikzpicture}[
+		binary tree layout,
+		level distance=1.5cm,
+		sibling distance=3cm,
+		minimum size=1cm,
+		nodes={circle, draw}
+	]
+		
+		\node[label=above:{0}]{8};
+	\end{tikzpicture}
+\end{center}
+
+\subsection*{Step 2}
+\begin{center}
+	\begin{tikzpicture}[
+		binary tree layout,
+		level distance=1.5cm,
+		sibling distance=3cm,
+		minimum size=1cm,
+		nodes={circle, draw}
+	]
+		
+		\node[label=above:{1}]{8}
+		child{
+			node[label=above:{0}]{2}
+		}
+		child[missing]
+		;
+	\end{tikzpicture}
+\end{center}
+
+\subsection*{Step 3}
+
+\begin{figure}[H]
+	\begin{minipage}{0.5\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			binary tree layout,
+			level distance=1.5cm,
+			sibling distance=3cm,
+			minimum size=1cm,
+			nodes={circle, draw}
+		]
+			
+			\node[label=above:{2}]{8}
+			child{
+				node[label=above:{1}]{2}
+				child{
+					node[label=above:{0}]{1}
+				}
+				child[missing]
+			}
+			child[missing]
+			;
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			binary tree layout,
+			level distance=1.5cm,
+			sibling distance=3cm,
+			minimum size=1cm,
+			nodes={circle, draw}
+		]
+			
+			\node[label=above:{0}]{2}
+			child{
+				node[label=above:{0}]{1}
+			}
+			child{
+				node[label=above:{0}]{8}
+			}
+			;
+		\end{tikzpicture}
+	\end{minipage}
+\end{figure}
+
+\subsection*{Step 4}
+\begin{center}
+	\begin{tikzpicture}[
+		binary tree layout,
+		level distance=1.5cm,
+		sibling distance=3cm,
+		minimum size=1cm,
+		nodes={circle, draw}
+	]
+		
+		\node[label=above:{-1}]{2}
+		child{
+			node[label=above:{0}]{1}
+		}
+		child{
+			node[label=above:{1}]{8}
+			child{
+				node[label=above:{0}]{3}
+			}
+			child[missing]
+		}
+		;
+	\end{tikzpicture}
+\end{center}
+
+\subsection*{Step 5}
+\begin{figure}[H]
+	\begin{minipage}{0.32\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			binary tree layout,
+			level distance=1.5cm,
+			sibling distance=3cm,
+			minimum size=1cm,
+			nodes={circle, draw}
+		]
+			
+			\node[label=above:{-2}]{2}
+			child{
+				node[label=above:{0}]{1}
+			}
+			child{
+				node[label=above:{2}]{8}
+				child{
+					node[label=above:{-1}]{3}
+					child[missing]
+					child{
+						node[label=above:{0}]{6}
+					}
+				}
+				child[missing]
+			}
+			;
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}{0.32\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			binary tree layout,
+			level distance=1.5cm,
+			sibling distance=3cm,
+			minimum size=1cm,
+			nodes={circle, draw}
+		]
+			
+			\node[label=above:{-2}]{2}
+			child{
+				node[label=above:{0}]{1}
+			}
+			child{
+				node[label=above:{2}]{8}
+				child{
+					node[label=above:{1}]{6}
+					child{
+						node[label=above:{0}]{3}
+					}
+					child[missing]
+				}
+				child[missing]
+			}
+			;
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}{0.32\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			binary tree layout,
+			level distance=1.5cm,
+			sibling distance=3cm,
+			minimum size=1cm,
+			nodes={circle, draw}
+		]
+			
+			\node[label=above:{-1}]{2}
+			child{
+				node[label=above:{0}]{1}
+			}
+			child{
+				node[label=above:{0}]{6}
+				child{
+					node[label=above:{0}]{3}
+				}
+				child{
+					node[label=above:{0}]{8}
+				}
+			}
+			;
+		\end{tikzpicture}
+	\end{minipage}
+\end{figure}
+
+\subsection*{Step 6}
+\begin{figure}[H]
+	\begin{minipage}{0.5\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			binary tree layout,
+			level distance=1.5cm,
+			sibling distance=3cm,
+			minimum size=1cm,
+			nodes={circle, draw}
+		]
+			\node[label=above:{-2}]{2}
+			child{
+				node[label=above:{0}]{1}
+			}
+			child{
+				node[label=above:{-1}]{6}
+				child{
+					node[label=above:{0}]{3}
+				}
+				child{
+					node[label=above:{-1}]{8}
+					child[missing]
+					child{
+						node[label=above:{0}]{10}
+					}
+				}
+			}
+			;
+		\end{tikzpicture}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+		\centering
+		\begin{tikzpicture}[
+			binary tree layout,
+			level distance=1.5cm,
+			sibling distance=3cm,
+			minimum size=1cm,
+			nodes={circle, draw}
+		]
+			\node[label=above:{0}]{6}
+			child{
+				node[label=above:{0}]{2}
+				child{
+					node[label=above:{0}]{1}
+				}
+				child{
+					node[label=above:{0}]{3}
+				}
+			}
+			child{
+				node[label=above:{-1}]{8}
+				child[missing]
+				child{
+					node[label=above:{0}]{10}
+				}
+			}
+			;
+		\end{tikzpicture}
+	\end{minipage}
+\end{figure}
+	
+\subsection*{Step 7}
+\begin{figure}[H]
+	\begin{minipage}{0.32\linewidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+				\node[label=above:{-1}]{6}
+				child{
+					node[label=above:{0}]{2}
+					child{
+						node[label=above:{0}]{1}
+					}
+					child{
+						node[label=above:{0}]{3}
+					}
+				}
+				child{
+					node[label=above:{-2}]{8}
+					child[missing]
+					child{
+						node[label=above:{1}]{10}
+						child{
+							node[label=above:{0}]{9}
+						}
+						child[missing]
+					}
+				}
+				;
+			\end{tikzpicture}
+		}
+	\end{minipage}
+	\begin{minipage}{0.32\linewidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+				\node[label=above:{-1}]{6}
+				child{
+					node[label=above:{0}]{2}
+					child{
+						node[label=above:{0}]{1}
+					}
+					child{
+						node[label=above:{0}]{3}
+					}
+				}
+				child{
+					node[label=above:{-2}]{8}
+					child[missing]
+					child{
+						node[label=above:{-1}]{9}
+						child[missing]
+						child{
+							node[label=above:{0}]{10}
+						}
+					}
+				}
+				;
+			\end{tikzpicture}
+		}
+	\end{minipage}
+	\begin{minipage}{0.32\linewidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+				\node[label=above:{0}]{6}
+				child{
+					node[label=above:{0}]{2}
+					child{
+						node[label=above:{0}]{1}
+					}
+					child{
+						node[label=above:{0}]{3}
+					}
+				}
+				child{
+					node[label=above:{0}]{9}
+					child{
+						node[label=above:{0}]{8}
+					}
+					child{
+						node[label=above:{0}]{10}
+					}
+				}
+				;
+			\end{tikzpicture}
+		}
+	\end{minipage}
+\end{figure}
+
+\section*{Question 10.2}
+
+\begin{center}
+	\begin{tabular}{c|ccccccccccccc}
+		\toprule
+		$n$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+		\midrule
+		$Fib(n)$ & 1 & 1 & 2 & 3 & 5 & 8 & 13 & 21 & 34 & 55 & 89 & 144 & 233 \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Therefore, the minimum number of nodes that an AVL tree with height $10$ can have is $Fib(12) - 1 = 232$.
+
+\end{document}

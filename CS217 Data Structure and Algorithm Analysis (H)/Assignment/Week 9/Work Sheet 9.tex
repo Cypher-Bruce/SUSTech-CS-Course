@@ -1,0 +1,685 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+%\usepackage{setspace}
+%\setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,caption}
+
+\usepackage{tikz}
+\usetikzlibrary{graphs, graphdrawing}
+\usegdlibrary{trees}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Data Structure and Algorithm Analysis(H): Work Sheet 9}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Data Structure and Algorithm Analysis(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Work Sheet 9}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 9.1}
+
+\subsection*{1.}
+
+\textbf{Base case:} 
+
+A complete binary tree with only one node has height 0 and 0 internal nodes.
+Thus, $h = 0$ and $i = 2^h - 1 = 0$ holds.
+
+\textbf{Inductive step:}
+
+Suppose for a complete binary tree with $h$ height, the number of internal nodes is $i = 2^h - 1$.
+For a complete binary tree with $h + 1$ height, the number of internal nodes is the internal points of two subtrees plus the root, which is $2^h - 1 + 2^h - 1 + 1 = 2^{h+1} - 1$.
+
+Thus, the statement holds for every complete binary tree.
+
+\subsection*{2.}
+
+\textbf{Base case:}
+
+For a full binary tree with only one node, the number of leaves is 1, and the number of internal nodes is 0.
+Thus, $l = i + 1$ holds.
+
+\textbf{Inductive step:}
+
+Suppose for a full binary tree with $l$ leaves, the number of internal nodes is $i$, and $l = i + 1$ holds.
+To keep the binary tree full, every time we add nodes to the tree, we add at two nodes to a leaf node.
+Then, $l' = l - 1 + 2 = l + 1$ and $i' = i + 1$.
+Thus, $l' = i' + 1$ holds.
+
+Thus, the statement holds for every full non-empty binary tree.
+
+\subsection*{3.}
+
+\textbf{Base case:}
+
+For a binary tree with only one node, the number of edges is 0, and the number of vertices is 1.
+Thus, $|V| + |E| + 1$ holds.
+
+\textbf{Inductive step:}
+
+Every time we add a node to the tree, we add one edge and one vertex.
+Thus, $|V| + |E| + 1$ holds.
+
+Thus, the statement holds for all non-empty binary trees.
+
+\section*{Question 9.2}
+
+\subsection*{1.}
+
+\begin{center}
+	\begin{tikzpicture}[
+		binary tree layout,
+		level distance=1.5cm,
+		sibling distance=3cm,
+		minimum size=1cm,
+		nodes={circle, draw}
+	]
+	  
+	\node [fill=blue!50] {7}
+	child{
+		node{4}
+		child{
+			node{1}
+		}
+		child{
+			node{5}
+		}
+	}
+	child{
+		node [fill=blue!50] {10}
+		child{
+			node{9}
+			child{
+				node{8}
+			}
+			child[missing]
+		}
+		child{
+			node [fill=blue!50] {12}
+			child{
+				node [fill=red!50] {11}
+			}
+			child[missing]
+		}
+	}
+	 
+	;
+	\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+	\item Step 1: Compare 7 and 11 and find 11 is bigger, go to the right subtree.
+	\item Step 2: Compare 10 and 11 and find 11 is bigger, go to the right subtree.
+	\item Step 3: Compare 12 and 11 and find 11 is smaller, go to the left subtree.
+	\item Step 4: End up at NIL and insert 11.
+\end{itemize}
+
+\subsection*{2.}
+
+\begin{figure}[H]
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+			  
+			\node{7}
+			child{
+				node{4}
+				child{
+					node{1}
+				}
+				child{
+					node{5}
+				}
+			}
+			child{
+				node [fill=blue!50] {10}
+				child{
+					node{9}
+					child{
+						node{8}
+					}
+					child[missing]
+				}
+				child{
+					node{12}
+					child{
+						node [fill=red!50] {11}
+					}
+					child[missing]
+				}
+			}
+			 
+			;
+			\end{tikzpicture}
+		}
+	\end{minipage}
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+			  
+			\node{7}
+			child{
+				node{4}
+				child{
+					node{1}
+				}
+				child{
+					node{5}
+				}
+			}
+			child{
+				node [fill=blue!50] {10}
+				child{
+					node{9} 
+					child{
+						node{8}
+					}
+					child[missing]
+				}
+				child[missing]
+			}
+			;
+
+			\node [fill=red!50] {11}
+			child[missing]
+			child{
+				node{12}
+			}
+			;
+			\end{tikzpicture}
+		}
+	\end{minipage}
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+			  
+			\node{7}
+			child{
+				node{4}
+				child{
+					node{1}
+				}
+				child{
+					node{5}
+				}
+			}
+			child{
+				node [fill=red!50] {11}
+				child{
+					node{9} 
+					child{
+						node{8}
+					}
+					child[missing]
+				}
+				child{
+					node{12}
+				}
+			}
+			;
+			\end{tikzpicture}
+		}
+	\end{minipage}
+\end{figure}
+
+\begin{itemize}
+	\item Step 1: Find the left subtree of 10 is not empty.
+	\item Step 2: Find the right subtree of 10 is not empty.
+	\item Step 3: Find the successor of 10 is 11.
+	\item Step 4: Find the right subtree of 11 is empty, no need to transplant.
+	\item Step 5: Transplant the right subtree of 10 to the right subtree of 11.
+	\item Step 6: Remove 10 and replace it with 11.
+\end{itemize}
+
+\subsection*{3.}
+
+\begin{center}
+	\begin{tikzpicture}[
+		binary tree layout,
+		level distance=1.5cm,
+		sibling distance=3cm,
+		minimum size=1cm,
+		nodes={circle, draw}
+	]
+	  
+	\node [fill=blue!50] {7}
+	child{
+		node{4}
+		child{
+			node{1}
+		}
+		child{
+			node{5}
+		}
+	}
+	child{
+		node [fill=blue!50] {11}
+		child{
+			node [fill=blue!50] {9} 
+			child{
+				node{8}
+			}
+			child{
+				node [fill=red!50] {10}
+			}
+		}
+		child{
+			node{12}
+		}
+	}
+	;
+	\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+	\item Step 1: Compare 7 and 10 and find 10 is bigger, go to the right subtree.
+	\item Step 2: Compare 11 and 10 and find 10 is smaller, go to the left subtree.
+	\item Step 3: Compare 9 and 10 and find 10 is bigger, go to the right subtree.
+	\item Step 4: End up at NIL and insert 10.
+\end{itemize}
+
+\subsection*{4.}
+
+\begin{figure}[H]
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+			  
+			\node{7}
+			child{
+				node{4}
+				child{
+					node{1}
+				}
+				child{
+					node{5}
+				}
+			}
+			child{
+				node{11}
+				child{
+					node{9} 
+					child{
+						node [fill=blue!50] {8}
+					}
+					child{
+						node{10}
+					}
+				}
+				child{
+					node{12}
+				}
+			}
+			;
+			\end{tikzpicture}
+		}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+			  
+			\node{7}
+			child{
+				node{4}
+				child{
+					node{1}
+				}
+				child{
+					node{5}
+				}
+			}
+			child{
+				node{11}
+				child{
+					node{9} 
+					child[missing]
+					child{
+						node{10}
+					}
+				}
+				child{
+					node{12}
+				}
+			}
+			;
+			\end{tikzpicture}
+		}
+	\end{minipage}	
+\end{figure}
+
+\begin{itemize}
+	\item Step 1: Find the left subtree of 8 is empty.
+	\item Step 2: The right subtree of 8 is empty, no need to transplant.
+	\item Step 3: Remove 8.
+\end{itemize}
+
+\subsection*{5.}
+
+\begin{figure}[H]
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+			  
+			\node [fill=blue!50] {7}
+			child{
+				node{4}
+				child{
+					node{1}
+				}
+				child{
+					node{5}
+				}
+			}
+			child{
+				node{11}
+				child{
+					node [fill=red!50] {9} 
+					child[missing]
+					child{
+						node{10}
+					}
+				}
+				child{
+					node{12}
+				}
+			}
+			;
+			\end{tikzpicture}
+		}
+	\end{minipage}	
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+			  
+			\node [fill=blue!50] {7}
+			child{
+				node{4}
+				child{
+					node{1}
+				}
+				child{
+					node{5}
+				}
+			}
+			child[missing]
+			;
+
+			\node [fill=red!50] {9}
+			child[missing]
+			child{
+				node{11}
+				child{
+					node{10}
+				}
+				child{
+					node{12}
+				}
+			}
+			;
+			\end{tikzpicture}
+		}
+	\end{minipage}
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\resizebox{\linewidth}{!}{
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+			  
+			\node [fill=red!50] {9}
+			child{
+				node{4}
+				child{
+					node{1}
+				}
+				child{
+					node{5}
+				}
+			}
+			child{
+				node{11}
+				child{
+					node{10}
+				}
+				child{
+					node{12}
+				}
+			}
+			;
+			\end{tikzpicture}
+		}
+	\end{minipage}
+\end{figure}
+
+\begin{itemize}
+	\item Step 1: Find the left subtree of 7 is not empty.
+	\item Step 2: Find the right subtree of 7 is not empty.
+	\item Step 3: Find the successor of 7 is 9.
+	\item Step 4: Find the right subtree of 9 is not empty, transplant the right subtree of 9 to the left subtree of father of 9.
+	\item Step 5: Transplant the right subtree of 7 to the right subtree of 9.
+	\item Step 6: Remove 7 and replace it with 9.
+\end{itemize}
+
+\section*{Question 9.3}
+
+Yes. 
+The result could be different.
+Here is an example.
+
+For a binary search tree as below:
+\begin{center}
+	\begin{tikzpicture}[
+		binary tree layout,
+		level distance=1.5cm,
+		sibling distance=3cm,
+		minimum size=1cm,
+		nodes={circle, draw}
+	]
+	
+	\node{2}
+	child{
+		node{1}
+	}
+	child{
+		node{4}
+		child{
+			node{3}
+		}
+		child[missing]
+	}
+	;
+	\end{tikzpicture}
+\end{center}
+
+The order of deleting node 1 and 2 does matter and the results are different.
+\begin{figure}[H]
+	\begin{minipage}{0.5\textwidth}
+		\centering
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+			
+			\node{4}
+			child{
+				node{3}
+			}
+			child[missing]
+			;
+			\end{tikzpicture}
+		\caption*{Delete 1 first}
+	\end{minipage}	
+	\begin{minipage}{0.5\textwidth}
+		\centering
+			\begin{tikzpicture}[
+				binary tree layout,
+				level distance=1.5cm,
+				sibling distance=3cm,
+				minimum size=1cm,
+				nodes={circle, draw}
+			]
+			
+			\node{3}
+			child[missing]
+			child{
+				node{4}
+			}
+			;
+			\end{tikzpicture}
+		\caption*{Delete 2 first}
+	\end{minipage}	
+\end{figure}
+
+\section*{Question 9.4}
+
+\begin{center}
+	\begin{tabular}{ll}
+		\toprule
+		\multicolumn{2}{l}{\textsc{Tree-Predecessor$(x)$}} \\
+		\midrule
+		1. & \textbf{if} $x.left \neq \text{NIL}$ \\
+		2. & \qquad \textbf{return} \textsc{Tree-Maximum$(x.left)$} \\
+		3. & \textbf{else} \\
+		4. & \qquad $y = x.p$ \\
+		5. & \qquad \textbf{while} $y \neq \text{NIL}$ and $x == y.left$ \\
+		6. & \qquad \qquad $x = y$ \\
+		7. & \qquad \qquad $y = y.p$ \\
+		8. & \qquad \textbf{return} $y$ \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section*{Question 9.5}
+
+\textbf{Base case:}
+
+The best case is when the tree is balanced.
+
+For each node $x$ in the tree, it takes $n = x.depth$ times of comparison to insert it.
+Therefore, the total number of comparison is:
+\begin{align*}
+	\sum_{x \in T} n &= \sum_{x \in T} x.depth \\
+	&= \sum_{i = 0}^{\log n} i \cdot 2^i \\
+	&= (2 \log e) \ n \log n - 2n + 2 \\
+	&= \Theta(n \log n)
+\end{align*}
+
+\textbf{Worst case:}
+
+The worst case is when the tree is a linked list.
+
+The total number of comparison is:
+\begin{align*}
+	\sum_{x \in T} n &= \sum_{x \in T} x.depth \\
+	&= \sum_{i = 0}^{n} i \\
+	&= \frac{n(n+1)}{2} \\
+	&= \Theta(n^2)
+\end{align*}
+\end{document}

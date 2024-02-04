@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{graphs, graphdrawing}
+\usegdlibrary[trees]
+
+\begin{document}
+
+\begin{tikzpicture}[binary tree layout, nodes={draw, circle, minimum size=0.8cm}]
+  \node {34}
+    child{node{20}
+      child{node[fill=red!50]{16}
+        child{node{14}}
+        child{node[fill=red!50]{17}}
+      }
+      child{node{14}
+        child{node{13}}
+      }
+    }
+    child{node{21}
+      child{node{11}}
+      child{node{3}}
+    };
+\end{tikzpicture}
+
+\end{document}

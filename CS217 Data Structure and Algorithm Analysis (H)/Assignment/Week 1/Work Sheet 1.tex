@@ -1,0 +1,83 @@
+\documentclass{ctexart}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\CTEXoptions[today=old]
+\title{Exercise Sheet 1}
+\author{Mengxuan Wu}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Question 1}
+\subsection*{Question 1.1}
+
+\begin{center}
+\resizebox{\linewidth}{!}{
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        (after) iteration $j$ & $A[1]$ & $A[2]$ & $A[3]$ & $A[4]$ & $A[5]$ & $A[6]$ & $A[7]$ & $A[8]$ & $A[9]$\\ \hline
+        1 & 1 & 5 & 6 & 23 & 42 & 45 & 2 & 24 & 8 \\ \hline
+        2 & 1 & 2 & 6 & 23 & 42 & 45 & 5 & 24 & 8 \\ \hline
+        3 & 1 & 2 & 5 & 23 & 42 & 45 & 6 & 24 & 8 \\ \hline
+        4 & 1 & 2 & 5 & 6 & 42 & 45 & 23 & 24 & 8 \\ \hline
+        5 & 1 & 2 & 5 & 6 & 8 & 45 & 23 & 24 & 42 \\ \hline
+        6 & 1 & 2 & 5 & 6 & 8 & 23 & 45 & 24 & 42 \\ \hline
+        7 & 1 & 2 & 5 & 6 & 8 & 23 & 24 & 45 & 42 \\ \hline
+        8 & 1 & 2 & 5 & 6 & 8 & 23 & 24 & 42 & 45 \\ \hline
+    \end{tabular}}
+\end{center}
+
+\textit{(Assuming the array index starts from 1)}
+
+\subsection*{Question 1.2}
+
+\textbf{Loop invariant:} After iteration $j$, the subarray $A[1..j]$ contains the smallest $j$ elements of $A[1..n]$ in sorted order.
+
+\textbf{Initialisation:} After the first iteration, $j = 1$. The algorithm finds the smallest element in the original array $A[1..n]$ and swap it with $A[1]$. 
+The subarray $A[1..j]$ is now $A[1]$, which contains the smallest element in sorted order.
+
+\textbf{Maintenance:} In iteration $j$, the algorithm swaps the smallest element in subarray $A[j..n]$ with element $A[j]$. 
+Since the subarray $A[1..j-1]$ already contains the smallest elements of $A[1..n]$ in sorted order, the subarray $A[1..j]$ now contains the smallest $j$ elements of $A[1..n]$ in sorted order.
+
+\textbf{Termination:} The loops ends with $n - 1$ iteration(s). 
+Then the subarray $A[1..n-1]$ contains the smallest $n - 1$ elements in the array $A[1..n]$ in sorted order. 
+Therefore, the last element $A[n]$ must be the largest element in the array $A[1..n]$. 
+The array $A[1..n]$ is now sorted.
+
+\subsection*{Question 1.3}
+
+\begin{center}
+    \resizebox{\linewidth}{!}{
+    \begin{tabular}{lcc}
+        \hline
+        \textsc{Selection-Sort($A$)} & Cost & Times\\
+        \hline
+        1: $n$ = $A$.length & $c_1$ & 1 \\
+        2: \textbf{for} $j = 1$ to $n - 1$ \textbf{do} & $c_2$ & $n$ \\
+        3: \qquad smallest = $j$ & $c_3$ & $n-1$ \\
+        4: \qquad \textbf{for} $i = j + 1$ to $n$ \textbf{do} & $c_4$ & $n+(n-1)+\dots+2=\frac{n^2+n-2}{2}$\\
+        5: \qquad \qquad \textbf{if} $A[i] < A$[smallest] \textbf{then} smallest = $i$ & $c_5$ &$(n-1)+(n-2)+\dots+1=\frac{n^2-n}{2}$\\
+        6: \qquad exchange $A[j]$ with $A$[smallest] & $c_6$ & $n-1$ \\
+        \hline
+    \end{tabular}}
+\end{center}
+
+In both the \textbf{best case} and the \textbf{worst case}, the runtime of the \textsc{SelectionSort} is 
+\begin{align*}
+    T(n) &= c_1 + c_2n + c_3(n-1) + c_4(\frac{n^2+n-2}{2}) + c_5(\frac{n^2-n}{2}) + c_6(n-1)\\
+         &= (\frac{c_4+c_5}{2})n^2 + (c_2+c_3+\frac{c_4}{2}-\frac{c_5}{2}+c_6)n + (c_1-c_3-c_6)\\
+         &= n^2 + 3n - 2\\
+\end{align*}
+
+For \textsc{InsertionSort}, the runtime for the \textbf{best case} is $5n-4$ and the runtime for the \textbf{worst case} is $\frac{3}{2}n^2+\frac{7}{2}n-4$ (from lecture slides).
+
+For the \textbf{best case}, \textsc{InsertionSort} is better. 
+Because \textsc{InsertionSort} finishes in linear time, while \textsc{SelectionSort} finishes in quadratic time.
+
+For the \textbf{worst case}, both algorithms have quadratic runtime. 
+However, as the coefficient of $n^2$ in \textsc{SelectionSort} is smaller than that in \textsc{InsertionSort}, \textsc{SelectionSort} is better.
+
+\end{document}

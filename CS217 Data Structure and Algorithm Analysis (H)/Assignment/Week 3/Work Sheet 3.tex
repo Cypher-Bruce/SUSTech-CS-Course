@@ -1,0 +1,144 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Data Structure and Algorithm Analysis(H): Work Sheet 3}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Data Structure and Algorithm Analysis(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Work Sheet 3}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 3.1}
+\begin{center}
+	\includegraphics*[width=\linewidth]{Q3.1.PNG}
+\end{center}
+
+\section*{Question 3.2}
+\begin{proof}
+$ $\\
+Since $n = 2^k$, we can rewrite the equation as:
+\begin{equation*}
+	T(2^k) = 
+	\begin{cases}
+		d & \text{if } k = 0\\
+		2T(2^{k-1}) + c2^k & \text{if } k \geq 1
+	\end{cases}
+\end{equation*}
+And the term we want to proof now becomes
+\begin{equation*}
+	T(2^k) = d2^k + c2^k \log 2^k = d2^k + ck2^k = (d+ck)2^k
+\end{equation*}
+\textbf{Base case:} \\
+$k = 0$, $T(2^0) = d = (d+c\cdot 0)2^0$
+
+\textbf{Inductive step:} \\
+Assume when $k = k_0$, $T(2^{k_0}) = (d+ck_0)2^{k_0}$ holds.
+For $k = k_0 + 1$, we have
+\begin{align*}
+	LHS &= T(2^{k_0 + 1}) \\
+	&= 2T(2^{k_0}) + c2^{k_0 + 1} \\
+	&= 2(d+ck_0)2^{k_0} + c2^{k_0 + 1} \\
+	&= (d+ck_0)2^{k_0+1} + c2^{k_0 + 1} \\
+	&= (d+c(k_0+1))2^{k_0+1} \\
+	&= RHS
+\end{align*}
+Thus, $T(2^k) = (d+ck)2^k$ holds for all $k \geq 0$.
+\end{proof}
+
+\section*{Question 3.3}
+The watershed function for all questions is $n^{\log_4 2} = n^{\frac{1}{2}}$.
+
+\subsection*{1.}
+Since $f(n) = 1$, we have $f(n) = O(n^{\log_b a -\epsilon}) = O(n^{\frac{1}{2} -\epsilon})$ for all $\epsilon$ that satisfies $0 < \epsilon \leq \frac{1}{2}$.
+Hence, $T(n) = \Theta(n^{\frac{1}{2}})$
+
+\subsection*{2.}
+Since $f(n) = \sqrt{n} = n^{\frac{1}{2}}$, we have $f(n) = \Theta(n^{\log_b a}\log^k n) = \Theta(n^{\frac{1}{2}}\log^0 n) = \Theta(n^{\frac{1}{2}})$ when $k = 0$.
+Hence, $T(n) = \Theta(n^{\frac{1}{2}}\log n)$
+
+\subsection*{3.}
+Since $f(n) = \sqrt{n} \log^2 n = n^{\frac{1}{2}}\log^2 n$, we have $f(n) = \Theta(n^{\log_b a}\log^k n) = \Theta(n^{\frac{1}{2}}\log^2 n)$ when $k = 2$.
+Hence, $T(n) = \Theta(n^{\frac{1}{2}}\log^3 n)$
+
+\subsection*{4.}
+Since $f(n) = n$, we have $f(n) = \Omega(n^{\log_b a + \epsilon}) = \Omega(n^{\frac{1}{2} + \epsilon})$ for all $\epsilon$ that satisfies $0 < \epsilon \leq \frac{1}{2}$.
+Also, $af(n/b) = 2f(\frac{n}{4}) = \frac{n}{2} \leq cf(n) = cn$ holds for all $c$ that satisfies $\frac{1}{2} \leq c < 1$.
+Hence, $T(n) = \Theta(f(n)) = \Theta(n)$
+
+\section*{Question 3.4}
+\begin{center}
+	\begin{tabular}{lc}
+		\toprule
+		\textsc{BinarySearch}$(A, x, \text{low}, \text{high})$ & runtime(for each iteration)\\
+		\midrule
+		1. \textbf{if} low $>$ high \textbf{then} & $\Theta(1)$\\
+		2. \qquad \textbf{return} false & $\Theta(1)$\\
+		3. mid $= \lfloor$(low + high)/2$\rfloor$ & $\Theta(1)$\\
+		4. \textbf{if} $A[\text{mid}] = x$ \textbf{then} & $\Theta(1)$\\
+		5. \qquad \textbf{return} true & $\Theta(1)$\\
+		6. \textbf{else if} $A[\text{mid}] > x$ \textbf{then} & $\Theta(1)$\\
+		7. \qquad \textbf{return} \textsc{BinarySearch}$(A, x, \text{low}, \text{mid}-1)$ & $T(n/2)$\\
+		8. \textbf{else} & $\Theta(1)$\\
+		9. \qquad \textbf{return} \textsc{BinarySearch}$(A, x, \text{mid}+1, \text{high})$ & $T(n/2)$\\
+		\bottomrule
+	\end{tabular}
+\end{center}
+The recurrence equation is $T(n) = T(n/2) + \Theta(1)$.
+
+Using Master Theorem, we have $a = 1$, $b = 2$, $f(n) = \Theta(1)$ and $n^{\log_b a} = n^{\log_2 1} = n^0 = 1$.
+Since that $f(n) = \Theta(n^{\log_b a}\log^k n) = \Theta(1\cdot \log^0 n) = \Theta(1)$ when $k = 0$, we have $T(n) = \Theta(n^{\log_b a}\log^{k+1} n) = \Theta(\log n)$.
+\end{document}
