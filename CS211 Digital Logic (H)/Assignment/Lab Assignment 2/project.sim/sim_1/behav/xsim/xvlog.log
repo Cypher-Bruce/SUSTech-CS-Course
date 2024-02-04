@@ -1,0 +1,18 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 2/project.srcs/sources_1/new/Decoder_4_16.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Decoder_4_16
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 2/project.srcs/sources_1/new/MUX_16_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MUX_16_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 2/project.srcs/sources_1/new/MUX_8_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MUX_8_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 2/project.srcs/sources_1/new/lab_a2_p5.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lab_a2_p5
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 2/project.srcs/sources_1/new/lab_a2_p6.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lab_a2_p6
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 2/project.srcs/sources_1/new/lab_a2_p7.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lab_a2_p7
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 2/project.srcs/sources_1/new/lab_a2_p8.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lab_a2_p8
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 2/project.srcs/sources_1/new/lab_a2_p9.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lab_a2_p9
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 2/project.srcs/sim_1/new/lab_a2_p10_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lab_a2_p10_tb

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcsg324-1" LaunchTime="1695202231">
+  <File Type="ROUTE-PWR" Name="lab2_hw_power_routed.rpt"/>
+  <File Type="PA-TCL" Name="lab2_hw.tcl"/>
+  <File Type="PWROPT-DCP" Name="lab2_hw_pwropt.dcp"/>
+  <File Type="ROUTE-PWR-SUM" Name="lab2_hw_power_summary_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="lab2_hw_reports.tcl"/>
+  <File Type="BG-DRC" Name="lab2_hw.drc"/>
+  <File Type="OPT-HWDEF" Name="lab2_hw.hwdef"/>
+  <File Type="OPT-DCP" Name="lab2_hw_opt.dcp"/>
+  <File Type="OPT-DRC" Name="lab2_hw_drc_opted.rpt"/>
+  <File Type="PLACE-DCP" Name="lab2_hw_placed.dcp"/>
+  <File Type="PLACE-IO" Name="lab2_hw_io_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="lab2_hw_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="lab2_hw_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="lab2_hw_control_sets_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="lab2_hw_incremental_reuse_pre_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="lab2_hw_postplace_pwropt.dcp"/>
+  <File Type="PHYSOPT-DCP" Name="lab2_hw_physopt.dcp"/>
+  <File Type="BG-BIT" Name="lab2_hw.bit"/>
+  <File Type="ROUTE-ERROR-DCP" Name="lab2_hw_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="lab2_hw_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="lab2_hw_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="lab2_hw_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="lab2_hw_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="lab2_hw_drc_routed.rpx"/>
+  <File Type="BITSTR-MSK" Name="lab2_hw.msk"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="lab2_hw_methodology_drc_routed.rpt"/>
+  <File Type="BG-BGN" Name="lab2_hw.bgn"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="lab2_hw_methodology_drc_routed.rpx"/>
+  <File Type="BITSTR-RBT" Name="lab2_hw.rbt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="lab2_hw_methodology_drc_routed.pb"/>
+  <File Type="BG-BIN" Name="lab2_hw.bin"/>
+  <File Type="ROUTE-PWR-RPX" Name="lab2_hw_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="lab2_hw_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="lab2_hw_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="lab2_hw_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="lab2_hw_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="lab2_hw_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-CLK" Name="lab2_hw_clock_utilization_routed.rpt"/>
+  <File Type="RDI-RDI" Name="lab2_hw.vdi"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="lab2_hw_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="lab2_hw_postroute_physopt_bb.dcp"/>
+  <File Type="BITSTR-NKY" Name="lab2_hw.nky"/>
+  <File Type="BITSTR-BMM" Name="lab2_hw_bd.bmm"/>
+  <File Type="BITSTR-MMI" Name="lab2_hw.mmi"/>
+  <File Type="BITSTR-LTX" Name="lab2_hw.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="lab2_hw.sysdef"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/lab2_hw.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="lab2_hw"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/new/lab2_hw_constraints.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/lab2_hw_constraints.xdc"/>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>

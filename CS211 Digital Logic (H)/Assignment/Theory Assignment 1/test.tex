@@ -1,0 +1,28 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{circuitikz}
+\usepackage{amsmath}
+\usepackage{tikz}
+%\usepackage{everyshi-2001-05-15}
+%\usetikzlibrary{circuits.logic.US,circuits.logic.IEC}
+\begin{document}
+    \begin{circuitikz}%[circuit logic US]
+    \draw 
+        (0,0) node[xor port ,scale=2, number inputs=5](XOR1){}
+        (XOR1.in 1) node[left]{A}
+        (XOR1.in 2) node[left]{B}
+        (XOR1.in 3) node[left]{C}
+        (XOR1.in 4) node[left]{D}
+        (XOR1.in 5) node[left]{E}
+        ;
+    \end{circuitikz}   
+    
+    \begin{circuitikz} \draw
+        (0,2) node[and port] (myand1) {}
+        (0,0) node[and port] (myand2) {}
+        (2,1) node[xnor port] (myxnor) {}
+        (myand1.out) -- (myxnor.in 1)
+        (myand2.out) -- (myxnor.in 2);
+        \end{circuitikz}
+        
+        \end{document}
+\end{document}

@@ -1,0 +1,894 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+%\usepackage{setspace}
+%\setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,karnaugh-map,caption,circuitikz}
+\usetikzlibrary{shapes.gates.logic.US,calc}
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Digital Logic(H): Theory Assignment 2}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Digital Logic(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Theory Assignment 2}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{1.}
+
+\subsection*{a)}
+\begin{align*}
+	T_1 =& (A'T_2)' = (A'(A'D)')'\\
+	T_2 =& (A'D)'\\
+	T_3 =& A'+BC\\
+	F =& T_1T_3 = (A'(A'D)')'(A'+BC)\\
+	G =& (T_2T_3)' = ((A'D)'(A'+BC))'
+\end{align*}
+
+\subsection*{b)}
+\begin{align*}
+	F =& (A'(A'D)')'(A'+BC)\\
+	=& (A+A'D)(A'+BC)\\
+	=& AA'+ABC+A'D+A'BCD\\
+	=& ABC+A'D+A'BCD\\
+	=& ABC+A'D(1+BC)\\
+	=& \boxed{ABC+A'D}
+\end{align*}
+\begin{align*}
+	G =& ((A'D)'(A'+BC))'\\
+	=& A'D+(A'+BC)'\\
+	=& A'D+A(BC)'\\
+	=& A'D+A(B'+C')\\
+	=& \boxed{AB'+AC'+A'D}
+\end{align*}
+
+\subsection*{c)}
+
+We first write both functions in minterms:
+\begin{align*}
+	F =& ABC+A'D\\
+	=& ABC(D+D') + A'(B+B')(C+C')D\\
+	=& ABCD + ABCD' + A'BCD + A'BC'D + A'B'CD + A'B'C'D\\
+	=& \sum(1,3,5,7,14,15)
+\end{align*}
+\begin{align*}
+	G =& AB'+AC'+A'D\\
+	=& AB'(C+C')(D+D') + A(B+B')C'(D+D') + A'(B+B')(C+C')D\\
+	=& AB'CD + AB'C'D + AB'CD' + AB'C'D' + ABC'D + ABC'D'\\
+	 &+ A'BCD + A'B'CD + A'BC'D + A'B'C'D\\
+	=& \sum(1,3,5,7,8,9,10,11,12,13)
+\end{align*}
+
+Then, we can write the truth table:
+\begin{center}
+	\begin{tabular}{cccccc}
+		\toprule
+		$A$ & $B$ & $C$ & $D$ & $F$ & $G$\\
+		\midrule
+		0 & 0 & 0 & 0 & 0 & 0 \\ 
+        0 & 0 & 0 & 1 & 1 & 1 \\ 
+        0 & 0 & 1 & 0 & 0 & 0 \\ 
+        0 & 0 & 1 & 1 & 1 & 1 \\ 
+        0 & 1 & 0 & 0 & 0 & 0 \\ 
+        0 & 1 & 0 & 1 & 1 & 1 \\ 
+        0 & 1 & 1 & 0 & 0 & 0 \\ 
+        0 & 1 & 1 & 1 & 1 & 1 \\ 
+        1 & 0 & 0 & 0 & 0 & 1 \\ 
+        1 & 0 & 0 & 1 & 0 & 1 \\ 
+        1 & 0 & 1 & 0 & 0 & 1 \\ 
+        1 & 0 & 1 & 1 & 0 & 1 \\ 
+        1 & 1 & 0 & 0 & 0 & 1 \\ 
+        1 & 1 & 0 & 1 & 0 & 1 \\ 
+        1 & 1 & 1 & 0 & 1 & 0 \\ 
+        1 & 1 & 1 & 1 & 1 & 0 \\ 
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section*{2.}
+
+\subsection*{a)}
+\begin{center}
+	\begin{tabular}{cccccc}
+		\toprule
+		$A_3$ & $A_2$ & $A_1$ & $A_0$ & $P$ & $D$ \\
+		\midrule
+		0 & 0 & 0 & 0 & 0 & 1 \\ 
+        0 & 0 & 0 & 1 & 0 & 0 \\ 
+        0 & 0 & 1 & 0 & 1 & 0 \\ 
+        0 & 0 & 1 & 1 & 1 & 1 \\ 
+        0 & 1 & 0 & 0 & 0 & 0 \\ 
+        0 & 1 & 0 & 1 & 1 & 0 \\ 
+        0 & 1 & 1 & 0 & 0 & 1 \\ 
+        0 & 1 & 1 & 1 & 1 & 0 \\ 
+        1 & 0 & 0 & 0 & 0 & 0 \\ 
+        1 & 0 & 0 & 1 & 0 & 1 \\ 
+        1 & 0 & 1 & 0 & 0 & 0 \\ 
+        1 & 0 & 1 & 1 & 1 & 0 \\ 
+        1 & 1 & 0 & 0 & 0 & 1 \\ 
+        1 & 1 & 0 & 1 & 1 & 0 \\ 
+        1 & 1 & 1 & 0 & 0 & 0 \\ 
+        1 & 1 & 1 & 1 & 0 & 1 \\ 
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection*{b)}
+\begin{figure}[H]
+	\begin{minipage}{0.5\linewidth}
+		\centering
+		\begin{karnaugh-map}(label=corner)[4][4][1][$A_1A_0$][$A_3A_2$]
+			\minterms{2,3,5,7,11,13}
+			\autoterms[0]
+			\implicant{3}{2}
+			\implicant{3}{7}
+			\implicant{5}{13}
+			\implicantedge{3}{3}{11}{11}
+		\end{karnaugh-map}
+		\caption*{$P$}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+		\centering
+		\begin{karnaugh-map}(label=corner)[4][4][1][$A_1A_0$][$A_3A_2$]
+			\minterms{0,3,6,9,12,15}
+			\autoterms[0]
+			\implicant{0}{0}
+			\implicant{3}{3}
+			\implicant{6}{6}
+			\implicant{9}{9}
+			\implicant{12}{12}
+			\implicant{15}{15}
+		\end{karnaugh-map}
+		\caption*{$D$}
+	\end{minipage}
+\end{figure}
+
+\begin{align*}
+	P =& A_3'A_2'A_1 + A_3'A_1A_0 + A_2A_1'A_0 + A_2'A_1A_0\\
+	D =& A_3'A_2'A_1'A_0' + A_3'A_2'A_1A_0 + A_3'A_2A_1A_0' + A_3A_2'A_1'A_0 + A_3A_2A_1'A_0' + A_3A_2A_1A_0
+\end{align*}
+
+\section*{3.}
+
+By using active-low decoder and NAND gates, the circuit will perform as if it is an active-high decoder with OR gates.
+This is because:
+\begin{align*}
+	\sum(a,b..c) =& m_a + m_b + ... + m_c\\
+	=& ((m_a + m_b + ... + m_c)')'\\
+	=& (m_a' \cdot m_b' \cdot\ \cdots\ \cdot m_c')'\\
+\end{align*}
+
+We just need to find sum-of-minterms expressions for each function: 
+\begin{align*}
+	F_1 =& AB + A'B'C' = \sum(0,6,7)\\
+	F_2 =& A+B+C' = \sum(0,2,3,4,5,6,7)\\
+	F_3 =& A'B + AB' = \sum(2,3,4,5)
+\end{align*}
+
+Then, we can draw the block diagram:
+\begin{center}
+	\begin{circuitikz}
+	  \ctikzset{multipoles/dipchip/pin spacing=0.2}
+	  \ctikzset{multipoles/dipchip/width=2.5}
+	  \draw (0,0) node[
+		dipchip,
+		num pins=34,
+		hide numbers,
+		no topmark,
+		draw only pins={5,9,13,19,21,23,25,27,29,31,33},
+		align=center
+	  ](D){$3\times8$\\decoder};
+  
+	  \node [right] at (D.bpin 5) {$I_2$};
+	  \node [right] at (D.bpin 9) {$I_1$};
+	  \node [right] at (D.bpin 13) {$I_0$};
+	  \node [left] at (D.bpin 19) {$D_7$};
+	  \node [left] at (D.bpin 21) {$D_6$};
+	  \node [left] at (D.bpin 23) {$D_5$};
+	  \node [left] at (D.bpin 25) {$D_4$};
+	  \node [left] at (D.bpin 27) {$D_3$};
+	  \node [left] at (D.bpin 29) {$D_2$};
+	  \node [left] at (D.bpin 31) {$D_1$};
+	  \node [left] at (D.bpin 33) {$D_0$};
+
+	  \node [ocirc] at (D.bpin 19)[xshift=1.75] {};
+	  \node [ocirc] at (D.bpin 21)[xshift=1.75] {};
+	  \node [ocirc] at (D.bpin 23)[xshift=1.75] {};
+	  \node [ocirc] at (D.bpin 25)[xshift=1.75] {};
+	  \node [ocirc] at (D.bpin 27)[xshift=1.75] {};
+	  \node [ocirc] at (D.bpin 29)[xshift=1.75] {};
+	  \node [ocirc] at (D.bpin 31)[xshift=1.75] {};
+	  \node [ocirc] at (D.bpin 33)[xshift=1.75] {};
+  
+	  \coordinate (D-in 1) at (D.pin 5);
+	  \coordinate (D-in 2) at (D.pin 9);
+	  \coordinate (D-in 3) at (D.pin 13);
+  
+	  \coordinate (D-out 7) at (D.pin 19);
+	  \coordinate (D-out 6) at (D.pin 21);
+	  \coordinate (D-out 5) at (D.pin 23);
+	  \coordinate (D-out 4) at (D.pin 25);
+	  \coordinate (D-out 3) at (D.pin 27);
+	  \coordinate (D-out 2) at (D.pin 29);
+	  \coordinate (D-out 1) at (D.pin 31);
+	  \coordinate (D-out 0) at (D.pin 33);
+
+
+	  \draw (D-in 1) -- ++(-1,0) node[left]{$A$};
+	  \draw (D-in 2) -- ++(-1,0) node[left]{$B$};
+	  \draw (D-in 3) -- ++(-1,0) node[left]{$C$};
+
+	  \draw (9,2) node [nand port, number inputs=3, scale=1.5](N1){};
+	  \draw (9,0) node [nand port, number inputs=7, scale=1.5, yshift=0.75](N2){};
+	  \draw (9,-2) node [nand port, number inputs=4, scale=1.5, yshift=1.25](N3){};
+
+	  \draw (N1.out) -- ++(1,0) node[right]{$F_1$};
+	  \draw (N2.out) -- ++(1,0) node[right]{$F_2$};
+	  \draw (N3.out) -- ++(1,0) node[right]{$F_3$};
+
+	  \draw (D-out 0) -- ++ (1,0) node[circ]{} |- (N1.in 1);
+	  \draw (D-out 6) -- ++ (3.4,0) |- (N1.in 2);
+	  \draw (D-out 7) -- ++ (3.8,0) |- (N1.in 3);
+
+	  \draw (D-out 0) -- ++ (1,0) node[circ]{} |- (N2.in 1);
+	  \draw (D-out 2) -- ++ (1.8,0) node(p2){} -- (p2|-N2.in 2) node[circ]{} -- (N2.in 2);
+	  \draw (D-out 3) -- ++ (2.2,0) node[circ]{} |- (N2.in 3);
+	  \draw (D-out 4) -- ++ (2.6,0) |- (N2.in 4);
+	  \draw (D-out 5) -- ++ (3,0) node[circ]{} |- (N2.in 5);
+	  \draw (D-out 6) -- ++ (3.4,0) node(p6){} -- (p6|-N2.in 6) node[circ]{} -- (N2.in 6);
+	  \draw (D-out 7) -- ++ (3.8,0) node(p7){} -- (p7|-N2.in 7) node[circ]{} -- (N2.in 7);
+
+	  \draw (D-out 2) -- ++ (1.8,0) |- (N3.in 1);
+	  \draw (D-out 3) -- ++ (2.2,0) |- (N3.in 2);
+	  \draw (D-out 4) -- ++ (2.6,0) node[circ]{} |- (N3.in 3);
+	  \draw (D-out 5) -- ++ (3,0) node[circ]{} |- (N3.in 4);
+	\end{circuitikz}
+\end{center}
+
+\section*{4.}
+
+By applying bubble pushing, we can find all input should be inverted when using NOR gates.
+For example:
+\begin{align*}
+	m_0 =& x'y'z'\\
+	=& (x+y+z)'\\
+\end{align*}
+
+The $m_0$ minterm used to be conjunction of $x'$, $y'$ and $z'$, but now it is disjunction of $x$, $y$ and $z$ followed by a NOT gate.
+
+Therefore, we can draw the block diagram:
+\begin{center}
+	\begin{circuitikz}
+		\draw (0,0) node[nor port, number inputs=3](N0){};
+		\draw (0,-2) node[nor port, number inputs=3](N1){};
+		\draw (0,-4) node[nor port, number inputs=3](N2){};
+		\draw (0,-6) node[nor port, number inputs=3](N3){};
+		\draw (0,-8) node[nor port, number inputs=3](N4){};
+		\draw (0,-10) node[nor port, number inputs=3](N5){};
+		\draw (0,-12) node[nor port, number inputs=3](N6){};
+		\draw (0,-14) node[nor port, number inputs=3](N7){};
+
+		\draw (-9,-1) node(a)[left]{$x'$};
+		\draw (-9,-3) node(a')[left]{$x$};
+		\draw (-9,-5) node(b)[left]{$y'$};
+		\draw (-9,-7) node(b')[left]{$y$};
+		\draw (-9,-9) node(c)[left]{$z'$};
+		\draw (-9,-11) node(c')[left]{$z$};
+
+		\draw (N0.out) node[right]{$m_0$};
+		\draw (N1.out) node[right]{$m_1$};
+		\draw (N2.out) node[right]{$m_2$};
+		\draw (N3.out) node[right]{$m_3$};
+		\draw (N4.out) node[right]{$m_4$};
+		\draw (N5.out) node[right]{$m_5$};
+		\draw (N6.out) node[right]{$m_6$};
+		\draw (N7.out) node[right]{$m_7$};
+
+		\draw (a') -- ++(2,0) node[circ](a'1){} |- (N0.in 1)
+			  (b') -- ++(4,0) node[circ](b'1){} |- (N0.in 2)
+			  (c') -- ++(6,0) node[circ](c'1){} |- (N0.in 3);
+
+		\draw (a') -- ++(2,0) node[circ](a'2){} -- (a'2|-N1.in 1) node[circ]{} -- (N1.in 1)
+			  (b') -- ++(4,0) node[circ](b'2){} -- (b'2|-N1.in 2) node[circ]{} -- (N1.in 2)
+			  (c)  -- ++(5,0) node[circ](c1){} |- (N1.in 3);
+
+		\draw (a') -- ++(2,0) node[circ](a'3){} -- (a'3|-N2.in 1) node[circ]{} -- (N2.in 1)
+			  (b)  -- ++(3,0) node[circ](b1){} |- (N2.in 2)
+			  (c') -- ++(6,0) node[circ](c'2){} -- (c'2|-N2.in 3) node[circ]{} -- (N2.in 3);
+
+		\draw (a') -- ++(2,0) node[circ](a'4){} |- (N3.in 1)
+			  (b)  -- ++(3,0) node[circ](b2){} -- (b2|-N3.in 2) node[circ]{} -- (N3.in 2)
+			  (c)  -- ++(5,0) node[circ](c2){} -- (c2|-N3.in 3) node[circ]{} -- (N3.in 3);
+
+		\draw (a)  -- ++(1,0) node(a1){} -- (a1|-N4.in 1) node[circ]{} -- (N4.in 1)
+			  (b') -- ++(4,0) node[circ](b'3){} -- (b'3|-N4.in 2) node[circ]{} -- (N4.in 2)
+			  (c') -- ++(6,0) node[circ](c'3){} -- (c'3|-N4.in 3) node[circ]{} -- (N4.in 3);
+
+		\draw (a)  -- ++(1,0) node(a2){} -- (a2|-N5.in 1) node[circ]{} -- (N5.in 1)
+			  (b') -- ++(4,0) node[circ](b'4){} |- (N5.in 2)
+			  (c)  -- ++(5,0) node[circ](c3){} -- (c3|-N5.in 3) node[circ]{} -- (N5.in 3);
+
+		\draw (a)  -- ++(1,0) node(a3){} -- (a3|-N6.in 1) node[circ]{} -- (N6.in 1)
+			  (b)  -- ++(3,0) node[circ](b3){} -- (b3|-N6.in 2) node[circ]{} -- (N6.in 2)
+			  (c') -- ++(6,0) node[circ](c'4){} |- (N6.in 3);
+
+		\draw (a)  -- ++(1,0) node(a4){} |- (N7.in 1)
+			  (b)  -- ++(3,0) node[circ](b4){} |- (N7.in 2)
+			  (c)  -- ++(5,0) node[circ](c4){} |- (N7.in 3);
+
+		
+	\end{circuitikz}
+\end{center}
+
+\section*{5.}
+
+\subsection*{a)}
+
+\begin{center}
+	\begin{circuitikz}
+		\tikzset{8to1mux/.style={muxdemux, muxdemux def={Lh=12, Rh=8, NL=8, NB=3, NR=1, w=6,square pins=1}}}
+		\draw (0,0) node[
+			8to1mux
+		](M){
+			\begin{tabular}{c}
+				$8\times1$\\
+				MUX
+			\end{tabular}
+		};
+
+		\draw (M.bbpin 1) node [above] {$S_2$};
+		\draw (M.bbpin 2) node [above] {$S_1$};
+		\draw (M.bbpin 3) node [above] {$S_0$};
+
+		\draw (M.blpin 1) node [right] {$I_0$};
+		\draw (M.blpin 2) node [right] {$I_1$};
+		\draw (M.blpin 3) node [right] {$I_2$};
+		\draw (M.blpin 4) node [right] {$I_3$};
+		\draw (M.blpin 5) node [right] {$I_4$};
+		\draw (M.blpin 6) node [right] {$I_5$};
+		\draw (M.blpin 7) node [right] {$I_6$};
+		\draw (M.blpin 8) node [right] {$I_7$};
+		
+		\draw (M.lpin 1) -- ++(-1,0) node[left]{$D$};
+		\draw (M.lpin 2) -- ++(-1,0) node[left]{$0$};
+		\draw (M.lpin 3) -- ++(-1,0) node[left]{$0$};
+		\draw (M.lpin 4) -- ++(-1,0) node[left]{$1$};
+		\draw (M.lpin 5) -- ++(-1,0) node[left]{$D$};
+		\draw (M.lpin 6) -- ++(-1,0) node[left]{$1$};
+		\draw (M.lpin 7) -- ++(-1,0) node[left]{$D'$};
+		\draw (M.lpin 8) -- ++(-1,0) node[left]{$1$};
+
+		\draw (M.bpin 1) node[below]{$A$};
+		\draw (M.bpin 2) node[below]{$B$};
+		\draw (M.bpin 3) node[below]{$C$};
+
+		\draw (M.rpin 1) -- ++(1,0) node[right]{$F(A,B,C,D)$};
+	\end{circuitikz}
+\end{center}
+
+The truth tables are:
+\begin{figure}[H]
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\begin{tabular}{cccc}
+			\toprule
+			$S_2(A)$ & $S_1(B)$ & $S_0(C)$ & $F(A,B,C,D)$ \\
+			\midrule
+			0 & 0 & 0 & $D$ \\
+			0 & 0 & 1 & 0 \\
+			0 & 1 & 0 & 0 \\
+			0 & 1 & 1 & 1 \\
+			1 & 0 & 0 & $D$ \\
+			1 & 0 & 1 & 1 \\
+			1 & 1 & 0 & $D'$ \\
+			1 & 1 & 1 & 1 \\
+			\bottomrule
+		\end{tabular}
+		\caption*{MUX truth table}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\begin{tabular}{ccccc}
+			\toprule
+			$A$ & $B$ & $C$ & $D$ & $F(A,B,C,D)$ \\
+			\midrule
+			0 & 0 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 1 & 1 \\
+			0 & 0 & 1 & 0 & 0 \\
+			0 & 0 & 1 & 1 & 0 \\
+			0 & 1 & 0 & 0 & 0 \\
+			0 & 1 & 0 & 1 & 0 \\
+			0 & 1 & 1 & 0 & 1 \\
+			0 & 1 & 1 & 1 & 1 \\
+			1 & 0 & 0 & 0 & 0 \\
+			1 & 0 & 0 & 1 & 1 \\
+			1 & 0 & 1 & 0 & 1 \\
+			1 & 0 & 1 & 1 & 1 \\
+			1 & 1 & 0 & 0 & 1 \\
+			1 & 1 & 0 & 1 & 0 \\
+			1 & 1 & 1 & 0 & 1 \\
+			1 & 1 & 1 & 1 & 1 \\
+			\bottomrule
+		\end{tabular}
+		\caption*{function truth table}
+	\end{minipage}
+\end{figure}
+
+\subsection*{b)}
+
+\begin{center}
+	\begin{karnaugh-map}(label=corner)[4][4][1][$CD$][$AB$]
+		\maxterms{0,2,3,4,5,8,13}
+		\autoterms[1]
+		\implicant{7}{14}
+		\implicant{15}{10}
+		\implicantedge{1}{1}{9}{9}
+		\implicantedge{12}{12}{14}{14}
+	\end{karnaugh-map}
+\end{center}
+
+The simplified function is:
+\begin{equation*}
+	\boxed{F(A,B,C,D) = AC + ABD' + BC + B'C'D}
+\end{equation*}
+
+\section*{6.}
+
+\subsection*{a)}
+
+\begin{center}
+	\begin{tabular}{ccccc}
+		\toprule
+		$A$ & $B$ & $C$ & $D$ & $F(A,B,C,D)$ \\
+		\midrule
+		0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 1 & 1 \\
+		0 & 0 & 1 & 0 & 0 \\
+		0 & 0 & 1 & 1 & 0 \\
+		0 & 1 & 0 & 0 & x \\
+		0 & 1 & 0 & 1 & x \\
+		0 & 1 & 1 & 0 & 0 \\
+		0 & 1 & 1 & 1 & 0 \\
+		1 & 0 & 0 & 0 & x \\
+		1 & 0 & 0 & 1 & 1 \\
+		1 & 0 & 1 & 0 & 1 \\
+		1 & 0 & 1 & 1 & 0 \\
+		1 & 1 & 0 & 0 & 1 \\
+		1 & 1 & 0 & 1 & 1 \\
+		1 & 1 & 1 & 0 & 1 \\
+		1 & 1 & 1 & 1 & 0 \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection*{b)}
+
+By using K-map, we can find the simplified function in SOP and POS form:
+
+\begin{figure}[H]
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\begin{karnaugh-map}(label=corner)[4][4][1][$CD$][$AB$]
+			\minterms{1,9,10,12,13,14}
+			\maxterms{0,2,3,6,7,11,15}
+			\autoterms[x]
+			\implicant{1}{9}
+			\implicantedge{12}{8}{14}{10}
+		\end{karnaugh-map}
+		\caption*{SOP form}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\begin{karnaugh-map}(label=corner)[4][4][1][$CD$][$AB$]
+			\minterms{1,9,10,12,13,14}
+			\maxterms{0,2,3,6,7,11,15}
+			\autoterms[x]
+			\implicant{3}{11}
+			\implicantedge{0}{4}{2}{6}
+		\end{karnaugh-map}
+		\caption*{POS form}
+	\end{minipage}
+\end{figure}
+
+Therefore, the simplified function is:
+\begin{align*}
+	F(A,B,C,D) =& AD' + C'D\\
+	=& (A+D)(C'+D')
+\end{align*}
+
+In this case, any implementation of the function will have at least 3 gates.
+The logic diagram for SOP form is:
+
+\begin{center}
+	\begin{circuitikz}
+		\draw (0,0) node [and port] (A1) {};
+		\draw (0,-2) node [and port] (A2) {};
+		\draw (2,-1) node [or port] (O1) {};
+
+		\draw (A1.in 1) -- ++(-1,0) node[left]{$A$};
+		\draw (A1.in 2) -- ++(-1,0) node[left]{$D'$};
+		\draw (A2.in 1) -- ++(-1,0) node[left]{$C'$};
+		\draw (A2.in 2) -- ++(-1,0) node[left]{$D$};
+
+		\draw (O1.out) -- ++(1,0) node[right]{$F(A,B,C,D)$};
+
+		\draw (A1.out) |- (O1.in 1);
+		\draw (A2.out) |- (O1.in 2);
+	\end{circuitikz}
+\end{center}
+
+\subsection*{c)}
+
+We simply connect all minterms output to a OR gate.
+\begin{center}
+	\begin{circuitikz}
+	  \ctikzset{multipoles/dipchip/pin spacing=0.2}
+	  \ctikzset{multipoles/dipchip/width=5}
+	  \draw (0,0) node[
+		dipchip,
+		num pins=66,
+		hide numbers,
+		no topmark,
+		draw only pins={5,13,21,29,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65},
+		align=center
+	  ](D){74154\\decoder};
+  
+	  \node [right] at (D.bpin 5) {$I_3$};
+	  \node [right] at (D.bpin 13) {$I_2$};
+	  \node [right] at (D.bpin 21) {$I_1$};
+	  \node [right] at (D.bpin 29) {$I_0$};
+	  \node [left] at (D.bpin 65) {$D_0$};
+	  \node [left] at (D.bpin 63) {$D_1$};
+	  \node [left] at (D.bpin 61) {$D_2$};
+	  \node [left] at (D.bpin 59) {$D_3$};
+	  \node [left] at (D.bpin 57) {$D_4$};
+	  \node [left] at (D.bpin 55) {$D_5$};
+	  \node [left] at (D.bpin 53) {$D_6$};
+	  \node [left] at (D.bpin 51) {$D_7$};
+	  \node [left] at (D.bpin 49) {$D_8$};
+	  \node [left] at (D.bpin 47) {$D_9$};
+	  \node [left] at (D.bpin 45) {$D_{10}$};
+	  \node [left] at (D.bpin 43) {$D_{11}$};
+	  \node [left] at (D.bpin 41) {$D_{12}$};
+	  \node [left] at (D.bpin 39) {$D_{13}$};
+	  \node [left] at (D.bpin 37) {$D_{14}$};
+	  \node [left] at (D.bpin 35) {$D_{15}$};
+
+	  \node [ocirc] at (D.bpin 65)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 63)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 61)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 59)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 57)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 55)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 53)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 51)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 49)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 47)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 45)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 43)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 41)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 39)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 37)[xshift=1.75] {};
+      \node [ocirc] at (D.bpin 35)[xshift=1.75] {};
+  
+	  \coordinate (D-in 1) at (D.pin 5);
+	  \coordinate (D-in 2) at (D.pin 13);
+	  \coordinate (D-in 3) at (D.pin 21);
+	  \coordinate (D-in 4) at (D.pin 29);
+  
+	  \coordinate (D-out 16) at (D.pin 35);
+	  \coordinate (D-out 15) at (D.pin 37);
+	  \coordinate (D-out 14) at (D.pin 39);
+	  \coordinate (D-out 13) at (D.pin 41);
+	  \coordinate (D-out 12) at (D.pin 43);
+	  \coordinate (D-out 11) at (D.pin 45);
+	  \coordinate (D-out 10) at (D.pin 47);
+	  \coordinate (D-out 9) at (D.pin 49);
+	  \coordinate (D-out 8) at (D.pin 51);
+	  \coordinate (D-out 7) at (D.pin 53);
+	  \coordinate (D-out 6) at (D.pin 55);
+	  \coordinate (D-out 5) at (D.pin 57);
+	  \coordinate (D-out 4) at (D.pin 59);
+	  \coordinate (D-out 3) at (D.pin 61);
+	  \coordinate (D-out 2) at (D.pin 63);
+	  \coordinate (D-out 1) at (D.pin 65);
+
+
+	  \draw (D-in 1) -- ++(-2,0) node [left]{$A$};
+	  \draw (D-in 2) -- ++(-2,0) node [left]{$B$};
+	  \draw (D-in 3) -- ++(-2,0) node [left]{$C$};
+	  \draw (D-in 4) -- ++(-2,0) node [left]{$D$};
+
+	  \draw (8,0) node[nand port, number inputs=6, scale=1.5](O){};
+
+	  \draw (D-out 2) -- ++(1,0) |- (O.in 1);
+	  \draw (D-out 10) -- ++(1,0) |- (O.in 2);
+	  \draw (D-out 11) -- ++(1.2,0) |- (O.in 3);
+	  \draw (D-out 13) -- ++(1.4,0) |- (O.in 4);
+	  \draw (D-out 14) -- ++(1.6,0) |- (O.in 5);
+	  \draw (D-out 15) -- ++(1.8,0) |- (O.in 6);
+
+	  \draw (O.out) -- ++(0.5,0) node[right]{$F(A,B,C,D)$};
+	\end{circuitikz}
+  \end{center}
+
+\subsection*{d)}
+
+We will simulate a 4-to-16 decoder with two 3-to-8 decoders.
+Then, we simply connect all minterms output to a OR gate.
+\begin{center}
+	\begin{circuitikz}
+	  \ctikzset{multipoles/dipchip/pin spacing=0.2}
+	  \ctikzset{multipoles/dipchip/width=2.5}
+	  \draw (0,0) node[
+		dipchip,
+		num pins=34,
+		hide numbers,
+		no topmark,
+		draw only pins={5,9,13,19,21,23,25,27,29,31,33},
+		align=center
+	  ](D1){$3\times8$\\decoder};
+  
+	  \draw (D1.s) -- ++(0,-0.5) coordinate(D1-enable){};
+  
+	  \node [above] at (D1.s) {$E$};
+	  \node [right] at (D1.bpin 5) {$I_2$};
+	  \node [right] at (D1.bpin 9) {$I_1$};
+	  \node [right] at (D1.bpin 13) {$I_0$};
+	  \node [left] at (D1.bpin 19) {$D_7$};
+	  \node [left] at (D1.bpin 21) {$D_6$};
+	  \node [left] at (D1.bpin 23) {$D_5$};
+	  \node [left] at (D1.bpin 25) {$D_4$};
+	  \node [left] at (D1.bpin 27) {$D_3$};
+	  \node [left] at (D1.bpin 29) {$D_2$};
+	  \node [left] at (D1.bpin 31) {$D_1$};
+	  \node [left] at (D1.bpin 33) {$D_0$};
+  
+	  \coordinate (D1-in 1) at (D1.pin 5);
+	  \coordinate (D1-in 2) at (D1.pin 9);
+	  \coordinate (D1-in 3) at (D1.pin 13);
+  
+	  \coordinate (D1-out 8) at (D1.pin 19);
+	  \coordinate (D1-out 7) at (D1.pin 21);
+	  \coordinate (D1-out 6) at (D1.pin 23);
+	  \coordinate (D1-out 5) at (D1.pin 25);
+	  \coordinate (D1-out 4) at (D1.pin 27);
+	  \coordinate (D1-out 3) at (D1.pin 29);
+	  \coordinate (D1-out 2) at (D1.pin 31);
+	  \coordinate (D1-out 1) at (D1.pin 33);
+
+	  \draw (0,-6) node[
+		dipchip,
+		num pins=34,
+		hide numbers,
+		no topmark,
+		draw only pins={5,9,13,19,21,23,25,27,29,31,33},
+		align=center
+	  ](D2){$3\times8$\\decoder};
+  
+	  \draw (D2.s) -- ++(0,-0.5) coordinate(D2-enable){};
+  
+	  \node [above] at (D2.s) {$E$};
+	  \node [right] at (D2.bpin 5) {$I_2$};
+	  \node [right] at (D2.bpin 9) {$I_1$};
+	  \node [right] at (D2.bpin 13) {$I_0$};
+	  \node [left] at (D2.bpin 19) {$D_7$};
+	  \node [left] at (D2.bpin 21) {$D_6$};
+	  \node [left] at (D2.bpin 23) {$D_5$};
+	  \node [left] at (D2.bpin 25) {$D_4$};
+	  \node [left] at (D2.bpin 27) {$D_3$};
+	  \node [left] at (D2.bpin 29) {$D_2$};
+	  \node [left] at (D2.bpin 31) {$D_1$};
+	  \node [left] at (D2.bpin 33) {$D_0$};
+  
+	  \coordinate (D2-in 1) at (D2.pin 5);
+	  \coordinate (D2-in 2) at (D2.pin 9);
+	  \coordinate (D2-in 3) at (D2.pin 13);
+  
+	  \coordinate (D2-out 8) at (D2.pin 19);
+	  \coordinate (D2-out 7) at (D2.pin 21);
+	  \coordinate (D2-out 6) at (D2.pin 23);
+	  \coordinate (D2-out 5) at (D2.pin 25);
+	  \coordinate (D2-out 4) at (D2.pin 27);
+	  \coordinate (D2-out 3) at (D2.pin 29);
+	  \coordinate (D2-out 2) at (D2.pin 31);
+	  \coordinate (D2-out 1) at (D2.pin 33);
+
+
+	  \draw (6.5,-3) node [or port, number inputs=6, scale=2](O1){};
+
+	  \draw (D1-in 1) -- ++(-5,0) node(a)[left]{$B$};
+	  \draw (D1-in 2) -- ++(-5,0) node(b)[left]{$C$};
+	  \draw (D1-in 3) -- ++(-5,0) node(c)[left]{$D$};
+	  \draw (D1-enable) -- (c|-D1-enable) node(d)[left]{$A$};
+	  \draw (O1.out) node[right]{$F(A,B,C,D)$};
+
+	  \draw (a) -- ++(1,0) node[circ](a1){} |- (D1-in 1);
+	  \draw (a) -- ++(1,0) node[circ](a2){} |- (D2-in 1);
+	  \draw (b) -- ++(2,0) node[circ](b1){} |- (D1-in 2);
+	  \draw (b) -- ++(2,0) node[circ](b2){} |- (D2-in 2);
+	  \draw (c) -- ++(3,0) node[circ](c1){} |- (D1-in 3);
+	  \draw (c) -- ++(3,0) node[circ](c2){} |- (D2-in 3);
+
+	  \draw (d) -- ++ (4.3,0) node[circ](d1){} |- (D2-enable);
+	  \draw (d1) ++(1,0) node [not port, scale=0.5](N1){};
+
+	  \draw (D1-out 2) -- ++(1,0) |- (O1.in 1);
+	  \draw (D2-out 2) -- ++(0.2,0) |- (O1.in 2);
+	  \draw (D2-out 3) -- ++(0.4,0) |- (O1.in 3);
+	  \draw (D2-out 5) -- ++(0.6,0) |- (O1.in 4);
+	  \draw (D2-out 6) -- ++(0.8,0) |- (O1.in 5);
+	  \draw (D2-out 7) -- ++(1,0) |- (O1.in 6);
+
+	\end{circuitikz}
+\end{center}
+
+\subsection*{e)}
+
+Using the truth table in question 6a, we can modify the truth table for an 8-to-1 multiplexer:
+\begin{center}
+	\begin{tabular}{cccc}
+		\toprule
+		$S_2(A)$ & $S_1(B)$ & $S_0(C)$ & $F(A,B,C,D)$ \\
+		\midrule
+		0 & 0 & 0 & $D$ \\
+		0 & 0 & 1 & 0 \\
+		0 & 1 & 0 & x \\
+		0 & 1 & 1 & 0 \\
+		1 & 0 & 0 & $D$/1 \\
+		1 & 0 & 1 & $D'$ \\
+		1 & 1 & 0 & 1 \\
+		1 & 1 & 1 & $D'$ \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\textit{Note: Different choices appear because of don't care conditions.}
+
+Therefore, the block diagram is:
+\begin{center}
+	\begin{circuitikz}
+		\tikzset{8to1mux/.style={muxdemux, muxdemux def={Lh=12, Rh=8, NL=8, NB=3, NR=1, w=6,square pins=1}}}
+		\draw (0,0) node[
+			8to1mux
+		](M){
+			\begin{tabular}{c}
+				$8\times1$\\
+				MUX
+			\end{tabular}
+		};
+
+		\draw (M.bbpin 1) node [above] {$S_2$};
+		\draw (M.bbpin 2) node [above] {$S_1$};
+		\draw (M.bbpin 3) node [above] {$S_0$};
+
+		\draw (M.blpin 1) node [right] {$I_0$};
+		\draw (M.blpin 2) node [right] {$I_1$};
+		\draw (M.blpin 3) node [right] {$I_2$};
+		\draw (M.blpin 4) node [right] {$I_3$};
+		\draw (M.blpin 5) node [right] {$I_4$};
+		\draw (M.blpin 6) node [right] {$I_5$};
+		\draw (M.blpin 7) node [right] {$I_6$};
+		\draw (M.blpin 8) node [right] {$I_7$};
+		
+		\draw (M.lpin 1) -- ++(-1,0) node[left]{$D$};
+		\draw (M.lpin 2) -- ++(-1,0) node[left]{$0$};
+		\draw (M.lpin 3) -- ++(-1,0) node[left]{$0$};
+		\draw (M.lpin 4) -- ++(-1,0) node[left]{$0$};
+		\draw (M.lpin 5) -- ++(-1,0) node[left]{$1$};
+		\draw (M.lpin 6) -- ++(-1,0) node[left]{$D'$};
+		\draw (M.lpin 7) -- ++(-1,0) node[left]{$1$};
+		\draw (M.lpin 8) -- ++(-1,0) node[left]{$D'$};
+
+		\draw (M.bpin 1) node[below]{$A$};
+		\draw (M.bpin 2) node[below]{$B$};
+		\draw (M.bpin 3) node[below]{$C$};
+
+		\draw (M.rpin 1) -- ++(1,0) node[right]{$F(A,B,C,D)$};
+	\end{circuitikz}
+\end{center}
+
+\subsection*{f)}
+
+Using the truth table in question 6a, we can modify the truth table for a 4-to-1 multiplexer:
+\begin{center}
+	\begin{tabular}{ccc}
+		\toprule
+		$S_1(B)$ & $S_0(C)$ & $F(A,B,C,D)$ \\
+		\midrule
+		0 & 0 & $D$ \\
+		0 & 1 & $AD'$ \\
+		1 & 0 & $A$/1 \\
+		1 & 1 & $AD'$ \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\textit{Note: Different choices appear because of don't care conditions.}
+
+\begin{center}
+	\begin{circuitikz}
+		\tikzset{4to1mux/.style={muxdemux, muxdemux def={Lh=12, Rh=8, NL=4, NB=2, w=6, NR=1, square pins=1}}}
+		\draw (0,0) node[
+			4to1mux
+		](M){
+			\begin{tabular}{c}
+				$4\times1$\\
+				MUX
+			\end{tabular}
+		};
+		\draw (M.lpin 2) ++(-2,0) node [and port](A1){};
+
+		\draw (M.bbpin 1) node [above] {$S_1$};
+		\draw (M.bbpin 2) node [above] {$S_0$};
+
+		\draw (M.blpin 1) node [right] {$I_0$};
+		\draw (M.blpin 2) node [right] {$I_1$};
+		\draw (M.blpin 3) node [right] {$I_2$};
+		\draw (M.blpin 4) node [right] {$I_3$};
+
+		\draw (M.bpin 1) node [below] {$B$};
+		\draw (M.bpin 2) node [below] {$C$};
+
+		\draw (M.lpin 1) -- (A1.in 1|-M.lpin 1) node [left] {$D$};
+		\draw (M.lpin 3) -- (A1.in 1|-M.lpin 3) node [left] {$1$};
+		\draw (A1.in 1) node [left] {$A$};
+		\draw (A1.in 2) node [left] {$D'$};
+
+		\draw (A1.out) -- ++(1,0) node[circ]{} |- (M.lpin 4);
+		\draw (A1.out) |- (M.lpin 2);
+
+		\draw (M.rpin 1) -- ++(1,0) node[right]{$F(A,B,C,D)$};
+	\end{circuitikz}
+\end{center}
+\end{document}

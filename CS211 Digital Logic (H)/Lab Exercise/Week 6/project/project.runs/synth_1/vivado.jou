@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Wed Oct 25 17:19:51 2023
+# Process ID: 23764
+# Current directory: C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 6/project/project.runs/synth_1
+# Command line: vivado.exe -log game.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source game.tcl
+# Log file: C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 6/project/project.runs/synth_1/game.vds
+# Journal file: C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 6/project/project.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source game.tcl -notrace

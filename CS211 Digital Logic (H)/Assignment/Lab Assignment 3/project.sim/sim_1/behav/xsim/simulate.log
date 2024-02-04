@@ -1,0 +1,24 @@
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+1 1 0 0 1
+1 0 0 0 1
+1 1 0 0 1
+0 0 0 0 1
+0 1 0 0 1
+0 0 0 0 1
+1 1 0 0 1
+1 0 0 0 1
+1 1 0 0 1
+1 1 1 0 1
+0 0 1 0 1
+0 1 1 0 1
+0 0 1 0 1
+1 1 1 1 0
+1 0 1 1 0
+1 1 1 0 1
+0 0 1 0 1
+0 1 1 0 1
+0 0 1 0 1
+1 1 1 1 0
+1 0 1 1 0
+$finish called at time : 100 ns : File "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sim_1/new/T_FF_pos_rst_n_by_JKFF_tb.v" Line 39

@@ -1,0 +1,15 @@
+0.6
+2017.4
+Dec 15 2017
+21:07:18
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.sim/sim_1/behav/xsim/glbl.v,1513215259,verilog,,,,glbl,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sim_1/new/T_FF_pos_rst_n_by_JKFF_tb.v,1703233543,verilog,,,,tb_T_FF_pos_rst_n,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sim_1/new/check_dif_tb.v,1702351478,verilog,,,,check_dif_tb,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sim_1/new/clock_div_7_tb.v,1702479608,verilog,,,,clock_div_7_tb,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sim_1/new/moor_s1s2_rst_tb.v,1702350454,verilog,,,,moor_s1s2_rst_tb,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sources_1/new/JK_FF_Pos.v,1702347205,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sources_1/new/T_FF_pos_rst_n_by_JKFF.v,,JK_FF_Pos,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sources_1/new/T_FF_pos_rst_n_by_JKFF.v,1702347505,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sim_1/new/T_FF_pos_rst_n_by_JKFF_tb.v,,T_FF_pos_rst_n_by_JKFF,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sources_1/new/check_dif.v,1702354025,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sim_1/new/check_dif_tb.v,,check_dif,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sources_1/new/clock_div_7.v,1702479648,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sim_1/new/clock_div_7_tb.v,,clock_div_7,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sources_1/new/moor_s1s2_rst_asyn.v,1703228237,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sources_1/new/moor_s1s2_rst_syn.v,,moor_s1s2_rst_asyn,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sources_1/new/moor_s1s2_rst_syn.v,1702349774,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 3/project.srcs/sim_1/new/moor_s1s2_rst_tb.v,,moor_s1s2_rst_syn,,,,,,,,

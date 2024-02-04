@@ -1,0 +1,15 @@
+0.6
+2017.4
+Dec 15 2017
+21:07:18
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.sim/sim_1/behav/xsim/glbl.v,1513215259,verilog,,,,glbl,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sim_1/new/DFF_tb.v,1700039477,verilog,,,,DFF_tb,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sim_1/new/JKFF_tb.v,1700644396,verilog,,,,JKFF_tb,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sim_1/new/TFF_en_tb.v,1700644606,verilog,,,,TFF_en_tb,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sources_1/new/DFF_a.v,1700038610,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sources_1/new/DFF_b.v,,DFF_a,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sources_1/new/DFF_b.v,1700038740,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sources_1/new/D_latch.v,,DFF_b,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sources_1/new/D_latch.v,1700039171,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sim_1/new/DFF_tb.v,,D_latch,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sources_1/new/JKFF.v,1700643057,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sources_1/new/JKFF_2.v,,JKFF,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sources_1/new/JKFF_2.v,1700644272,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sources_1/new/TFF.v,,JKFF_2,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sources_1/new/TFF.v,1700644513,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sources_1/new/TFF_en.v,,TFF,,,,,,,,
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sources_1/new/TFF_en.v,1700643207,verilog,,C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 9/project/project.srcs/sim_1/new/TFF_en_tb.v,,TFF_en,,,,,,,,

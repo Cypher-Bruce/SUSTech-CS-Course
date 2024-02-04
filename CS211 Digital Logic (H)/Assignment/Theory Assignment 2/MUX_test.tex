@@ -1,0 +1,24 @@
+\documentclass[a4paper,12pt]{article} 
+
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{circuitikz,amsmath}
+\usetikzlibrary{shapes.gates.logic.US,calc}
+
+\begin{document}
+
+\section*{MUX}
+
+\begin{center}
+    \begin{circuitikz}
+        \tikzset{8to1mux/.style={muxdemux, muxdemux def={Lh=8, Rh=4, NL=8, NB=3, NR=1, square pins=1}}}
+        \tikzset{4to1mux/.style={muxdemux, muxdemux def={Lh=4, Rh=2, NL=4, NB=2, w=2, NR=1, square pins=1}}}
+        \draw (0,0) node[4to1mux, align=center] (MUX1) {$4\times1$\\MUX};
+        \draw (-5,0) node[left]{A} -- ++(1,0) |- (MUX1.lpin 1);
+
+        \draw (-2,-3) node[8to1mux, align=center] (MUX2) {$8\times1$\\MUX};
+    \end{circuitikz}
+\end{center}
+\end{document}

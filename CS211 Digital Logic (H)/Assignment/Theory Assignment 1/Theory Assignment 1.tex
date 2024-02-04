@@ -1,0 +1,474 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,karnaugh-map,caption,tikz,circuitikz}
+\usepackage[open]{bookmark}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Digital Logic(H): Theory Assignment 1}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Digital Logic(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Theory Assignment 1}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{1.}
+
+\subsection*{a)}
+\begin{center}
+	\begin{minipage}{0.45\textwidth}
+		\resizebox{\linewidth}{!}{
+		\begin{tabular}{rccc}
+			\toprule
+			Integer part & Quotient & Remainder & Coefficient\\
+			\midrule
+			$234/3=$ & 78 & 0 & $a_0 = 0$\\
+			$78/3=$ & 26 & 0 & $a_1 = 0$\\
+			$26/3=$ & 8 & 2 & $a_2 = 2$\\
+			$8/3=$ & 2 & 2 & $a_3 = 2$\\
+			$2/3=$ & 0 & 2 & $a_4 = 2$\\
+			\bottomrule
+		\end{tabular}}
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+		\resizebox{\linewidth}{!}{
+		\begin{tabular}{cccc}
+			\toprule
+			Fraction part & Integer & Fraction & Coefficient \\
+			\midrule
+			$0.5 \times 3 = $& 1 & 0.5 & $a_{-1} = 1$\\
+			$0.5 \times 3 = $& 1 & 0.5 & $a_{-2} = 1$\\
+			$0.5 \times 3 = $& 1 & 0.5 & $a_{-3} = 1$\\
+			\vdots & \vdots & \vdots & \vdots \\
+			\bottomrule
+		\end{tabular}}
+	\end{minipage}
+\end{center}
+Therefore, \fbox{$(234.5)_{10} \approx (22200.11)_3$}.
+
+\subsection*{b)}
+\begin{center}
+	\begin{minipage}{0.45\textwidth}
+		\resizebox{\linewidth}{!}{
+		\begin{tabular}{rccc}
+			\toprule
+			Integer part & Quotient & Remainder & Coefficient\\
+			\midrule
+			$234/12 =$ & 19 & 6 & $a_0 = 6$\\
+			$19/12 =$ & 1 & 7 & $a_1 = 7$\\
+			$1/12 =$ & 0 & 1 & $a_2 = 1$\\
+			\bottomrule
+		\end{tabular}}
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+		\resizebox{\linewidth}{!}{
+		\begin{tabular}{cccc}
+			\toprule
+			Fraction part & Integer & Fraction & Coefficient \\
+			\midrule
+			$0.5 \times 12 = $ & 6 & 0.0 & $a_{-1} = 6$\\
+			\bottomrule
+		\end{tabular}}
+	\end{minipage}
+\end{center}
+Therefore, \fbox{$(234.5)_{10} = (176.6)_{12}$}.
+
+\subsection*{c)}
+\begin{align*}
+	D = &= 4 \times 6^2 + 3 \times 6^1 + 5 \times 6^0\\
+	&= 144 + 18 + 5\\
+	&= 167
+\end{align*}
+Therefore, \fbox{$(435)_6 = (167)_{10}$}.
+
+
+\subsection*{d)}
+\begin{center}
+	\begin{tabular}{cccccccccccccc}
+		\toprule
+		Radix r & \multicolumn{6}{c}{Integer} & & \multicolumn{6}{c}{Fraction}\\
+		\midrule
+		2 & \multicolumn{3}{c}{$\underbrace{0\quad1\quad0}$} & \multicolumn{3}{c}{$\underbrace{1\quad1\quad0}$} & . & \multicolumn{3}{c}{$\underbrace{0\quad1\quad0}$} & \multicolumn{3}{c}{$\underbrace{1\quad0\quad0}$}\\
+		8 & \multicolumn{3}{c}{2} & \multicolumn{3}{c}{6} & . & \multicolumn{3}{c}{2} & \multicolumn{3}{c}{4}\\
+		\bottomrule
+	\end{tabular}
+\end{center}
+Therefore, \fbox{$(10110.0101)_2 = (26.24)_8$}.
+
+\section*{2.}
+\subsection*{a)}
+Since all numbers are smaller than 7 and no carry is needed, the operation is correct in any number system that radix \fbox{$r \geq 7$}.
+
+\subsection*{b)}
+Assuming the operation is in base $r$, we first convert the operation into base 10:
+\begin{align*}
+	LHS &= (302)_r / (20)_r\\
+	&= (3r^2 + 0r^1 + 2r^0)_{10} / (2r^1 + 0r^0)_{10}\\
+	&= (\frac{3r^2+2}{2r})_{10}\\
+	RHS &= (12.1)_r\\
+	&= (1r^1 + 2r^0 + 1r^{-1})_{10}\\
+	&= (\frac{r^2+2r+1}{r})_{10}
+\end{align*}
+Since $LHS = RHS$, we have:
+\begin{align*}
+	\frac{3r^2+2}{2r} &= \frac{r^2+2r+1}{r}\\
+	3r^2+2 &= 2r^2+4r+2\\
+	r^2-4r &= 0
+\end{align*}
+Therefore, $r = 0$ or $r = 4$. Since $r \neq 0$, we have \fbox{$r = 4$}.
+
+\section*{3.}
+\subsection*{a)}
+\begin{align*}
+	(a'+c)(a'+c')(a+b+c'd) &= (a'+cc')(a+b+c'd)\\
+	&= a'(a+b+c'd)\\
+	&= a'a + a'b + a'c'd\\
+	&= a'b + a'c'd\\
+	&= \boxed{a'(b+c'd)}
+\end{align*}
+
+\subsection*{b)}
+\begin{align*}
+	abc'd+a'bd+abcd &= (abc'+a'b+abc)d\\
+	&= (a'b+ab(c+c'))d\\
+	&= (a'b+ab)d\\
+	&= (a'+a)bd\\
+	&= \boxed{bd}
+\end{align*}
+
+\section*{4.}
+\subsection*{a)}
+\begin{align*}
+	(a+c)(a'+b+c)(a'+b'+c) &= (a+c)(a'+c+bb')\\
+	&= (a+c)(a'+c)\\
+	&= c+aa'\\
+	&= \boxed{c}
+\end{align*}
+
+\subsection*{b)}
+\begin{align*}
+	F(a,b,c) &= \sum (0,1,2,3,5)\\
+	&= a'b'c'+a'b'c+a'bc'+a'bc+ab'c\\
+	&= a'b'(c+c')+a'b(c+c')+ab'c\\
+	&= a'b'+a'b+ab'c\\
+	&= a'(b+b')+ab'c\\
+	&= a'+ab'c\\
+	&= a'(1+b'c)+ab'c\\
+	&= a'+a'b'c+ab'c\\
+	&= a'+(a+a')b'c\\
+	&= \boxed{a'+b'c}
+\end{align*}
+
+\section*{5.}
+\subsection*{a)}
+\begin{align*}
+	F(a,b,c,d) &= bd'+acd'+ab'c+a'c'\\
+	&= (a+a')b(c+c')d'+a(b+b')cd'+ab'c(d+d')+a'(b+b')c'(d+d')\\
+	&= abcd'+a'bcd'+abc'd'+a'bc'd'+ab'cd'+ab'cd+a'bc'd+a'b'c'd+a'b'c'd'\\
+	&= \boxed{\sum (0,1,4,5,6,10,11,12,14)}\\
+	&= \boxed{\prod (2,3,7,8,9,13,15)}
+\end{align*}
+
+\subsection*{b)}
+\begin{align*}
+	F(x,y,z) &= (x'+z)(y+x')\\
+	&= x'+yz\\
+	&= x'(y+y')(z+z') + (x+x')yz\\
+	&= x'yz+x'y'z+x'yz'+x'y'z'+xyz\\
+	&= \boxed{\sum (0,1,2,3,7)}\\
+	&= \boxed{\prod (4,5,6)}
+\end{align*}
+
+\section*{6.}
+
+\subsection*{a)}
+\begin{align*}
+	F_1(A,B,C) &= \sum (2,3,7)\\
+	&= A'BC'+A'BC+ABC\\
+	&= A'B(C+C')+ABC\\
+	&= A'B+ABC\\
+	&= A'B(1+C)+ABC\\
+	&= A'B+A'BC+ABC\\
+	&= A'B+(A+A')BC\\
+	&= A'B+BC\\
+	&= \boxed{B(A'+C)}
+\end{align*}
+\begin{align*}
+	F_2(A,B,C) &= \sum (0,2,5,7)\\
+	&= A'B'C'+A'BC'+AB'C+ABC\\
+	&= A'(B+B')C'+A(B+B')C\\
+	&= A'C'+AC\\
+	&= \boxed{(A\oplus C)'}
+\end{align*}
+
+\subsection*{b)}
+\begin{center}
+	\begin{karnaugh-map}(label=corner)[4][2][1][$BC$][$A$]
+		\minterms{2,3,7}
+		\autoterms[0]
+		\implicant{3}{2}
+		\implicant{3}{7}
+	\end{karnaugh-map}
+\end{center}
+Hence, the sum of product terms for $F_1$ is: 
+\begin{equation*}
+	\boxed{F_1(A,B,C) = A'B+BC}
+\end{equation*}
+
+\begin{center}
+	\begin{karnaugh-map}(label=corner)[4][2][1][$BC$][$A$]
+		\minterms{0,2,5,7}
+		\autoterms[0]
+		\implicant{5}{7}
+		\implicantedge{0}{0}{2}{2}
+	\end{karnaugh-map}
+\end{center}
+Hence, the sum of product terms for $F_2$ is:
+\begin{equation*}
+	\boxed{F_2(A,B,C) = AC+A'C'}
+\end{equation*}
+
+\section*{7.}
+\subsection*{a)}
+\begin{center}
+	\begin{karnaugh-map}(label=corner)[4][4][1][$YZ$][$WX$]
+		\minterms{0,2,3,6,7,10,11,12,13,15}
+		\autoterms[0]
+		\implicant{3}{6}
+		\implicant{3}{11}
+		\implicant{12}{13}
+		\implicantedge{3}{2}{11}{10}
+		\implicantedge{0}{0}{2}{2}
+	\end{karnaugh-map}
+\end{center}
+Hence, the sum of product terms is:
+\begin{equation*}
+	\boxed{F(W,X,Y,Z) = W'Y+WXY'+W'X'Z'+X'Y+YZ}
+\end{equation*}
+
+\subsection*{b)}
+\begin{center}
+	\begin{karnaugh-map}(label=corner)[4][4][1][$CD$][$AB$]
+		\maxterms{1,3,4,5,6,7,9,12,13,14}
+		\autoterms[1]
+		\implicantcorner
+		\implicant{15}{11}
+	\end{karnaugh-map}
+\end{center}
+Hence, the sum of product terms is:
+\begin{equation*}
+	\boxed{F(A,B,C,D) = ACD+B'D'}
+\end{equation*}
+
+\section*{8.}
+We can use the following karnaugh map to find the truth table of both functions:
+\begin{figure}[H]
+		\begin{minipage}{0.5\textwidth}
+			\centering
+			\begin{karnaugh-map}(label=corner)[4][4][1][$CD$][$AB$]
+				\minterms{1,2,5,6,9,10,12,13,14}
+				\autoterms[0]
+				\implicantedge{12}{12}{14}{14}
+				\implicant{1}{9}
+				\implicant{2}{6}
+				\implicantedge{2}{2}{10}{10}
+			\end{karnaugh-map}
+			\caption*{$f = abd' + c'd + a'cd' + b'cd'$}
+		\end{minipage}
+		\begin{minipage}{0.5\textwidth}
+			\centering
+			\begin{karnaugh-map}(label=corner)[4][4][1][$CD$][$AB$]
+				\maxterms{1,3,6,9,13,14} 
+				\autoterms[1]
+				\implicant{1}{3}
+				\implicant{6}{14}
+				\implicant{13}{9}
+			\end{karnaugh-map}
+			\caption*{$g'=a'b'd+bcd'+ac'd$}
+		\end{minipage}
+\end{figure}
+
+Since $F=fg$, we simply find the common minterms to be the minterms of $F$, and find the simplest sum of product terms using the following karnaugh map:
+\begin{center}
+	\begin{karnaugh-map}(label=corner)[4][4][1][$CD$][$AB$]
+		\minterms{2,5,10,12}
+		\autoterms[0]
+		\implicant{5}{5}
+		\implicant{12}{12}
+		\implicantedge{2}{2}{10}{10}
+	\end{karnaugh-map}
+\end{center}
+
+Therefore, the sum of product terms for $F$ is:
+\begin{equation*}
+	\boxed{F = abc'd'+a'bc'd+b'cd'}
+\end{equation*}
+
+\section*{9.}
+
+\subsection*{a)}
+\begin{center}
+	\begin{karnaugh-map}(label=corner)[4][4][1][$CD$][$AB$]
+		\minterms{1,2,4,7,8,9,11}
+		\maxterms{6,10,12,13,14,15}
+		\terms{0,3,5}{x}
+		\implicant{0}{2}
+		\implicant{0}{5}
+		\implicant{1}{7}
+		\implicantedge{0}{1}{8}{9}
+		\implicantedge{1}{3}{9}{11}
+	\end{karnaugh-map}
+\end{center}
+
+The simplest sum of product terms is:
+\begin{equation*}
+	F(A,B,C,D) = A'B'+A'C'+A'D+B'C'+B'D
+\end{equation*}
+
+To implement $F$ using only NAND gates, we convert $F$ into a NAND form:
+\begin{align*}
+	F(A,B,C,D) &= A'B'+A'C'+A'D+B'C'+B'D\\
+	&= ((A'B'+A'C'+A'D+B'C'+B'D)')'\\
+	&= \boxed{((A'B')'(A'C')'(A'D)'(B'C')'(B'D)')'}
+\end{align*}
+
+\subsection*{b)}
+\begin{center}
+	\begin{karnaugh-map}(label=corner)[4][4][1][$CD$][$AB$]
+		\minterms{1,2,4,7,8,9,11}
+		\maxterms{6,10,12,13,14,15}
+		\terms{0,3,5}{x}
+		\implicant{12}{14}
+		\implicant{6}{14}
+		\implicant{14}{10}
+	\end{karnaugh-map}
+\end{center}
+
+The simplest product of sum terms is:
+\begin{align*}
+	F'(A,B,C,D) &= AB + ACD' + BCD'\\
+	F(A,B,C,D) &= (AB + ACD' + BCD')'\\
+	&= (AB)'(ACD')'(BCD')'\\
+	&= (A'+B')(A'+C'+D)(B'+C'+D)
+\end{align*}
+
+To implement $F$ using only NOR gates, we convert $F$ into a NOR form:
+\begin{align*}
+	F(A,B,C,D) &= (A'+B')(A'+C'+D)(B'+C'+D)\\
+	&= (((A'+B')(A'+C'+D)(B'+C'+D))')'\\
+	&= \boxed{((A'+B')'+(A'+C'+D)'+(B'+C'+D)')'}
+\end{align*}
+
+\subsection*{c)}
+\begin{figure}[H]
+	\centering
+	\begin{circuitikz}
+		\draw
+			(8,3) node[nand port, scale=2, number inputs=5](nand1){}
+			(0,6) node[nand port](nand2){}
+			(0,4.5) node[nand port](nand3){}
+			(0,3) node[nand port](nand4){}
+			(0,1.5) node[nand port](nand5){}
+			(0,0) node[nand port](nand6){}
+
+			(nand1.out) node[right]{$F$}
+			(nand2.in 1) node[left]{$A'$}
+			(nand2.in 2) node[left]{$B'$}
+			(nand3.in 1) node[left]{$A'$}
+			(nand3.in 2) node[left]{$C'$}
+			(nand4.in 1) node[left]{$A'$}
+			(nand4.in 2) node[left]{$D$}
+			(nand5.in 1) node[left]{$B'$}
+			(nand5.in 2) node[left]{$C'$}
+			(nand6.in 1) node[left]{$B'$}
+			(nand6.in 2) node[left]{$D$}
+			
+			(nand2.out) -- ++(4,0) |- (nand1.in 1)
+			(nand3.out) -- ++(2,0) |- (nand1.in 2)
+			(nand4.out) --  (nand1.in 3)
+			(nand5.out) -- ++(2,0) |- (nand1.in 4)
+			(nand6.out) -- ++(4,0) |- (nand1.in 5)
+			;
+	\end{circuitikz}
+	\caption*{NAND implementation}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{circuitikz}
+		\draw 
+			(0,3) node[nor port](nor1){}
+			(0,1.5) node[nor port, number inputs=3](nor2){}
+			(0,0) node[nor port, number inputs=3](nor3){}
+			(6,1.5) node[nor port, scale=2, number inputs=3](nor4){}
+
+			(nor4.out) node[right]{$F$}
+			(nor1.in 1) node[left]{$A'$}
+			(nor1.in 2) node[left]{$B'$}
+			(nor2.in 1) node[left]{$A'$}
+			(nor2.in 2) node[left]{$C'$}
+			(nor2.in 3) node[left]{$D$}
+			(nor3.in 1) node[left]{$B'$}
+			(nor3.in 2) node[left]{$C'$}
+			(nor3.in 3) node[left]{$D$}
+
+			(nor1.out) -- ++(2,0) |- (nor4.in 1)
+			(nor2.out) -- (nor4.in 2)
+			(nor3.out) -- ++(2,0) |- (nor4.in 3)
+			;
+	\end{circuitikz}
+	\caption*{NOR implementation}
+\end{figure}
+\end{document}

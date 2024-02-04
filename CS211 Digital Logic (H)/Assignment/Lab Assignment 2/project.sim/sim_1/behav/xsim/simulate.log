@@ -1,0 +1,19 @@
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+ 0 x 0 0 0 0 0
+ 1 x 0 0 0 0 0
+ 2 x 0 0 0 0 0
+ 3 x 0 0 0 0 0
+ 4 x 0 0 0 0 0
+ 5 x 0 0 0 0 0
+ 6 x 0 0 0 0 0
+ 7 x 1 1 1 1 1
+ 8 x 0 0 0 0 0
+ 9 x 0 0 0 0 0
+10 x 0 0 0 0 0
+11 x 1 1 1 1 1
+12 x 0 0 0 0 0
+13 x 1 1 1 1 1
+14 x 1 1 1 1 1
+15 x 1 1 1 1 1
+$finish called at time : 160 ns : File "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Assignment/Lab Assignment 2/project.srcs/sim_1/new/lab_a2_p10_tb.v" Line 35

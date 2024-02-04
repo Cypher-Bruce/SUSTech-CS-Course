@@ -1,0 +1,12 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../project.srcs/sources_1/new/DFF_a.v" \
+"../../../../project.srcs/sources_1/new/DFF_b.v" \
+"../../../../project.srcs/sources_1/new/D_latch.v" \
+"../../../../project.srcs/sim_1/new/DFF_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

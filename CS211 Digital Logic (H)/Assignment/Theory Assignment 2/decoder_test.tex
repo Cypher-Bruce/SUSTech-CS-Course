@@ -1,0 +1,216 @@
+\documentclass[a4paper,12pt]{article} 
+
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{circuitikz,amsmath}
+\usetikzlibrary{shapes.gates.logic.US,calc}
+
+\newcommand*{\Decoder}[1]{
+    node[
+      dipchip,
+      num pins=34,
+      hide numbers,
+      no topmark,
+      draw only pins={5,9,13,19,21,23,25,27,29,31,33}
+    ](#1){
+      \begin{tabular}{c}
+        $3\times8$\\
+        decoder\\
+      \end{tabular}
+    }
+
+    (#1.s) -- ++(0,-0.5) coordinate(#1-enable){}
+
+    node [above] at (#1.s) {$E$}
+    node [right] at (#1.bpin 5) {$x$}
+    node [right] at (#1.bpin 9) {$y$}
+    node [right] at (#1.bpin 13) {$z$}
+    node [left] at (#1.bpin 19) {$D_7$}
+    node [left] at (#1.bpin 21) {$D_6$}
+    node [left] at (#1.bpin 23) {$D_5$}
+    node [left] at (#1.bpin 25) {$D_4$}
+    node [left] at (#1.bpin 27) {$D_3$}
+    node [left] at (#1.bpin 29) {$D_2$}
+    node [left] at (#1.bpin 31) {$D_1$}
+    node [left] at (#1.bpin 33) {$D_0$}
+
+    node [ocirc] at (#1.bpin 19)[xshift=1.75] {}
+    node [ocirc] at (#1.bpin 21)[xshift=1.75] {}
+    node [ocirc] at (#1.bpin 23)[xshift=1.75] {}
+    node [ocirc] at (#1.bpin 25)[xshift=1.75] {}
+    node [ocirc] at (#1.bpin 27)[xshift=1.75] {}
+    node [ocirc] at (#1.bpin 29)[xshift=1.75] {}
+    node [ocirc] at (#1.bpin 31)[xshift=1.75] {}
+    node [ocirc] at (#1.bpin 33)[xshift=1.75] {}
+
+    node [ocirc] at (#1.s)[yshift=-1.75] {}
+
+    coordinate (#1-in 1) at (#1.pin 5)
+    coordinate (#1-in 2) at (#1.pin 9)
+    coordinate (#1-in 3) at (#1.pin 13)
+
+    coordinate (#1-out 1) at (#1.pin 19)
+    coordinate (#1-out 2) at (#1.pin 21)
+    coordinate (#1-out 3) at (#1.pin 23)
+    coordinate (#1-out 4) at (#1.pin 25)
+    coordinate (#1-out 5) at (#1.pin 27)
+    coordinate (#1-out 6) at (#1.pin 29)
+    coordinate (#1-out 7) at (#1.pin 31)
+    coordinate (#1-out 8) at (#1.pin 33)
+}
+
+\begin{document}
+
+\section*{Decoder}
+
+\begin{center}
+  \begin{circuitikz}
+
+    \ctikzset{multipoles/dipchip/pin spacing=0.2}
+    \ctikzset{multipoles/dipchip/width=2.5}
+    \draw (0,0) \Decoder{D1};
+
+    \draw
+    (5,0) node[xor port](XOR1){}
+    (D1-enable) -- ++(3,0) |- (XOR1.in 1);
+
+  \end{circuitikz}
+\end{center}
+
+\begin{center}
+  \begin{circuitikz}
+    \ctikzset{multipoles/dipchip/pin spacing=0.2}
+    \ctikzset{multipoles/dipchip/width=2.5}
+    \draw (0,0) node[
+      dipchip,
+      num pins=34,
+      hide numbers,
+      no topmark,
+      draw only pins={5,9,13,19,21,23,25,27,29,31,33},
+      align=center
+    ](D){$3\times8$\\decoder};
+
+    \draw (D.s) -- ++(0,-0.5) coordinate(enable){};
+
+    \node [above] at (D.s) {$E$};
+    \node [right] at (D.bpin 5) {$x$};
+    \node [right] at (D.bpin 9) {$y$};
+    \node [right] at (D.bpin 13) {$z$};
+    \node [left] at (D.bpin 19) {$D_7$};
+    \node [left] at (D.bpin 21) {$D_6$};
+    \node [left] at (D.bpin 23) {$D_5$};
+    \node [left] at (D.bpin 25) {$D_4$};
+    \node [left] at (D.bpin 27) {$D_3$};
+    \node [left] at (D.bpin 29) {$D_2$};
+    \node [left] at (D.bpin 31) {$D_1$};
+    \node [left] at (D.bpin 33) {$D_0$};
+
+    \node [ocirc] at (D.bpin 19)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 21)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 23)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 25)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 27)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 29)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 31)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 33)[xshift=1.75] {};
+
+    \node [ocirc] at (D.s)[yshift=-1.75] {};
+
+    \coordinate (D-in 1) at (D.pin 5);
+    \coordinate (D-in 2) at (D.pin 9);
+    \coordinate (D-in 3) at (D.pin 13);
+
+    \coordinate (D-out 8) at (D.pin 19);
+    \coordinate (D-out 7) at (D.pin 21);
+    \coordinate (D-out 6) at (D.pin 23);
+    \coordinate (D-out 5) at (D.pin 25);
+    \coordinate (D-out 4) at (D.pin 27);
+    \coordinate (D-out 3) at (D.pin 29);
+    \coordinate (D-out 2) at (D.pin 31);
+    \coordinate (D-out 1) at (D.pin 33);
+  \end{circuitikz}
+\end{center}
+
+
+\begin{center}
+  \begin{circuitikz}
+    \ctikzset{multipoles/dipchip/pin spacing=0.2}
+    \ctikzset{multipoles/dipchip/width=5}
+    \draw (0,0) node[
+      dipchip,
+      num pins=66,
+      hide numbers,
+      no topmark,
+      draw only pins={5,13,21,29,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65},
+      align=center
+    ](D){74154\\decoder};
+
+  \draw (D.s) -- ++(0,-0.5) coordinate(enable){};
+
+    \node [above] at (D.s) {$E$};
+    \node [right] at (D.bpin 5) {$x$};
+    \node [right] at (D.bpin 13) {$y$};
+    \node [right] at (D.bpin 21) {$z$};
+    \node [right] at (D.bpin 29) {$k$};
+    \node [left] at (D.bpin 65) {$D_0$};
+    \node [left] at (D.bpin 63) {$D_1$};
+    \node [left] at (D.bpin 61) {$D_2$};
+    \node [left] at (D.bpin 59) {$D_3$};
+    \node [left] at (D.bpin 57) {$D_4$};
+    \node [left] at (D.bpin 55) {$D_5$};
+    \node [left] at (D.bpin 53) {$D_6$};
+    \node [left] at (D.bpin 51) {$D_7$};
+    \node [left] at (D.bpin 49) {$D_8$};
+    \node [left] at (D.bpin 47) {$D_9$};
+    \node [left] at (D.bpin 45) {$D_{10}$};
+    \node [left] at (D.bpin 43) {$D_{11}$};
+    \node [left] at (D.bpin 41) {$D_{12}$};
+    \node [left] at (D.bpin 39) {$D_{13}$};
+    \node [left] at (D.bpin 37) {$D_{14}$};
+    \node [left] at (D.bpin 35) {$D_{15}$};
+    
+    \node [ocirc] at (D.bpin 65)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 63)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 61)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 59)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 57)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 55)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 53)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 51)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 49)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 47)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 45)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 43)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 41)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 39)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 37)[xshift=1.75] {};
+    \node [ocirc] at (D.bpin 35)[xshift=1.75] {};
+
+    \node [ocirc] at (D.s)[yshift=-1.75] {};
+
+    \coordinate (D-in 1) at (D.pin 5);
+    \coordinate (D-in 2) at (D.pin 13);
+    \coordinate (D-in 3) at (D.pin 21);
+    \coordinate (D-in 4) at (D.pin 29);
+
+    \coordinate (D-out 16) at (D.pin 65);
+    \coordinate (D-out 15) at (D.pin 63);
+    \coordinate (D-out 14) at (D.pin 61);
+    \coordinate (D-out 13) at (D.pin 59);
+    \coordinate (D-out 12) at (D.pin 57);
+    \coordinate (D-out 11) at (D.pin 55);
+    \coordinate (D-out 10) at (D.pin 53);
+    \coordinate (D-out 9) at (D.pin 51);
+    \coordinate (D-out 8) at (D.pin 49);
+    \coordinate (D-out 7) at (D.pin 47);
+    \coordinate (D-out 6) at (D.pin 45);
+    \coordinate (D-out 5) at (D.pin 43);
+    \coordinate (D-out 4) at (D.pin 41);
+    \coordinate (D-out 3) at (D.pin 39);
+    \coordinate (D-out 2) at (D.pin 37);
+    \coordinate (D-out 1) at (D.pin 35);
+  \end{circuitikz}
+\end{center}
+\end{document}

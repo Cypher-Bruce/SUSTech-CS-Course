@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Wed Sep 20 17:31:46 2023
+# Process ID: 21484
+# Current directory: C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 2/project/project.runs/impl_1
+# Command line: vivado.exe -log lab2_hw.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source lab2_hw.tcl -notrace
+# Log file: C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 2/project/project.runs/impl_1/lab2_hw.vdi
+# Journal file: C:/Users/Cyphe/Documents/SUSTech Assignment/Term 3/Digital Logic/Lab Exercise/Week 2/project/project.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source lab2_hw.tcl -notrace
