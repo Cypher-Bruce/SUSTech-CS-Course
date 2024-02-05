@@ -1,5 +1,9 @@
 # SUSTech-CS-Course
 ## Intro
+Good to see you.
+I'm a turing class student of grade 2022 majored in Computer Science and Technology.
+And I hope this repo can help you do better in CS.
+
 This is a repo for SUSTech Computer Science course related files.
 Most courses are CS courses, while the others are CS related courses (for example Probability and Statistics).
 
@@ -10,7 +14,7 @@ Most courses are CS courses, while the others are CS related courses (for exampl
 | **Lab Exercise** | Lab related files |
 | **Assignment** | Course assignment. To be noticed that I include most of my submissions in the assgiment folder as well, but they may be inaccurate. I already put the official solution in the same folder to avoid confusion if it is provided. |
 | **Project** | Project code, report and presentation |
-| **Midterm/Final Review** | Review notes |
+| **Midterm/Final Review** | Review notes(probably most helpful) |
 
 ## In the end
 Since I'm a turing class student, some course info might not apply to similar non-turing course.
