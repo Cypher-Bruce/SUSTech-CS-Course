@@ -17,5 +17,5 @@ Most courses are CS courses, while the others are CS related courses (for exampl
 | **Midterm/Final Review** | Review notes(probably most helpful) |
 
 ## In the end
-Since I'm a turing class student, some course info might not apply to similar non-turing course.
+Since I'm a Turing Class student, some course info might not apply to similar non-turing course.
 In this case, I suggest you refer to [SUSTech-Course-Info](https://github.com/NYH-Dolphin/SUSTech-Course-Info) provided by [NYH](https://github.com/NYH-Dolphin).
