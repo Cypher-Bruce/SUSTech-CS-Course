@@ -1,2 +1,0 @@
-{"rule":"APOSTROPHE_IN_DATES","sentence":"^\\QFor example, 9's complement of 1234 is \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, and 10's complement of 1234 is \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
-{"rule":"APOSTROPHE_IN_DATES","sentence":"^\\QAn easier way to calculate the 10's complement is to add 1 to the 9's complement.\\E$"}
