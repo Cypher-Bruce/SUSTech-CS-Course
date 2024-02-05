@@ -1,8 +1,8 @@
 # SUSTech-CS-Course
 ## Intro
 Good to see you.
-I'm a turing class student of grade 2022 majored in Computer Science and Technology.
-And I hope this repo can help you do better in CS.
+I'm a SUSTech Turing Class student of grade 2022 majored in Computer Science and Technology.
+And I hope this repo can help you do better in CS as well.
 
 This is a repo for SUSTech Computer Science course related files.
 Most courses are CS courses, while the others are CS related courses (for example Probability and Statistics).
