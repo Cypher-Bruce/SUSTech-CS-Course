@@ -12,7 +12,7 @@ Most courses are CS courses, while the others are CS related courses (for exampl
 | :--- | :--- |
 | **Lecture Slides** | Lecture slides/notes from BlackBoard |
 | **Lab Exercise** | Lab related files |
-| **Assignment** | Course assignment. To be noticed that I include most of my submissions in the assgiment folder as well, but they may be inaccurate. I already put the official solution in the same folder to avoid confusion if it is provided. |
+| **Assignment** | Course assignment. To be noticed that I include most of my submissions in the assgiment folder as well, but they may be inaccurate. The official version will be put in the same folder to avoid confusion, if it is provided. |
 | **Project** | Project code, report and presentation |
 | **Midterm/Final Review** | Review notes(probably most helpful) |
 
