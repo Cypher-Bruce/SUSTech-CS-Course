@@ -1,12 +1,12 @@
 # SUSTech-CS-Course
 
-## Introduction
+## Introduction :rocket:
 
 I'm a SUSTech Turing Class student of grade 2022 majored in Computer Science and Technology.
 This repo is a collection of course materials, assignments, projects, and review notes from my courses at SUSTech.
 I hope this repo can help you with your study, but please be sure to follow the  Academic Integrity Policy of SUSTech.
 
-## Course List
+## Course List :white_check_mark:
 
 | **Course Code** | **Course Name** | **Semester** | **Instructor** | **Final Grade** |
 | :--- | :--- | :--- | :--- | :--- |
@@ -20,7 +20,7 @@ I hope this repo can help you with your study, but please be sure to follow the 
 | **CS311** | **Artificial Intelligence (H)** | 2024 Spring | Bo Yuan | Unfinished |
 | **MA212** | **Probability and Statistics** | 2023 Fall | Yiwei Zhang | 98 |
 
-## Repo Structure
+## Repo Structure :pencil2:
 
 I will try to keep the structure of each course folder consistent, as follows:
 
@@ -32,6 +32,6 @@ I will try to keep the structure of each course folder consistent, as follows:
 | **Project** | Project code, report and presentation |
 | **Midterm/Final Review** | Review notes |
 
-## To Non-turing Students
+## To Non-turing Students :100:
 For those who are not Turing students, you may find some info missing or not consistent with your course.
 In that case, I suggest you refer to [SUSTech Course Info](https://github.com/NYH-Dolphin/SUSTech-Course-Info) from [NYH](https://github.com/NYH-Dolphin), or [SUSTech CSE Final Reviews](https://github.com/RoderickQiu/SUSTech_CSE_Final_Reviews) and [SUSTech CSE Projects](https://github.com/RoderickQiu/SUSTech_CSE_Projects) from [Roderick](https://github.com/RoderickQiu).
