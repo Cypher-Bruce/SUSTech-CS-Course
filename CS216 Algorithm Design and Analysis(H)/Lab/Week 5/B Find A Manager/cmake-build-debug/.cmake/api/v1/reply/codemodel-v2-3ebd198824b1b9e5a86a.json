@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.27"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "B_Find_A_Manager",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "B_Find_A_Manager::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-B_Find_A_Manager-Debug-4182fc4ed09f1c5b3883.json",
+					"name" : "B_Find_A_Manager",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Algorithm Design and Analysis/Lab/Week 5/B Find A Manager/cmake-build-debug",
+		"source" : "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Algorithm Design and Analysis/Lab/Week 5/B Find A Manager"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

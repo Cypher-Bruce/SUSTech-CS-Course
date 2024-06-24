@@ -1,0 +1,13 @@
+# ninja log v5
+1	477	7325758135066202	CMakeFiles/A_brute_force.dir/main.cpp.obj	2962506bd7c97c61
+480	583	7325758136091956	A_brute_force.exe	e134515c1512ca87
+3	400	7325758462023212	CMakeFiles/A_brute_force.dir/main.cpp.obj	2962506bd7c97c61
+401	527	7325758463104472	A_brute_force.exe	e134515c1512ca87
+2	392	7325758787907946	CMakeFiles/A_brute_force.dir/main.cpp.obj	2962506bd7c97c61
+392	481	7325758788780917	A_brute_force.exe	e134515c1512ca87
+2	388	7325758952742723	CMakeFiles/A_brute_force.dir/main.cpp.obj	2962506bd7c97c61
+388	482	7325758953653990	A_brute_force.exe	e134515c1512ca87
+2	395	7325760883436689	CMakeFiles/A_brute_force.dir/main.cpp.obj	2962506bd7c97c61
+397	491	7325760884376265	A_brute_force.exe	e134515c1512ca87
+2	406	7325761562243259	CMakeFiles/A_brute_force.dir/main.cpp.obj	2962506bd7c97c61
+407	501	7325761563159209	A_brute_force.exe	e134515c1512ca87

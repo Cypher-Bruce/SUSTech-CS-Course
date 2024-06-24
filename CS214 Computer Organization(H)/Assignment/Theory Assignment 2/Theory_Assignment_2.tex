@@ -1,0 +1,239 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm}
+\usepackage{minted}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Computer Organization(H): Theory Assignment 2}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu}
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Computer Organization(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Theory Assignment 2}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Problem 1}
+
+\subsection*{a)}
+
+The weighted average CPI for two implementations are as follows:
+
+\begin{alignat*}{4}
+	CPI_1 =& 1 \times 10\% + 2 \times 20\% + 3 \times 50\% + 3 \times 20\% &=& 2.6 \\
+	CPI_2 =& 2 \times 10\% + 2 \times 20\% + 2 \times 50\% + 2 \times 20\% &=& 2
+\end{alignat*}
+
+\subsection*{b)}
+
+The clock cycles for the two implementations are as follows:
+
+\begin{alignat*}{5}
+	Cycles_1 =& 1.0 \times 10^6 \times 2.6 &=& 2.6 \times 10^6 \\
+	Cycles_2 =& 1.0 \times 10^6 \times 2 &=& 2 \times 10^6
+\end{alignat*}
+
+\subsection*{c)}
+
+The CPU time for the two implementations are as follows:
+\begin{alignat*}{5}
+	Time_1 =& \frac{2.6 \times 10^6}{2.5 \times 10^9} &\approx& 1.04 \times 10^{-3} s \\
+	Time_2 =& \frac{2.0 \times 10^6}{3.0 \times 10^9} &\approx& 0.67 \times 10^{-3} s
+\end{alignat*}
+
+Hence, the second implementation is faster.
+
+\section*{Problem 2}
+
+\subsection*{a)}
+
+The value of \texttt{x30} after the addition is \texttt{0x5000000}.
+An overflow does occur.
+
+Since the values stored in registers considered as signed integers, \texttt{0x8000000} and \texttt{0xD000000} are both negative numbers. 
+The sum of two negative numbers should be negative, but the result is positive.
+Therefore, an overflow occurs.
+
+\subsection*{b)}
+
+The value of \texttt{x30} after the subtraction is \texttt{0xB0000000}.
+It is the direct result.
+
+As we subtract a smaller negative number from a larger negative number, the result should be negative.
+And the result is negative, so no overflow occurs, and the result is correct.
+
+\section*{Problem 3}
+
+\subsection*{a)}
+
+For an 8-bit signed integer, the range is $-2^7$ to $2^7 - 1$, or $-128$ to $127$.
+
+The result of $23 + 112 = 135$, which is out of the range, an overflow occurs.
+Since we are using saturating arithmetic, the result should be the maximum value of the range, which is $127$.
+
+\subsection*{b)}
+
+The result of $23 - 112 = -89$, which is not out of the range.
+Then no further action is needed.
+
+\section*{Problem 4}
+
+\begin{equation*}
+	62_{16} = 01100010_2 \qquad 14_{16} = 00010100_2
+\end{equation*}
+
+\begin{center}
+	\begin{tabular}{cccc}
+		\toprule
+		\textbf{Iteration} & \textbf{Multiplicand} & \textbf{Product} & \textbf{Operation} \\
+		\midrule
+		0 & 01100010 & 00000000\_00010100 & Initialization \\
+		\hline
+		1 & 01100010 & 00000000\_00001010 & Shift right \\
+		\hline
+		2 & 01100010 & 00000000\_00000101 & Shift right \\
+		\hline
+		\multirow{2}{*}{3} & 01100010 & 01100010\_00000101 & Add multiplicand \\
+		& 01100010 & 00110001\_00000010 & Shift right \\
+		\hline
+		4 & 01100010 & 00011000\_10000001 & Shift right \\
+		\hline
+		\multirow{2}{*}{5} & 01100010 & 01111010\_10000001 & Add multiplicand \\
+		& 01100010 & 00111101\_01000000 & Shift right \\
+		\hline
+		6 & 01100010 & 00011110\_10100000 & Shift right \\
+		\hline
+		7 & 01100010 & 00001111\_01010000 & Shift right \\
+		\hline
+		8 & 01100010 & 00000111\_10101000 & Shift right \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+The result is $62_{16} \times 14_{16} = 7\text{A}8_{16} = 0111\_1010\_1000_2$.
+
+\section*{Problem 5}
+
+\begin{equation*}
+	62_{10} = 111110_2 \qquad 21_{10} = 010101_2
+\end{equation*}
+
+\begin{center}
+	\begin{tabular}{ccccc}
+		\toprule
+		\textbf{Iteration} & \textbf{Divisor} & \textbf{Remainder} & \textbf{Quotient} & \textbf{Operation} \\
+		\midrule
+		0 & 010101\_000000 & 000000\_111110 & 000000 & Initialization \\
+		\hline
+		\multirow{3}{*}{1} & 010101\_000000 & 101011\_011110 & 000000 & Subtract divisor \\
+		& 010101\_000000 & 000000\_111110 & 000000 & Restore, shift 0 to quotient \\
+		& 001010\_100000 & 000000\_111110 & 000000 & Divisor shift right \\
+		\hline
+		\multirow{3}{*}{2} & 001010\_100000 & 110110\_011110 & 000000 & Subtract divisor \\
+		& 001010\_100000 & 000000\_111110 & 000000 & Restore, shift 0 to quotient \\
+		& 000101\_010000 & 000000\_111110 & 000000 & Divisor shift right \\
+		\hline
+		\multirow{3}{*}{3} & 000101\_010000 & 111011\_101110 & 000000 & Subtract divisor \\
+		& 000101\_010000 & 000000\_111110 & 000000 & Restore, shift 0 to quotient \\
+		& 000010\_101000 & 000000\_111110 & 000000 & Divisor shift right \\
+		\hline
+		\multirow{3}{*}{4} & 000010\_101000 & 111110\_010110 & 000000 & Subtract divisor \\
+		& 000010\_101000 & 000000\_111110 & 000000 & Restore, shift 0 to quotient \\
+		& 000001\_010100 & 000000\_111110 & 000000 & Divisor shift right \\
+		\hline
+		\multirow{3}{*}{5} & 000001\_010100 & 111111\_101010 & 000000 & Subtract divisor \\
+		& 000001\_010100 & 000000\_111110 & 000000 & Restore, shift 0 to quotient \\
+		& 000000\_101010 & 000000\_111110 & 000000 & Divisor shift right \\
+		\hline
+		\multirow{3}{*}{6} & 000000\_101010 & 000000\_010100 & 000000 & Subtract divisor \\
+		& 000000\_101010 & 000000\_010100 & 000001 & Shift 1 to quotient \\
+		& 000000\_010101 & 000000\_010100 & 000000 & Divisor shift right \\
+		\hline
+		\multirow{3}{*}{7} & 000000\_010101 & 111111\_111111 & 000001 & Subtract divisor \\
+		& 000000\_010101 & 000000\_010100 & 000010 & Restore, shift 0 to quotient \\
+		& 000000\_001010 & 000000\_010100 & 000010 & Divisor shift right \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+The result is $62 \div 21 = 2_{10} = 00000010_2$ with a remainder of $20_{10} = 00010100_2$.
+
+\section*{Problem 6}
+
+\subsection*{a)}
+
+The number can be decomposed as follows:
+
+\begin{center}
+	\begin{tabular}{cccc}
+		\toprule
+		\textbf{Number} & \textbf{Sign} & \textbf{Exponent} & \textbf{Fraction} \\
+		\midrule
+		\texttt{0x0C000000} & 0 & $11000_2 = 24_{10}$ & 0 \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+The number is $(-1)^0 \times (1 + 0) \times 2^{24 - 127} = 2^{-103}$.
+
+\subsection*{b)}
+
+\begin{equation*}
+	63.25_{10} = 111111.01_2 = 1.1111101_2 \times 2^5 = 1.1111101_2 \times 2^{132 - 127}
+\end{equation*}
+
+Hence, the single precision floating point representation is \texttt{0\_10000100\_11111010000000000000000} or \texttt{0x427D0000}.
+
+\end{document}

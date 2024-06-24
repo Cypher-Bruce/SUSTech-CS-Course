@@ -1,0 +1,3 @@
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Algorithm Design and Analysis/Lab/Week 2/B College Admission C/cmake-build-debug/CMakeFiles/B_College_Admission_C.dir
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Algorithm Design and Analysis/Lab/Week 2/B College Admission C/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Algorithm Design and Analysis/Lab/Week 2/B College Admission C/cmake-build-debug/CMakeFiles/rebuild_cache.dir

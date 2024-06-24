@@ -1,0 +1,11 @@
+# ninja log v5
+0	432	7325766862901908	CMakeFiles/A_rand_gen.dir/main.cpp.obj	1c56708c6f1416c
+435	530	7325766863842667	A_rand_gen.exe	ea3b103efe01d436
+3	399	7325767282450563	CMakeFiles/A_rand_gen.dir/main.cpp.obj	1c56708c6f1416c
+400	495	7325767283320615	A_rand_gen.exe	ea3b103efe01d436
+2	427	7325767532605366	CMakeFiles/A_rand_gen.dir/main.cpp.obj	1c56708c6f1416c
+428	519	7325767533495976	A_rand_gen.exe	ea3b103efe01d436
+2	429	7325767986250049	CMakeFiles/A_rand_gen.dir/main.cpp.obj	1c56708c6f1416c
+430	513	7325767987050337	A_rand_gen.exe	ea3b103efe01d436
+3	431	7325768264437203	CMakeFiles/A_rand_gen.dir/main.cpp.obj	1c56708c6f1416c
+433	526	7325768265278793	A_rand_gen.exe	ea3b103efe01d436

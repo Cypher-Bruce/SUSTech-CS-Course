@@ -1,0 +1,194 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Algorithm Design and Analysis(H): Assignment 1}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Algorithm Design and Analysis(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 1}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Extended Gale Shapley Algorithm}
+
+\subsection*{Algorithm Description}
+
+\begin{center}
+	\begin{tabular}{ll}
+		\toprule
+		\multicolumn{2}{c}{\textsc{Extended-Gale-Shapley-Algorithm}} \\
+		\midrule
+		1. & \textbf{Initialize} all students and schools to be free \\
+		2. & \textbf{While (} there exists a student who is free \textbf{)} \\
+		3. & \qquad \textbf{Choose} a free student $s$ \\
+		4. & \qquad \textbf{Let} $c$ be the first college on $s$'s preference list that $s$ has not yet proposed to \\
+		5. & \qquad \textbf{If (} there is no such $c$ (i.e., $s$ has been rejected by all colleges) \textbf{)} \\
+		6. & \qquad \qquad \textbf{Remove} $s$ from the set of free students \\
+		7. & \qquad \textbf{Else if (} $s$ is in the preference list of $c$ \textbf{)} \\
+		8. & \qquad \qquad \textbf{If (} $c$ has a vacancy \textbf{)} \\
+		9. & \qquad \qquad \qquad \textbf{Assign} $s$ to $c$ \\
+		10. & \qquad \qquad \textbf{Else if (} $s$ is preferred to the worst student $w$ in $c$'s current assignment list \textbf{)} \\
+		11. & \qquad \qquad \qquad \textbf{Reject} $w$ \\
+		12. & \qquad \qquad \qquad \textbf{Assign} $s$ to $c$ \\
+		13. & \qquad \qquad \textbf{Else} \\
+		14. & \qquad \qquad \qquad \textbf{Reject} $s$ \\
+		15. & \qquad \textbf{Else} \\
+		16. & \qquad \qquad \textbf{Reject} $s$ \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\textit{Suppose we already exclude the negative evaluation colleges from the preference list of students and vice versa.}
+
+\subsection*{Time and Space Complexity}
+
+\subsubsection*{Time Complexity}
+
+Suppose there are $N$ students and $M$ schools.
+The time complexity of the algorithm is $O(NM)$.
+The analysis is as follows:
+
+\begin{itemize}
+	\item In the worst case, each student will propose to all colleges.
+		This will produce $O(NM)$ proposals.
+	\item For each proposal, among all three possible outcomes, the time complexity will be the highest for the case when the college has no vacancy and needs to perform a replacement.
+		Suppose the college has a capacity of at most $K$ students, it will take $O(\log K)$ time to replace the worst student with the new student.(Suppose a min-heap is used to store college's current assignment list.)
+		In the worst case, $K = Cap_{\max}$, where $Cap_{\max}$ is the maximum capacity of all colleges.
+	\item Overall, the time complexity of the algorithm is $O(NM\log Cap_{\max})$.
+		Since $Cap_{\max}$ is a constant, the time complexity of the algorithm is $O(NM)$.
+\end{itemize}
+
+\subsubsection*{Space Complexity}
+
+The space complexity of the algorithm is $O(NM)$, which is the space required to store the preference lists of all students and colleges.
+
+\section*{Stable Matching}
+
+\subsection*{Definition}
+
+A stable matching is a matching in which
+
+\begin{enumerate}
+	\item There is no student $s$ that prefers to be unmatched than to keep his/her current assignment.
+	\item There is no college $c$ that prefers to abandon an enrolled student than to keep him/her.
+	\item There is no unstable pair $(s, c)$ such that $s$ prefers $c$ to his/her current assignment and $c$ prefers $s$ to his/her current assignment. (An unmatched student/college is also considered as a valid assignment)
+\end{enumerate}
+
+\subsection*{Proof of Stability}
+
+The extended Gale-Shapley algorithm will always produce a stable matching.
+The proof is as follows:
+
+\begin{proof}
+$ $
+
+\textbf{Termination:}
+
+The algorithm will always terminate because there are only $NM$ proposals in total, and each proposal will be handled in one iteration.
+Hence, the algorithm will terminate after at most $NM$ iterations.
+
+\textbf{Stable Matching:}
+
+The algorithm will always produce a stable matching.
+The proof is as follows:
+\begin{enumerate}
+	\item There is no student $s$ that prefers to be unmatched than to keep his/her current assignment.
+		This is because the algorithm only assign a student to a college if the college is in the student's preference list.
+	\item There is no college $c$ that prefers to abandon an enrolled student than to keep him/her, for the same reason.
+	\item There is no unstable pair $(s, c)$.
+		Suppose there is an unstable pair $(Alice, Cambridge)$, where the current assignment of Alice is Oxford and the current least preferred student of Cambridge is Bob.
+		There are two cases:
+		\begin{enumerate}
+			\item Alice never proposed to Cambridge.
+				This means that Alice prefers Oxford to Cambridge.
+				Then $(Alice, Cambridge)$ is a stable pair.
+			\item Alice proposed to Cambridge, but get rejected right away or later.
+				This means that Cambridge prefers Bob to Alice.
+				Then $(Alice, Cambridge)$ is a stable pair.
+		\end{enumerate}
+		Hence, in both cases, $(Alice, Cambridge)$ is a stable pair, which contradicts the assumption.
+		Therefore, there is no unstable pair.
+\end{enumerate}
+\end{proof}
+
+\section*{Student-Optimal Matching}
+
+\subsection*{Definition}
+
+A valid college of a student as a college that accepts the student in some stable matching.
+A student-optimal matching is a matching in which each student is assigned to his/her most preferred valid college.
+
+\subsection*{Proof of Existence}
+
+\begin{proof}
+$ $
+
+Suppose the final matching produced by the extended Gale-Shapley algorithm is $M$ and the first student that got rejected by his/her most preferred valid college is $s$.
+Let $c$ be $s$'s most preferred valid college and $c'$ be the college that $s$ is assigned to in $M$.
+
+Since $s$ is the first student that did not get his/her most preferred valid college, it means that all students currently admitted to $c$ consider $c$ to be their most preferred valid college.
+Let $S$ be the set of students currently admitted to $c$, and we can infer that $c$ prefers every student in $S$ to $s$.
+Additionally, $|S| = \text{capacity of } c$, since it is only possible to reject $s$ if $c$ is full.
+
+Since $s$'s most preferred valid college is $c$, there exists another stable matching $M'$ in which $s$ is assigned to $c$.
+There must exist a student $s' \in S$ that is not assigned to $c$ in $M'$, because $|S| = \text{capacity of } c$.
+Then $(s', c)$ is an unstable pair in $M'$, which contradicts the stability of $M'$.
+
+Hence, the algorithm will always produce a student-optimal matching.
+\end{proof}
+\end{document}

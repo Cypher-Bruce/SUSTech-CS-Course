@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.27"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "A_rand_gen",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "A_rand_gen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-A_rand_gen-Debug-17e80dff1d338320a64c.json",
+					"name" : "A_rand_gen",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Algorithm Design and Analysis/Lab/Week 4/A rand gen/cmake-build-debug",
+		"source" : "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Algorithm Design and Analysis/Lab/Week 4/A rand gen"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

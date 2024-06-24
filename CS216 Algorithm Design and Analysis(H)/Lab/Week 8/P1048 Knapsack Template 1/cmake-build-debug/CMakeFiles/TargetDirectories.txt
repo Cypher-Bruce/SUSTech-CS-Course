@@ -1,0 +1,3 @@
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Algorithm Design and Analysis/Lab/Week 8/P1048 Knapsack Template 1/cmake-build-debug/CMakeFiles/P1048_Knapsack_Template_1.dir
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Algorithm Design and Analysis/Lab/Week 8/P1048 Knapsack Template 1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Algorithm Design and Analysis/Lab/Week 8/P1048 Knapsack Template 1/cmake-build-debug/CMakeFiles/rebuild_cache.dir

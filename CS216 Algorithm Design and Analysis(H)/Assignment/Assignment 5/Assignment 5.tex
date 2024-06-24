@@ -1,0 +1,276 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{xcolor,amsmath,amsthm,algorithm2e,tikz,subcaption}
+\RestyleAlgo{ruled}
+
+\definecolor{myRed}{RGB}{211, 31, 17}
+\definecolor{myOrange}{RGB}{244, 122, 0}
+\definecolor{myLightTeal}{RGB}{98, 200, 211}
+\definecolor{myDarkTeal}{RGB}{0, 113, 145}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Algorithm Design and Analysis(H): Assignment 5}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Algorithm Design and Analysis(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\begin{center}
+	{\Large \bf Assignment 5 \\ Kuhn-Munkres Algorithm for Min-Cost Perfect Matching}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\section{Psuedocode}
+
+\begin{algorithm}[H]
+	\caption{Kuhn-Munkres}
+	\KwIn{$costMatrix$, $n$}
+	\KwOut{Minimum cost of the perfect matching}
+		Initialize $matchedJob$ to all -1\;
+		Initialize $labelWorker$ to all 0\;
+		Initialize $labelJob$ to all 0\;
+		\BlankLine
+		\For{worker $\gets 1$ \textbf{to} $n$} {
+			\For{job $\gets 1$ \textbf{to} $n$} {
+				\If{costMatrix[worker][job] > labelJob[job]} {
+					labelJob[job] $\gets$ costMatrix[worker][job]\;
+				}
+			}
+		}
+	
+		\For{worker $\gets 1$ \textbf{to} $n$} {
+			bfsMatch(worker, costMatrix, n, labelWorker, labelJob, matchedJob)\;
+		}
+		
+		minCost $\gets 0$\;
+		\For{job $\gets 1$ \textbf{to} $n$} {
+			\If{matchedJob[job] != -1} {
+				minCost $\gets$ minCost + costMatrix[matchedJob[job]][job]\;
+			}
+		}
+		
+		\Return{minCost}\;
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\caption{BFS Match}
+	\KwIn{worker, $costMatrix$, $n$, $labelWorker$, $labelJob$, $matchedJob$}
+	\KwOut{Updates $matchedJob$ to reflect the minimum cost matching}
+		Initialize $visitedJob$ to all false\;
+		\BlankLine
+		currentJob $\gets 0$\;
+		matchedJob[currentJob] $\gets$ worker\;
+		\For{$i \gets 1$ \textbf{to} $n$} {
+			slack[i] $\gets \infty$\;
+		}
+		\While{true} {
+			currentWorker $\gets$ matchedJob[currentJob]\;
+			delta $\gets \infty$\;
+			visitedJob[currentJob] $\gets$ true\;
+			
+			\For{job $\gets 1$ \textbf{to} $n$} {
+				\If{visitedJob[job]} {
+					Continue\;
+				}
+				newSlack $\gets$ costMatrix[currentWorker][job] - labelWorker[currentWorker] - labelJob[job]\;
+				\If{newSlack < slack[job]} {
+					slack[job] $\gets$ newSlack\;
+					predecessor[job] $\gets$ currentJob\;
+				}
+				\If{slack[job] < delta} {
+					delta $\gets$ slack[job]\;
+					nextJob $\gets$ job\;
+				}
+			}
+			
+			\For{$i \gets 0$ \textbf{to} $n$} {
+				\If{visitedJob[i]} {
+					labelWorker[matchedJob[i]] $\gets$ labelWorker[matchedJob[i]] + delta\;
+					labelJob[i] $\gets$ labelJob[i] - delta\;
+				} \Else {
+					slack[i] $\gets$ slack[i] - delta\;
+				}
+			}
+			
+			currentJob $\gets$ nextJob\;
+			\If{matchedJob[currentJob] == -1} {
+				Break\;
+			}
+		}
+		
+		\While{currentJob} {
+			matchedJob[currentJob] $\gets$ matchedJob[predecessor[currentJob]]\;
+			currentJob $\gets$ predecessor[currentJob]\;
+		}
+\end{algorithm}
+
+\section{Core Idea}
+
+\subsection{Problem Statement}
+
+Given a bipartite graph $G = (U, V, E)$, where $U$ and $V$ are the two disjoint sets of vertices and $E$ is the set of edges between them. 
+Each edge $e \in E$ has a cost $c(e)$. 
+The goal is to find a perfect matching that minimizes the total cost of the edges in the matching.
+
+The pseudocode above describes the Kuhn-Munkres algorithm, which solves this problem in $O(n^3)$ time complexity.
+Also, a min-cost perfect matching can be found by negating the costs of the edges and running the algorithm.
+We will show the correctness of this transformation in the following sections.
+
+\subsection{Core Idea}
+
+The Kuhn-Munkres algorithm's core idea is give each worker and job a label, and calculate the reduced cost of each edge accordingly.
+Then, we try to find an augmenting path in the graph, which is a path that starts and ends with unmatched vertices, and the edges in the path alternate between matched and unmatched edges.
+To obtain the minimum cost matching, we try to follow the augmenting path with the minimum cost, and update the labels of the workers and jobs accordingly.
+
+\subsubsection{Label}
+
+\textit{In this section, we use a definition different from textbook but more widely used in programming competition. However, the two definitions are equivalent.}
+
+The labels are the key to the algorithm.
+And they do have economic interpretations.
+We can think of the cost of an edge as the maximum budget that we can afford to hire a worker for a job.
+The label of a worker, $p(u) \geq 0$,  is the amount of money that we need to pay to hire the worker.
+The label of a job, $p(v) \leq 0$, is the reward of the job.
+The reduced cost of an edge is $r(u, v) = c(u, v) - p(u) - p(v)$.
+
+Now we define a feasible labeling.
+A labeling is feasible if for all edges $(u, v)$, $p(u) + p(v) \leq c(u, v)$ (equivalently, $r(u, v) \geq 0$) is satisfied.
+The economic interpretation is that the net cost of assigning a worker to a job (calculated as the cost of hiring the worker minus the reward of the job) should be within the budget.
+Furthermore, there is always a feasible labeling that turns all matching edges into tight edges (edges with $r(u, v) = 0$), while keeping all non-matching edges with $r(u, v) \geq 0$.
+The interpretation is that we want to hire the best worker for his/her assigned job, which will exploit the full budget.
+
+\subsubsection{Augmenting Path}
+
+The algorithm tries to find an augmenting path in the graph.
+An augmenting path is a path that starts and ends with unmatched vertices, and the edges in the path alternate between matched and unmatched edges.
+An alternative way is that every matched edge is directed from the job to the worker, and every unmatched edge is directed from the worker to the job.
+
+Since the idea of this augmenting path is exactly the same as the augmenting path in the max-flow algorithm, we do not repeat explaining it here.
+
+\subsection{Critical Procedure}
+
+The critical procedure of the algorithm is to update the labels of the workers and jobs.
+The procedure is as follows:
+\begin{enumerate}
+	\item Consider an augmenting path $P$ starting from a worker $u$.
+	\item If no such path exists, recalculate the labels of the workers and jobs.
+	\item As long as the path exists, propagate the matching along the path, go to step 1 with the next worker.
+\end{enumerate}
+
+To satisfy the feasibility condition, we Initialize all labels to 0.
+Obviously, $r(u, v) = c(u, v)$ for all edges, and the feasibility condition is satisfied.
+
+Then, at each step of the algorithm, we try to increase the cardinality of the matching by 1.
+This is done by finding an augmenting path with the Hungarian method.
+Then we update the labels of the workers and jobs to maintain the feasibility condition while making the new matching edge tight.
+
+The update requires finding a minimum $\Delta$ (to be noticed that $\Delta$ is negative):
+\begin{equation*}
+	\Delta = \min_{i \in Z_1, j \not\in Z_2} c(i, j) - p(i) - p(j)
+\end{equation*}
+where $Z_1$ is the set of workers that have been selected, and $Z_2$ is the set of jobs that have not been selected in the augmenting path.
+Then we update the labels as follows:
+\begin{align*}
+	p(i) =& p(i) + \Delta \quad \text{for all } i \in Z_1 \\
+	p(j) =& p(j) - \Delta \quad \text{for all } j \in Z_2
+\end{align*}
+
+After the update, the old matching edges remain tight, and the new matching edge becomes tight.
+
+\section{Proof of Correctness}
+
+Such update of the labels is guaranteed to maintain the feasibility condition.
+\begin{itemize}
+	\item For $i \in Z_1$ and $j \in Z_2$, $r(i, j)$ remains unchanged since the $\Delta$ cancels out.
+	\item For $i \not\in Z_1$ and $j \in Z_2$, the reduced cost $r'(i, j) = r(i, j) - \Delta$, the reduced cost increases and the inequality holds.
+	\item For $i \in Z_1$ and $j \not\in Z_2$, since we choose the minimum $\Delta$, the reduced cost decreases, but it is still non-negative.
+	\item For $i \not\in Z_1$ and $j \not\in Z_2$, the reduced cost remains unchanged.
+\end{itemize}
+
+Since the $\Delta$ is chosen to be the minimum, the particular edge that produce the minimum $\Delta$ becomes tight after the update.
+And the tight edges of the old matching remain tight.
+Hence, the cardinality of $|Z_1| + |Z_2|$ strictly increases.
+
+Since the new matching may replace all the old matching edges, and each recalculation of the labels strictly increases the cardinality of the matching, the algorithm at most recalculate the labels $n$ times (since the cardinality of the matching is at most $n$).
+This will terminate the while loop in the BFS Match procedure.
+Hence, we can see the termination is guaranteed.
+
+\section{Complexity Analysis}
+
+\subsection{Time Complexity}
+
+The algorithm calls the BFS Match procedure $n$ times, and each call of the BFS Match procedure recalculate the labels at most $n$ times, and each recalculation of the labels takes $O(n)$ time.
+Hence, the total time complexity is $O(n^3)$.
+
+\subsection{Space Complexity}
+
+The main space complexity of the algorithm is the cost matrix, which takes $O(n^2)$ space.
+All auxiliary arrays take $O(n)$ space.
+Hence, the total space complexity is $O(n^2)$.
+
+\section{Extension to max-cost perfect matching}
+
+To find the max-cost perfect matching, we can negate the costs of the edges and run the algorithm.
+However, this may cause the reduced costs to be negative at the beginning.
+Hence, we add a constant $c$ to all the costs to make all the reduced costs non-negative.
+
+The correctness of this transformation is guaranteed by two facts:
+\begin{enumerate}
+	\item If we negate the costs of the edges, the min-cost perfect matching becomes the max-cost perfect matching.
+	\item Adding a constant to all the costs does not change the optimal solution.
+\end{enumerate}
+
+For fact 1, we can prove with contradiction.
+If the original min-cost perfect matching $M$ is not the max-cost perfect matching after negating the costs, then there exists a new max-cost perfect matching $M'$ that has a higher cost than $M$.
+Then we revert the negation of the costs, and we find that $M'$ has a lower cost than $M$, which contradicts the fact that $M$ is the min-cost perfect matching.
+
+For fact 2, since perfect matching always contain the same number of edges, adding a constant $c$ to all the costs will equally add $n \cdot c$ to the total cost of the all perfect matchings.
+Hence, the optimal solution remains the same.
+
+\end{document}

@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Computer Organization/Lab/Week 10/Practice 1/Practice 1.srcs/sources_1/new/Controller.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Controller
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Computer Organization/Lab/Week 10/Practice 1/Practice 1.srcs/sim_1/new/Controller_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Controller_tb

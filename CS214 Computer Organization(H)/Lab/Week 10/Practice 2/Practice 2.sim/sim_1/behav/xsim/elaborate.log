@@ -1,0 +1,11 @@
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2017.4/bin/unwrapped/win64.o/xelab.exe -wto b234402bb1b14d949ba524062e7434d9 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot ALU_tb_behav xil_defaultlib.ALU_tb xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+ERROR: [VRFC 10-426] cannot find port Imme on this module [C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Computer Organization/Lab/Week 10/Practice 2/Practice 2.srcs/sim_1/new/ALU_tb.v:37]
+ERROR: [VRFC 10-426] cannot find port Read_data_2 on this module [C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Computer Organization/Lab/Week 10/Practice 2/Practice 2.srcs/sim_1/new/ALU_tb.v:36]
+ERROR: [VRFC 10-426] cannot find port Read_data_1 on this module [C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Computer Organization/Lab/Week 10/Practice 2/Practice 2.srcs/sim_1/new/ALU_tb.v:35]
+ERROR: [VRFC 10-426] cannot find port Inst on this module [C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Computer Organization/Lab/Week 10/Practice 2/Practice 2.srcs/sim_1/new/ALU_tb.v:34]
+ERROR: [VRFC 10-2063] Module <Controller> not found while processing module instance <Controller_inst> [C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Computer Organization/Lab/Week 10/Practice 2/Practice 2.srcs/sim_1/new/ALU_tb.v:44]
+ERROR: [XSIM 43-3322] Static elaboration of top level Verilog design unit(s) in library work failed.

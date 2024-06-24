@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{	}\PYG{n+nf}{slli}\PYG{+w}{ }\PYG{n+no}{x5}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{x28}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{   }\PYG{c+c1}{// x5 = i * 4}
+\PYG{+w}{	}\PYG{n+nf}{add}\PYG{+w}{  }\PYG{n+no}{x5}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{x5}\PYG{p}{,}\PYG{+w}{  }\PYG{n+no}{x10}\PYG{+w}{ }\PYG{c+c1}{// x5 = x5 + A}
+\PYG{+w}{	}\PYG{n+nf}{lw}\PYG{+w}{   }\PYG{n+no}{x6}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{(}\PYG{n+no}{x5}\PYG{p}{)}\PYG{+w}{    }\PYG{c+c1}{// x6 = A[i]}
+
+\PYG{+w}{	}\PYG{n+nf}{slli}\PYG{+w}{ }\PYG{n+no}{x5}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{x29}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{   }\PYG{c+c1}{// x5 = j * 4}
+\PYG{+w}{	}\PYG{n+nf}{add}\PYG{+w}{  }\PYG{n+no}{x5}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{x5}\PYG{p}{,}\PYG{+w}{  }\PYG{n+no}{x10}\PYG{+w}{ }\PYG{c+c1}{// x5 = x5 + A}
+\PYG{+w}{	}\PYG{n+nf}{lw}\PYG{+w}{   }\PYG{n+no}{x7}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{(}\PYG{n+no}{x5}\PYG{p}{)}\PYG{+w}{    }\PYG{c+c1}{// x7 = A[j]}
+
+\PYG{+w}{	}\PYG{n+nf}{add}\PYG{+w}{  }\PYG{n+no}{x5}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{x6}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{x7}\PYG{+w}{   }\PYG{c+c1}{// x5 = x6 + x7}
+\PYG{+w}{	}\PYG{n+nf}{sw}\PYG{+w}{   }\PYG{n+no}{x5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{32}\PYG{p}{(}\PYG{n+no}{x11}\PYG{p}{)}\PYG{+w}{  }\PYG{c+c1}{// B[8] = x5}
+\end{Verbatim}

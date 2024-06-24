@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.27)
+project(P4716_Directed_Minimum_Spanning_Tree_Template)
+
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable(P4716_Directed_Minimum_Spanning_Tree_Template main.cpp)

@@ -1,0 +1,25 @@
+# ninja log v5
+0	655	7326386246518691	CMakeFiles/A_Clustering_On_A_Point_Set.dir/main.cpp.obj	7a4d1e2f5d64b02d
+657	769	7326386247649313	A_Clustering_On_A_Point_Set.exe	8d52d0ee87d6d2d1
+3	469	7326386601694624	CMakeFiles/A_Clustering_On_A_Point_Set.dir/main.cpp.obj	7a4d1e2f5d64b02d
+469	581	7326386602785200	A_Clustering_On_A_Point_Set.exe	8d52d0ee87d6d2d1
+2	468	7326386824006331	CMakeFiles/A_Clustering_On_A_Point_Set.dir/main.cpp.obj	7a4d1e2f5d64b02d
+469	557	7326386824851215	A_Clustering_On_A_Point_Set.exe	8d52d0ee87d6d2d1
+3	518	7326387760970891	CMakeFiles/A_Clustering_On_A_Point_Set.dir/main.cpp.obj	7a4d1e2f5d64b02d
+519	619	7326387761959015	A_Clustering_On_A_Point_Set.exe	8d52d0ee87d6d2d1
+2	514	7326389205997783	CMakeFiles/A_Clustering_On_A_Point_Set.dir/main.cpp.obj	7a4d1e2f5d64b02d
+514	621	7326389207038436	A_Clustering_On_A_Point_Set.exe	8d52d0ee87d6d2d1
+3	470	7326391000143754	CMakeFiles/A_Clustering_On_A_Point_Set.dir/main.cpp.obj	7a4d1e2f5d64b02d
+471	585	7326391001258911	A_Clustering_On_A_Point_Set.exe	8d52d0ee87d6d2d1
+3	495	7326393358027908	CMakeFiles/A_Clustering_On_A_Point_Set.dir/main.cpp.obj	7a4d1e2f5d64b02d
+495	589	7326393358932961	A_Clustering_On_A_Point_Set.exe	8d52d0ee87d6d2d1
+3	537	7326396418868319	CMakeFiles/A_Clustering_On_A_Point_Set.dir/main.cpp.obj	7a4d1e2f5d64b02d
+537	635	7326396419820552	A_Clustering_On_A_Point_Set.exe	8d52d0ee87d6d2d1
+3	493	7326396710170802	CMakeFiles/A_Clustering_On_A_Point_Set.dir/main.cpp.obj	7a4d1e2f5d64b02d
+493	595	7326396711161827	A_Clustering_On_A_Point_Set.exe	8d52d0ee87d6d2d1
+3	482	7326399033144389	CMakeFiles/A_Clustering_On_A_Point_Set.dir/main.cpp.obj	7a4d1e2f5d64b02d
+483	587	7326399034159519	A_Clustering_On_A_Point_Set.exe	8d52d0ee87d6d2d1
+3	438	7326404125477262	CMakeFiles/A_Clustering_On_A_Point_Set.dir/main.cpp.obj	7a4d1e2f5d64b02d
+439	532	7326404126387147	A_Clustering_On_A_Point_Set.exe	8d52d0ee87d6d2d1
+3	518	7326414953765541	CMakeFiles/A_Clustering_On_A_Point_Set.dir/main.cpp.obj	7a4d1e2f5d64b02d
+518	623	7326414954770669	A_Clustering_On_A_Point_Set.exe	8d52d0ee87d6d2d1

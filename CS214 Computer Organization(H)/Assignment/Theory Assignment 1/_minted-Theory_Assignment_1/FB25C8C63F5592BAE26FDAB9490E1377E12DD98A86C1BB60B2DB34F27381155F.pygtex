@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{	}\PYG{n+nf}{addi}\PYG{+w}{ }\PYG{n+no}{x5}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{x7}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}5}\PYG{+w}{  }\PYG{c+c1}{// f = h \PYGZhy{} 5}
+\PYG{+w}{	}\PYG{n+nf}{add}\PYG{+w}{  }\PYG{n+no}{x5}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{x5}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{x6}\PYG{+w}{  }\PYG{c+c1}{// f = f + g}
+\end{Verbatim}

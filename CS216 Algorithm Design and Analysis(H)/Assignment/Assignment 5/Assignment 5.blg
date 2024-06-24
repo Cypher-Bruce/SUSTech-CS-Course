@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2023)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Assignment 5.aux
+The style file: siam.bst
+Database file #1: reference.bib
+Warning--to sort, need author or key in Hungarian
+You've used 1 entry,
+            2030 wiz_defined-function locations,
+            500 strings with 3791 characters,
+and the built_in function-call counts, 151 in all, are:
+= -- 8
+> -- 1
+< -- 0
++ -- 1
+- -- 0
+* -- 7
+:= -- 21
+add.period$ -- 1
+call.type$ -- 1
+change.case$ -- 2
+chr.to.int$ -- 0
+cite$ -- 2
+duplicate$ -- 7
+empty$ -- 22
+format.name$ -- 0
+if$ -- 32
+int.to.chr$ -- 0
+int.to.str$ -- 1
+missing$ -- 0
+newline$ -- 6
+num.names$ -- 0
+pop$ -- 8
+preamble$ -- 1
+purify$ -- 2
+quote$ -- 0
+skip$ -- 10
+stack$ -- 0
+substring$ -- 5
+swap$ -- 0
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 4
+warning$ -- 1
+while$ -- 0
+width$ -- 2
+write$ -- 6
+(There was 1 warning)

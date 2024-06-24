@@ -1,0 +1,23 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Tue Apr 23 14:20:31 2024
+# Process ID: 31112
+# Current directory: C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Computer Organization/Lab/Week 10/Practice 2/Practice 2.runs/synth_1
+# Command line: vivado.exe -log ALU.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ALU.tcl
+# Log file: C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Computer Organization/Lab/Week 10/Practice 2/Practice 2.runs/synth_1/ALU.vds
+# Journal file: C:/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Computer Organization/Lab/Week 10/Practice 2/Practice 2.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source ALU.tcl -notrace
+Command: synth_design -top ALU -part xc7a12ticsg325-1L
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a12ti'
+WARNING: [Common 17-348] Failed to get the license for feature 'Synthesis' and/or device 'xc7a12ti'. Explanation: A license feature for Synthesis was found but the license version is not valid for this software, which requires license version 2017.12 or higher.
+Resolution: Check the status of your licenses in the Vivado License Manager. For debug help search Xilinx Support for "Licensing FAQ". 
+0 Infos, 1 Warnings, 0 Critical Warnings and 1 Errors encountered.
+synth_design failed
+ERROR: [Common 17-345] A valid license was not found for feature 'Synthesis' and/or device 'xc7a12ti'. Please run the Vivado License Manager for assistance in determining
+which features and devices are licensed for your system.
+Resolution: Check the status of your licenses in the Vivado License Manager. For debug help search Xilinx Support for "Licensing FAQ". If you are using a license server, verify that the license server is up and running a version of the xilinx daemon that is compatible with the version of Xilinx software that you are using. Please note that Vivado 2017.3 and later requires upgrading your license server tools to the Flex 11.14.1 tools. Please confirm with your license admin that the correct version of the license server tools are installed.
+INFO: [Common 17-206] Exiting Vivado at Tue Apr 23 14:20:38 2024...

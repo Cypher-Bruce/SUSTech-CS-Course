@@ -1,0 +1,7 @@
+# The requirements for this assignment are as follows:
+## In this assignment, you are required to read, understand, and describe a complicated algorithm. The goal of this assignment is to practice your writing/presentation skills. This is crucial for your future success! We learned in class that Chu-Liu's algorithm finds a min-cost arborescence in O(mn) time, but this is not very efficient. The attached lecture notes describe a more efficient implementation that runs in O(m log n) time, which is much faster! Please carefully read Section 5 of the attached file and do the following:
+0. Before writing, think about how the lecture notes present the algorithm, e.g., why Section 5.1 is appreciated.
+1. Describe the algorithm's implementation in your own words. Here, the goal is to beat the lecture notes and explain the algorithm in a more clear way. Do not copy-paste those from the lecture notes.
+2. Please fill out the missing details about the underlying data structures, e.g., how to meld heaps efficiently. Try to explain them in sufficient detail, i.e., assuming the readers only know the basic data structures and trying to let them understand. You can skip those already learned in your data structure course.
+3. Explain why the time complexity is O(m log n). Please be precise, e.g., specify the time complexity for each crucial step in your described algorithm.
+4. What is the space complexity of the algorithm in big O notation? Please explain and be precise too.

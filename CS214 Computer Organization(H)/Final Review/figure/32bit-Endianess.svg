@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="500" stroke="black" stroke-width="1" fill="black" font-family="DejaVu Sans,sans-serif" font-stretch="condensed" font-size="33px">
+<defs>
+    <rect id="box" x="0" y="-40" width="50" height="50" fill="white" />
+    <g id="x0A"><use xlink:href="#box"/><text x="25" y="-3" text-anchor="middle">0A</text></g>
+    <g id="x0B"><use xlink:href="#box"/><text x="25" y="-3" text-anchor="middle">0B</text></g>
+    <g id="x0C"><use xlink:href="#box"/><text x="25" y="-3" text-anchor="middle">0C</text></g>
+    <g id="x0D"><use xlink:href="#box"/><text x="25" y="-3" text-anchor="middle">0D</text></g>
+
+    <g id="thirtytwobit" transform="translate(0 -10)">
+        <rect x="-5" y="10" width="170" height="50" fill="white" />
+        <g text-anchor="middle" transform="translate(10 47)">
+            <text>0</text>
+            <text x="20" >A</text>
+            <text x="40" >0</text>
+            <text x="60" >B</text>
+            <text x="80" >0</text>
+            <text x="100" >C</text>
+            <text x="120" >0</text>
+            <text x="140" >D</text>
+        </g>
+        <switch text-anchor="middle" font-size="24px" transform="translate(80 -10)">
+            <text systemLanguage="de">Ein 32-bit Integer</text>
+            <text systemLanguage="fr">Registre</text>
+            <text systemLanguage="hu">regiszter</text>
+            <text systemLanguage="pt">Registador (CPU)</text>
+            <text systemLanguage="ja">レジスタ</text>
+            <text>one 32-bit integer</text>
+        </switch>
+    </g>
+
+    <g id="addresses">
+        <path d="M0 -70 v260"/>
+        <path d="M25 -60 v240" stroke-dasharray="3.333"/>
+        <path d="M50 -70 v260"/>
+        <g font-family="serif" font-stretch="normal" font-size="24px" text-anchor="end" transform="translate(-18 -7)">
+            <text y="0"><tspan font-style="italic">a</tspan>:</text>
+            <text y="50"><tspan font-style="italic">a</tspan>+1:</text>
+            <text y="100"><tspan font-style="italic">a</tspan>+2:</text>
+            <text y="150"><tspan font-style="italic">a</tspan>+3:</text>
+        </g>
+        <switch text-anchor="middle" font-size="24px">
+            <text systemLanguage="de" transform="translate(25 -150)"><tspan>Abgebildet als</tspan><tspan x="0" dy="1.2em">vier Bytes</tspan><tspan x="0" dy="1.2em">im Speicher</tspan></text>
+            <text systemLanguage="fr" transform="translate(25 -100)">Mémoire</text>
+            <text systemLanguage="hu" transform="translate(25 -100)">memória</text>
+            <text systemLanguage="ja" transform="translate(25 -100)">メモリ</text>
+            <text systemLanguage="pt" transform="translate(25 -100)">Memória (RAM)</text>
+            <text transform="translate(25 -150)"><tspan>arranged as</tspan><tspan x="0" dy="1.2em">four bytes in</tspan><tspan x="0" dy="1.2em">memory</tspan></text>
+        </switch>
+                
+    </g>
+
+    <polygon id="arrow-pointy-end" points="20 10  0 16  8 10  0 4"/>
+    <marker id="marker-arrow-pointy-end" markerWidth="20" markerHeight="160" refX="15" refY="10" orient="auto">
+        <use xlink:href="#arrow-pointy-end"/> 
+        <use xlink:href="#6x6" stroke="grey"/>  
+    </marker> 
+</defs>
+
+<g transform="translate(0 0)">
+    <g transform="translate(75 100)">
+        <use xlink:href="#thirtytwobit"/>
+        <g transform="translate(300 140)">
+            <use xlink:href="#addresses"/>
+            <use xlink:href="#x0D" transform="translate(0    0)"/>
+            <use xlink:href="#x0C" transform="translate(0   50)"/>
+            <use xlink:href="#x0B" transform="translate(0  100)"/>
+            <use xlink:href="#x0A" transform="translate(0  150)"/>
+        </g>
+        <path d="M20 50 v225 h210" fill="none" marker-end="url(#marker-arrow-pointy-end)"/>
+        <path d="M60 50 v175 h170" fill="none" marker-end="url(#marker-arrow-pointy-end)"/>
+        <path d="M100 50 v125 h130" fill="none" marker-end="url(#marker-arrow-pointy-end)"/>
+        <path d="M140 50 v75 h90" fill="none" marker-end="url(#marker-arrow-pointy-end)"/>
+    </g>
+    <switch font-size="24px" text-anchor="middle" transform="translate(250 450)">
+        <text systemLanguage="ja">リトルエンディアン</text>
+        <text>Little-endian</text>
+    </switch>
+</g>
+   
+<g transform="translate(500 0)">
+    <g transform="translate(255 100)">
+        <use xlink:href="#thirtytwobit"/>
+        <g transform="translate(-150 140)">
+            <use xlink:href="#addresses"/>
+            <use xlink:href="#x0A" transform="translate(0    0)"/>
+            <use xlink:href="#x0B" transform="translate(0   50)"/>
+            <use xlink:href="#x0C" transform="translate(0  100)"/>
+            <use xlink:href="#x0D" transform="translate(0  150)"/>
+        </g>
+        <path d="M140 50 v225 h-230" fill="none" marker-end="url(#marker-arrow-pointy-end)"/>
+        <path d="M100 50 v175 h-190" fill="none" marker-end="url(#marker-arrow-pointy-end)"/>
+        <path d="M60 50 v125 h-150" fill="none" marker-end="url(#marker-arrow-pointy-end)"/>
+        <path d="M20 50 v75 h-110" fill="none" marker-end="url(#marker-arrow-pointy-end)"/>
+    </g>
+    <switch font-size="24px" text-anchor="middle" transform="translate(250 450)">
+        <text systemLanguage="ja">ビッグエンディアン</text>
+        <text >Big-endian</text>
+    </switch>
+</g>
+</svg>

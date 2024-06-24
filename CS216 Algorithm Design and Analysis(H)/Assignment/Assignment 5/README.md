@@ -1,0 +1,6 @@
+# The requirements for this assignment are as follows:
+## In class, we learned several max-flow algorithms. In the lab assignment, we learned how to extend them to find the min-cost max flows. We also learned several max-flow applications, e.g., bipartite matching. So, if the bipartite matching problem has costs, one can find min-cost max matching by converting it to a min-cost max-flow problem. However, a min-cost max-flow algorithm (that we learned so far) requires O(mnk) time, where k is the cardinality of the max matching. Can we find a more efficient algorithm to solve the min-cost max-matching problem in a bipartite graph? In this assignment, you are asked to learn and describe an efficient algorithm known as the Hungarian or Kuhn-Munkres algorithm, which finds a min-cost perfect matching in O(n^3) time. Please read Section 7.13 of your textbook and do the following:
+1. Write the pseudocode for this algorithm. Please provide sufficient details, e.g., how the prices are maintained and how the reduced costs are calculated.
+2. Explain your pseudocode by describing the core idea and critical procedures.
+3. Analyze the correctness, running time, and space complexity of the algorithm.
+4. Formulate a max-cost max-matching problem as a min-cost perfect-matching problem. Explain the correctness of your formulation, i.e., why it works.

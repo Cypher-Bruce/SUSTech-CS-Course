@@ -1,0 +1,8 @@
+[world]
+world_height=50
+world_width=30
+world_map='case0.png'
+start_point=[7, 5]
+goal_point=[45, 5]
+sampling_period=1
+fps=8

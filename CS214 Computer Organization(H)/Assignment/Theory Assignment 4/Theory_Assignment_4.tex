@@ -1,0 +1,413 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,tikz}
+\usepackage{minted}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Computer Organization(H): Theory Assignment 4}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu}
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Computer Organization(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Theory Assignment 4}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Problem 1}
+
+\subsection*{a)}
+
+For a 256 byte cache, 8 words per block, with 32-bit byte addresses, there are 8 blocks in the cache. 
+The offset is $\log_2 8 * 4 = 5$ bits, the index is $\log_2 8 = 3$ bits, and the tag is $32 - 5 - 3 = 24$ bits.
+
+Tag: 31-8
+Index: 7-5
+Offset: 4-0
+
+\subsection*{b)}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{llllcl}
+		\toprule
+		Address & Tag & Index & Offset & Hit/Miss & Replacement \\
+		\midrule
+		0x000 & 0x0 & 0x0 & 0x0 & Miss & Block 0 replaced by Mem[0x000-0x01F] \\
+		0x004 & 0x0 & 0x0 & 0x4 & Hit & - \\
+		0x010 & 0x0 & 0x0 & 0x10 & Hit & - \\
+		0x084 & 0x0 & 0x4 & 0x4 & Miss & Block 4 replaced by Mem[0x080-0x09F] \\
+		0x0E8 & 0x0 & 0x7 & 0x8 & Miss & Block 7 replaced by Mem[0x0E0-0x0FF] \\
+		0x0A0 & 0x0 & 0x5 & 0x0 & Miss & Block 5 replaced by Mem[0x0A0-0x0BF] \\
+		0x400 & 0x4 & 0x0 & 0x0 & Miss & Block 0 replaced by Mem[0x400-0x41F] \\
+		0x01E & 0x0 & 0x0 & 0x1E & Miss & Block 0 replaced by Mem[0x000-0x01F] \\
+		0x08C & 0x0 & 0x4 & 0xC & Hit & - \\
+		0xC1C & 0xC & 0x0 & 0x1C & Miss & Block 0 replaced by Mem[0xC00-0xC1F] \\
+		0x0B4 & 0x0 & 0x5 & 0x14 & Hit & - \\
+		0x884 & 0x8 & 0x4 & 0x4 & Miss & Block 4 replaced by Mem[0x880-0x89F] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection*{c)}
+
+The hit rate is 4/12 $\approx$ 33.33\%.
+
+\subsection*{d)}
+
+The valid content of the cache is as follows:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{lll}
+		\toprule
+		Index & Tag & Data \\
+		\midrule
+		0 & 0xC & Mem[0xC00-0xC1F] \\
+		4 & 0x8 & Mem[0x880-0x89F] \\
+		5 & 0x0 & Mem[0x0A0-0x0BF] \\
+		7 & 0x0 & Mem[0x0E0-0x0FF] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+\section*{Problem 2}
+
+\subsection*{a)}
+
+For a 3-way set associative cache, 2 words per block, 48 words in size, there are 24 blocks, 8 sets in the cache. 
+Then the offset is 1 bit, the index is 3 bits, and the tag is 28 bits.
+Hence, the range of offset is 0, the range of indexes is 3-1, and the range of tag is 31-4.
+
+Tag: 31-4
+Index: 3-1
+Offset: 0
+
+\subsection*{b)}
+
+For a 3-way set associative cache, 2 words per block, 24 words in size, there are 12 blocks, 4 sets in the cache. 
+Then the offset is 1 bit, the index is 2 bits, and the tag is 29 bits.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{llllcl}
+		\toprule
+		Address & Tag & Index & Offset & Hit/Miss & Replacement \\
+		\midrule
+		0x03 & 0x0 & 0x1 & 0x1 & Miss & Set 1 Block 0 replaced by Mem[0x00-0x03] \\
+		0xb4 & 0x16 & 0x2 & 0x0 & Miss & Set 2 Block 0 replaced by Mem[0xB4-0xB7] \\
+		0x2b & 0x5 & 0x1 & 0x1 & Miss & Set 1 Block 1 replaced by Mem[0x28-0x2B] \\
+		0x02 & 0x0 & 0x1 & 0x0 & Hit & - \\
+		0xbe & 0x17 & 0x3 & 0x0 & Miss & Set 3 Block 0 replaced by Mem[0xBC-0xBF] \\
+		0x58 & 0xB & 0x0 & 0x0 & Miss & Set 0 Block 0 replaced by Mem[0x58-0x5B] \\
+		0xbf & 0x17 & 0x3 & 0x1 & Hit & - \\
+		0x0e & 0x1 & 0x3 & 0x0 & Miss & Set 3 Block 1 replaced by Mem[0x0C-0x0F] \\
+		0x1f & 0x3 & 0x3 & 0x1 & Miss & Set 3 Block 2 replaced by Mem[0x1C-0x1F] \\
+		0xb5 & 0x16 & 0x2 & 0x1 & Hit & - \\
+		0xbf & 0x17 & 0x3 & 0x1 & Hit & - \\
+		0xba & 0x17 & 0x1 & 0x0 & Miss & Set 1 Block 2 replaced by Mem[0xB8-0xBB] \\
+		0x2e & 0x5 & 0x3 & 0x0 & Miss & Set 3 Block 1 replaced by Mem[0x2C-0x2F] \\
+		0xce & 0x19 & 0x3 & 0x0 & Miss & Set 3 Block 2 replaced by Mem[0xCC-0xCF] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The final valid content of the cache is as follows:
+
+\begin{table}[H]
+	\centering	
+	\begin{tabular}{lll}
+		\toprule
+		Set & Tag & Data \\
+		\midrule
+		\multirow{3}{*}{0} & 0xB & Mem[0x58-0x5B] \\
+		& NA & NA \\
+		& NA & NA \\
+		\midrule
+		\multirow{3}{*}{1} & 0x0 & Mem[0x00-0x03] \\
+		& 0x5 & Mem[0x28-0x2B] \\
+		& 0x17 & Mem[0xB8-0xBB] \\
+		\midrule
+		\multirow{3}{*}{2} & 0x16 & Mem[0xB4-0xB7] \\
+		& NA & NA \\
+		& NA & NA \\
+		\midrule
+		\multirow{3}{*}{3} & 0x17 & Mem[0xBC-0xBF] \\
+		& 0x5 & Mem[0x2C-0x2F] \\
+		& 0x19 & Mem[0xCC-0xCF] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection*{c)}
+
+For a fully associative cache, 1 word per block, 8 words in size, there are 8 blocks in the cache. 
+Then the offset is 3 bits, the index is 0 bits, and the tag is 29 bits.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{lllcl}
+		\toprule
+		Address & Tag & Offset & Hit/Miss & Replacement \\
+		\midrule
+		0x03 & 0x0 & 0x3 & Miss & Block 0 replaced by Mem[0x00-0x07] \\
+		0xb4 & 0x16 & 0x4 & Miss & Block 1 replaced by Mem[0xB0-0xB7] \\
+		0x2b & 0x5 & 0x3 & Miss & Block 2 replaced by Mem[0x28-0x2F] \\
+		0x02 & 0x0 & 0x2 & Hit & - \\
+		0xbe & 0x17 & 0x6 & Miss & Block 3 replaced by Mem[0xB8-0xBF] \\
+		0x58 & 0xB & 0x0 & Miss & Block 4 replaced by Mem[0x58-0x5F] \\
+		0xbf & 0x17 & 0x7 & Hit & - \\
+		0x0e & 0x1 & 0x6 & Miss & Block 5 replaced by Mem[0x08-0x0F] \\
+		0x1f & 0x3 & 0x7 & Miss & Block 6 replaced by Mem[0x18-0x1F] \\
+		0xb5 & 0x16 & 0x5 & Hit & - \\
+		0xbf & 0x17 & 0x7 & Hit & - \\
+		0xba & 0x17 & 0x2 & Hit & - \\
+		0x2e & 0x5 & 0x6 & Hit & - \\
+		0xce & 0x19 & 0x6 & Miss & Block 7 replaced by Mem[0xC8-0xCF] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The final valid content of the cache is as follows:
+
+\begin{table}[H]
+	\centering	
+	\begin{tabular}{ll}
+		\toprule
+		Tag & Data \\
+		\midrule
+		0x0 & Mem[0x00-0x07] \\
+		0x16 & Mem[0xB0-0xB7] \\
+		0x5 & Mem[0x28-0x2F] \\
+		0x17 & Mem[0xB8-0xBF] \\
+		0xB & Mem[0x58-0x5F] \\
+		0x1 & Mem[0x08-0x0F] \\
+		0x3 & Mem[0x18-0x1F] \\
+		0x19 & Mem[0xC8-0xCF] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section*{Problem 3}
+
+\subsection*{a)}
+
+For a 2GHz processor, the clock cycle time is $\frac{1\text{s}}{2 \times 10^9} = 0.5\text{ns}$.
+
+Then, if we miss in the cache, the penalty is $100\text{ns} \div 0.5\text{ns} = 200$ cycles.
+The new CPI will be:
+\begin{equation*}
+	CPI = 1.5 + 7\% \times 200 = 15.5
+\end{equation*}
+
+\subsection*{b)}
+
+\begin{equation*}
+	CPI = 1.5 + 7\% \times 12 + 3.5\% \times 200 = 9.34
+\end{equation*}
+
+\subsection*{c)}
+
+\begin{equation*}
+	CPI = 1.5 + 7\% \times 28 + 1.5\% \times 200 = 6.46
+\end{equation*}
+
+\subsection*{d)}
+
+\begin{equation*}
+	CPI = 1.5 + 7\% \times (12 + 3.5\% \times 200) = 2.83
+\end{equation*}
+
+\section*{Problem 4}
+
+\subsection*{a)}
+
+Given the formula $2^p \geq d + p + 1$, and we know the data is 128 bits, then $d = 128$.
+Then we can solve the minimum value of $p$ is 8.
+Since we add an extra parity bit for double error detection, the total number of parity bits is 9.
+
+\subsection*{b)}
+
+Since 0x375 is 0011 0111 0101 in binary, we calculate the parity bits as follows:
+\begin{align*}
+	p_1 &= 0 \oplus 1 \oplus 0 \oplus 1 \oplus 0 \oplus 0 = 0 \\
+	p_2 &= 0 \oplus 1 \oplus 1 \oplus 1 \oplus 1 \oplus 0 = 0 \\
+	p_4 &= 1 \oplus 0 \oplus 1 \oplus 1 \oplus 1 = 0 \\
+	p_8 &= 1 \oplus 0 \oplus 1 \oplus 0 \oplus 1 = 1
+\end{align*}
+
+Hence, there is an error in the data because $p_8$ is not 0.
+It means the error is in the 8th bit.
+The correct data is 0011 0110 0101 = 0x365.
+
+\section*{Problem 5}
+
+\subsection*{a)}
+
+Since each page is 4KB, the offset is $\log_2 4 \times 2^{10} = 12$ bits.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccccc}
+		\toprule
+		Address & Virtual Page Number & TLB Hit/Miss & Page Table Hit/Miss & Page Fault \\
+		\midrule
+		0x123d & 0x1 & Miss & Miss & True \\
+		0x08b3 & 0x0 & Miss & Hit & False \\
+		0x365c & 0x3 & Hit  & Hit & False \\
+		0x871b & 0x8 & Miss & Miss & True \\
+		0xbee6 & 0xB & Miss & Hit & False \\
+		0x3140 & 0x3 & Hit  & Hit & False \\
+		0xc049 & 0xC & Miss & Miss & True \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The content of TLB and page table is as follows:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cccc}
+		\toprule
+		Valid & Tag & Physical Page Number & Time Since Last Access \\
+		\midrule
+		1 & 0x8 & 14 & 4 \\
+		1 & 0xB & 12 & 3 \\
+		1 & 0x3 & 6 & 2 \\
+		1 & 0xC & 15 & 1 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc}
+		\toprule
+		Valid & Physical Page or In Disk \\
+		\midrule
+		1 & 5 \\
+		1 & 13 \\
+		0 & Disk \\
+		1 & 6 \\
+		1 & 9 \\
+		1 & 11 \\
+		0 & Disk \\
+		1 & 4 \\
+		1 & 14 \\
+		0 & Disk \\
+		1 & 3 \\
+		1 & 12 \\
+		1 & 15 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection*{b)}
+
+\begin{table}[H]
+	\centering
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{ccccccc}
+			\toprule
+			Address & Virtual Page Number & Index & Tag & TLB Hit/Miss & Page Table Hit/Miss & Page Fault \\
+			\midrule
+			0x123d & 0x1 & 0x1 & 0x0 & Miss & Miss & True \\
+			0x08b3 & 0x0 & 0x0 & 0x0 & Miss & Hit & False \\
+			0x365c & 0x3 & 0x1 & 0x1 & Miss & Hit & False \\
+			0x871b & 0x8 & 0x0 & 0x4 & Miss & Miss & True \\
+			0xbee6 & 0xB & 0x1 & 0x5 & Miss & Hit & False \\
+			0x3140 & 0x3 & 0x1 & 0x1 & Hit  & Hit & False \\
+			0xc049 & 0xC & 0x0 & 0x6 & Miss & Miss & True \\
+			\bottomrule
+		\end{tabular}
+	}
+\end{table}
+
+The content of TLB and page table is as follows:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccccc}
+		\toprule
+		Valid & Tag & Index & Physical Page Number & Time Since Last Access \\
+		\midrule
+		1 & 0x4 & 0x0 & 14 & 4 \\
+		1 & 0x6 & 0x0 & 12 & 3 \\
+		1 & 0x5 & 0x1 & 6 & 2 \\
+		1 & 0x1 & 0x1 & 15 & 1 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc}
+		\toprule
+		Valid & Physical Page or In Disk \\
+		\midrule
+		1 & 5 \\
+		1 & 13 \\
+		0 & Disk \\
+		1 & 6 \\
+		1 & 9 \\
+		1 & 11 \\
+		0 & Disk \\
+		1 & 4 \\
+		1 & 14 \\
+		0 & Disk \\
+		1 & 3 \\
+		1 & 12 \\
+		1 & 15 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+\end{document}

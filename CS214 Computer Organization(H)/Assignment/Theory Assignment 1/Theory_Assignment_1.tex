@@ -1,0 +1,173 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm}
+\usepackage{minted}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Computer Organization(H): Theory Assignment 1}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu}
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Computer Organization(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Theory Assignment 1}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Problem 1}
+
+\begin{minted}[linenos]{gas}
+	addi x5, x7, -5  // f = h - 5
+	add  x5, x5, x6  // f = f + g
+\end{minted}
+
+\section*{Problem 2}
+
+\begin{minted}[linenos]{gas}
+	slli x5, x28, 2   // x5 = i * 4
+	add  x5, x5,  x10 // x5 = x5 + A
+	lw   x6, 0(x5)    // x6 = A[i]
+
+	slli x5, x29, 2   // x5 = j * 4
+	add  x5, x5,  x10 // x5 = x5 + A
+	lw   x7, 0(x5)    // x7 = A[j]
+
+	add  x5, x6, x7   // x5 = x6 + x7
+	sw   x5, 32(x11)  // B[8] = x5
+\end{minted}
+
+\section*{Problem 3}
+
+\subsection*{1)}
+
+\begin{minted}[linenos, breaklines]{c}
+	// Array[] is a int array with 5 elements.
+	// The following code uses bubble sort to sort the array in ascending order.
+	for (int i = 0; i < 5; i++) {
+		for (int j = 4; j > i; j--) {
+			if (Array[j] < Array[j - 1]) {
+				int temp = Array[j];
+				Array[j] = Array[j - 1];
+				Array[j - 1] = temp;
+			}
+		}
+	}
+\end{minted}
+
+\subsection*{2)}
+
+\begin{minted}[linenos, breaklines]{gas}
+	// The following code uses bubble sort to sort the array in ascending order.
+	// x22 is the base address of the array.
+	// x5 is the index i.
+	// x6 is the index j.
+	// x7, x28, x29 store temporary values.
+
+	li x5, 0 // i = 0
+	loop1:
+		li x6, 4 // j = 4
+		loop2:
+			slli x7, x6, 2   // x7 = j * 4
+			add  x7, x7, x22 // x7 = x7 + Array
+			lw   x28, 0(x7)  // x28 = Array[j]
+			lw   x29, -4(x7) // x29 = Array[j - 1]
+
+			blt  x28, x29, swap // if (Array[j] < Array[j - 1]) goto swap
+			j    end_swap       // else goto end_swap
+		swap:
+			sw   x28, -4(x7) // Array[j - 1] = x28
+			sw   x29, 0(x7)  // Array[j] = x29
+		end_swap:
+			addi x6, x6, -1    // j = j - 1
+			blt  x5, x6, loop2 // if (j > i) goto loop2
+		addi x5, x5, 1 // i = i + 1
+		slti x7, x5, 5 // if (i < 5) x7 = 1 else x7 = 0
+		bne  x7, x0, loop1 // if (x7 != 0) goto loop1
+\end{minted}
+
+\section*{Problem 4}
+
+\begin{center}
+	\begin{tabular}{ccccccc}
+		\toprule
+		Segmentation & funct7 & rs2 & rs1 & funct3 & rd & opcode \\
+		\midrule
+		Content & \texttt{0000000} & \texttt{00001} & \texttt{00001} & \texttt{000} & \texttt{00001} & \texttt{0110011} \\
+		Meaning & \texttt{ADD} & \texttt{x1} & \texttt{x1} & \texttt{ADD} & \texttt{x1} & \texttt{R-format} \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Assembly language instruction: \texttt{add x1, x1, x1}
+
+\section*{Problem 5}
+
+Since \texttt{opcode} is \texttt{0x3}, this is an \texttt{I-format} instruction.
+Then we can arrange the binary code as follows:
+
+\begin{center}
+	\begin{tabular}{ccccccc}
+		\toprule
+		Segmentation & imm[11:0] & rs1 & funct3 & rd & opcode \\
+		\midrule
+		Content & \texttt{000000000100} & \texttt{11011} & \texttt{010} & \texttt{00011} & \texttt{0000011} \\
+		Meaning & \texttt{4} & \texttt{x27} & \texttt{LW} & \texttt{x3} & \texttt{I-format} \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Assembly language instruction: \texttt{lw x3, 4(x27)}
+
+Binary representation: \texttt{00000000\_01001101\_10100001\_10000011}.
+\end{document}
