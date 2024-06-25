@@ -17,7 +17,7 @@ I hope this repo can help you with your study, but please be sure to follow the 
 | **CS215** | **Discrete Mathematics (H)** | 2023 Fall | Qi Wang | 90 |
 | **CS216** | **Algorithm Design and Analysis (H)** | 2024 Spring | Shan Chen | 93 |
 | **CS217** | **Data Structures and Algorithms Analysis (H)** | 2023 Fall | Pietro Simone Oliveto | 99 |
-| **CS311** | **Artificial Intelligence (H)** | 2024 Spring | Bo Yuan | Unfinished |
+| **CS311** | **Artificial Intelligence (H)** | 2024 Spring | Bo Yuan | 85 |
 | **MA212** | **Probability and Statistics** | 2023 Fall | Yiwei Zhang | 98 |
 
 ## Repo Structure :pencil2:
