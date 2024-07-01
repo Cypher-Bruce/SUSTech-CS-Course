@@ -1,6 +1,6 @@
-PWD /mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Artificial Intelligence/Final Exam
+PWD /mnt/c/Users/Cyphe/Documents/SUSTech Assignment/SUSTech-CS-Course/CS311 Artificial Intelligence (H)/Final Exam
 INPUT /usr/local/texlive/2023/texmf-var/web2c/luahbtex/lualatex.fmt
-INPUT /mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Artificial Intelligence/Final Exam/Exam Paper.tex
+INPUT /mnt/c/Users/Cyphe/Documents/SUSTech Assignment/SUSTech-CS-Course/CS311 Artificial Intelligence (H)/Final Exam/Exam Paper.tex
 OUTPUT Exam Paper.log
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/lualatexquotejobname.lua
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/base/ltluatex.lua

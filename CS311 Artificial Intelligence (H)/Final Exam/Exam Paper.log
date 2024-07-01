@@ -1,8 +1,8 @@
-This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.8.1)  28 JUN 2024 02:45
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.8.1)  2 JUL 2024 00:41
  system commands enabled.
  file:line:error style messages enabled.
-**"/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Artificial Intelligence/Final Exam/Exam Paper.tex"
-("/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/Term 4/Artificial Intelligence/Final Exam/Exam Paper.tex"
+**"/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/SUSTech-CS-Course/CS311 Artificial Intelligence (H)/Final Exam/Exam Paper.tex"
+("/mnt/c/Users/Cyphe/Documents/SUSTech Assignment/SUSTech-CS-Course/CS311 Artificial Intelligence (H)/Final Exam/Exam Paper.tex"
 LaTeX2e <2022-11-01> patch level 1
 Lua module: luaotfload 2022-10-03 3.23 Lua based OpenType font support
 Lua module: lualibs 2022-10-04 2.75 ConTeXt Lua standard libraries.
@@ -720,12 +720,12 @@ Here is how much of LuaTeX's memory you used:
  125016,1977958 words of node,token memory allocated
  1366 words of node memory still in use:
    30 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 79 attribute, 71 glue_spec, 79 attribute_list, 2 write, 24 pdf_literal, 24 pdf_colorstack nodes
-   avail lists: 1:8,2:281,3:120,4:14,5:171,6:54,7:2704,8:11,9:191,10:3,11:130
+   avail lists: 1:8,2:285,3:123,4:14,5:173,6:54,7:3048,8:11,9:196,10:3,11:142
  43488 multiletter control sequences out of 65536+600000
  41 fonts using 2463031 bytes
- 84i,12n,95p,510b,292s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,95p,531b,292s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/lm/lmr12.pfb>
-Output written on Exam Paper.pdf (3 pages, 130736 bytes).
+Output written on Exam Paper.pdf (3 pages, 131498 bytes).
 
 PDF statistics: 82 PDF objects out of 1000 (max. 8388607)
  45 compressed objects within 1 object stream
