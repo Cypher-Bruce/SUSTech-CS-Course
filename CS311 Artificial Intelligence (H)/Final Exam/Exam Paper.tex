@@ -1,0 +1,183 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,tikz,algorithm2e,ulem,amsfonts}
+\usepackage[most]{tcolorbox}
+\RestyleAlgo{ruled}
+\usetikzlibrary{graphs, graphdrawing}
+\usegdlibrary[trees]
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Artificial Intelligence(H): Final Exam}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu}
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\newtcolorbox{tipsbox}{
+  colback=yellow!20!white, % Background color
+  colframe=blue!80!black,  % Border color
+  fonttitle=\bfseries,     % Title font
+  title=More Info,         % Box title
+  breakable                % Make the box breakable
+}
+
+\newtcolorbox{warningbox}{
+  colback=yellow!20!white, % Background color
+  colframe=red!80!black,   % Border color
+  fonttitle=\bfseries,     % Title font
+  title=Easy to Mistake,   % Box title
+  breakable                % Make the box breakable
+}
+
+\newtcolorbox{examplebox}{
+  colback=yellow!20!white, % Background color
+  colframe=green!75!black, % Border color
+  fonttitle=\bfseries,     % Title font
+  title=Example,           % Box title
+  breakable                % Make the box breakable
+}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Artificial Intelligence(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Final Exam}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Problem 1: Search}
+
+Given an undirected graph $G$, with uniform cost $c$ on each edge. Each node is marked with a letter. Let the starting node be $A$ and the goal node be $G$. (The graph is given but not shown here.)
+
+\subsection*{(a)}
+
+Draw the search tree using breadth-first search. If there are multiple nodes to expand, expand the node in alphabetical order.
+
+\subsection*{(b)}
+
+Now we have a heuristic function $h$ for each node (for example $h(A) = 5$, $h(B) = 4$, $h(C) = 3 \ldots$). Draw the search tree, using A* search, starting from node $A$. (The heuristic function is given but not shown here.)
+
+\subsection*{(c)}
+
+What should the range of $c$ be to guarantee that the heuristic function is admissible?
+
+\section*{Problem 2: Minimax and Alpha-Beta Pruning}
+
+Given a tree $T$, where each leaf node is marked with its utility value. (The tree is given but not shown here.)
+
+\subsection*{(a)}
+
+Draw the alpha and beta values for each node in the tree, if the node is pruned, write NA.
+
+\subsection*{(b)}
+
+Mark each pruned branch with a cross.
+
+\subsection*{(c)}
+
+Mark the final path chosen by the alpha-beta pruning algorithm with a check mark, from the root to the leaf.
+
+\section*{Problem 3: CSP}
+
+\subsection*{(a)}
+
+State the worst case time complexity of the AC-3 algorithm, and explain why.
+
+\subsection*{(b)}
+
+Given a CSP with 3 variables $X, Y, Z$, and 3 domains $D_X = \{1, 2, 3\}$, $D_Y = \{1, 2, 3\}$, $D_Z = \{1, 2, 3\}$. The constraints are $X < Y$, $Y < Z$. Display how the AC-3 algorithm works on this CSP.
+
+\section*{Problem 4: Logic}
+
+Simplify $p \to (\neg (p \Leftrightarrow q))$ into a CNF form.
+
+\section*{Problem 5: Perceptron and Neural Network}
+
+\subsection*{(a)}
+
+Write the formula for the perceptron weight update.
+
+\subsection*{(b)}
+
+Display how to derive the formula for logistic regression weight update.
+
+\section*{Problem 6: SVM}
+
+Given two data points $(1, 1)$ and $(-1, -1)$.
+
+\subsection*{(a)}
+
+Write the object function for the soft margin SVM, with constraints. Let $C$ denote the penalty parameter.
+
+\subsection*{(b)}
+
+Suppose we find $w = \min(C, 1)$, find the corresponding $b$ for each $C$ (Hint: there might be multiple values for $b$).
+
+\section*{Problem 7: Naive Bayes}
+
+Given a dataset with 4 features and 1 label (binary). (The dataset is given but not shown here.)
+
+\subsection*{(a)}
+
+Calculate all the probabilities needed for the Naive Bayes algorithm.
+
+\subsection*{(b)}
+
+Does the Naive Bayes algorithm give correct prediction on data point number 1, 3 and 5?
+
+\subsection*{(c)}
+
+Suppose the strong assumption of Naive Bayes is not satisfied, how many data points are needed for the algorithm?
+
+\section*{Problem 8: Genetic Algorithm}
+
+Suppose we develop an algorithm to evolve the weights of a neural network, instead of using back-propagation. Please describe how to set up an experiment to compare these two ways of training, as fair as possible.
+
+\end{document}	
