@@ -1,0 +1,198 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+% \usepackage{setspace}
+% \setlength{\parindent}{0in}
+\usepackage{indentfirst}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,tikz,algorithm2e,ulem,amsfonts}
+\usepackage[most]{tcolorbox}
+\RestyleAlgo{ruled}
+\usetikzlibrary{graphs, graphdrawing}
+\usegdlibrary[trees]
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Algorithm Design and Analysis(H): Final Exam}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu}
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\newtcolorbox{tipsbox}{
+  colback=yellow!20!white, % Background color
+  colframe=blue!80!black,  % Border color
+  fonttitle=\bfseries,     % Title font
+  title=More Info,         % Box title
+  breakable                % Make the box breakable
+}
+
+\newtcolorbox{warningbox}{
+  colback=yellow!20!white, % Background color
+  colframe=red!80!black,   % Border color
+  fonttitle=\bfseries,     % Title font
+  title=Easy to Mistake,   % Box title
+  breakable                % Make the box breakable
+}
+
+\newtcolorbox{examplebox}{
+  colback=yellow!20!white, % Background color
+  colframe=green!75!black, % Border color
+  fonttitle=\bfseries,     % Title font
+  title=Example,           % Box title
+  breakable                % Make the box breakable
+}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Algorithm Design and Analysis(H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Final Exam}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+This final exam paper has been reconstructed from memory, and as a result, some details may be missing. I hope it serves as a useful reference and aid for future students.
+
+\section*{Problem 1: Greedy}
+
+You have $n$ suspicious transactions, each occurring at time $t_i$ with an error tolerance $e_i$. A new account also has $n$ transactions occurring at times $m_i$. The $i$-th transaction from the new account can be linked to the $j$-th transaction from the old account if the time difference is within the error tolerance, i.e., $|m_i - t_j| \leq e_j$. Each transaction can only be linked once.
+
+Design an algorithm to determine if all $n$ transactions from the old account can be linked to transactions from the new account. An $O(n^2)$ time complexity is acceptable. Explain why your algorithm is correct.
+
+\section*{Problem 2: Divide and Conquer}
+
+A node in a complete binary tree is considered a local minimum if its value is less than or equal to the values of all its neighbors (not just its children).
+
+Design an algorithm to find a local minimum in a complete binary tree with $O(\log n)$ time complexity, starting from the root node ($n$ is the number of nodes in the tree). You only know the value of a node when you visit it. Explain why your algorithm is correct.
+
+\section*{Problem 3: Dynamic Programming}
+
+As the manager of a computer shop, you can buy new computers at a fixed price $P$ at the start of each month (no matter how many computers you buy, the price will always be $P$). Each month $i$, $c_i$ computers will be sold immediately. Unsold computers are stored in a warehouse with capacity $W$ and a monthly storage fee $F$ per computer. Given the number of computers sold over $n$ months, design an algorithm to minimize the total cost of buying and storing computers. The time complexity of your algorithm should be a polynomial in $n$ and $W$.
+
+\newpage
+\section*{Problem 4: Polynomial Time Reduction}
+
+Two algorithms are defined as follows:
+\begin{itemize}
+  \item VERTEX-COVER: Determines in polynomial time if a graph $G$ has a vertex cover of size $k$.
+  \item FIND-VERTEX-COVER: Finds a vertex cover of size $k$ for a graph $G$ in polynomial time.
+\end{itemize}
+
+Prove that VERTEX-COVER and FIND-VERTEX-COVER are polynomial-time equivalent, i.e., VERTEX-COVER $\equiv_p$ FIND-VERTEX-COVER.
+
+\section*{Problem 5: Network Flow}
+
+You have a computer with operating system A and $n$ software programs. A new operating system B is installed on the same computer. Transplanting software $i$ from A to B gives a performance improvement of $p_i \geq 0$. Some software program pairs $i$ and $j$ work closely together: if only one of them is transplanted, there's a performance degradation of $d_{ij} \geq 0$. Software 1 cannot be transplanted to B.
+
+Design an algorithm to maximize the net performance improvement after transplanting the software programs. Explain the correctness of your algorithm (excluding the network flow algorithm's correctness).
+
+\section*{Problem 6: Randomized Algorithm}
+
+To find a four-coloring of a graph $G$, an edge is considered satisfied if its two endpoints have different colors. Design a randomized algorithm to color $G$ such that at least $\frac{3}{4}$ of the edges are satisfied. Explain why your algorithm is correct.
+
+\newpage
+
+\begin{center}
+  {\Large \bf Solutions}
+\end{center}
+
+The solutions are from myself and may not be the best solutions.
+
+\section*{Problem 1: Greedy}
+
+Initialize an empty bipartite graph with $n$ vertices on each side. If the $i$-th transaction from the new account can be linked to the $j$-th transaction from the old account, add an edge between the $i$-th on the left side and the $j$-th on the right side. Run the extended Gale-Shapley algorithm to find a maximum matching. If the matching is perfect, all transactions can be linked.
+
+\section*{Problem 2: Divide and Conquer}
+
+To achieve $O(\log n)$ time complexity, obviously we go through the tree in a binary search manner.
+
+\begin{algorithm}[H]
+  \caption{Find-Local-Minimum}
+  \KwIn{Graph $G$, root node $r$}
+  \KwOut{Local minimum}
+  Binary-Search($G$, $r$)\;
+\end{algorithm}
+
+\begin{algorithm}[H]
+  \caption{Binary-Search}
+  \KwIn{Graph $G$, current node $v$}
+  \KwOut{Local minimum}
+  \If{$v$ is a leaf node}{
+    \Return $v$\;
+  }
+  \If{$v$ is smaller than both children}{
+    \Return $v$\;
+  }
+  \If{$v$'s left child is smaller than $v$}{
+    \Return Binary-Search($G$, $v$'s left child)\;
+  }
+  \Return Binary-Search($G$, $v$'s right child)\;
+\end{algorithm}
+
+\section*{Problem 3: Dynamic Programming}
+
+Let $dp[i][j]$ be the minimum cost of buying and storing computers for the first $i$ months with $j$ computers in the warehouse. The recurrence relation is as follows:
+\begin{equation*}
+  dp[i][j] = \min
+  \begin{cases}
+    dp[i-1][k] + F \cdot k & \text{if } k = j + c_i \text{, i.e., do not buy any new computers} \\
+    dp[i-1][k] + P + F \cdot k & \text{if } k < j + c_i \text{, i.e., not enough computers in the warehouse} \\
+  \end{cases}
+\end{equation*}
+
+\section*{Problem 4: Polynomial Time Reduction}
+
+Omitted since it's presented in the lecture slides.
+
+\section*{Problem 5: Network Flow}
+
+Similar to image segmentation problem, we can construct a graph with $n$ nodes representing the software programs and extra nodes $s$ and $t$. For each software program $i$, add an edge from $s$ to $i$ with capacity $p_i$ and an edge from $i$ to $t$ with capacity $\infty$. For each software program pair $i$ and $j$, add edges from $i$ to $j$ and from $j$ to $i$ with capacity $d_{ij}$. Run a maximum flow algorithm to find the maximum net performance improvement.
+
+\section*{Problem 6: Randomized Algorithm}
+
+Same as the $\frac{7}{8}$-approximation algorithm for SAT, which is presented in the lecture slides.
+
+
+
+\end{document}
