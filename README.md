@@ -19,7 +19,7 @@ I will try to keep the structure of each course folder consistent, as follows:
 | **Midterm/Final Review** | Review notes |
 
 ## To Non-turing Students :100:
-For those who are not Turing students, you may find some info missing or not consistent with your course.
+For those who are not Turing students, you may find some info missing or inconsistent with your course.
 In that case, I suggest you refer to [SUSTech Course Info](https://github.com/NYH-Dolphin/SUSTech-Course-Info) from [NYH](https://github.com/NYH-Dolphin), or [SUSTech CSE Final Reviews](https://github.com/RoderickQiu/SUSTech_CSE_Final_Reviews) and [SUSTech CSE Projects](https://github.com/RoderickQiu/SUSTech_CSE_Projects) from [Roderick](https://github.com/RoderickQiu).
 
 ## Course List :white_check_mark:
