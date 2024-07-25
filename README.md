@@ -17,6 +17,7 @@ I will try to keep the structure of each course folder consistent, as follows:
 | **Assignment** | Course assignment. I include most of my submissions in the folder as well, but they may be inaccurate. The official answer will be presented in the same folder if available. |
 | **Project** | Project code, report and presentation |
 | **Midterm/Final Review** | Review notes |
+| **Final Exam** | Final exam paper (usually reconstructed from memory) |
 
 ## To Non-turing Students :100:
 For those who are not Turing students, you may find some info missing or inconsistent with your course.
