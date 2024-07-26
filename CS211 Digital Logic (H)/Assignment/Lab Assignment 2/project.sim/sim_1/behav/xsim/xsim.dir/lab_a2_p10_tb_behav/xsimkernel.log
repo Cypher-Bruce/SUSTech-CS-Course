@@ -1,7 +1,0 @@
-Running: xsim.dir/lab_a2_p10_tb_behav/xsimk.exe -simmode gui -wdb lab_a2_p10_tb_behav.wdb -simrunnum 0 -socket 10312
-Design successfully loaded
-Design Loading Memory Usage: 8256 KB (Peak: 8256 KB)
-Design Loading CPU Usage: 15 ms
-Simulation completed
-Simulation Memory Usage: 9004 KB (Peak: 9004 KB)
-Simulation CPU Usage: 15 ms

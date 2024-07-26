@@ -1,7 +1,0 @@
-Running: xsim.dir/subtraction_tb_behav/xsimk.exe -simmode gui -wdb subtraction_tb_behav.wdb -simrunnum 0 -socket 13309
-Design successfully loaded
-Design Loading Memory Usage: 8252 KB (Peak: 8252 KB)
-Design Loading CPU Usage: 15 ms
-Simulation completed
-Simulation Memory Usage: 8888 KB (Peak: 8888 KB)
-Simulation CPU Usage: 15 ms

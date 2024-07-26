@@ -1,7 +1,0 @@
-Running: xsim.dir/lab_a1_p1_behav/xsimk.exe -simmode gui -wdb lab_a1_p1_behav.wdb -simrunnum 0 -socket 7439
-Design successfully loaded
-Design Loading Memory Usage: 8692 KB (Peak: 8692 KB)
-Design Loading CPU Usage: 0 ms
-Simulation completed
-Simulation Memory Usage: 9320 KB (Peak: 9320 KB)
-Simulation CPU Usage: 0 ms

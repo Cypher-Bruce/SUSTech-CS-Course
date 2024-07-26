@@ -1,7 +1,0 @@
-Running: xsim.dir/moor_s1s2_rst_tb_behav/xsimk.exe -simmode gui -wdb moor_s1s2_rst_tb_behav.wdb -simrunnum 0 -socket 12169
-Design successfully loaded
-Design Loading Memory Usage: 8288 KB (Peak: 8288 KB)
-Design Loading CPU Usage: 0 ms
-Simulation completed
-Simulation Memory Usage: 9052 KB (Peak: 9052 KB)
-Simulation CPU Usage: 0 ms
