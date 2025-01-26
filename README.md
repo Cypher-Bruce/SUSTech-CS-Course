@@ -34,5 +34,9 @@ In that case, I suggest you refer to [SUSTech Course Info](https://github.com/NY
 | **CS215** | **Discrete Mathematics (H)** | 2023 Fall | Qi Wang | 90 |
 | **CS216** | **Algorithm Design and Analysis (H)** | 2024 Spring | Shan Chen | 93 |
 | **CS217** | **Data Structures and Algorithms Analysis (H)** | 2023 Fall | Pietro Simone Oliveto | 99 |
+| **CS301** | **Embedded System** | 2024 Fall | Yuhui Bai | 97 |
+| **CS305** | **Computer Network** | 2024 Fall | Ming Tang | 97 |
 | **CS311** | **Artificial Intelligence (H)** | 2024 Spring | Bo Yuan | 85 |
+| **CS329** | **Machine Learning (H)** | 2024 Fall | Qi Hao | 95 |
+| **CS334** | **Operating System (H)** | 2024 Fall | Yinqian Zhang | 99 |
 | **MA212** | **Probability and Statistics** | 2023 Fall | Yiwei Zhang | 98 |
