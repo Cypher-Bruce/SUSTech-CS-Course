@@ -1,0 +1,1 @@
+{"rule":"MISSING_COMMA_AFTER_INTRODUCTORY_PHRASE","sentence":"^\\QFor explicit I/O, we make them privileged instructions that can only be executed in kernel mode, protecting the I/O devices from user processes.\\E$"}

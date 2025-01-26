@@ -1,0 +1,278 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,caption,amsfonts}
+\usepackage[open]{bookmark}
+\usepackage{minted}
+
+\newcommand{\pard}[2]{\frac{\partial #1}{\partial #2}}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Machine Learning (H): Assignment 1}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Machine Learning (H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 1}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 1}
+
+The sum of squares error is
+\begin{equation*}
+	E(\mathbf{w}) = \frac{1}{2} \sum_{n=1}^{N} [y(x_n, \mathbf{w}) - t_n]^2
+\end{equation*}
+where $t_n$ is the target value of $x_n$.
+
+The partial derivative of $E(\mathbf{w})$ with respect to $w_i$ is
+\begin{align*}
+	\pard{E(\mathbf{w})}{w_i} &= \pard{}{w_i} \frac{1}{2} \sum_{n=1}^{N} [y(x_n, \mathbf{w}) - t_n]^2 \\
+	&= \frac{1}{2} \sum_{n=1}^{N} 2 [y(x_n, \mathbf{w}) - t_n] \pard{y(x_n, \mathbf{w})}{w_i} \\
+	&= \sum_{n=1}^{N} [y(x_n, \mathbf{w}) - t_n] \pard{y(x_n, \mathbf{w})}{w_i} \\
+	&= \sum_{n=1}^{N} [y(x_n, \mathbf{w}) - t_n] x_n^i
+\end{align*}
+
+By setting the partial derivative to zero, we have
+\begin{align*}
+	\sum_{n=1}^{N} [y(x_n, \mathbf{w}) - t_n] x_n^i &= 0 \\
+	\sum_{n=1}^{N} y(x_n, \mathbf{w}) x_n^i &= \sum_{n=1}^{N} t_n x_n^i \\
+	\sum_{n=1}^{N} \left( x_n^i \sum_{j=0}^{M} w_j x_n^j \right) &= \sum_{n=1}^{N} t_n x_n^i
+\end{align*}
+
+Let $X$, $T$ be two matrices, where $X_{ij} = x_i^{j-1}$, $T_i = t_i$. Then the equation can be written as
+\begin{equation*}
+	X^T X \mathbf{w} = X^T T
+\end{equation*}
+
+Hence, the optimal $\mathbf{w}^*$ that minimizes the sum of squares error is
+\begin{equation*}
+	\mathbf{w}^* = (X^T X)^{-1} X^T T
+\end{equation*}
+
+\section*{Question 2}
+
+\subsection*{a}
+
+The probability of selecting an apple is
+\begin{align*}
+	P(\text{apple}) &= P(\text{apple} | r) P(r) + P(\text{apple} | b) P(b) + P(\text{apple} | g) P(g) \\
+	&= 0.3 \times 0.2 + 0.5 \times 0.2 + 0.3 \times 0.6 \\
+	&= 0.34
+\end{align*}
+
+\subsection*{b}
+
+If the fruit is an orange, the probability of it being from the green box is
+\begin{align*}
+	P(g | \text{orange}) &= \frac{P(\text{orange} | g) P(g)}{P(\text{orange})} \\
+	&= \frac{P(\text{orange} | g) P(g)}{P(\text{orange} | r) P(r) + P(\text{orange} | b) P(b) + P(\text{orange} | g) P(g)} \\
+	&= \frac{0.18}{0.36} \\
+	&= 0.5
+\end{align*}
+
+\section*{Question 3}
+
+\subsection*{a}
+
+For continuous random variables $x$ and $z$
+\begin{align*}
+	\mathbb{E}[x+z] &= \iint (x+z) p(x, z) dx dz \\
+	&= \iint x p(x, z) dx dz + \iint z p(x, z) dx dz \\
+	&= \int x \left( \int p(x, z) dz \right) dx + \int z \left( \int p(x, z) dx \right) dz \\
+	&= \int x p(x) dx + \int z p(z) dz \\
+	&= \mathbb{E}[x] + \mathbb{E}[z]
+\end{align*}
+
+For discrete random variables $x$ and $z$
+\begin{align*}
+	\mathbb{E}[x+z] &= \sum_x \sum_z (x+z) p(x, z) \\
+	&= \sum_x \sum_z x p(x, z) + \sum_x \sum_z z p(x, z) \\
+	&= \sum_x x \left( \sum_z p(x, z) \right) + \sum_z z \left( \sum_x p(x, z) \right) \\
+	&= \sum_x x p(x) + \sum_z z p(z) \\
+	&= \mathbb{E}[x] + \mathbb{E}[z]
+\end{align*}
+
+\subsection*{b}
+
+\begin{align*}
+	\text{var}[x+z] &= \mathbb{E}[(x+z)^2] - \mathbb{E}[x+z]^2 \\
+	&= \mathbb{E}[x^2 + 2xz + z^2] - (\mathbb{E}[x] + \mathbb{E}[z])^2 \\
+	&= \mathbb{E}[x^2] + 2\mathbb{E}[xz] + \mathbb{E}[z^2] - \mathbb{E}[x]^2 - 2\mathbb{E}[x]\mathbb{E}[z] - \mathbb{E}[z]^2 \\
+\end{align*}
+
+Since $x$ and $z$ are statistically independent, $\mathbb{E}[xz] = \mathbb{E}[x]\mathbb{E}[z]$, the equation becomes
+\begin{align*}
+	\text{var}[x+z] &= \mathbb{E}[x^2] + \mathbb{E}[z^2] - \mathbb{E}[x]^2 - \mathbb{E}[z]^2 \\
+	&= \text{var}[x] + \text{var}[z]
+\end{align*}
+
+\section*{Question 4}
+
+\subsection*{a}
+
+The log likelihood function for the Poisson distribution is
+\begin{equation*}
+	\log p(\mathcal{D} | \lambda) = \sum_{n=1}^{N} \log \frac{\lambda^{X_n} e^{-\lambda}}{X_n!} = \sum_{n=1}^{N} (-\lambda + X_n \log \lambda - \log X_n!)
+\end{equation*}
+
+The derivative of the log likelihood function with respect to $\lambda$ is
+\begin{equation*}
+	\pard{}{\lambda} \log p(\mathcal{D} | \lambda) = \sum_{n=1}^{N} (-1 + \frac{X_n}{\lambda})
+\end{equation*}
+
+By setting the derivative to zero, we have
+\begin{align*}
+	\sum_{n=1}^{N} (-1 + \frac{X_n}{\lambda}) &= 0 \\
+	\sum_{n=1}^{N} X_n &= \sum_{n=1}^{N} \lambda \\
+	\lambda &= \frac{1}{N} \sum_{n=1}^{N} X_n
+\end{align*}
+
+Hence, the sample mean is the maximum likelihood estimate of $\hat{\lambda}$.
+
+\subsection*{b}
+
+The log likelihood function for the exponential distribution is
+\begin{equation*}
+	\log p(\mathcal{D} | \lambda) = \sum_{n=1}^{N} \log \frac{1}{\lambda} e^{-\frac{X_n}{\lambda}} = \sum_{n=1}^{N} (-\log \lambda - \frac{X_n}{\lambda})
+\end{equation*}
+
+The derivative of the log likelihood function with respect to $\lambda$ is
+\begin{equation*}
+	\pard{}{\lambda} \log p(\mathcal{D} | \lambda) = \sum_{n=1}^{N} (\frac{X_n}{\lambda^2} - \frac{1}{\lambda})
+\end{equation*}
+
+By setting the derivative to zero, we have
+\begin{align*}
+	\sum_{n=1}^{N} (\frac{X_n}{\lambda^2} - \frac{1}{\lambda}) &= 0 \\
+	\sum_{n=1}^{N} X_n &= \sum_{n=1}^{N} \lambda \\
+	\lambda &= \frac{1}{N} \sum_{n=1}^{N} X_n
+\end{align*}
+
+Hence, the sample mean is the maximum likelihood estimate of $\hat{\lambda}$.
+
+\section*{Question 5}
+
+\subsection*{a}
+
+The probability of classifying correctly is
+\begin{equation*}
+	p(\text{correct}) = p(x \in R_1, C_1) + p(x \in R_2, C_2) = \int_{R_1} p(x, C_1) dx + \int_{R_2} p(x, C_2) dx
+\end{equation*}
+
+The probability of classifying incorrectly is
+\begin{equation*}
+	p(\text{mistake}) = p(x \in R_1, C_2) + p(x \in R_2, C_1) = \int_{R_1} p(x, C_2) dx + \int_{R_2} p(x, C_1) dx
+\end{equation*}
+
+\subsection*{b}
+
+The derivative of expected loss with respect to function $y(x)$ is
+\begin{align*}
+	\pard{\mathbb{E}[L(t, y(x))]}{y(x)} &= \pard{}{y(x)} \iint ||t - y(x)||^2 p(x, t) dx dt \\
+	&= 2 \int (y(x) - t) p(x, t) dt
+\end{align*}
+
+By setting the derivative to zero, we have
+\begin{align*}
+	\int (y(x) - t) p(x, t) dt &= 0 \\
+	\int y(x) p(x, t) dt &= \int t p(x, t) dt \\
+	y(x) \int p(x, t) dt &= \int t p(x, t) dt \\
+	y(x) p(x) &= \int t p(x, t) dt \\
+	y(x) &= \int t p(t | x) dt \\
+	y(x) &= \mathbb{E}_t[t | x]
+\end{align*}
+
+\section*{Question 6}
+
+\subsection*{a}
+
+The entropy for $X \sim \text{Gaussian}(\mu, \sigma^2)$ is
+\begin{align*}
+	H(X) &= -\int_{- \infty}^{\infty} p(x) \log p(x) dx \\
+	&= - \mathbb{E}[\log p(x)] \\
+	&= - \mathbb{E}[-\frac{1}{2} \log(2 \pi \sigma^2) - \frac{(x - \mu)^2}{2 \sigma^2}] \\
+	&= \frac{1}{2} \log(2 \pi \sigma^2) + \frac{1}{2 \sigma^2} \mathbb{E}[(x - \mu)^2] \\
+\end{align*}
+
+For Gaussian distribution, we have $\mathbb{E}[(x - \mu)^2] = \sigma^2$, hence
+\begin{equation*}
+	H(X) = \frac{1}{2} \log(2 \pi \sigma^2) + \frac{1}{2}
+\end{equation*}
+
+\subsection*{b}
+
+For continuous random variables $x$ and $y$, the mutual information is
+\begin{align*}
+	I[x, y] &= \iint p(x, y) \log \frac{p(x, y)}{p(x) p(y)} dx dy \\
+	&= \iint p(x, y) \log \frac{p(x, y)}{p(x)} dx dy - \iint p(x, y) \log p(y) dx dy \\
+	&= \iint p(x, y) \log \frac{p(x, y)}{p(x)} dx dy - \int \left( \int p(x, y) dx \right) \log p(y) dy \\
+	&= \iint p(x, y) \log \frac{p(x, y)}{p(x)} dx dy - \int p(y) \log p(y) dy \\
+	&= H(y) - H(y | x)
+\end{align*}
+
+Since $x$ and $y$ are interchangeable, we have $I[x, y] = H(x) - H(x | y) = H(y) - H(y | x)$.
+
+For discrete random variables $x$ and $y$, the mutual information is
+
+\begin{align*}
+	I[x, y] &= \sum_x \sum_y p(x, y) \log \frac{p(x, y)}{p(x) p(y)} \\
+	&= \sum_x \sum_y p(x, y) \log \frac{p(x, y)}{p(x)} - \sum_x \sum_y p(x, y) \log p(y) \\
+	&= \sum_x \sum_y p(x, y) \log p(y | x) - \sum_y \left( \sum_x p(x, y) \right) \log p(y) \\
+	&= \sum_x \sum_y p(x, y) \log p(y | x) - \sum_y p(y) \log p(y) \\
+	&= H(y) - H(y | x)
+\end{align*}
+
+Similarly, we have $I[x, y] = H(x) - H(x | y) = H(y) - H(y | x)$.
+
+\end{document}

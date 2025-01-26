@@ -1,0 +1,149 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,caption}
+\usepackage[open]{bookmark}
+\usepackage{minted}
+\usepackage{paracol}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Operating System (H): Assignment 6}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Operating System (H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 6}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 1}
+
+When a process accesses a memory page not present in the physical memory, a page fault is raised, and the page fault handler is called. The operating system swaps the page from the disk to the physical memory and updates the page table. It also adds the page to TLB. The page fault handler then restarts the instruction that caused the page fault. The process continues to run.
+
+\section*{Question 2}
+
+\subsection*{1.}
+
+Polling does not need to perform context switching, but it is inefficient because it wastes CPU time since the CPU is continuously checking the status of the device. 
+
+In contrast, interrupt-driven I/O is more efficient because the CPU can perform other tasks while waiting for the device to finish the I/O operation. The CPU is only interrupted when the device is ready. However, interrupt-driven I/O requires context switching, which is time-consuming. Also, if a huge number of interrupts are generated, the CPU may spend more time handling interrupts than performing useful work, which is called \textbf{livelock}.
+
+\subsection*{2.}
+
+PIO transfers data between the device and the main memory one byte at a time. It is inefficient because it requires the CPU to be involved in every data transfer. The CPU must read the data from the device and write it to the main memory. This process is slow and wastes CPU time.
+
+DMA transfers data between the device and the main memory without CPU intervention. The CPU initiates the data transfer and can perform other tasks while the data is being transferred. This allows overlapping of I/O operations with CPU operations, which improves system performance. However, DMA requires additional hardware.
+
+\subsection*{3.}
+
+For memory-mapped I/O, we modify the MMU so that only the kernel can access the I/O address space, thus protecting the I/O devices from user processes. For explicit I/O, we make them privileged instructions that can only be executed in kernel mode, protecting the I/O devices from user processes.
+
+\section*{Question 3}
+
+\subsection*{1.}
+
+READ / WRITE data time = seek time + rotational latency + transfer time
+
+\subsection*{2.}
+
+Since the sector is random, we calculate the rotational latency as the average rotational latency, which is half of the time for one revolution
+\begin{equation*}
+	t_r = 0.5 \ \text{Round} / 12000 \ \text{RPM} = 2.5 \text{ms}
+\end{equation*}
+
+Since 6 sectors are read, the total rotational latency is
+\begin{equation*}
+	T_r = 6 \times 2.5 \text{ms} = 15 \text{ms}
+\end{equation*}
+
+\subsubsection*{FIFO}
+
+Access sequence: 70, 20, 90, 110, 60, 20
+\begin{equation*}
+	T_s = [(100 - 70) + (70 - 20) + (90 - 20) + (110 - 90) + (110 - 60) + (60 - 20)] * 1 \text{ms} = 260 \text{ms}
+\end{equation*}
+\begin{equation*}
+	T_{\text{total}} = T_s + T_r = 260 \text{ms} + 15 \text{ms} = 275 \text{ms}
+\end{equation*}
+
+\subsubsection*{SSTF}
+
+Access sequence: 110, 90, 70, 60, 20, 20
+\begin{equation*}
+	T_s = [(110 - 100) + (110 - 90) + (90 - 70) + (70 - 60) + (60 - 20) + (20 - 20)] * 1 \text{ms} = 100 \text{ms}
+\end{equation*}
+\begin{equation*}
+	T_{\text{total}} = T_s + T_r = 100 \text{ms} + 15 \text{ms} = 115 \text{ms}
+\end{equation*}
+
+\subsubsection*{SCAN}
+
+Access sequence: 110, 90, 70, 60, 20, 20
+\begin{equation*}
+	T_s = [(200 - 100) + (200 - 20)] * 1 \text{ms} = 280 \text{ms}
+\end{equation*}
+\begin{equation*}
+	T_{\text{total}} = T_s + T_r = 280 \text{ms} + 15 \text{ms} = 295 \text{ms}
+\end{equation*}
+
+\subsubsection*{CSCAN}
+
+Access sequence: 110, 20, 20, 60, 70, 90
+\begin{equation*}
+	T_s = [(200 - 100) + 200 + 90] * 1 \text{ms} = 390 \text{ms}
+\end{equation*}
+\begin{equation*}
+	T_{\text{total}} = T_s + T_r = 390 \text{ms} + 15 \text{ms} = 405 \text{ms}
+\end{equation*}
+
+\end{document}

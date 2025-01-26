@@ -1,0 +1,266 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,caption,amsfonts}
+\usepackage[open]{bookmark}
+\usepackage{minted}
+
+\newcommand{\pard}[2]{\frac{\partial #1}{\partial #2}}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Machine Learning (H): Assignment 5}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Machine Learning (H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 5}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 1}
+
+\subsection*{(a)}
+
+\begin{equation*}
+	p(D|w) = \prod_{n=1}^{N} p(t_n|x_n,w) = \prod_{n=1}^{N} N(t_n|y(x_n,w),\Sigma)
+\end{equation*}
+
+The log likelihood is
+\begin{equation*}
+	\ln p(D|w) = -\frac{1}{2} \sum_{n=1}^{N} \{t_n - y(x_n,w)\}^T \Sigma^{-1} \{t_n - y(x_n,w)\} - \frac{N}{2} \ln |\Sigma| - \frac{N}{2} \ln (2\pi)
+\end{equation*}
+
+Taking the gradient with respect to $w$ and setting it to zero, we have
+\begin{equation*}
+	\pard{}{w} \ln p(D|w) = \pard{}{w} \left\{-\frac{1}{2} \sum_{n=1}^{N} \{t_n - y(x_n,w)\}^T \Sigma^{-1} \{t_n - y(x_n,w)\}\right\} = 0
+\end{equation*}
+
+By solving the above equation, we can get the maximum likelihood solution $w_{ML}$.
+
+\subsection*{(b)}
+
+Taking the gradient of the log likelihood with respect to $\Sigma$ and setting it to zero, we have
+\begin{equation*}
+	\pard{}{\Sigma} \ln p(D|w) = -\frac{1}{2} \sum_{n=1}^{N} \{t_n - y(x_n,w)\} \{t_n - y(x_n,w)\}^T + \frac{N}{2} \Sigma^{-1} = 0
+\end{equation*}
+
+Thus, we have
+\begin{equation*}
+	\Sigma_{ML} = \frac{1}{N} \sum_{n=1}^{N} \{t_n - y(x_n,w_{ML})\} \{t_n - y(x_n,w_{ML})\}^T
+\end{equation*}
+
+\section*{Question 2}
+
+We can write the output as
+\begin{equation*}
+	y(a) = 2\sigma(a) - 1
+\end{equation*}
+which will be in the range $[-1,1]$.
+
+Then, the conditional distribution of $t$ given $x$ and $w$ is
+\begin{equation*}
+	p(t|x,w) = [\frac{1 + y(x,w)}{2}]^{\frac{1 + t}{2}} [\frac{1 - y(x,w)}{2}]^{\frac{1 - t}{2}}
+\end{equation*}
+
+The error function is
+\begin{align*}
+	E(w) &= -\ln p(D|w) \\
+	&= -\sum_{n=1}^{N} \ln p(t_n|x_n,w) \\
+	&= -\sum_{n=1}^{N} \left\{ \frac{1 + t_n}{2} \ln \frac{1 + y(x_n,w)}{2} + \frac{1 - t_n}{2} \ln \frac{1 - y(x_n,w)}{2} \right\}\\
+	&= - \frac{1}{2} \sum_{n=1}^{N} \left\{ (1 + t_n) \ln (1 + y(x_n,w)) + (1 - t_n) \ln (1 - y(x_n,w)) \right\} + N \ln 2
+\end{align*}
+
+
+
+We can also write the output as
+\begin{align*}
+	y(a) &= 2\sigma(a) - 1 \\
+	&= \frac{2}{1 + \exp(-a)} - 1 \\
+	&= \frac{1 - \exp(-a)}{1 + \exp(-a)} \\
+	&= \frac{\exp(a) - 1}{\exp(a) + 1} \\
+	&= \tanh(\frac{a}{2})
+\end{align*}
+
+Thus, the appropriate choice of the activation function is $\tanh(\frac{a}{2})$.
+
+\section*{Question 3}
+
+\subsection*{(a)}
+
+\begin{align*}
+	E[t|x] &= \int t p(t|x) dt \\
+	&= \int t \sum_{k=1}^{K} \pi_k \mathcal{N}(t|\mu_k,\sigma_k^2) dt \\
+	&= \sum_{k=1}^{K} \pi_k \int t \mathcal{N}(t|\mu_k,\sigma_k^2) dt \\
+	&= \sum_{k=1}^{K} \pi_k \mu_k
+\end{align*}
+
+\subsection*{(b)}
+
+\begin{align*}
+	s^2(x) &= E[||t - E[t|x]||^2|x] \\
+	&= \int (t - E[t|x])^2 p(t|x) dt \\
+	&= \int (t - \sum_{k=1}^{K} \pi_k \mu_k)^2 \sum_{k=1}^{K} \pi_k \mathcal{N}(t|\mu_k,\sigma_k^2) dt \\
+	&= \sum_{k=1}^{K} \pi_k \int (t - \mu_k)^2 \mathcal{N}(t|\mu_k,\sigma_k^2) dt \\
+	&= \sum_{k=1}^{K} \pi_k (\sigma_k^2 + ||\mu_k - \sum_{l=1}^{K} \pi_l \mu_l||^2)
+\end{align*}
+
+\section*{Question 4}
+
+Yes. The weight for $A$ is 1 and the weight for $B$ is -1 with a bias of -0.5. The decision boundary is $A - B - 0.5 = 0$. 
+
+\section*{Question 5}
+
+\subsection*{(a)}
+
+There are $3 \times 4 \times 4 = 48$ parameters in the convolutional layer.
+
+\subsection*{(b)}
+
+There are $3 \times 5 \times 5 = 75$ ReLU operations.
+
+\subsection*{(c)}
+
+There are 48 parameters in the convolutional layer and $3 \times 5 \times 5 \times 4 = 300$ parameters in the fully connected layer. Thus, there are $48 + 300 = 348$ parameters in total.
+
+\subsection*{(d)}
+
+True
+
+\subsection*{(e)}
+
+With the same layer size, the convolutional neural network has fewer parameters than the fully connected neural network. Thus, the convolutional neural network is less likely to overfit and easier to train.
+
+\section*{Question 6}
+
+\subsection*{(a)}
+
+Since the old function is
+\begin{equation*}
+	Y = 
+	\begin{bmatrix}
+		w_5 & w_6
+	\end{bmatrix}
+	\begin{bmatrix}
+		w_1 & w_3 \\
+		w_2 & w_4
+	\end{bmatrix}
+	\begin{bmatrix}
+		X_1 \\
+		X_2
+	\end{bmatrix}
+\end{equation*}
+
+It can be simplified as
+\begin{equation*}
+	Y = 
+	\begin{bmatrix}
+		w_5*w_1 + w_6*w_2 & w_5*w_3 + w_6*w_4
+	\end{bmatrix}
+	\begin{bmatrix}
+		X_1 \\
+		X_2
+	\end{bmatrix}
+\end{equation*}
+
+Let the two inputs directly connected to the output unit. And the new weights are $C * (w_5*w_1 + w_6*w_2)$ and $C * (w_5*w_3 + w_6*w_4)$.
+
+\subsection*{(b)}
+
+No, such neural network cannot capture any non-linear relationship in the input data.
+
+\subsection*{(c)}
+
+To make the neural network behaves like a XOR gate, it should satisfy the following conditions (generated by truth table)
+\begin{align*}
+	w_5 \sigma(w_1 + w_3) + w_6 \sigma(w_2 + w_4) &\leq 0 \\
+	w_5 \sigma(w_1) + w_6 \sigma(w_2) &> 0 \\
+	w_5 \sigma(w_3) + w_6 \sigma(w_4) &> 0 \\
+\end{align*}
+
+By randomly guessing the weights, we can find that the weights $w_1 = 8$, $w_2 = 1$, $w_3 = 7$, $w_4 = 1$, $w_5 = 6$, $w_6 = -7$,  satisfy the conditions.
+
+\begin{minted}{python}
+import numpy as np
+
+def sigmoid(x):
+  return 1 / (1 + np.exp(-x))
+def threshold(x):
+  return np.where(x > 0, 1, 0)
+def random_init():
+  w = np.random.randint(-10, 10, size=6)
+  return w
+def nn(w, x):
+  w_1, w_2, w_3, w_4, w_5, w_6 = w
+  x_1, x_2 = x
+  z_1 = w_1 * x_1 + w_3 * x_2
+  a_1 = sigmoid(z_1)
+  z_2 = w_2 * x_1 + w_4 * x_2
+  a_2 = sigmoid(z_2)
+  return threshold(w_5 * a_1 + w_6 * a_2)
+
+XOR_x = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+XOR_y = np.array([0, 1, 1, 0])
+while True:
+  flag = False
+  w = random_init()
+  for x, y in zip(XOR_x, XOR_y):
+    if nn(w, x) != y:
+      flag = True
+      break
+      
+  if not flag:
+    break
+print(w)
+\end{minted}
+
+\end{document}

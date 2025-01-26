@@ -1,0 +1,152 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,caption}
+\usepackage[open]{bookmark}
+\usepackage{minted}
+\usepackage{paracol}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Operating System (H): Assignment 5}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Operating System (H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 5}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 1}
+
+\subsection*{(1)}
+
+\subsubsection*{i.}
+
+For the first access, since the TLB is empty, we need to access the page table, then the physical memory. Thus, the total time is
+\begin{equation*}
+	t = 10 \text{ns} + 2 \times 100 \text{ns} = 210 \text{ns}
+\end{equation*}
+
+\subsubsection*{ii.}
+
+Since the valid bit of the page table entry is 0, the data is not present in the physical memory, and we need to access the disk. After we fetch the data from the disk, the instruction is executed once again, and it will find the data in TLB and then access the physical memory. Thus, the total time is
+\begin{equation*}
+	t = 10 \text{ns} + 100 \text{ns} + 10^8 \text{ns} + 10 \text{ns} + 100 \text{ns} = 10^8 + 220 \text{ns}
+\end{equation*}
+
+\subsubsection*{iii.}
+
+The third access is similar to the first access, and the total time is
+\begin{equation*}
+	t = 10 \text{ns} + 2 \times 100 \text{ns} = 210 \text{ns}
+\end{equation*}
+
+\subsection*{(2)}
+
+When the second access triggers page fault, the least recently used page is replaced. Since we accessed page \texttt{122H} in the first access, page \texttt{233H} is the least recently used page. Thus, the page table is updated as follows
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccc}
+		\toprule
+		Virtual Page & Physical Page & Valid Bit \\
+		\midrule
+		0 & \texttt{233H} & 1 \\
+		1 & \texttt{122H} & 1 \\
+		2 & & 0 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Then, the third access will trigger another page fault. Now the least recently used page is page \texttt{122H}, and the page table is updated as follows
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccc}
+		\toprule
+		Virtual Page & Physical Page & Valid Bit \\
+		\midrule
+		0 & \texttt{233H} & 1 \\
+		1 & & 0 \\
+		2 & \texttt{122H} & 1 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Thus, after all three accesses, the corresponding physical address for Virtual address \texttt{0x0555H} is \texttt{0x233555H}.
+
+\section*{Question 2}
+
+For virtual address \texttt{0x0000\_0021\_2345\_6789} under SV39 paging, it can be divided into four parts: VPN2, VPN1, VPN0, and offset. The size of each part is 9 bits, 9 bits, 9 bits, and 12 bits, respectively. Thus, the VPN2, VPN1, VPN0, and offset are \texttt{0x084}, \texttt{11A}, \texttt{056}, and \texttt{789}, respectively.
+
+\subsection*{(1)}
+
+The physical page number of the root page table is defined as the lower 44 bits of the \texttt{satp} register. Thus, the physical page number of the root page table is \texttt{0x000\_0008\_4000}. To find the physical address of the root page table, we need to multiply it by $2^{12}$, which is the page size. Thus, the physical address of the root page table is \texttt{0x000\_0008\_4000} $\times 2^{12} =$ \texttt{0x00\_0000\_8400\_0000}.
+
+A second level page table is allocated at physical page \texttt{0x000\_0008\_6002}, and the \texttt{0x084}-th entry of the root page table points to this page table. The corresponding page table entry is \texttt{0x000\_0008\_6002} $\times 2^{10} =$ \texttt{0x0000\_0000\_2180\_0800}.
+
+\subsection*{(2)}
+
+The physical address of the second level page table is \texttt{0x000\_0008\_6002} $\times 2^{12} =$ \\ \texttt{0x00\_0000\_8600\_2000}, as calculated in the previous part.
+
+A new third level page table is allocated at physical page \texttt{0x000\_0008\_6001}, and the \texttt{0x11A}-th entry of the second level page table points to this page table. The corresponding page table entry is \texttt{0x000\_0008\_6001} $\times 2^{10} =$ \texttt{0x0000\_0000\_2180\_0400}.
+
+\subsection*{(3)}
+
+The physical address of the third level page table is \texttt{0x000\_0008\_6001} $\times 2^{12} =$ \\ \texttt{0x00\_0000\_8600\_1000}, as calculated in the previous part.
+
+A new page will be allocated for the requested virtual address, at physical page \\ \texttt{0x000\_0008\_6000}. The \texttt{0x056}-th entry of the third level page table points to this page. The corresponding page table entry is \texttt{0x000\_0008\_6000} $\times 2^{10} =$ \\ \texttt{0x0000\_0000\_2180\_0000}.
+
+\subsection*{(4)}
+
+The physical address corresponding to the virtual address \texttt{0x0000\_0021\_2345\_6789} is \texttt{0x00\_0000\_8600\_0789}.
+
+\end{document}

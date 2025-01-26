@@ -1,0 +1,136 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,caption}
+\usepackage[open]{bookmark}
+\usepackage{minted}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Operating System (H): Assignment 2}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Operating System (H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 2}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 1}
+
+\subsection*{(1)}
+
+The three easy pieces of operating system are:
+\begin{enumerate}
+    \item \textbf{Virtualization}: OS transforms the physical hardware into a more general and flexible virtual hardware with uniform interface. This allows multiple processes to run on the same machine without interfering with each other.
+    \item \textbf{Concurrency}: OS allows multiple processes to run on the same machine at the same time, which is achieved by time-sharing and context switching.
+	\item \textbf{Persistence}: OS provides a file system to store data persistently. This allows data to be stored and retrieved even after the machine is powered off.
+\end{enumerate}
+
+\subsection*{(2)}
+
+In Operating System Concept, the chapters corresponding to Virtualization are: Chapter 3 (Process), Chapter 5 (CPU Scheduling), Chapter 9 (Main Memory) and Chapter 10 (Virtual Memory).
+
+The chapters corresponding to Concurrency are: Chapter 4 (Threads \& Concurrency), Chapter 6 (Synchronization Tools), Chapter 7 (Synchronization Examples) and Chapter 8 (Deadlocks).
+
+The chapters corresponding to Persistence are: Chapter 11-12 (Storage Management) and Chapter 13-15 (File-System).
+
+\section*{Question 2}
+
+The context switch happens with the following steps:
+\begin{enumerate}
+	\item \textbf{OS gain control}: A system call or timer interrupt occurs. The hardware saves the current process's context (registers, program counter, etc.) to the kernel stack and switch to the kernel mode. Then it jumps to the corresponding handler.
+	\item \textbf{Scheduling}: The scheduler of the OS decides which process to run next. If the scheduler decides to switch to another process, a context switch is needed.
+	\item \textbf{Saving and loading context}: The OS saves the current process's context (registers, program counter, etc.) from the kernel stack to the PCB of the process. Then it loads the context of the next process from its PCB to the hardware.
+	\item \textbf{Return to user mode}: The hardware switches to the user mode and jumps to the program counter of the next process. The next process continues to run.
+\end{enumerate}
+
+\section*{Question 3}
+
+\subsection*{(1) \texttt{fork()} System Call}
+
+\paragraph{System Call Mechanism} When a process calls \texttt{fork()}, the hardware switches to the kernel mode and jumps to the corresponding handler. The kernel creates a new process in the process list, with a copied PCB (with slight differences in PID, parent PID, etc.) from the parent process. The user space of the child process is also copied from the parent process (but usually implemented with copy-on-write). The kernel returns the PID of the child process to the parent process and 0 to the child process. Then the hardware switches back to the user mode and the parent and child processes continue to run.
+
+\paragraph{PCB} Each process has a PCB (Process Control Block) in the kernel space, which stores the context of the process. The child process's PCB is a copy of the parent process's PCB, except for PID (child process gets a new PID), parent PID (child process's parent PID is the PID of the parent process), running time (child process starts from 0), list of children (child process has no children, parent process has a new child), file locks (child process has no file locks), etc.
+
+\paragraph{Address Space} The virtual memory address space of the child process should be the same as the parent process. Otherwise, the pointers in the child process will point to the wrong memory locations. However, the same virtual memory may map to different physical memory (if a copy-on-write happens).
+
+\paragraph{CPU scheduler} The OS needs to schedule the parent and child processes depending on its scheduling algorithm, since both are ready to run after the \texttt{fork()} system call. The OS may choose to run the parent or child process first.
+
+\paragraph{Context Switch} The context switch may happen after the \texttt{fork()} system call, since the OS may choose to run the child process first. The context switch is the same as the context switch in the normal scheduling process.
+
+\paragraph{Return Value} The \texttt{fork()} system call returns the PID of the child process to the parent process and 0 to the child process. The parent process can use the PID to identify the child process.
+
+\subsection*{(2) \texttt{exit()} System Call}
+
+\paragraph{System Call Mechanism} When a process calls \texttt{exit()}, the hardware switches to the kernel mode and jumps to the corresponding handler. The kernel firstly releases most of the kernel resources (file locks, etc.) of the process and then releases the user space of the process. The kernel then notify the parent process, by sending a signal (default SIGCHLD) to the parent process. The process enters the zombie state, waiting for its parent process to clean up with limited remaining process information (exit code and others). The hardware switches back to the user mode.
+
+\paragraph{Zombie State} The zombie state is a state of a process that has exited but still has an entry in the process table. The process is waiting for its parent process to clean up. The process has limited information left in the process table (exit code, etc.) for the parent process to retrieve.
+
+\paragraph{Parent Process} The parent process needs to clean up the zombie process by calling \texttt{wait()} or \texttt{waitpid()} system call. It will retrieve the exit code of the child process and release the remaining resources of the child process.
+
+\paragraph{Return Value} The \texttt{exit()} system call does not return to the user process. The parent process can retrieve the exit code of the child process by calling \texttt{wait()} or \texttt{waitpid()} system call.
+
+\paragraph{Reparenting} If the parent process exits before the child process, the child process will be reparented to the init process. The init process will be responsible for cleaning up its zombie children.
+
+\section*{Question 4}
+
+The process could be in the following states:
+\begin{itemize}
+	\item \textbf{new}: The process is being created, going through the initialization process. Once the process is initialized, it will be moved to the ready state.
+	\item \textbf{ready}: The process is ready to run but waiting for the CPU. The OS scheduler will choose a process to run from the ready queue, and the process will be moved to the running state.
+	\item \textbf{running}: The process is running on the CPU. If the process is blocked by IO event, it will be moved to the waiting state. If the process is preempted by the scheduler, it will be moved to the ready state. If the process finishes its execution, it will be moved to the terminated state.
+	\item \textbf{waiting}: The process is waiting for an IO event to complete. Once the IO event is completed, the process will be moved to the ready state.
+	\item \textbf{terminated}: The process has finished its execution. The process will be moved to the terminated state and wait for the parent process to clean up.
+\end{itemize}
+
+\end{document}

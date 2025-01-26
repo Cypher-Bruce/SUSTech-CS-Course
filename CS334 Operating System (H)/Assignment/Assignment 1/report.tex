@@ -1,0 +1,166 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,caption}
+\usepackage[open]{bookmark}
+\usepackage{minted}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Operating System (H): Assignment 1}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Operating System (H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 1}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\textit{The commented lines are the original code.}
+
+\section*{Test 1}
+
+\begin{minted}{rust}
+    fn test1() {
+        let s1 = String::new();
+        let s2 = s1;
+    
+        // answer_here!(println!("s1:{:?}", s1););
+        answer_here!(println!("s1:{:?}", s2););
+    
+        assert!(s2.is_empty());
+    }
+\end{minted}
+
+The original code fails to compile because before the \texttt{println!} macro, the variable \texttt{s1} is moved to \texttt{s2}. Thus, \texttt{s1} is no longer valid. 
+
+The modified code uses \texttt{s2}, which is still valid after the move. 
+
+\section*{Test 2}
+
+\begin{minted}{rust}
+    fn test2() {
+        let s1 = String::new();
+        // answer_here!(let s2 = s1;);
+        answer_here!(let s2 = &s1;);
+
+        assert!(s1.is_empty());
+        assert!(s2.is_empty());
+    }
+\end{minted}
+
+The original code fails to compile because before the \texttt{assert!} macro, the variable \texttt{s1} is moved to \texttt{s2}. Thus, \texttt{s1} is no longer valid.
+
+The modified code changes the type of \texttt{s2} to a reference, which does not take ownership of the value. Thus, \texttt{s1} is still valid after the move.
+
+\section*{Test 3}
+
+\begin{minted}{rust}
+    fn test3() {
+        let mut value = 0;
+        let ref_value = &value;
+
+        value = 1;
+
+        // answer_here!();
+        answer_here!(let ref_value = &value;);
+
+        assert_eq!(*ref_value, 1);
+    }
+\end{minted}
+
+The original code fails to compile because the variable \texttt{value} is changed during the lifetime of the immutable reference \texttt{ref\_value}.
+
+The modified code creates a new immutable reference \texttt{ref\_value} after the change of \texttt{value}. This new \text{ref\_value} shadows the old one and becomes the one used in the \texttt{assert\_eq!} macro. During the lifetime of the new \texttt{ref\_value}, \texttt{value} is not changed. Thus, the code compiles.
+
+\section*{Test 4}
+
+\begin{minted}{rust}
+    fn test4() {
+        let default_str = String::default();
+        let str1 = String::new();
+        let result;
+        {
+            let str2 = String::new();
+    
+            // answer_here!();
+            answer_here!(let str2 = &default_str;);
+    
+            result = longest(&str1, &str2);
+        }
+        assert!(result.is_empty());
+    }
+\end{minted}
+
+The original code fails to compile because the function \texttt{longest} may return a reference to \texttt{str2}, which is not valid after the inner scope. If so, when \texttt{result} is used in the \texttt{assert!} macro, it will cause a dangling reference.
+
+The modified code makes \texttt{str2} a reference to \texttt{default\_str}, which is still valid after the inner scope. Thus, the code compiles.
+
+\section*{Test 5}
+
+\begin{minted}{rust}
+    fn test5() {
+        let ref_cell = RefCell::new(0);
+    
+        let change1 = &ref_cell;
+        // answer_here!();
+        answer_here!(*change1.borrow_mut() = 1;);
+    
+        assert!(ref_cell.into_inner() == 1);
+    }
+\end{minted}
+
+The original code can compile but will fail the test. This is because the inner value of a \texttt{RefCell} is 0, which fails the assertion.
+
+The modified code borrows the \texttt{RefCell} mutably and changes the inner value to 1. Thus, the code passes the test.
+
+\end{document}

@@ -1,0 +1,1 @@
+python "CNN for MNIST.py" < input.txt

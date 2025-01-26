@@ -1,0 +1,8 @@
+{
+    "C_Cpp.default.compilerPath": "/usr/bin/gcc-11",
+    "files.associations": {
+        "cstdint": "c",
+        "array": "c",
+        "__tuple": "c"
+    }
+}

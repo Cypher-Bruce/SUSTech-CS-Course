@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UNICODE" ?>
+<topo version="1.3.00.100">
+    <devices>
+        <dev id="5F478105-F3C1-4ccd-B3B3-8096C96A59E3" name="PC4" poe="0" model="PC" settings=" -simpc_ip 192.168.45.251  -simpc_mask 255.255.255.0  -simpc_gateway 192.168.45.1  -simpc_mac 54-89-98-F1-1D-D3  -simpc_mc_dstip 0.0.0.0  -simpc_mc_dstmac 00-00-00-00-00-00  -simpc_dns1 0.0.0.0  -simpc_dns2 0.0.0.0  -simpc_ipv6 ::  -simpc_prefix 128  -simpc_gatewayv6 ::  -simpc_dhcp_state 1  -simpc_dhcpv6_state 0  -simpc_dns_auto_state 1  -simpc_igmp_version 1  -simpc_group_ip_start 0.0.0.0  -simpc_src_ip_start 0.0.0.0  -simpc_group_num 0  -simpc_group_step 0  -simpc_src_num 0  -simpc_src_step 0  -simpc_type MODE_IS_INCLUDE " system_mac="54-89-98-F1-1D-D3" com_port="0" bootmode="0" cx="813.000000" cy="129.000000" edit_left="840" edit_top="183">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="Ethernet" count="1" />
+            </slot>
+        </dev>
+        <dev id="3E8A9ADB-6159-47a5-920C-A2E5A103DC1D" name="PC1" poe="0" model="PC" settings=" -simpc_ip 192.168.23.253  -simpc_mask 255.255.255.0  -simpc_gateway 192.168.23.1  -simpc_mac 54-89-98-AA-2D-0B  -simpc_mc_dstip 0.0.0.0  -simpc_mc_dstmac 00-00-00-00-00-00  -simpc_dns1 0.0.0.0  -simpc_dns2 0.0.0.0  -simpc_ipv6 ::  -simpc_prefix 128  -simpc_gatewayv6 ::  -simpc_dhcp_state 1  -simpc_dhcpv6_state 0  -simpc_dns_auto_state 1  -simpc_igmp_version 1  -simpc_group_ip_start 0.0.0.0  -simpc_src_ip_start 0.0.0.0  -simpc_group_num 0  -simpc_group_step 0  -simpc_src_num 0  -simpc_src_step 0  -simpc_type MODE_IS_INCLUDE " system_mac="54-89-98-AA-2D-0B" com_port="0" bootmode="0" cx="153.000000" cy="174.000000" edit_left="180" edit_top="228">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="Ethernet" count="1" />
+            </slot>
+        </dev>
+        <dev id="186A2A12-4A1F-417e-84A9-F5FD8980722F" name="PC2" poe="0" model="PC" settings=" -simpc_ip 192.168.23.251  -simpc_mask 255.255.255.0  -simpc_gateway 192.168.23.1  -simpc_mac 54-89-98-38-44-76  -simpc_mc_dstip 0.0.0.0  -simpc_mc_dstmac 00-00-00-00-00-00  -simpc_dns1 0.0.0.0  -simpc_dns2 0.0.0.0  -simpc_ipv6 ::  -simpc_prefix 128  -simpc_gatewayv6 ::  -simpc_dhcp_state 1  -simpc_dhcpv6_state 0  -simpc_dns_auto_state 1  -simpc_igmp_version 1  -simpc_group_ip_start 0.0.0.0  -simpc_src_ip_start 0.0.0.0  -simpc_group_num 0  -simpc_group_step 0  -simpc_src_num 0  -simpc_src_step 0  -simpc_type MODE_IS_INCLUDE " system_mac="54-89-98-38-44-76" com_port="0" bootmode="0" cx="274.000000" cy="294.000000" edit_left="301" edit_top="348">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="Ethernet" count="1" />
+            </slot>
+        </dev>
+        <dev id="D76FD409-5AA5-42ca-979E-D992F1C2C33B" name="PC3" poe="0" model="PC" settings=" -simpc_ip 192.168.45.253  -simpc_mask 255.255.255.0  -simpc_gateway 192.168.45.1  -simpc_mac 54-89-98-FB-7B-64  -simpc_mc_dstip 0.0.0.0  -simpc_mc_dstmac 00-00-00-00-00-00  -simpc_dns1 0.0.0.0  -simpc_dns2 0.0.0.0  -simpc_ipv6 ::  -simpc_prefix 128  -simpc_gatewayv6 ::  -simpc_dhcp_state 1  -simpc_dhcpv6_state 0  -simpc_dns_auto_state 1  -simpc_igmp_version 1  -simpc_group_ip_start 0.0.0.0  -simpc_src_ip_start 0.0.0.0  -simpc_group_num 0  -simpc_group_step 0  -simpc_src_num 0  -simpc_src_step 0  -simpc_type MODE_IS_INCLUDE " system_mac="54-89-98-FB-7B-64" com_port="0" bootmode="0" cx="598.000000" cy="331.000000" edit_left="625" edit_top="385">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="Ethernet" count="1" />
+            </slot>
+        </dev>
+        <dev id="4118F515-7FC1-438b-BB9B-D69435F1F392" name="LSW1" poe="0" model="S3700" settings="" system_mac="4C-1F-CC-8E-70-3B" com_port="2000" bootmode="0" cx="459.000000" cy="158.000000" edit_left="486" edit_top="212">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="Ethernet" count="22" />
+                <interface sztype="Ethernet" interfacename="GE" count="2" />
+            </slot>
+        </dev>
+    </devices>
+    <lines>
+        <line srcDeviceID="3E8A9ADB-6159-47a5-920C-A2E5A103DC1D" destDeviceID="4118F515-7FC1-438b-BB9B-D69435F1F392">
+            <interfacePair lineName="Copper" srcIndex="0" srcBoundRectIsMoved="0" srcBoundRect_X="223.124847" srcBoundRect_Y="198.745102" srcOffset_X="0.000000" srcOffset_Y="0.000000" tarIndex="0" tarBoundRectIsMoved="1" tarBoundRect_X="442.875153" tarBoundRect_Y="187.254898" tarOffset_X="-1.000000" tarOffset_Y="0.000000" />
+        </line>
+        <line srcDeviceID="186A2A12-4A1F-417e-84A9-F5FD8980722F" destDeviceID="4118F515-7FC1-438b-BB9B-D69435F1F392">
+            <interfacePair lineName="Copper" srcIndex="0" srcBoundRectIsMoved="0" srcBoundRect_X="335.793671" srcBoundRect_Y="295.421936" srcOffset_X="0.000000" srcOffset_Y="0.000000" tarIndex="1" tarBoundRectIsMoved="0" tarBoundRect_X="451.206329" tarBoundRect_Y="210.578064" tarOffset_X="0.000000" tarOffset_Y="0.000000" />
+        </line>
+        <line srcDeviceID="4118F515-7FC1-438b-BB9B-D69435F1F392" destDeviceID="D76FD409-5AA5-42ca-979E-D992F1C2C33B">
+            <interfacePair lineName="Copper" srcIndex="2" srcBoundRectIsMoved="0" srcBoundRect_X="513.047791" srcBoundRect_Y="218.663834" srcOffset_X="0.000000" srcOffset_Y="0.000000" tarIndex="0" tarBoundRectIsMoved="0" tarBoundRect_X="597.952209" tarBoundRect_Y="324.336182" tarOffset_X="0.000000" tarOffset_Y="0.000000" />
+        </line>
+        <line srcDeviceID="4118F515-7FC1-438b-BB9B-D69435F1F392" destDeviceID="5F478105-F3C1-4ccd-B3B3-8096C96A59E3">
+            <interfacePair lineName="Copper" srcIndex="3" srcBoundRectIsMoved="0" srcBoundRect_X="529.039612" srcBoundRect_Y="181.474152" srcOffset_X="0.000000" srcOffset_Y="0.000000" tarIndex="0" tarBoundRectIsMoved="1" tarBoundRect_X="796.960388" tarBoundRect_Y="159.525848" tarOffset_X="0.000000" tarOffset_Y="-1.000000" />
+        </line>
+    </lines>
+    <shapes />
+    <txttips />
+</topo>

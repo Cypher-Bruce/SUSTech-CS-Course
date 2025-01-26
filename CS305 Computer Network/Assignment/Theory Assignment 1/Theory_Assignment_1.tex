@@ -1,0 +1,235 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,caption}
+\usepackage[open]{bookmark}
+\usepackage{minted}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Computer Network: Assignment 1}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Computer Network} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Theory Assignment 1}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 1}
+
+The five layers of the Internet protocol stack are:
+\begin{enumerate}
+  \item \textbf{Application Layer:} This layer directly provides services to the user's application, such as email, web browsing, and file transfer. Some protocols in this layer include HTTP, SMTP, and FTP.
+  \item \textbf{Transport Layer:} This layer is responsible for end-to-end communication between the source and destination hosts. It provides reliable and unreliable data delivery. Some protocols in this layer include TCP and UDP.
+  \item \textbf{Network Layer:} This layer is responsible for routing packets from the source host to the destination host. It provides logical addressing and routing. Some protocols in this layer include IP and ICMP.
+  \item \textbf{Data Link Layer:} This layer is responsible for transferring data between adjacent network nodes. It provides error detection and correction. One protocol in this layer is Ethernet.
+  \item \textbf{Physical Layer:} This layer is responsible for transmitting raw bits over a physical medium. One protocol in this layer is IEEE 802.3.
+\end{enumerate}
+
+\section*{Question 2}
+
+There will be:
+\begin{itemize}
+  \item \textbf{Transmission Delay:} The time it takes to push all the bits of the packet into the link.
+  \item \textbf{Propagation Delay:} The time it takes for the first bit of the packet to reach the destination.
+  \item \textbf{Processing Delay:} The time it takes to process the packet at the router.
+  \item \textbf{Queuing Delay:} The time it takes for the packet to wait in the queue before being processed.
+\end{itemize}
+
+\section*{Question 3}
+
+\subsection*{(a)}
+
+\paragraph{Circuit Switching:} In circuit switching, a reserved path is established between the source and destination before any data is transmitted. This path remains reserved for the duration of the communication.
+
+\paragraph{Packet Switching:} In packet switching, data is divided into packets, which are then transmitted independently over the network. Each packet is routed individually and may take a different path to reach the destination.
+
+\paragraph{Difference:} The main difference is that circuit switching reserves a path for the entire duration of the communication, eliminating the need for waiting and queuing, but this comes at the cost of small bandwidth utilization for each connection. Packet switching, on the other hand, allows each packet to be transmitted with full bandwidth, but this may result in delays due to queuing and processing.
+
+\subsection*{(b)}
+
+\paragraph{Client-Server:} In a client-server network, there exists a server that is always on and provides services to clients. Clients request services from the server, and the server responds to these requests.
+
+\paragraph{Peer-to-Peer:} In a peer-to-peer network, all nodes are equal and can act as both clients and servers. Each node can request services from other nodes and provide services to other nodes.
+
+\paragraph{Difference:} The main difference is that client-server networks have a centralized node (the server) that provides services to other nodes (the clients), and clients have no direct communication with each other. In peer-to-peer networks, all nodes are equal and can communicate directly with each other.
+
+\subsection*{(c)}
+
+\paragraph{Positive ACK:} In positive acknowledgment, the receiver sends an acknowledgment to the sender if the packet is received correctly.
+
+\paragraph{Negative ACK:} In negative acknowledgment, the receiver sends an acknowledgment to the sender only if the packet is not received correctly (lost or corrupted).
+
+\paragraph{Difference:} The main difference is that positive acknowledgment requires the receiver to send an acknowledgment for every correctly received packet, while negative acknowledgment requires the receiver to send an acknowledgment only for incorrectly received packets. This result in more overhead for positive acknowledgment but can be more reliable.
+
+\section*{Question 4}
+
+\subsection*{(a)}
+
+\begin{equation*}
+  t_{\text{trans}} = \frac{L}{R} = \frac{2 \text{ MB}}{4 \text{ Mbps}} = \frac{2 \times 2^{20} \times 8 \text{ bits}}{4 \times 10^6 \text{ bits/s}} \approx 4.194304 \text{ s}
+\end{equation*}
+
+\subsection*{(b)}
+
+\begin{equation*}
+  t_{\text{prop}} = \frac{\text{distance}}{\text{speed}} = \frac{385000 \times 10^3 \text{ m}}{3 \times 10^8 \text{ m/s}} \approx 1.283333 \text{ s}
+\end{equation*}
+
+\section*{Question 5}
+
+\subsection*{(a)}
+
+\begin{equation*}
+  t_{\text{trans}} = \frac{L}{R} = \frac{1500 \text{ bytes}}{1 \text{ Mbps}} = \frac{1500 \times 8 \text{ bits}}{10^6 \text{ bits/s}} = 0.012 \text{ s}
+\end{equation*}
+
+However, since we have 4 routers, the packet is transmitted 5 times in total, so the total transmission time is:
+\begin{equation*}
+  t_{\text{full\_trans}} = 5 \times 0.012 \text{ s} = 0.06 \text{ s}
+\end{equation*}
+
+\begin{equation*}
+  t_{\text{prop}} = \frac{\text{distance}}{\text{speed}} = \frac{3000 \times 10^3 \text{ m}}{2 \times 10^8 \text{ m/s}} = 0.015 \text{ s}
+\end{equation*}
+
+\begin{equation*}
+  RTT = 2 \times (t_{\text{full\_trans}} + t_{\text{prop}}) = 2 \times (0.06 + 0.015) = 0.15 \text{ s}
+\end{equation*}
+
+\subsection*{(b)}
+
+If one router has steady 5 packets in the queue, the extra queuing delay is:
+\begin{equation*}
+  t_{\text{queuing}} = 5 \times 0.012 \text{ s} = 0.06 \text{ s}
+\end{equation*}
+
+So the total delay for one way is:
+\begin{equation*}
+  t_{\text{full\_trans}} + t_{\text{prop}} + t_{\text{queuing}} = 0.06 + 0.015 + 0.06 = 0.135 \text{ s}
+\end{equation*}
+
+\subsection*{(c)}
+
+If each router has steady 5 packets in the queue, the extra queuing delay is:
+\begin{equation*}
+  t_{\text{queuing}} = 4 \times 5 \times 0.012 \text{ s} = 0.24 \text{ s}
+\end{equation*}
+
+So the total delay for one way is:
+\begin{equation*}
+  t_{\text{full\_trans}} + t_{\text{prop}} + t_{\text{queuing}} = 0.06 + 0.015 + 0.24 = 0.315 \text{ s}
+\end{equation*}
+
+\subsection*{(d)}
+
+The maximum difference between the two delays is:
+\begin{equation*}
+  0.315 - 0.075 = 0.24 \text{ s}
+\end{equation*}
+
+Hence, the buffer should be able to store all data received in 0.24 s.
+\begin{equation*}
+  \text{Buffer Size} = 0.24 \text{ s} \times 1 \text{ Mbps} = 240000 \text{ bits} = 30000 \text{ bytes}
+\end{equation*}
+
+\section*{Question 6}
+
+\paragraph{For non-persistent HTTP:}
+
+Each object requires two RTTs: one to request the object and one to receive the object. Hence, 4 objects require 8 RTTs. With additional transmission time, the total time is:
+\begin{equation*}
+  8 \times 75 \text{ ms} \times 2 + \frac{250 \text{ KB} + 3 \times 500 \text{ KB}}{100 \text{ Mbps}} \approx 1.34 \text{ s}
+\end{equation*}
+
+\paragraph{For persistent HTTP with single connection:}
+
+3 RTTs are required: one to establish the connection, one to request the html file, and one to request the images. With additional transmission time, the total time is:
+\begin{equation*}
+  3 \times 75 \text{ ms} \times 2 + \frac{250 \text{ KB} + 3 \times 500 \text{ KB}}{100 \text{ Mbps}} \approx 0.59 \text{ s}
+\end{equation*}
+
+\section*{Question 7}
+
+There are three key components of an email system:
+\begin{enumerate}
+  \item \textbf{User Agents:} User agents are the email clients that allow users to read, compose, and send emails. Examples of user agents include Outlook and Gmail.
+  \item \textbf{Mail Servers:} Mail servers are responsible for storing and forwarding emails. They receive emails from user agents and deliver them to the recipient's mail server. They are also responsible for ensuring that emails are delivered correctly and resend them if necessary.
+  \item \textbf{Simple Mail Transfer Protocol (SMTP):} SMTP is the protocol used to send emails between mail servers. It is responsible for routing emails to the correct destination and ensuring that they are delivered correctly. It is also used to retrieve emails from the server.
+\end{enumerate}
+
+\section*{Question 8}
+
+\subsection*{(a)}
+
+The cache in DNS in that the local DNS server caches the IP address of the websites that the users have visited recently. By caching the IP addresses, the local DNS server can reduce the number of requests it sends to the root DNS server, which helps to reduce the load on the root DNS server and improve the performance of the DNS system.
+
+The cache can be out of date. Thus, the local DNS server periodically checks the cache to see if the IP addresses are still valid. If the IP addresses are no longer valid, the local DNS server will send a request to the root DNS server to get the updated IP addresses.
+
+\subsection*{(b)}
+
+A recursive query is a query in which each DNS server in the hierarchy asks the DNS server in the next level to resolve the domain name. Typically, the local DNS server sends a recursive query to the root DNS server, which then sends a recursive query to the top-level domain (TLD) DNS server, and so on until the IP address is resolved.
+
+\subsection*{(c)}
+
+An iterative query is a query in which the local DNS server is responsible for asking all other DNS servers in the hierarchy to resolve the domain name. Typically, the local DNS server sends an iterative query to the root DNS server. After receiving the answer from the root DNS server, the local DNS server sends an iterative query to the TLD DNS server, and so on until the IP address is resolved.
+
+\section*{Question 9}
+
+For each file with non-persistent HTTP, we need 2 RTTs plus the transmission time. Thus, the total time is:
+\begin{align*}
+  2 \times (RTT_0 + RTT_1 + RTT_2 + RTT_3 + RTT_4) + \frac{4 \times 1000 \text{ bits}}{10000 \text{ bps}} \\ 
+  = 2 \times (RTT_0 + RTT_1 + RTT_2 + RTT_3 + RTT_4) + 0.4 \text{ s}
+\end{align*}
+
+\end{document}

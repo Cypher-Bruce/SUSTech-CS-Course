@@ -1,0 +1,7 @@
+../Core/Src/debounce.c:25:6:Debounce_Init	10
+../Core/Src/debounce.c:58:6:Debounce_Update	9
+../Core/Src/debounce.c:95:9:Debounce_ReadPress	1
+../Core/Src/debounce.c:107:9:Debounce_ReadRelease	1
+../Core/Src/debounce.c:117:6:Debounce_InitKeyWKUP	1
+../Core/Src/debounce.c:125:6:Debounce_InitKey0	1
+../Core/Src/debounce.c:133:6:Debounce_InitKey1	1

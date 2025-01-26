@@ -1,0 +1,192 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,caption,amsfonts}
+\usepackage[open]{bookmark}
+\usepackage{minted}
+
+\newcommand{\pard}[2]{\frac{\partial #1}{\partial #2}}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Machine Learning (H): Assignment 3}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Machine Learning (H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 3}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 1}
+
+Let $R$ be a diagonal matrix with $r_n$ on the diagonal, then we have
+\begin{equation*}
+	E_D(w) = \frac{1}{2} (t-\Phi w)^T R (t-\Phi w)
+\end{equation*}
+
+Taking the derivative of $E_D(w)$ with respect to $w$ and setting it to zero, we have
+\begin{equation*}
+	\pard{E_D(w)}{w} = \Phi^T R (t-\Phi w) = 0
+\end{equation*}
+
+Solving the equation, we have
+\begin{equation*}
+	w^* = (\Phi^T R \Phi)^{-1} \Phi^T R t
+\end{equation*}
+
+In the data independent noise variance view, $R$ takes the place of precision factor $\beta$.
+Hence, it represents the variance of the noise in each data point.
+
+In the replicated data view, $R$ can be viewed as the number of replicated data points. 
+The error for each replicated data point is $r_n$ times the error for the original data point.
+
+\section*{Question 2}
+
+The log of the posterior distribution is
+\begin{align*}
+	\ln p(w, \beta | t) &= \ln p(w, \beta) + \sum_{n=1}^{N} \ln p(t_n | w^T \phi(x_n), \beta^{-1}) \\
+	&= \frac{M}{2} \ln \beta - \frac{\beta}{2} (w - m_0)^T S_0^{-1} (w - m_0) - \frac{1}{2} \ln |S_0| - b_0 \beta \\
+	&+ (a_0 - 1) \ln \beta + \frac{N}{2} \ln \beta - \frac{\beta}{2} \sum_{n=1}^{N} (t_n - w^T \phi(x_n))^2 + \text{const}
+\end{align*}
+
+Consider the dependence of the posterior distribution on $w$, we have
+\begin{equation*}
+	\ln p(w | \beta, t) = \frac{\beta}{2} w^T (\Phi^T \Phi + S_0^{-1}) w - \beta w^T (\Phi^T t + S_0^{-1} m_0) + \text{const}
+\end{equation*}
+
+Thus, mean and covariance of the posterior distribution are
+\begin{align*}
+	m_N &= S_N (\Phi^T t + S_0^{-1} m_0) \\
+	S_N &= (\Phi^T \Phi + S_0^{-1})^{-1}
+\end{align*}
+
+We then consider the dependence of the posterior distribution on $\beta$, we have
+\begin{equation*}
+	\ln p(\beta | w, t) = -\frac{\beta}{2} m_0^T S_0 m_0 + \frac{\beta}{2} m_N^T S_N m_N + (a_0 + \frac{N}{2} - 1) \ln \beta - b_0 \beta - \frac{\beta}{2} \sum_{n=1}^{N} t_n^2 + \text{const}
+\end{equation*}
+
+Thus, we have
+\begin{align*}
+	a_N &= a_0 + \frac{N}{2} \\
+	b_N &= b_0 + \frac{1}{2} \{ m_0^T S_0^{-1} m_0 - m_N^T S_N^{-1} m_N + \sum_{n=1}^{N} t_n^2 \}
+\end{align*}
+
+\section*{Question 3}
+
+\begin{equation*}
+	E(w) = E(m_N) + \frac{1}{2} (w - m_N)^T A (w - m_N)
+\end{equation*}
+where $A = \beta \Phi^T \Phi + \alpha I$.
+
+And we have
+\begin{equation*}
+	\int \exp \left\{ -E(w) \right\} dw = \exp \left\{ -E(m_N) \right\} (2\pi)^{M/2} |A|^{-1/2}
+\end{equation*}
+
+To integrate the Gaussian distribution, we have
+\begin{equation*}
+	\int \frac{1}{(2\pi)^{M/2} |A|^{-1/2}} \exp \left\{ -\frac{1}{2} (w - m_N)^T A (w - m_N) \right\} dw = 1
+\end{equation*}
+
+Thus, we have
+\begin{align*}
+	\ln p(t | \alpha, \beta) &= \ln \left\{ (\frac{\beta}{2\pi})^{N/2} (\frac{\alpha}{2\pi})^{M/2} \int \exp \left\{ -E(w) \right\} dw \right\} \\
+	&= \ln \left\{ (\frac{\beta}{2\pi})^{N/2} (\frac{\alpha}{2\pi})^{M/2} \exp \left\{ -E(m_N) \right\} (2\pi)^{M/2} |A|^{-1/2} \right\} \\
+	&= \frac{N}{2} \ln \beta + \frac{M}{2} \ln \alpha - E(m_N) - \frac{1}{2} \ln |A| - \frac{N}{2} \ln (2\pi) 
+\end{align*}
+
+\section*{Question 4}
+
+The log likelihood function is
+\begin{equation*}
+	\ln F(a) = \ln \prod_{i=1}^{n} p(Y_i | X_i, a) = -\frac{n}{2} \ln (2\pi) - n \ln \sigma - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (Y_i - a X_i)^2
+\end{equation*}
+
+Taking the derivative of $\ln F(a)$ with respect to $a$ and setting it to zero, we have
+\begin{equation*}
+	\pard{\ln F(a)}{a} = \frac{1}{\sigma^2} \sum_{i=1}^{n} X_i (Y_i - a X_i) = 0
+\end{equation*}
+
+Solving the equation, we have
+\begin{equation*}
+	a_{\text{ML}} = \frac{\sum_{i=1}^{n} X_i Y_i}{\sum_{i=1}^{n} X_i^2}
+\end{equation*}
+
+\section*{Question 5}
+
+The log likelihood function is
+\begin{align*}
+	\ln L(\theta) &= \ln \prod_{i=1}^{n} p(y_i | \theta) \\
+	&= \sum_{i=1}^{n} \ln \frac{\theta^{y_i} e^{-\theta}}{y_i!} \\
+	&= \sum_{i=1}^{n} y_i \ln \theta - n \theta - \sum_{i=1}^{n} \ln y_i!
+\end{align*}
+
+\section*{Question 6}
+
+The log likelihood function is
+\begin{align*}
+	\ln L(\alpha, \lambda) &= \ln \prod_{i=1}^{n} p(X_i | \alpha, \lambda) \\
+	&= \ln \prod_{i=1}^{n} \frac{1}{\Gamma(\alpha)} \lambda^{\alpha} X_i^{\alpha - 1} e^{-\lambda X_i} \\
+	&= \sum_{i=1}^{n} \ln \frac{1}{\Gamma(\alpha)} + \alpha \ln \lambda + (\alpha - 1) \ln X_i - \lambda X_i
+\end{align*}
+
+Taking the derivative of $\ln L(\alpha, \lambda)$ with respect to $\lambda$ and setting it to zero, we have
+\begin{equation*}
+	\pard{\ln L(\alpha, \lambda)}{\lambda} = \frac{n\alpha}{\lambda} - \sum_{i=1}^{n} X_i = 0
+\end{equation*}
+
+Solving the equation, we have
+\begin{equation*}
+	\lambda_{\text{ML}} = \frac{n\alpha}{\sum_{i=1}^{n} X_i}
+\end{equation*}
+\end{document}

@@ -1,0 +1,4 @@
+../Core/Src/main.c:140:6:SystemClock_Config	72	static,ignoring_inline_asm
+../Core/Src/main.c:176:6:lcd_showpic	32	static
+../Core/Src/main.c:77:5:main	32	static
+../Core/Src/main.c:189:6:Error_Handler	0	static,ignoring_inline_asm

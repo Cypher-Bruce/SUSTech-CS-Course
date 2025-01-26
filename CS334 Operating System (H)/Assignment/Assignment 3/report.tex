@@ -1,0 +1,95 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,caption}
+\usepackage[open]{bookmark}
+\usepackage{minted}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Operating System (H): Assignment 3}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Operating System (H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 3}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 1}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|ccccc}
+		\toprule
+		Time & HRRN & FIFO & RR & SJF & Priority \\
+		\midrule
+		1	&	A	&	A	&	A	&	A	&	A	\\
+		2	&	A	&	A	&	A	&	A	&	B	\\
+		3	&	A	&	A	&	B	&	A	&	A	\\
+		4	&	A	&	A	&	A	&	A	&	D	\\
+		5	&	A	&	A	&	D	&	A	&	D	\\
+		6	&	A	&	A	&	A	&	A	&	C	\\
+		7	&	B	&	B	&	C	&	B	&	C	\\
+		8	&	D	&	D	&	D	&	D	&	C	\\
+		9	&	D	&	D	&	A	&	D	&	A	\\
+		10	&	C	&	C	&	C	&	C	&	A	\\
+		11	&	C	&	C	&	A	&	C	&	A	\\
+		12	&	C	&	C	&	C	&	C	&	A	\\
+		\midrule
+		Avg. Turn-around Time	&	6.5	&	6.5	& 	6.5	&	6.5	& 4.75	\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+\end{document}

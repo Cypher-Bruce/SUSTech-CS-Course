@@ -1,0 +1,266 @@
+\documentclass[a4paper,12pt]{article} 
+
+% First, we usually want to set the margins of our document. For this we use the package geometry.
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage{amsmath,amsthm,caption,amsfonts}
+\usepackage[open]{bookmark}
+\usepackage{minted}
+
+\newcommand{\pard}[2]{\frac{\partial #1}{\partial #2}}
+
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Machine Learning (H): Assignment 2}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Mengxuan Wu} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}}
+{\large \bf Machine Learning (H)} \\
+Southern University of Science and Technology \\ Mengxuan Wu \\ 12212006 \\
+\hline
+\\
+\end{tabular}
+
+\vspace*{0.3cm} %add some vertical space in between the line and our title.
+
+\begin{center}
+	{\Large \bf Assignment 2}
+	\vspace{2mm}
+
+	{\bf Mengxuan Wu}
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+\section*{Question 1}
+
+\subsection*{(a)}
+
+True.
+
+If two sets of random variables are jointly Gaussian, then the conditional distribution of one set given the other set is still Gaussian:
+\begin{equation*}
+	p(x_a|x_b) = \mathcal{N}(\mu_a + \Sigma_{ab}\Sigma_{bb}^{-1}(x_b - \mu_b), \Sigma_{aa} - \Sigma_{ab}\Sigma_{bb}^{-1}\Sigma_{ba})
+\end{equation*}
+
+Also, the marginal distribution of the two sets is still Gaussian:
+\begin{equation*}
+	p(x_a) = \mathcal{N}(\mu_a, \Sigma_{aa})
+\end{equation*}
+
+\subsection*{(b)}
+
+We can rewrite the mean and variance as:
+\begin{equation*}
+	\mu = \begin{pmatrix}
+		\mu_{ab}
+		\mu_c
+	\end{pmatrix}, 
+	\quad 
+	\Sigma = \begin{pmatrix}
+		\Sigma_{(ab)(ab)} & \Sigma_{(ab)c} \\
+		\Sigma_{c(ab)} & \Sigma_{cc}
+	\end{pmatrix}
+\end{equation*}
+
+Then, from part (a), the marginal distribution of $x_{ab}$ is Gaussian:
+\begin{equation*}
+	p(x_{ab}) = \mathcal{N}(\mu_{ab}, \Sigma_{(ab)(ab)})
+\end{equation*}
+
+Again, from part (a), the conditional distribution of $x_a$ given $x_b$ is Gaussian:
+\begin{equation*}
+	p(x_a|x_b) = \mathcal{N}(\mu_a + \Sigma_{ab}\Sigma_{bb}^{-1}(x_b - \mu_b), \Sigma_{aa} - \Sigma_{ab}\Sigma_{bb}^{-1}\Sigma_{ba})
+\end{equation*}
+
+\section*{Question 2}
+
+\subsection*{(a)}
+
+Since $\mu$ is the upper part of mean vector, then its variance is given by the upper-left part of the covariance matrix, which is $\Lambda^{-1}$. Thus, $p(x) = \mathcal{N}(\mu, \Lambda^{-1})$.
+
+\subsection*{(b)}
+
+From question 1 (a), the conditional distribution of $y$ given $x$ is Gaussian, and its mean and variance are:
+\begin{equation*}
+	\mu_{y|x} = \mu_y + \Sigma_{yx}\Sigma_{xx}^{-1}(x - \mu_x)
+\end{equation*}
+
+\begin{equation*}
+	\Sigma_{y|x} = \Sigma_{yy} - \Sigma_{yx}\Sigma_{xx}^{-1}\Sigma_{xy}
+\end{equation*}
+
+Substitute the given values into the equations, we have:
+\begin{equation*}
+	\mu_{y|x} = A\mu + b + A\Lambda^{-1}\Lambda(x - \mu) = Ax + b
+\end{equation*}
+
+\begin{equation*}
+	\Sigma_{y|x} = L^{-1} + A\Lambda^{-1}A^T - A\Lambda^{-1}\Lambda\Lambda^{-1}A^T = L^{-1}
+\end{equation*}
+
+Hence, $p(y|x) = \mathcal{N}(Ax + b, L^{-1})$.
+
+\section*{Question 3}
+
+The log likelihood function is:
+\begin{equation*}
+	\ln p(X|\mu, \Sigma) = -\frac{ND}{2}\ln(2\pi) - \frac{N}{2}\ln|\Sigma| - \frac{1}{2}\sum_{n=1}^{N}(x_n - \mu)^T\Sigma^{-1}(x_n - \mu)
+\end{equation*}
+
+Taking the derivative with respect to $\Sigma$, we have:
+\begin{equation*}
+	\pard{}{\Sigma}\ln p(X|\mu, \Sigma) = -\frac{N}{2}\Sigma^{-1} + \frac{1}{2}\sum_{n=1}^{N}(x_n - \mu)(x_n - \mu)^T
+\end{equation*}
+
+Setting the derivative to zero, we have:
+\begin{equation*}
+	\Sigma = \frac{1}{N}\sum_{n=1}^{N}(x_n - \mu)(x_n - \mu)^T
+\end{equation*}
+
+\begin{proof}
+$ $
+\paragraph{Symmetry:} 
+\begin{align*}
+	\Sigma^T &= \left(\frac{1}{N}\sum_{n=1}^{N}(x_n - \mu)(x_n - \mu)^T\right)^T \\
+	&= \frac{1}{N}\sum_{n=1}^{N} \left((x_n - \mu)(x_n - \mu)^T\right)^T \\
+	&= \frac{1}{N}\sum_{n=1}^{N} (x_n - \mu)(x_n - \mu)^T \\
+	&= \Sigma
+\end{align*}
+
+\paragraph{Positive semi-definite:}
+For any vector $z$, we have:
+\begin{align*}
+	z^T\Sigma z &= z^T\left(\frac{1}{N}\sum_{n=1}^{N}(x_n - \mu)(x_n - \mu)^T\right)z \\
+	&= \frac{1}{N}\sum_{n=1}^{N}z^T(x_n - \mu)(x_n - \mu)^Tz \\
+	&= \frac{1}{N}\sum_{n=1}^{N}(z^T(x_n - \mu))^2 \\
+	&\geq 0
+\end{align*}
+\end{proof}
+
+\section*{Question 4}
+
+\subsection*{(a)}
+
+\begin{align*}
+	(\sigma^2_{ML})^{(N)} &= \frac{1}{N}\sum_{n=1}^{N}(x_n - \mu_{ML})^2 \\
+	&= \frac{1}{N}\sum_{n=1}^{N-1}(x_n - \mu_{ML})^2 + \frac{1}{N}(x_N - \mu_{ML})^2 \\
+	&= \frac{N-1}{N}\frac{1}{N-1}\sum_{n=1}^{N-1}(x_n - \mu_{ML})^2 + \frac{1}{N}(x_N - \mu_{ML})^2 \\
+	&= (\sigma^2_{ML})^{(N-1)} - \frac{1}{N}\sum_{n=1}^{N-1}(x_n - \mu_{ML})^2 + \frac{1}{N}(x_N - \mu_{ML})^2 \\
+	&= (\sigma^2_{ML})^{(N-1)} + \frac{1}{N}[(x_N - \mu_{ML})^2 - (\sigma^2_{ML})^{(N-1)}]
+\end{align*}
+
+The maximum likelihood estimation of $\sigma^2$ is the value that maximizes the log likelihood function:
+\begin{equation*}
+	\pard{}{\sigma^2_{ML}} \frac{1}{N}\sum_{n=1}^{N}\ln p(x_n|\mu, \sigma^2) = 0
+\end{equation*}
+
+Swap the derivative and the sum, we have:
+\begin{equation*}
+	\lim_{N\to\infty} \frac{1}{N}\sum_{n=1}^{N}\ln p(x_n|\mu, \sigma^2) = \mathbb{E}[\pard{}{\sigma^2_{ML}}\ln p(x_n|\mu, \sigma^2)]
+\end{equation*}
+
+Hence, the estimation of $\sigma^2$ is:
+\begin{equation*}
+	(\sigma^2_{ML})^{(N)} = (\sigma^2_{ML})^{(N-1)} + a_{N-1}\pard{}{(\sigma^2_{ML})^{(N-1)}}\ln p(x_N|\mu_{ML}, (\sigma^2_{ML})^{(N-1)})
+\end{equation*}
+
+Let this equal to the first equation, we have:
+\begin{equation*}
+	a_{N-1} = \frac{2}{N} (\sigma^4_{ML})^{(N-1)}
+\end{equation*}
+
+\begin{equation*}
+	a_{N} = \frac{2}{N+1} (\sigma^4_{ML})^{(N)}
+\end{equation*}
+
+\subsection*{(b)}
+
+\begin{align*}
+	\Sigma_{ML}^(N) &= \frac{1}{N}\sum_{n=1}^{N}(x_n - \mu_{ML})(x_n - \mu_{ML})^T \\
+	&= \frac{1}{N}\sum_{n=1}^{N-1}(x_n - \mu_{ML})(x_n - \mu_{ML})^T + \frac{1}{N}(x_N - \mu_{ML})(x_N - \mu_{ML})^T \\
+	&= \frac{N-1}{N}\frac{1}{N-1}\sum_{n=1}^{N-1}(x_n - \mu_{ML})(x_n - \mu_{ML})^T + \frac{1}{N}(x_N - \mu_{ML})(x_N - \mu_{ML})^T \\
+	&= \Sigma_{ML}^{(N-1)} + \frac{1}{N}[(x_N - \mu_{ML})(x_N - \mu_{ML})^T - \Sigma_{ML}^{(N-1)}]
+\end{align*}
+
+Same as part (a), we find the sequential form of $\Sigma_{ML}$:
+\begin{align*}
+	\Sigma_{ML}^{(N)} &= \Sigma_{ML}^{(N-1)} + a_{N-1}\pard{}{\Sigma_{ML}^{(N-1)}}\ln p(x_N|\mu_{ML}, \Sigma_{ML}^{(N-1)}) \\
+	&= \Sigma_{ML}^{(N-1)} + \frac{a_{N-1}}{2} [-(\Sigma_{ML}^{-1})^{(N-1)} + (\Sigma_{ML}^{-1})^{(N-1)}(x_N - \mu_{ML})(x_N - \mu_{ML})^T(\Sigma_{ML}^{-1})^{(N-1)}]
+\end{align*}
+
+Let this equal to the first equation, we have:
+\begin{equation*}
+	a_{N-1} = \frac{2}{N} (\sigma^2_{ML})^{(N-1)}
+\end{equation*}
+
+\begin{equation*}
+	a_{N} = \frac{2}{N+1} (\sigma^2_{ML})^{(N)}
+\end{equation*}
+
+\section*{Question 5}
+
+From Bayes' theorem, we have:
+\begin{align*}
+	p(\mu|X) &\propto p(X|\mu)p(\mu) = p(\mu) \prod_{n=1}^{N}p(x_n|\mu)
+\end{align*}
+
+Since both the prior and likelihood are Gaussian, the posterior is also Gaussian. We now focus on the exponential term of the right-hand side of the equation:
+\begin{align*}
+	p(\mu) \prod_{n=1}^{N}p(x_n|\mu) &= K \exp\left(-\frac{1}{2}(\mu - \mu_0)^T\Sigma_0^{-1}(\mu - \mu_0) - \frac{1}{2}\sum_{n=1}^{N}(x_n - \mu)^T\Sigma^{-1}(x_n - \mu)\right) \\
+	=& K \exp\left(-\frac{1}{2}\mu^T(\Sigma_0^{-1} + N\Sigma^{-1})\mu + \mu^T(\Sigma_0^{-1}\mu_0 + \Sigma^{-1}\sum_{n=1}^{N}x_n) + \text{const}\right)
+\end{align*}
+where $const$ is the terms that do not contain $\mu$.
+
+Thus, the posterior is Gaussian with mean and covariance given by:
+\begin{equation*}
+	\Sigma_N^{-1} = \Sigma_0^{-1} + N\Sigma^{-1}
+\end{equation*}
+
+\begin{equation*}
+	\mu_N = \Sigma_N (\Sigma_0^{-1}\mu_0 + \Sigma^{-1}N\mu_{ML})
+\end{equation*}
+
+Hence, the posterior is:
+\begin{align*}
+	p(\mu|X) &= \mathcal{N}(\mu_N, \Sigma_N) \\
+	&= \mathcal{N}\left((\Sigma_0^{-1} + N\Sigma^{-1})^{-1}(\Sigma_0^{-1}\mu_0 + \Sigma^{-1}N\mu_{ML}), (\Sigma_0^{-1} + N\Sigma^{-1})^{-1}\right)
+\end{align*}
+
+
+\end{document}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UNICODE" ?>
+<topo version="1.3.00.100">
+    <devices>
+        <dev id="8C109A73-CDF3-4b8a-A7EB-077BA31B31FF" name="R1" poe="0" model="Router" settings="" system_mac="54-89-98-71-18-1A" com_port="2000" bootmode="0" cx="385.000000" cy="331.000000" edit_left="412" edit_top="385">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="Ethernet" count="2" />
+                <interface sztype="Ethernet" interfacename="GE" count="4" />
+                <interface sztype="Serial" interfacename="Serial" count="4" />
+            </slot>
+        </dev>
+        <dev id="00D137D3-2CD4-454b-A67C-D446C9BF69F6" name="Server1" poe="0" model="Server" settings="-domain 0 -eth 54-89-98-7A-23-BD -ipaddr 10.2.0.1 -ipmask 255.255.0.0 -gateway 10.2.0.254 -ipv6addr 2000::2 -ipv6gateway 2000::1 -prefixlen 64 -ipv4dns 0.0.0.0 -ipv6dns 3000::1 -dnslist _www.test.com_10.2.0.1" system_mac="54-89-98-7A-23-BD" com_port="0" bootmode="0" cx="583.000000" cy="261.000000" edit_left="610" edit_top="315">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="Ethernet" count="1" />
+            </slot>
+        </dev>
+        <dev id="585DC30F-FD5B-4f0c-B6BC-D97D9DAE64FB" name="Client1" poe="0" model="Client" settings="-domain 0 -eth 54-89-98-88-21-56 -ipaddr 10.1.0.1 -ipmask 255.255.0.0 -gateway 10.1.0.254 -ipv6addr 2000::2 -ipv6gateway 2000::1 -prefixlen 64 -ipv4dns 10.2.0.1 -ipv6dns 3000::1 -dnslist NULL" system_mac="54-89-98-88-21-56" com_port="0" bootmode="0" cx="276.000000" cy="183.000000" edit_left="303" edit_top="237">
+            <slot number="slot17" isMainBoard="1">
+                <interface sztype="Ethernet" interfacename="Ethernet" count="1" />
+            </slot>
+        </dev>
+    </devices>
+    <lines>
+        <line srcDeviceID="8C109A73-CDF3-4b8a-A7EB-077BA31B31FF" destDeviceID="585DC30F-FD5B-4f0c-B6BC-D97D9DAE64FB">
+            <interfacePair lineName="Copper" srcIndex="0" srcBoundRectIsMoved="0" srcBoundRect_X="386.391449" srcBoundRect_Y="323.228760" srcOffset_X="0.000000" srcOffset_Y="0.000000" tarIndex="0" tarBoundRectIsMoved="0" tarBoundRect_X="328.608551" tarBoundRect_Y="244.771240" tarOffset_X="0.000000" tarOffset_Y="0.000000" />
+        </line>
+        <line srcDeviceID="8C109A73-CDF3-4b8a-A7EB-077BA31B31FF" destDeviceID="00D137D3-2CD4-454b-A67C-D446C9BF69F6">
+            <interfacePair lineName="Copper" srcIndex="1" srcBoundRectIsMoved="0" srcBoundRect_X="452.714264" srcBoundRect_Y="343.606079" srcOffset_X="0.000000" srcOffset_Y="0.000000" tarIndex="0" tarBoundRectIsMoved="0" tarBoundRect_X="569.285706" tarBoundRect_Y="302.393921" tarOffset_X="0.000000" tarOffset_Y="0.000000" />
+        </line>
+    </lines>
+    <shapes />
+    <txttips />
+</topo>
