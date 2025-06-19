@@ -19,7 +19,7 @@ I will try to keep the structure of each course folder consistent, as follows:
 | **Midterm/Final Review** | Review notes |
 | **Final Exam** | Final exam paper (usually reconstructed from memory) |
 
-## To Non-turing Students :100:
+## To Non-turing Students
 For those who are not Turing students, you may find some info missing or inconsistent with your course.
 In that case, I suggest you refer to [SUSTech Course Info](https://github.com/NYH-Dolphin/SUSTech-Course-Info) from [NYH](https://github.com/NYH-Dolphin), or [SUSTech CSE Final Reviews](https://github.com/RoderickQiu/SUSTech_CSE_Final_Reviews) and [SUSTech CSE Projects](https://github.com/RoderickQiu/SUSTech_CSE_Projects) from [Roderick](https://github.com/RoderickQiu).
 
@@ -40,3 +40,7 @@ In that case, I suggest you refer to [SUSTech Course Info](https://github.com/NY
 | **CS329** | **Machine Learning (H)** | 2024 Fall | Qi Hao | 95 |
 | **CS334** | **Operating System (H)** | 2024 Fall | Yinqian Zhang | 99 |
 | **MA212** | **Probability and Statistics** | 2023 Fall | Yiwei Zhang | 98 |
+
+## Contribution
+
+If you find any mistake or want to add more info, you are always welcomed to open an [issue](https://github.com/Cypher-Bruce/SUSTech-CS-Course/issues/new) in this repo.
